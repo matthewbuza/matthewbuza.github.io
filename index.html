@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Interactive STEM tools, simulations, engineering explorers, physics games, and maker projects for curious students.">
+<title>Mr. Matt STEM Tools</title>
+<style>
+:root{--ink:#172033;--muted:#647084;--line:#dfe5ec;--card:#fff;--accent:#275dad;--accent2:#159477;--soft:#f4f7fb;--dark:#111a2c;--shadow:0 16px 45px rgba(25,42,70,.09)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at 8% 0%,#dcecff 0,transparent 30%),radial-gradient(circle at 92% 10%,#dff7ef 0,transparent 25%),#fbfcfe;line-height:1.6}
+a{color:inherit}
+.wrap{width:min(1120px,calc(100% - 36px));margin:auto}
+header{position:sticky;top:0;z-index:10;background:rgba(251,252,254,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(223,229,236,.75)}
+nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:850;text-decoration:none;letter-spacing:-.02em}
+.mark{width:39px;height:39px;border-radius:12px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));font-weight:900;box-shadow:0 8px 20px rgba(39,93,173,.22)}
+.navlinks{display:flex;gap:24px}
+.navlinks a{text-decoration:none;color:var(--muted);font-weight:700}
+.navlinks a:hover{color:var(--ink)}
+.hero{padding:92px 0 74px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:58px;align-items:center}
+.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.18em;font-weight:900;color:var(--accent2);margin-bottom:14px}
+h1{font-size:clamp(3rem,7vw,5.8rem);line-height:.94;letter-spacing:-.065em;margin:0 0 24px;max-width:780px}
+.lead{font-size:1.18rem;color:var(--muted);max-width:690px;margin:0 0 30px}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:800;border:1px solid var(--line);background:#fff}
+.btn.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+.concept{background:linear-gradient(145deg,#17243d,#0f1728);color:#fff;border-radius:28px;padding:32px;box-shadow:0 26px 65px rgba(15,23,40,.2);transform:rotate(1.2deg)}
+.concept .mini{color:#9fd9ca;font-weight:800;font-size:.8rem;text-transform:uppercase;letter-spacing:.14em}
+.concept h2{font-size:2rem;line-height:1.08;margin:15px 0 22px;letter-spacing:-.04em}
+.formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:17px;border-radius:15px;color:#dce8ff}
+.section{padding:76px 0}
+.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:30px}
+.section h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1;letter-spacing:-.045em;margin:0}
+.section-head p{max-width:520px;color:var(--muted);margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{position:relative;display:flex;flex-direction:column;min-height:245px;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--shadow);text-decoration:none;transition:.2s ease}
+.card:hover{transform:translateY(-4px);border-color:#bdc9d9;box-shadow:0 20px 50px rgba(25,42,70,.13)}
+.icon{font-size:1.7rem}
+.tag{margin-top:18px;color:var(--accent2);font-size:.75rem;font-weight:900;text-transform:uppercase;letter-spacing:.11em}
+.card h3{font-size:1.35rem;margin:7px 0 8px;letter-spacing:-.025em}
+.card p{color:var(--muted);margin:0 0 20px}
+.open{margin-top:auto;font-weight:850;color:var(--accent)}
+.coming{opacity:.68}
+.about{background:var(--soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start}
+.about p{font-size:1.1rem;color:var(--muted);margin-top:0}
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+.principle{background:#fff;border:1px solid var(--line);padding:18px;border-radius:15px}
+.principle strong{display:block;margin-bottom:4px}
+.principle span{font-size:.9rem;color:var(--muted)}
+footer{padding:34px 0;color:var(--muted);font-size:.9rem}
+.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:850px){.hero-grid,.about-grid{grid-template-columns:1fr}.hero{padding-top:65px}.concept{transform:none}.grid{grid-template-columns:repeat(2,1fr)}.section-head{align-items:start;flex-direction:column}.principles{grid-template-columns:1fr}}
+@media(max-width:570px){.navlinks{gap:14px;font-size:.9rem}.brand span:last-child{display:none}.grid{grid-template-columns:1fr}h1{font-size:3.4rem}.section{padding:58px 0}.hero{padding-bottom:50px}}
+</style>
+</head>
+<body>
+<header>
+<nav class="wrap">
+<a class="brand" href="#top"><span class="mark">M</span><span>Mr. Matt STEM Tools</span></a>
+<div class="navlinks"><a href="#tools">Tools</a><a href="#about">About</a></div>
+</nav>
+</header>
+
+<main id="top">
+<section class="hero">
+<div class="wrap hero-grid">
+<div>
+<div class="eyebrow">Build • Test • Learn</div>
+<h1>STEM tools made for curious students.</h1>
+<p class="lead">Interactive classroom simulations, engineering explorers, physics games, and maker projects designed to help students experiment, change variables, and see what happens.</p>
+<div class="actions">
+<a class="btn primary" href="#tools">Explore the tools ↓</a>
+<a class="btn" href="#about">About this site</a>
+</div>
+</div>
+<aside class="concept">
+<div class="mini">The idea</div>
+<h2>Change a variable.<br>See what happens.</h2>
+<p>STEM gets more interesting when students can experiment instead of only reading about the answer.</p>
+<div class="formula">V = I × R &nbsp; • &nbsp; F = ma<br>test → observe → improve</div>
+</aside>
+</div>
+</section>
+
+<section class="section" id="tools">
+<div class="wrap">
+<div class="section-head">
+<div>
+<div class="eyebrow">Project Library</div>
+<h2>Explore the tools</h2>
+</div>
+<p>This library will keep growing as new classroom games, simulations, engineering references, and maker activities are built.</p>
+</div>
+
+<div class="grid">
+<a class="card" href="#">
+<div class="icon">⚡</div>
+<div class="tag">Engineering</div>
+<h3>Electrical Engineering</h3>
+<p>Interactive circuit tools, voltage and current visualizations, Arduino references, and electronics experiments.</p>
+<div class="open">Projects coming soon →</div>
+</a>
+
+<a class="card" href="#">
+<div class="icon">⚛️</div>
+<div class="tag">Chemistry + Physics</div>
+<h3>Atom Explorer</h3>
+<p>Explore atoms and the periodic table through interactive models built to make atomic structure easier to visualize.</p>
+<div class="open">Projects coming soon →</div>
+</a>
+
+<a class="card" href="#">
+<div class="icon">🎯</div>
+<div class="tag">Physics Game</div>
+<h3>Catapult Mr. Matt</h3>
+<p>Experiment with projectile mass, spring strength, arm length, trajectories, obstacles, and a very questionable homework delivery system.</p>
+<div class="open">Projects coming soon →</div>
+</a>
+
+<a class="card" href="#">
+<div class="icon">⚙️</div>
+<div class="tag">Physics Sandbox</div>
+<h3>Simple Machines, Big Problems</h3>
+<p>Solve ridiculous problems using levers, pulleys, wedges, inclined planes, wheels and axles, and screws.</p>
+<div class="open">Projects coming soon →</div>
+</a>
+
+<a class="card" href="#">
+<div class="icon">🏁</div>
+<div class="tag">Data + Racing</div>
+<h3>RC Racing</h3>
+<p>Racing activities and interactive tools for lap timing, averages, data collection, design, and race strategy.</p>
+<div class="open">Projects coming soon →</div>
+</a>
+
+<div class="card coming">
+<div class="icon">🛠️</div>
+<div class="tag">Maker Lab</div>
+<h3>More projects are coming</h3>
+<p>3D printing challenges, maker races, classroom references, and new experiments will be added here.</p>
+<div class="open">Under construction</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section about" id="about">
+<div class="wrap about-grid">
+<div>
+<div class="eyebrow">About</div>
+<h2>Learning by building.</h2>
+</div>
+<div>
+<p>Mr. Matt STEM Tools is a collection of browser-based classroom projects designed around experimentation. The goal is simple: give students something they can manipulate, test, break, improve, and understand.</p>
+<p>The tools are intentionally lightweight so they can run in a normal web browser and be linked directly from classroom assignments.</p>
+
+<div class="principles">
+<div class="principle"><strong>Explore</strong><span>Change variables and test ideas.</span></div>
+<div class="principle"><strong>Observe</strong><span>See the result immediately.</span></div>
+<div class="principle"><strong>Improve</strong><span>Use evidence to try again.</span></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="wrap footer-row">
+<span>© 2026 Mr. Matt STEM Tools</span>
+<span>Interactive classroom projects • Western Washington</span>
+</div>
+</footer>
+</body>
+</html>
