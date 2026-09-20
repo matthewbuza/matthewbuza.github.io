@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Breadboard Node Lab</title>
+<style>
+  :root{--bg:#f3f0e7;--panel:#fffdf7;--ink:#252522;--muted:#77756d;--line:#d8d2c5;--red:#b86f6b;--green:#73946f;--wire:#4c6f93;--hole:#565650;--connected:#e7dfc9}
+  *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+  header{padding:18px 22px 10px;max-width:1180px;margin:auto} h1{margin:0 0 5px;font-size:26px} header p{margin:0;color:var(--muted)}
+  main{max-width:1180px;margin:auto;padding:12px 22px 28px;display:grid;grid-template-columns:250px 1fr;gap:18px}
+  .panel,.boardWrap{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 3px 12px #0000000b}
+  .panel{padding:16px}.panel h2{font-size:16px;margin:0 0 10px}.panel p{font-size:13px;line-height:1.45;color:#55534d}
+  button{width:100%;padding:10px;margin:5px 0;border:1px solid #bdb7aa;border-radius:9px;background:#fff;cursor:pointer;font-weight:650;color:#333}button:hover{background:#f5f2e9}.active{outline:3px solid #c9b77c}
+  .key{display:flex;align-items:center;gap:8px;font-size:13px;margin:9px 0}.sw{width:22px;height:12px;border-radius:3px}.red{background:var(--red)}.green{background:var(--green)}.blue{background:var(--wire)}
+  #status{margin-top:12px;padding:10px;border-radius:9px;background:#f2eee2;font-size:13px;min-height:58px}
+  .boardWrap{padding:18px;overflow:auto}.board{position:relative;min-width:930px;padding:18px 22px 24px;border-radius:12px;background:linear-gradient(#fbfbf9,#ececea);border:1px solid #c9c9c6;box-shadow:inset 0 1px 0 #fff,0 8px 18px #0002}
+  .rail,.strip{display:grid;grid-template-columns:42px repeat(30,24px);gap:4px;align-items:center;margin:4px 0;position:relative}
+  .rail{padding:5px 4px;border-radius:5px}.rail.power{border-top:3px solid #c85d59;background:#c85d5908}.rail.ground{border-bottom:3px solid #4f86b5;background:#4f86b508}
+  .label{text-align:center;font-size:12px;font-weight:750;color:#656158}.rail .label{font-size:16px}.hole{width:13px;height:13px;border-radius:2px;border:2px solid #d2d2ce;background:#2d2d2b;margin:auto;cursor:pointer;position:relative;z-index:3}.hole:hover{border-color:#333}.hole.selected{box-shadow:0 0 0 4px #d5c37d}.hole.powerNode{background:var(--red);border-color:#8f5551}.hole.groundNode{background:var(--green);border-color:#557751}.hole.sameNode{box-shadow:0 0 0 4px #d8cfb7}
+  .gap{height:34px;margin:8px 0;border-top:1px solid #d5d5d1;border-bottom:1px solid #d5d5d1;background:linear-gradient(#e7e7e3,#f8f8f5,#e5e5e1);box-shadow:inset 0 4px 8px #00000012}
+  svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}.wire{fill:none;stroke:var(--wire);stroke-width:5;stroke-linecap:round;opacity:.9}.wire.powerWire{stroke:var(--red)}.wire.groundWire{stroke:var(--green)}
+  .nodeBanner{display:none;margin:8px 0 12px;padding:8px 12px;border-radius:8px;font-weight:700;font-size:13px}.nodeBanner.show{display:block}.nodeBanner.power{background:#b86f6b33;color:#75403d}.nodeBanner.ground{background:#73946f33;color:#3e603b}
+  @media(max-width:800px){main{grid-template-columns:1fr}.panel{order:2}}
+</style>
+</head>
+<body>
+<header><h1>Breadboard Node Lab</h1><p>Click two holes to place a wire. Watch which breadboard holes become the same electrical node.</p></header>
+<main>
+<section class="panel">
+  <h2>Lab controls</h2>
+  <button id="wireBtn" class="active">Connect Wire</button>
+  <button id="powerBtn">Connect +5V</button>
+  <button id="groundBtn">Connect Ground</button>
+  <button id="clearBtn">Reset Board</button>
+  <p><b>How to use:</b> Select a tool, then click a breadboard hole. For a wire, click a second hole to complete the connection.</p>
+  <div class="key"><span class="sw red"></span>Same node as +5V</div>
+  <div class="key"><span class="sw green"></span>Same node as Ground</div>
+  <div class="key"><span class="sw blue"></span>Jumper wire</div>
+  <div id="status">Wire mode: choose the first hole.</div>
+</section>
+<section class="boardWrap">
+  <div id="powerBanner" class="nodeBanner power">POWER NODE CONNECTED — all highlighted holes are electrically the same node.</div>
+  <div id="groundBanner" class="nodeBanner ground">GROUND NODE CONNECTED — all highlighted holes are electrically the same node.</div>
+  <div class="board" id="board"><svg id="wires"></svg></div>
+</section>
+</main>
+<script>
+const board=document.getElementById('board'), svg=document.getElementById('wires'), statusEl=document.getElementById('status');
+let mode='wire', first=null, edges=[], powered=new Set(), grounded=new Set();
+const holes=new Map();
+function addRow(name,type='strip'){
+ const row=document.createElement('div'); row.className=(type==='rail'?'rail '+name:'strip');
+ const lab=document.createElement('div'); lab.className='label'; lab.textContent= type==='rail' ? (name==='power'?'+':'−') : name; row.appendChild(lab);
+ for(let c=1;c<=30;c++){const h=document.createElement('div');h.className='hole';h.dataset.id=name+c;h.title=name+c;h.onclick=()=>clickHole(h);row.appendChild(h);holes.set(h.dataset.id,h)}
+ board.appendChild(row);
+}
+addRow('power','rail'); addRow('ground','rail');
+function addNumbers(){const row=document.createElement('div');row.className='strip numbers';const blank=document.createElement('div');row.appendChild(blank);for(let c=1;c<=30;c++){const n=document.createElement('div');n.className='label';n.textContent=c;row.appendChild(n)}board.appendChild(row)}
+const gap1=document.createElement('div');gap1.className='gap';board.appendChild(gap1); addNumbers();
+['a','b','c','d','e'].forEach(addRow); const gap=document.createElement('div');gap.className='gap';board.appendChild(gap); ['f','g','h','i','j'].forEach(addRow); addNumbers();
+function setMode(m){mode=m;first=null;document.querySelectorAll('button').forEach(b=>b.classList.remove('active'));document.getElementById(m+'Btn')?.classList.add('active');statusEl.textContent=m==='wire'?'Wire mode: choose the first hole.':m==='power'?'Power mode: click a hole to connect it to +5V.':'Ground mode: click a hole to connect it to ground.';clearSelected()}
+wireBtn.onclick=()=>setMode('wire');powerBtn.onclick=()=>setMode('power');groundBtn.onclick=()=>setMode('ground');clearBtn.onclick=()=>{edges=[];powered.clear();grounded.clear();first=null;svg.innerHTML='';update();statusEl.textContent='Board reset. Choose a connection tool.'}
+function group(id){let m=id.match(/^([a-j])(\d+)$/);if(m){let r=m[1],c=m[2];return ((r<='e')?'top':'bottom')+c} return id.startsWith('power')?'powerRail':'groundRail'}
+function members(g){return [...holes.keys()].filter(id=>group(id)===g)}
+function clickHole(h){let id=h.dataset.id;if(mode==='power'){edges.push(['POWER',id]);statusEl.textContent=`${id.toUpperCase()} connected to +5V.`;update();return}if(mode==='ground'){edges.push(['GROUND',id]);statusEl.textContent=`${id.toUpperCase()} connected to Ground.`;update();return}if(!first){first=id;h.classList.add('selected');statusEl.textContent=`First point: ${id.toUpperCase()}. Choose the second hole.`}else{if(first!==id)edges.push([first,id]);statusEl.textContent=`Wire connected: ${first.toUpperCase()} → ${id.toUpperCase()}.`;first=null;clearSelected();update()}}
+function clearSelected(){holes.forEach(h=>h.classList.remove('selected'))}
+function update(){powered.clear();grounded.clear();holes.forEach(h=>h.classList.remove('powerNode','groundNode','sameNode'));
+ let adj={POWER:new Set(),GROUND:new Set()}; function link(a,b){(adj[a]??=new Set()).add(b);(adj[b]??=new Set()).add(a)}
+ // intrinsic breadboard connections: each 5-hole column; full power/ground rails
+ const gs=new Set([...holes.keys()].map(group));gs.forEach(g=>{let ms=members(g);for(let i=1;i<ms.length;i++)link(ms[0],ms[i])}); edges.forEach(([a,b])=>link(a,b));
+ function reach(start){let seen=new Set([start]),q=[start];while(q.length){let x=q.shift();for(let n of adj[x]||[]){if(!seen.has(n)){seen.add(n);q.push(n)}}}return seen}
+ let p=reach('POWER'),g=reach('GROUND'); holes.forEach((h,id)=>{if(p.has(id)){h.classList.add('powerNode');powered.add(id)}else if(g.has(id)){h.classList.add('groundNode');grounded.add(id)}});
+ powerBanner.classList.toggle('show',powered.size>0);groundBanner.classList.toggle('show',grounded.size>0);drawWires();}
+function center(id){if(id==='POWER')return center('power1');if(id==='GROUND')return center('ground1');let h=holes.get(id),br=board.getBoundingClientRect(),r=h.getBoundingClientRect();return{x:r.left-br.left+r.width/2,y:r.top-br.top+r.height/2}}
+function drawWires(){svg.innerHTML='';edges.forEach(([a,b])=>{let A=center(a),B=center(b),path=document.createElementNS('http://www.w3.org/2000/svg','path');let dy=Math.max(22,Math.abs(B.x-A.x)*.12);path.setAttribute('d',`M${A.x},${A.y} C${A.x},${A.y-dy} ${B.x},${B.y-dy} ${B.x},${B.y}`);path.setAttribute('class','wire '+(a==='POWER'?'powerWire':a==='GROUND'?'groundWire':''));svg.appendChild(path)})}
+window.addEventListener('resize',drawWires);update();
+</script>
+</body></html>
+
