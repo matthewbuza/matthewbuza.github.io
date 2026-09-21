@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#131a21" />
+    <title>Micro Circuit — RC Racing Lab</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="./"
+        ><span class="brand-icon">μ</span> MICRO CIRCUIT
+        <span class="lab">/ RC RACING LAB</span></a
+      ><span class="live"><i></i> LOCAL PRACTICE</span>
+    </header>
+    <main>
+      <section class="intro">
+        <div>
+          <div class="eyebrow">SMALL SCALE. REAL RACING.</div>
+          <h1>Find your racing line<span>.</span></h1>
+          <p>A 1/76-scale indoor circuit. Your race. Your pace.</p>
+        </div>
+        <button id="start" class="primary">
+          Start session <span>↗</span>
+        </button>
+      </section>
+      <section class="circuit-picker" aria-label="Circuit selection">
+        <div>
+          <label for="circuit-select">CHOOSE YOUR CIRCUIT</label>
+          <select
+            id="circuit-select"
+            aria-describedby="circuit-description circuit-help"
+          ></select>
+        </div>
+        <div>
+          <label for="camera-select">CAMERA VIEW</label>
+          <select id="camera-select">
+            <option value="follow">Follow car</option>
+            <option value="overview">Full circuit</option>
+          </select>
+        </div>
+        <div>
+          <label for="lap-count">NUMBER OF LAPS</label>
+          <input
+            id="lap-count"
+            type="number"
+            min="1"
+            max="99"
+            step="1"
+            value="3"
+            aria-describedby="lap-help"
+          />
+        </div>
+        <div>
+          <label for="difficulty-select">DIFFICULTY</label>
+          <select id="difficulty-select" aria-describedby="difficulty-help">
+            <option value="easy">Easy — wider track</option>
+            <option value="medium" selected>Medium — standard track</option>
+            <option value="hard">Hard — narrower track</option>
+          </select>
+        </div>
+        <p id="circuit-description"></p>
+        <small id="difficulty-help"
+          >Changing difficulty resets the run. Best laps are saved per circuit
+          and difficulty.</small
+        >
+        <small id="lap-help"
+          >1–99 laps. Changing the lap count resets the current run.</small
+        >
+        <small id="circuit-help"
+          >Changing circuit resets the current run. Best laps stay saved per
+          track.</small
+        >
+      </section>
+      <section class="dashboard" aria-label="Race telemetry">
+        <div>
+          <span class="label">SESSION</span
+          ><strong id="status">READY TO RACE</strong
+          ><small id="session-note">3-lap time trial</small>
+        </div>
+        <div>
+          <span class="label">LAP</span
+          ><strong><b id="lap">01</b><em id="lap-target"> / 03</em></strong
+          ><small id="checkpoint">Checkpoint 0 / 4</small>
+        </div>
+        <div>
+          <span class="label">CURRENT LAP</span
+          ><strong id="time">00:00.000</strong
+          ><small>Push for a clean line</small>
+        </div>
+        <div>
+          <span class="label">PERSONAL BEST</span><strong id="best">—</strong
+          ><small>Saved on this browser</small>
+        </div>
+        <div>
+          <span class="label" id="average-label">3-LAP AVERAGE</span
+          ><strong id="average">—</strong
+          ><small id="average-note">Complete a session</small>
+        </div>
+      </section>
+      <section class="race-layout">
+        <div class="track-panel">
+          <div class="track-heading">
+            <span
+              ><i></i> <b id="circuit-name">THE WORKSHOP</b>
+              <small id="circuit-number"> / CIRCUIT 01</small></span
+            ><span class="track-meta">1:76 · ELECTRIC · INDOOR</span>
+          </div>
+          <div class="canvas-wrap">
+            <canvas
+              id="track"
+              aria-label="Top-down RC racing track. Use arrow keys or WASD to drive."
+            ></canvas>
+            <div id="overlay" class="overlay">
+              <div class="overlay-tag">WELCOME TO THE GRID</div>
+              <h2 id="overlay-title">Small car. Big ambition.</h2>
+              <p id="overlay-text">
+                Take the inside line. Keep it smooth.<br />Start your session
+                when you're ready.
+              </p>
+              <span id="overlay-hint">WASD / ARROW KEYS TO DRIVE</span>
+            </div>
+            <div class="speed">
+              <strong id="speed">0</strong><span>MODEL KM/H</span>
+              <div><i id="speed-bar"></i></div>
+            </div>
+            <div class="track-footer">
+              <b id="circuit-footer">THE WORKSHOP</b> <span>●</span> FOLLOW THE
+              ARROWS
+            </div>
+          </div>
+          <div class="controls">
+            <span><kbd>W</kbd><kbd>↑</kbd> Accelerate</span
+            ><span><kbd>S</kbd><kbd>↓</kbd> Brake / reverse</span
+            ><span><kbd>A</kbd><kbd>D</kbd> Steer</span
+            ><span><kbd>Space</kbd> Pause</span
+            ><span><kbd>R</kbd> Recover</span>
+          </div>
+          <div class="touch-controls" aria-label="Touch driving controls">
+            <button data-key="arrowleft" aria-label="Steer left">←</button
+            ><button data-key="arrowright" aria-label="Steer right">→</button
+            ><button data-key="arrowdown">Brake</button
+            ><button data-key="arrowup">Throttle</button>
+          </div>
+        </div>
+        <aside>
+          <section class="card">
+            <div class="card-title">
+              SESSION TIMES <span id="session-lap-count">03 LAPS</span>
+            </div>
+            <ol id="lap-list"></ol>
+            <div class="session-total">
+              <span>TOTAL TIME</span><b id="total">—</b>
+            </div>
+          </section>
+          <section class="card setup">
+            <div class="card-title">YOUR MACHINE <span>01</span></div>
+            <div class="car-art"><div class="mini-car">01</div></div>
+            <h3>Micro touring</h3>
+            <p>Rear-wheel drive. Ready to race.</p>
+            <div class="spec"><span>SCALE</span><b>1 / 76</b></div>
+            <div class="spec">
+              <span>HANDLING</span><b>Arcade / assisted</b>
+            </div>
+            <div class="spec"><span>TRACK</span><b>High-grip carpet</b></div>
+          </section>
+          <div class="tip">
+            <span>ENGINEERING NOTE</span>
+            <p>
+              Brake before the corner, then accelerate out. A smooth lap often
+              beats a fast straight.
+            </p>
+          </div>
+        </aside>
+      </section>
+      <footer>
+        <span>MICRO CIRCUIT <b>RACING LAB</b></span
+        ><span>Built to drive. Designed to experiment.</span
+        ><button id="pause">Pause session</button>
+      </footer>
+      <p id="announcement" class="sr-only" aria-live="polite"></p>
+    </main>
+    <script src="game.js" defer></script>
+  </body>
+</html>
