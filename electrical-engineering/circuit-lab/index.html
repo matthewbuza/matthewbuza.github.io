@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>5V Circuit Lab — LED, Resistor & Multimeter</title>
+<style>
+  :root{
+    --bg:#eef3f8;
+    --panel:#ffffff;
+    --ink:#17202a;
+    --muted:#64748b;
+    --line:#25364a;
+    --soft:#dbe5ef;
+    --accent:#2463eb;
+    --good:#0b8f55;
+    --warn:#c2410c;
+    --meter:#20252b;
+    --lcd:#cfe5b6;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    background:linear-gradient(180deg,#eaf1f8,#f7f9fc);
+    color:var(--ink);
+  }
+  .app{max-width:1180px;margin:auto;padding:22px}
+  h1{margin:0;font-size:clamp(24px,3vw,36px)}
+  .subtitle{margin:5px 0 18px;color:var(--muted)}
+  .toolbar{
+    display:flex;flex-wrap:wrap;gap:14px;align-items:end;
+    padding:16px;background:var(--panel);border:1px solid var(--soft);
+    border-radius:16px;box-shadow:0 5px 18px #20304010;
+  }
+  label{font-size:13px;font-weight:750;color:#425466;display:block;margin-bottom:6px}
+  select,input[type=number]{
+    height:40px;border:1px solid #bdcad8;border-radius:9px;padding:0 10px;
+    background:white;font:inherit;color:var(--ink);
+  }
+  input[type=range]{width:240px}
+  .control{min-width:150px}
+  .rangeRow{display:flex;align-items:center;gap:10px}
+  .ohmsBox{font-weight:800;min-width:88px}
+  .main{
+    display:grid;grid-template-columns:minmax(0,1fr) 320px;
+    gap:18px;margin-top:18px;
+  }
+  .card{
+    background:var(--panel);border:1px solid var(--soft);border-radius:18px;
+    box-shadow:0 5px 18px #20304010;
+  }
+  .circuitCard{padding:14px;min-height:540px}
+  .circuitTitle{display:flex;justify-content:space-between;align-items:center;padding:4px 8px 8px}
+  .badge{font-size:12px;font-weight:800;background:#e8efff;color:#234da5;padding:6px 9px;border-radius:999px}
+  svg{width:100%;height:455px;display:block;background:#f8fbfe;border-radius:14px;border:1px solid #e0e9f2}
+  .wire{stroke:var(--line);stroke-width:7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .wireHot{stroke:#d52d2d}
+  .wireReturn{stroke:#222}
+  .terminal{fill:#fff;stroke:#334155;stroke-width:4}
+  .measure-zone{fill:none;stroke:#f59e0b;stroke-width:5;stroke-dasharray:10 8;opacity:.95}
+  .measure-lead{fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+  .measure-red{stroke:#d22d2d}
+  .measure-black{stroke:#15191d}
+  .probe-tip{stroke:#fff;stroke-width:2}
+  .probe-tip.red{fill:#d22d2d}
+  .probe-tip.black{fill:#15191d}
+  .meter-tag{fill:#ffffff;stroke:#f59e0b;stroke-width:3}
+  .meter-tag-title{font-weight:900;font-size:17px;fill:#17202a}
+  .meter-tag-sub{font-weight:750;font-size:14px;fill:#526273}
+  .dimmed{opacity:.25}
+  .power-off{fill:#fff1eb;stroke:#c2410c;stroke-width:2}
+  .componentLabel{font-weight:800;font-size:18px;fill:#17202a}
+  .smallLabel{font-weight:700;font-size:14px;fill:#526273}
+  .batteryBody{fill:#f4f7fb;stroke:#526273;stroke-width:3}
+  .resBody{fill:#e8c890;stroke:#735c36;stroke-width:3}
+  .ledGlow{filter:drop-shadow(0 0 9px rgba(255,35,35,.7))}
+  .side{display:flex;flex-direction:column;gap:18px}
+  .meter{padding:18px;background:linear-gradient(#2e353d,#1e2329);color:white;border-radius:18px}
+  .meterTop{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+  .meterBrand{font-size:12px;font-weight:900;letter-spacing:.12em;color:#c7d0da}
+  .lcd{
+    background:var(--lcd);color:#23311e;border:5px solid #111820;border-radius:8px;
+    padding:12px 10px;text-align:right;font:700 34px/1.15 "Courier New", monospace;
+    box-shadow:inset 0 0 8px #718a6044;
+  }
+  .meterUnit{font-size:17px;margin-left:4px}
+  .dialModes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+  .dialModes button{
+    border:1px solid #65717d;background:#343c45;color:#fff;border-radius:10px;
+    padding:10px 4px;font-weight:800;cursor:pointer;
+  }
+  .dialModes button.active{background:#f2b93b;color:#15191d;border-color:#f2b93b}
+  .probes{display:flex;justify-content:center;gap:34px;margin-top:16px}
+  .probe{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:#c8d0d9}
+  .jack{width:26px;height:26px;border-radius:50%;border:4px solid #101419;background:#111}
+  .jack.red{background:#c83030}
+  .readouts{padding:17px}
+  .readouts h2,.notes h2{font-size:18px;margin:0 0 12px}
+  .gridRead{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .read{
+    padding:12px;background:#f4f7fb;border:1px solid #dfe7f0;border-radius:11px;
+  }
+  .read span{display:block;color:var(--muted);font-size:12px;font-weight:700}
+  .read strong{font-size:20px}
+  .equation{
+    margin-top:12px;background:#eef5ff;border-left:4px solid var(--accent);
+    padding:11px 12px;border-radius:8px;font-family:"Courier New",monospace;font-weight:700;
+  }
+  .notes{padding:17px}
+  .status{padding:10px 12px;border-radius:9px;font-size:13px;font-weight:750;background:#ebf8f1;color:#146c43}
+  .status.warn{background:#fff1eb;color:#9a3412}
+  .footerNote{font-size:12px;color:var(--muted);margin-top:9px;line-height:1.45}
+  @media(max-width:850px){.main{grid-template-columns:1fr}.side{display:grid;grid-template-columns:1fr 1fr}.meter{grid-row:span 2}}
+  @media(max-width:620px){.side{display:flex}.rangeRow{flex-wrap:wrap} input[type=range]{width:180px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <h1>5V Circuit Lab</h1>
+  <p class="subtitle">Explore LEDs, resistors, Ohm's law, and digital multimeter measurements.</p>
+
+  <div class="toolbar">
+    <div class="control">
+      <label for="voltage">Supply Voltage</label>
+      <div class="rangeRow">
+        <input id="voltage" type="range" min="0" max="24" value="5" step="0.1" style="width:180px">
+        <input id="voltageNumber" type="number" min="0" max="100" value="5" step="0.1" style="width:76px">
+        <strong>V</strong>
+      </div>
+    </div>
+
+    <div class="control">
+      <label for="mode">Circuit</label>
+      <select id="mode">
+        <option value="led">LED + resistor</option>
+        <option value="resistor">Resistor only</option>
+      </select>
+    </div>
+
+    <div class="control" id="ledControl">
+      <label for="ledType">LED</label>
+      <select id="ledType">
+        <option value="2.0" data-color="#ef3038">Red LED — 2.0 V</option>
+        <option value="2.2" data-color="#33b65b">Green LED — 2.2 V</option>
+        <option value="3.0" data-color="#3278ff">Blue LED — 3.0 V</option>
+        <option value="3.2" data-color="#f4f7ff">White LED — 3.2 V</option>
+      </select>
+    </div>
+
+    <div class="control" style="flex:1;min-width:300px">
+      <label for="resistance">Resistance</label>
+      <div class="rangeRow">
+        <input id="resistance" type="range" min="10" max="2000" value="220" step="10">
+        <input id="resistanceNumber" class="ohmsBox" type="number" min="1" max="100000" value="220" step="10">
+        <strong>Ω</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="card circuitCard">
+      <div class="circuitTitle">
+        <strong>Series Circuit</strong>
+        <span class="badge" id="supplyBadge">5.00 V DC</span>
+      </div>
+
+      <svg viewBox="0 0 780 455" role="img" aria-label="Interactive 5 volt circuit">
+        <!-- battery -->
+        <rect class="batteryBody" x="80" y="145" width="120" height="170" rx="18"/>
+        <text x="140" y="205" text-anchor="middle" class="componentLabel" id="supplySvgLabel">5 V</text>
+        <text x="140" y="229" text-anchor="middle" class="smallLabel">DC SUPPLY</text>
+        <text x="140" y="270" text-anchor="middle" style="font-size:30px;font-weight:900">+</text>
+        <text x="140" y="302" text-anchor="middle" style="font-size:28px;font-weight:900">−</text>
+
+        <!-- top and bottom wires -->
+        <path class="wire wireHot" d="M140 145 V85 H355"/>
+        <path class="wire wireHot" d="M475 85 H650 V145"/>
+        <path class="wire wireReturn" d="M650 315 V375 H140 V315"/>
+
+        <!-- resistor -->
+        <line class="wire wireHot" x1="355" y1="85" x2="365" y2="85"/>
+        <rect class="resBody" x="365" y="61" width="110" height="48" rx="8"/>
+        <line class="wire wireHot" x1="475" y1="85" x2="485" y2="85"/>
+        <text x="420" y="50" text-anchor="middle" class="componentLabel" id="resSvgLabel">220 Ω</text>
+
+        <!-- LED -->
+        <g id="ledGroup">
+          <line class="wire wireHot" x1="650" y1="145" x2="650" y2="185"/>
+          <circle id="ledCircle" cx="650" cy="230" r="37" fill="#ef3038" stroke="#762126" stroke-width="4"/>
+          <path d="M630 230 H670" stroke="#fff" stroke-width="5"/>
+          <path d="M650 211 V249" stroke="#fff" stroke-width="5" opacity=".9"/>
+          <line class="wire wireReturn" x1="650" y1="267" x2="650" y2="315"/>
+          <text x="590" y="235" text-anchor="end" class="componentLabel" id="ledSvgLabel">LED</text>
+          <text x="704" y="235" text-anchor="start" class="smallLabel" id="vfSvgLabel">Vf = 2.0 V</text>
+        </g>
+
+        <!-- resistor-only continuation -->
+        <g id="resistorOnlyWire" style="display:none">
+          <path class="wire wireReturn" d="M650 145 V315"/>
+        </g>
+
+        <!-- terminals / measurement points -->
+        <circle class="terminal" cx="320" cy="85" r="8"/>
+        <circle class="terminal" cx="520" cy="85" r="8"/>
+        <circle class="terminal" cx="650" cy="135" r="8"/>
+        <circle class="terminal" cx="650" cy="325" r="8"/>
+
+        <!-- Multimeter placement teaching overlay -->
+        <g id="meterOverlayV">
+          <rect class="measure-zone" x="345" y="42" width="150" height="86" rx="18"/>
+          <path class="measure-lead measure-red" d="M520 85 C565 120 560 170 545 205"/>
+          <path class="measure-lead measure-black" d="M320 85 C270 125 280 170 300 205"/>
+          <circle class="probe-tip red" cx="520" cy="85" r="10"/>
+          <circle class="probe-tip black" cx="320" cy="85" r="10"/>
+          <rect class="meter-tag" x="245" y="185" width="360" height="66" rx="12"/>
+          <text class="meter-tag-title" x="425" y="210" text-anchor="middle">VOLTAGE (V)</text>
+          <text class="meter-tag-sub" x="425" y="233" text-anchor="middle">Place probes ACROSS the resistor</text>
+        </g>
+
+        <g id="meterOverlayA" style="display:none">
+          <rect class="measure-zone" x="205" y="58" width="130" height="54" rx="18"/>
+          <path class="wire" d="M235 85 H255" style="stroke:#f59e0b;stroke-width:11"/>
+          <circle class="probe-tip black" cx="245" cy="85" r="10"/>
+          <circle class="probe-tip red" cx="300" cy="85" r="10"/>
+          <path class="measure-lead measure-black" d="M245 85 C230 130 270 175 315 210"/>
+          <path class="measure-lead measure-red" d="M300 85 C330 130 350 170 350 210"/>
+          <rect class="meter-tag" x="235" y="185" width="380" height="70" rx="12"/>
+          <text class="meter-tag-title" x="425" y="211" text-anchor="middle">CURRENT (A)</text>
+          <text class="meter-tag-sub" x="425" y="234" text-anchor="middle">Break the circuit • Insert meter IN SERIES</text>
+        </g>
+
+        <g id="meterOverlayO" style="display:none">
+          <rect class="measure-zone" x="345" y="42" width="150" height="86" rx="18"/>
+          <path class="measure-lead measure-red" d="M520 85 C565 120 560 170 545 205"/>
+          <path class="measure-lead measure-black" d="M320 85 C270 125 280 170 300 205"/>
+          <circle class="probe-tip red" cx="520" cy="85" r="10"/>
+          <circle class="probe-tip black" cx="320" cy="85" r="10"/>
+          <rect class="power-off" x="73" y="122" width="134" height="215" rx="20"/>
+          <line x1="85" y1="135" x2="195" y2="323" stroke="#c2410c" stroke-width="10" opacity=".75"/>
+          <rect class="meter-tag" x="235" y="175" width="380" height="88" rx="12"/>
+          <text class="meter-tag-title" x="425" y="202" text-anchor="middle">RESISTANCE (Ω)</text>
+          <text class="meter-tag-sub" x="425" y="226" text-anchor="middle">POWER OFF</text>
+          <text class="meter-tag-sub" x="425" y="248" text-anchor="middle">Place probes ACROSS the resistor</text>
+        </g>
+
+        <!-- arrows/current -->
+        <path d="M235 85 h60" stroke="#d52d2d" stroke-width="3"/>
+        <path d="M285 77 l12 8 -12 8" fill="none" stroke="#d52d2d" stroke-width="3"/>
+        <text x="265" y="70" text-anchor="middle" class="smallLabel" id="currentArrow">I = 13.64 mA</text>
+
+        <text x="390" y="425" text-anchor="middle" class="smallLabel">
+          <tspan id="currentFlowText">Conventional current flows from the positive supply through the components and back to ground.</tspan>
+        </text>
+      </svg>
+    </div>
+
+    <div class="side">
+      <div class="meter">
+        <div class="meterTop">
+          <strong>DIGITAL MULTIMETER</strong>
+          <span class="meterBrand">DMM</span>
+        </div>
+        <div class="lcd"><span id="meterValue">3.000</span><span class="meterUnit" id="meterUnit">V</span></div>
+        <div class="dialModes">
+          <button class="meterBtn active" data-meter="V">V ⎓</button>
+          <button class="meterBtn" data-meter="A">A ⎓</button>
+          <button class="meterBtn" data-meter="O">Ω</button>
+        </div>
+        <div class="probes">
+          <div class="probe"><div class="jack"></div>COM</div>
+          <div class="probe"><div class="jack red"></div>V Ω mA</div>
+        </div>
+      </div>
+
+      <div class="card readouts">
+        <h2>Calculated Values</h2>
+        <div class="gridRead">
+          <div class="read"><span>Supply</span><strong id="supplyRead">5.00 V</strong></div>
+          <div class="read"><span>Resistance</span><strong id="rRead">220 Ω</strong></div>
+          <div class="read"><span>Current</span><strong id="iRead">13.64 mA</strong></div>
+          <div class="read"><span>Resistor drop</span><strong id="vrRead">3.00 V</strong></div>
+          <div class="read" id="ledReadBox"><span>LED drop</span><strong id="ledRead">2.00 V</strong></div>
+          <div class="read"><span>Resistor power</span><strong id="pRead">40.9 mW</strong></div>
+        </div>
+        <div class="equation" id="equation">I = (5.00 V − 2.00 V) ÷ 220 Ω</div>
+      </div>
+
+      <div class="card notes">
+        <h2>Meter Setup</h2>
+        <div id="meterHelp" class="status">Voltage: place the probes across the resistor. The meter reads the voltage drop across it.</div>
+        <div class="footerNote">
+          This simulator uses an ideal 5 V source and a simplified fixed forward-voltage LED model. Real LEDs and meters vary slightly.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let meterMode = "V";
+
+const voltage = document.getElementById("voltage");
+const voltageNumber = document.getElementById("voltageNumber");
+const modeEl = document.getElementById("mode");
+const ledType = document.getElementById("ledType");
+const resistance = document.getElementById("resistance");
+const resistanceNumber = document.getElementById("resistanceNumber");
+const ledControl = document.getElementById("ledControl");
+const ledGroup = document.getElementById("ledGroup");
+const resistorOnlyWire = document.getElementById("resistorOnlyWire");
+const ledCircle = document.getElementById("ledCircle");
+
+function fmtR(r){
+  return r >= 1000 ? (r/1000).toFixed(r%1000===0?1:2) + " kΩ" : Math.round(r) + " Ω";
+}
+function fmtCurrent(a){
+  if(a < 0.001) return (a*1e6).toFixed(1) + " µA";
+  return (a*1000).toFixed(2) + " mA";
+}
+function fmtPower(w){
+  if(w < 0.001) return (w*1e6).toFixed(1) + " µW";
+  return (w*1000).toFixed(1) + " mW";
+}
+function values(){
+  const supply = Math.max(0, Number(voltageNumber.value) || 0);
+  const r = Math.max(0.1, Number(resistanceNumber.value) || 220);
+  const isLed = modeEl.value === "led";
+  const vfNominal = isLed ? Number(ledType.value) : 0;
+
+  // Simplified LED model: below Vf the LED is treated as off.
+  const ledOn = isLed && supply > vfNominal;
+  const vf = isLed ? (ledOn ? vfNominal : supply) : 0;
+  const resistorVoltage = isLed ? Math.max(0, supply - vfNominal) : supply;
+  const current = resistorVoltage / r;
+  const power = current * current * r;
+  return {supply,r,isLed,vf,vfNominal,ledOn,resistorVoltage,current,power};
+}
+function updateMeterVisualization(){
+  document.getElementById("meterOverlayV").style.display = meterMode === "V" ? "block" : "none";
+  document.getElementById("meterOverlayA").style.display = meterMode === "A" ? "block" : "none";
+  document.getElementById("meterOverlayO").style.display = meterMode === "O" ? "block" : "none";
+}
+
+function updateMeter(v){
+  const meterValue = document.getElementById("meterValue");
+  const meterUnit = document.getElementById("meterUnit");
+  const help = document.getElementById("meterHelp");
+
+  if(meterMode === "V"){
+    meterValue.textContent = v.resistorVoltage.toFixed(3);
+    meterUnit.textContent = "V";
+    help.className = "status";
+    help.textContent = "Voltage: place the probes across the resistor. The meter reads the voltage drop across it.";
+  } else if(meterMode === "A"){
+    meterValue.textContent = (v.current*1000).toFixed(2);
+    meterUnit.textContent = "mA";
+    help.className = "status warn";
+    help.textContent = "Current: an ammeter must be inserted in series so the circuit current flows through the meter.";
+  } else {
+    meterValue.textContent = v.r < 1000 ? v.r.toFixed(1) : (v.r/1000).toFixed(3);
+    meterUnit.textContent = v.r < 1000 ? "Ω" : "kΩ";
+    help.className = "status warn";
+    help.textContent = "Resistance: turn circuit power OFF and measure across the isolated resistor. Never measure Ω on a powered circuit.";
+  }
+  updateMeterVisualization();
+}
+function update(){
+  const v = values();
+
+  document.getElementById("supplyRead").textContent = v.supply.toFixed(2)+" V";
+  document.getElementById("supplyBadge").textContent = v.supply.toFixed(2)+" V DC";
+  document.getElementById("supplySvgLabel").textContent = v.supply.toFixed(1)+" V";
+  document.getElementById("rRead").textContent = fmtR(v.r);
+  document.getElementById("iRead").textContent = fmtCurrent(v.current);
+  document.getElementById("vrRead").textContent = v.resistorVoltage.toFixed(2)+" V";
+  document.getElementById("pRead").textContent = fmtPower(v.power);
+  document.getElementById("resSvgLabel").textContent = fmtR(v.r);
+  document.getElementById("currentArrow").textContent = "I = "+fmtCurrent(v.current);
+
+  ledControl.style.display = v.isLed ? "block" : "none";
+  ledGroup.style.display = v.isLed ? "block" : "none";
+  resistorOnlyWire.style.display = v.isLed ? "none" : "block";
+  document.getElementById("ledReadBox").style.display = v.isLed ? "block" : "none";
+
+  if(v.isLed){
+    const opt = ledType.options[ledType.selectedIndex];
+    const color = opt.dataset.color;
+    ledCircle.setAttribute("fill", color);
+    ledCircle.setAttribute("stroke", color === "#f4f7ff" ? "#87909a" : "#555");
+    ledCircle.classList.toggle("ledGlow", v.current > 0.001);
+    document.getElementById("vfSvgLabel").textContent = "Vf ≈ "+v.vfNominal.toFixed(1)+" V";
+    document.getElementById("ledRead").textContent = v.vf.toFixed(2)+" V";
+    document.getElementById("equation").textContent = v.ledOn
+      ? `I = (${v.supply.toFixed(2)} V − ${v.vfNominal.toFixed(2)} V) ÷ ${Math.round(v.r)} Ω = ${fmtCurrent(v.current)}`
+      : `Supply is below the LED forward voltage (${v.vfNominal.toFixed(2)} V), so current ≈ 0 A`;
+  } else {
+    document.getElementById("equation").textContent =
+      `I = V ÷ R = ${v.supply.toFixed(2)} V ÷ ${Math.round(v.r)} Ω = ${fmtCurrent(v.current)}`;
+  }
+
+  // Rough educational brightness response based on current.
+  if(v.isLed){
+    const brightness = v.ledOn ? Math.max(.18, Math.min(1, v.current/0.020)) : .16;
+    ledCircle.style.opacity = brightness;
+  }
+
+  updateMeter(v);
+}
+
+voltage.addEventListener("input", ()=>{
+  voltageNumber.value = voltage.value;
+  update();
+});
+voltageNumber.addEventListener("input", ()=>{
+  let n = Math.max(0, Number(voltageNumber.value) || 0);
+  voltage.value = Math.min(24,n);
+  update();
+});
+
+resistance.addEventListener("input", ()=>{
+  resistanceNumber.value = resistance.value;
+  update();
+});
+resistanceNumber.addEventListener("input", ()=>{
+  let n = Math.max(1, Number(resistanceNumber.value)||1);
+  resistance.value = Math.min(2000,n);
+  update();
+});
+modeEl.addEventListener("change", update);
+ledType.addEventListener("change", update);
+
+document.querySelectorAll(".meterBtn").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    meterMode = btn.dataset.meter;
+    document.querySelectorAll(".meterBtn").forEach(b=>b.classList.toggle("active",b===btn));
+    update();
+  });
+});
+update();
+</script>
+</body>
+</html>
+
