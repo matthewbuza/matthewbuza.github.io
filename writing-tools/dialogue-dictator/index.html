@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dialogue Dictator v2</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --fg:#111111;
+    --muted:#737373;
+    --line:#d9d9d9;
+    --panel:rgba(250,250,250,.92);
+    --panelSolid:#f7f7f7;
+    --shadow:0 10px 32px rgba(0,0,0,.08);
+    --charA:#eef6ff;
+    --charB:#fff3ea;
+    --editor-width:860px;
+  }
+  body.dark{
+    --bg:#101010;
+    --fg:#f3f3f3;
+    --muted:#a7a7a7;
+    --line:#333333;
+    --panel:rgba(24,24,24,.92);
+    --panelSolid:#181818;
+    --shadow:0 10px 32px rgba(0,0,0,.35);
+    --charA:#172331;
+    --charB:#2a211a;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{
+    background:var(--bg);
+    color:var(--fg);
+    font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    overflow:hidden;
+    transition:background .15s,color .15s;
+  }
+  button,select,input{font:inherit}
+  button{
+    border:1px solid var(--line);
+    background:var(--bg);
+    color:var(--fg);
+    border-radius:8px;
+    padding:8px 11px;
+    cursor:pointer;
+  }
+  button:hover{background:var(--panelSolid)}
+  button.primary{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+  .hidden{display:none!important}
+
+  #welcome{
+    height:100%;
+    display:grid;
+    place-items:center;
+    padding:24px;
+  }
+  .welcome-card{
+    width:min(760px,94vw);
+    border:1px solid var(--line);
+    background:var(--panel);
+    backdrop-filter:blur(8px);
+    border-radius:18px;
+    padding:34px;
+    box-shadow:var(--shadow);
+  }
+  .brand{
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    font-size:12px;
+    margin-bottom:10px;
+  }
+  h1{font-size:34px;margin:0 0 8px}
+  .sub{color:var(--muted);line-height:1.55;margin-bottom:24px}
+  .mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .mode-card{
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px;
+    background:var(--bg);
+  }
+  .mode-card h3{margin:0 0 6px;font-size:18px}
+  .mode-card p{margin:0 0 14px;color:var(--muted);font-size:13px;line-height:1.5}
+  .notice{margin-top:18px;color:var(--muted);font-size:13px;line-height:1.5}
+
+  #app{height:100%;display:flex;flex-direction:column}
+  #toolbar{
+    height:52px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:7px;
+    padding:0 12px;
+    background:var(--panel);
+    backdrop-filter:blur(9px);
+    z-index:20;
+  }
+  #title{font-weight:650;margin-right:auto}
+  .divider{width:1px;height:25px;background:var(--line);margin:0 2px}
+  #status{font-size:12px;color:var(--muted);margin-left:4px}
+  #workspace{flex:1;display:flex;min-height:0}
+  #editorWrap{flex:1;overflow:auto;scroll-behavior:smooth;padding:55px 52px 140px}
+  #editor{
+    width:min(var(--editor-width),100%);
+    min-height:calc(100vh - 195px);
+    margin:0 auto;
+    outline:none;
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:20px;
+    line-height:1.75;
+    caret-color:var(--fg);
+  }
+  #editor p{
+    margin:0 0 1.15em;
+    min-height:1.75em;
+    padding:2px 10px;
+    border-radius:8px;
+  }
+  #editor p.dialogue-line.indented{ text-indent:2em; }
+  #editor p.char-a{ background:var(--charA); }
+  #editor p.char-b{ background:var(--charB); }
+  .speaker-label{
+    font-family:Inter, ui-sans-serif, system-ui, sans-serif;
+    font-weight:700;
+    text-indent:0;
+  }
+
+  #sidePanel{
+    width:295px;
+    border-left:1px solid var(--line);
+    background:var(--panel);
+    backdrop-filter:blur(8px);
+    padding:18px;
+    overflow:auto;
+  }
+  .panel-heading{
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:.11em;
+    font-size:12px;
+    margin-bottom:10px;
+  }
+  .panel-section{margin-bottom:24px}
+  .tip{color:var(--muted);font-size:13px;line-height:1.55}
+  .char-key{
+    display:flex;align-items:center;gap:8px;margin:7px 0;font-size:14px
+  }
+  .swatch{width:16px;height:16px;border-radius:5px;border:1px solid var(--line)}
+  .swatch.a{background:var(--charA)}
+  .swatch.b{background:var(--charB)}
+
+  #pomodoro{
+    position:fixed;
+    right:315px;
+    bottom:18px;
+    z-index:30;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    padding:8px 10px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:var(--panel);
+    opacity:.72;
+    backdrop-filter:blur(8px);
+    box-shadow:var(--shadow);
+  }
+  #pomodoro:hover{opacity:1}
+  #timerDisplay{min-width:58px;text-align:center;font-size:14px;font-weight:650;font-variant-numeric:tabular-nums}
+  #timerPreset{
+    border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:7px;padding:6px 7px
+  }
+
+  .modal-backdrop{
+    position:fixed;inset:0;background:rgba(0,0,0,.32);display:grid;place-items:center;z-index:100;padding:20px
+  }
+  .modal{
+    width:min(520px,96vw);
+    background:var(--bg);
+    color:var(--fg);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:24px;
+    box-shadow:0 22px 60px rgba(0,0,0,.25)
+  }
+  .modal h2{margin:0 0 8px}
+  .modal p{color:var(--muted);line-height:1.5}
+  .field{display:grid;gap:6px;margin:14px 0}
+  .field label{font-size:13px;color:var(--muted)}
+  .field input,.field select{
+    width:100%;border:1px solid var(--line);background:var(--bg);color:var(--fg);
+    padding:10px 11px;border-radius:8px
+  }
+  .modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:20px}
+
+  .toast{
+    position:fixed;left:50%;bottom:20px;transform:translateX(-50%);
+    background:var(--fg);color:var(--bg);padding:9px 13px;border-radius:999px;font-size:12px;
+    opacity:0;pointer-events:none;transition:opacity .15s;z-index:60;
+  }
+  .toast.show{opacity:.9}
+
+  @media(max-width:850px){
+    #sidePanel{display:none}
+    #pomodoro{right:18px}
+    #editorWrap{padding:35px 22px 120px}
+    .mode-grid{grid-template-columns:1fr}
+    .hide-small{display:none}
+  }
+</style>
+</head>
+<body>
+<section id="welcome">
+  <div class="welcome-card">
+    <div class="brand">Dialogue Dictator v2</div>
+    <h1>Choose your dialogue mode.</h1>
+    <div class="sub">
+      Standard mode works exactly like v1.1. Character ID mode is an optional power feature
+      that alternates between two named speakers and passively highlights their dialogue.
+    </div>
+
+    <div class="mode-grid">
+      <div class="mode-card">
+        <h3>New Project</h3>
+        <p>Fast quoted dialogue with automatic quotation marks and paragraph indentation.</p>
+        <button class="primary" id="standardBtn">Start Standard Project</button>
+      </div>
+
+      <div class="mode-card">
+        <h3>Character ID Project</h3>
+        <p>Name two characters, choose who speaks first, and let each new paragraph alternate automatically.</p>
+        <button id="characterBtn">Enable Character ID</button>
+      </div>
+    </div>
+
+    <div class="notice">
+      Character ID is intentionally simple in v2: every new paragraph flips from one speaker to the other.
+      The dialogue remains easy to copy into Word or Google Docs.
+    </div>
+  </div>
+</section>
+
+<section id="app" class="hidden">
+  <header id="toolbar">
+    <div id="title">Dialogue Dictator</div>
+    <button id="newBtn">New</button>
+    <button id="copyBtn">Copy All</button>
+    <button id="downloadBtn" class="hide-small">TXT</button>
+    <div class="divider"></div>
+    <button id="themeBtn" title="Toggle light/dark mode">◐</button>
+    <button id="fullBtn" title="Full screen">⛶</button>
+    <button id="homeBtn">Home</button>
+    <span id="status">Ready</span>
+  </header>
+
+  <div id="workspace">
+    <main id="editorWrap">
+      <article id="editor" contenteditable="true" spellcheck="true"></article>
+    </main>
+
+    <aside id="sidePanel">
+      <div class="panel-section">
+        <div class="panel-heading">Formatting</div>
+        <label style="display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;cursor:pointer">
+          <span>Tab on new paragraph</span>
+          <input id="indentToggle" type="checkbox" checked style="width:18px;height:18px;accent-color:var(--fg)">
+        </label>
+      </div>
+
+      <div class="panel-section" id="characterPanel" style="display:none">
+        <div class="panel-heading">Character ID</div>
+        <div class="char-key"><span class="swatch a"></span><strong id="charAName"></strong></div>
+        <div class="char-key"><span class="swatch b"></span><strong id="charBName"></strong></div>
+        <div class="tip" style="margin-top:8px">
+          Every new paragraph automatically flips to the other speaker.
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <div class="panel-heading">How it works</div>
+        <div class="tip">
+          Dictate a line. Say <strong>“new paragraph”</strong> or press Enter.
+          The editor creates the next quoted paragraph and places the caret inside the quotation marks.
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div id="pomodoro">
+    <select id="timerPreset">
+      <option value="5">5m</option>
+      <option value="10">10m</option>
+      <option value="15">15m</option>
+      <option value="25" selected>25m</option>
+      <option value="45">45m</option>
+    </select>
+    <div id="timerDisplay">25:00</div>
+    <button id="timerStart">▶</button>
+    <button id="timerReset">↺</button>
+  </div>
+</section>
+
+<div id="modalHost"></div>
+<div class="toast" id="toast">Copied</div>
+
+<script>
+(() => {
+  "use strict";
+
+  const $ = s => document.querySelector(s);
+  const welcome = $("#welcome");
+  const app = $("#app");
+  const editor = $("#editor");
+  const statusEl = $("#status");
+  const toast = $("#toast");
+  const indentToggle = $("#indentToggle");
+  const characterPanel = $("#characterPanel");
+
+  let mode = "standard";
+  let characterA = "Character 1";
+  let characterB = "Character 2";
+  let currentSpeaker = "A";
+  let firstSpeaker = "A";
+  let handlingParagraph = false;
+
+  function showApp(){
+    welcome.classList.add("hidden");
+    app.classList.remove("hidden");
+    editor.innerHTML = "";
+    currentSpeaker = firstSpeaker;
+    const p = createDialogueParagraph(currentSpeaker);
+    editor.appendChild(p);
+    placeCaretBetweenQuotes(p);
+    editor.focus();
+    updatePanel();
+  }
+
+  function showWelcome(){
+    app.classList.add("hidden");
+    welcome.classList.remove("hidden");
+  }
+
+  function showCharacterSetup(){
+    const host = $("#modalHost");
+    host.innerHTML = `
+      <div class="modal-backdrop">
+        <div class="modal">
+          <h2>Character ID Project</h2>
+          <p>Name the two speakers and choose who talks first.</p>
+          <div class="field">
+            <label>Character 1</label>
+            <input id="char1Input" value="Bob">
+          </div>
+          <div class="field">
+            <label>Character 2</label>
+            <input id="char2Input" value="Steve">
+          </div>
+          <div class="field">
+            <label>Who speaks first?</label>
+            <select id="firstSpeakerSelect">
+              <option value="A">Character 1</option>
+              <option value="B">Character 2</option>
+            </select>
+          </div>
+          <div class="modal-actions">
+            <button id="cancelSetup">Cancel</button>
+            <button class="primary" id="startCharacterProject">Start Project</button>
+          </div>
+        </div>
+      </div>`;
+    $("#cancelSetup").onclick = () => host.innerHTML = "";
+    $("#startCharacterProject").onclick = () => {
+      const a = $("#char1Input").value.trim();
+      const b = $("#char2Input").value.trim();
+      if(!a || !b) return;
+      characterA = a;
+      characterB = b;
+      firstSpeaker = $("#firstSpeakerSelect").value;
+      currentSpeaker = firstSpeaker;
+      mode = "character";
+      host.innerHTML = "";
+      showApp();
+    };
+  }
+
+  function updatePanel(){
+    if(mode === "character"){
+      characterPanel.style.display = "";
+      $("#charAName").textContent = characterA;
+      $("#charBName").textContent = characterB;
+      $("#title").textContent = "Dialogue Dictator — Character ID";
+    }else{
+      characterPanel.style.display = "none";
+      $("#title").textContent = "Dialogue Dictator";
+    }
+  }
+
+  function speakerName(speaker){
+    return speaker === "A" ? characterA : characterB;
+  }
+
+  function createDialogueParagraph(speaker){
+    const p = document.createElement("p");
+    p.classList.add("dialogue-line");
+    if(indentToggle.checked) p.classList.add("indented");
+
+    if(mode === "character"){
+      p.dataset.speaker = speaker;
+      p.classList.add(speaker === "A" ? "char-a" : "char-b");
+
+      const label = document.createElement("span");
+      label.className = "speaker-label";
+      label.contentEditable = "false";
+      label.textContent = speakerName(speaker) + ': ';
+      p.appendChild(label);
+    }
+
+    const text = document.createTextNode('""');
+    p.appendChild(text);
+    return p;
+  }
+
+  function findQuoteTextNode(p){
+    const nodes = [...p.childNodes];
+    for(const n of nodes){
+      if(n.nodeType === Node.TEXT_NODE && n.nodeValue.includes('"')) return n;
+    }
+    const n = document.createTextNode('""');
+    p.appendChild(n);
+    return n;
+  }
+
+  function placeCaretBetweenQuotes(p){
+    const textNode = findQuoteTextNode(p);
+    if(textNode.nodeValue !== '""') textNode.nodeValue = '""';
+    const range = document.createRange();
+    const sel = window.getSelection();
+    range.setStart(textNode, 1);
+    range.collapse(true);
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+
+  function currentBlock(){
+    const sel = window.getSelection();
+    if(!sel || !sel.anchorNode) return null;
+    let n = sel.anchorNode.nodeType === Node.TEXT_NODE ? sel.anchorNode.parentElement : sel.anchorNode;
+    return n && n.closest ? n.closest("p") : null;
+  }
+
+  function normalizeCurrentLine(block){
+    if(!block) return;
+    let speakerPrefix = "";
+    if(mode === "character"){
+      const s = block.dataset.speaker || currentSpeaker;
+      speakerPrefix = speakerName(s) + ": ";
+    }
+
+    let raw = block.textContent || "";
+    if(speakerPrefix && raw.startsWith(speakerPrefix)) raw = raw.slice(speakerPrefix.length);
+
+    if(!raw.startsWith('"')) raw = '"' + raw;
+    if(!raw.endsWith('"')) raw = raw + '"';
+
+    block.innerHTML = "";
+    block.className = "dialogue-line";
+    if(indentToggle.checked) block.classList.add("indented");
+
+    if(mode === "character"){
+      const s = block.dataset.speaker || currentSpeaker;
+      block.dataset.speaker = s;
+      block.classList.add(s === "A" ? "char-a" : "char-b");
+      const label = document.createElement("span");
+      label.className = "speaker-label";
+      label.contentEditable = "false";
+      label.textContent = speakerName(s) + ': ';
+      block.appendChild(label);
+    }
+
+    block.appendChild(document.createTextNode(raw));
+  }
+
+  function insertNextDialogueParagraph(){
+    if(handlingParagraph) return;
+    handlingParagraph = true;
+
+    try{
+      let block = currentBlock();
+      if(!block){
+        currentSpeaker = firstSpeaker;
+        const p = createDialogueParagraph(currentSpeaker);
+        editor.appendChild(p);
+        placeCaretBetweenQuotes(p);
+        return;
+      }
+
+      normalizeCurrentLine(block);
+
+      if(mode === "character"){
+        currentSpeaker = (block.dataset.speaker === "A") ? "B" : "A";
+      }
+
+      const next = createDialogueParagraph(currentSpeaker);
+      if(block.nextSibling) block.parentNode.insertBefore(next, block.nextSibling);
+      else block.parentNode.appendChild(next);
+
+      placeCaretBetweenQuotes(next);
+      next.scrollIntoView({behavior:"smooth",block:"center"});
+      statusEl.textContent = "Writing";
+    } finally {
+      setTimeout(() => handlingParagraph = false, 0);
+    }
+  }
+
+  editor.addEventListener("keydown", e => {
+    if(e.key === "Enter" && !e.shiftKey){
+      e.preventDefault();
+      insertNextDialogueParagraph();
+    }
+  });
+
+  editor.addEventListener("beforeinput", e => {
+    if((e.inputType === "insertParagraph" || e.inputType === "insertLineBreak") && !handlingParagraph){
+      e.preventDefault();
+      insertNextDialogueParagraph();
+    }
+  });
+
+  indentToggle.addEventListener("change", () => {
+    editor.querySelectorAll("p.dialogue-line").forEach(p => {
+      p.classList.toggle("indented", indentToggle.checked);
+    });
+    localStorage.setItem("dialogueDictatorIndent", indentToggle.checked ? "1" : "0");
+  });
+
+  function plainTextLine(p){
+    let line = p.textContent || "";
+    return (p.classList.contains("indented") ? "\t" : "") + line;
+  }
+
+  function getPlainText(){
+    return [...editor.querySelectorAll("p")].map(plainTextLine).join("\n\n");
+  }
+
+  async function copyAll(){
+    try{
+      await navigator.clipboard.writeText(getPlainText());
+      showToast("Dialogue copied");
+    }catch(e){
+      const ta = document.createElement("textarea");
+      ta.value = getPlainText();
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+      showToast("Dialogue copied");
+    }
+  }
+
+  function downloadTxt(){
+    const blob = new Blob([getPlainText()], {type:"text/plain;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "dialogue.txt";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url),1000);
+  }
+
+  function resetProject(){
+    if(editor.innerText.trim() && !confirm("Clear this dialogue and start again?")) return;
+    currentSpeaker = firstSpeaker;
+    editor.innerHTML = "";
+    const p = createDialogueParagraph(currentSpeaker);
+    editor.appendChild(p);
+    placeCaretBetweenQuotes(p);
+    editor.focus();
+  }
+
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"),1200);
+  }
+
+  $("#standardBtn").onclick = () => {
+    mode = "standard";
+    firstSpeaker = "A";
+    currentSpeaker = "A";
+    showApp();
+  };
+  $("#characterBtn").onclick = showCharacterSetup;
+  $("#homeBtn").onclick = showWelcome;
+  $("#newBtn").onclick = resetProject;
+  $("#copyBtn").onclick = copyAll;
+  $("#downloadBtn").onclick = downloadTxt;
+
+  $("#themeBtn").onclick = () => {
+    document.body.classList.toggle("dark");
+    localStorage.setItem("dialogueDictatorTheme", document.body.classList.contains("dark") ? "dark" : "light");
+  };
+
+  $("#fullBtn").onclick = async () => {
+    try{
+      if(!document.fullscreenElement) await document.documentElement.requestFullscreen();
+      else await document.exitFullscreen();
+    }catch(e){}
+  };
+
+  // Pomodoro
+  let timerSeconds = 25*60;
+  let timerRunning = false;
+  let timerId = null;
+
+  function renderTimer(){
+    const m = Math.floor(timerSeconds/60).toString().padStart(2,"0");
+    const s = (timerSeconds%60).toString().padStart(2,"0");
+    $("#timerDisplay").textContent = `${m}:${s}`;
+  }
+
+  function resetTimer(){
+    timerRunning = false;
+    clearInterval(timerId);
+    timerId = null;
+    timerSeconds = parseInt($("#timerPreset").value,10)*60;
+    $("#timerStart").textContent = "▶";
+    renderTimer();
+  }
+
+  function toggleTimer(){
+    if(timerRunning){
+      timerRunning = false;
+      clearInterval(timerId);
+      timerId = null;
+      $("#timerStart").textContent = "▶";
+      return;
+    }
+    timerRunning = true;
+    $("#timerStart").textContent = "Ⅱ";
+    timerId = setInterval(() => {
+      timerSeconds--;
+      renderTimer();
+      if(timerSeconds <= 0){
+        clearInterval(timerId);
+        timerId = null;
+        timerRunning = false;
+        $("#timerStart").textContent = "▶";
+        alert("Dialogue sprint complete.");
+      }
+    },1000);
+  }
+
+  $("#timerStart").onclick = toggleTimer;
+  $("#timerReset").onclick = resetTimer;
+  $("#timerPreset").onchange = resetTimer;
+
+  if(localStorage.getItem("dialogueDictatorTheme") === "dark") document.body.classList.add("dark");
+  const savedIndent = localStorage.getItem("dialogueDictatorIndent");
+  indentToggle.checked = savedIndent === null ? true : savedIndent === "1";
+  renderTimer();
+})();
+</script>
+</body>
+</html>

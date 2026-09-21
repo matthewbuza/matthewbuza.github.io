@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Repetition Finder v1</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --fg:#111111;
+    --muted:#747474;
+    --line:#d9d9d9;
+    --panel:rgba(250,250,250,.94);
+    --panelSolid:#f6f6f6;
+    --shadow:0 10px 32px rgba(0,0,0,.08);
+    --highlight:#fff2a8;
+    --highlightActive:#ffd75a;
+    --accent:#111111;
+    --editorWidth:850px;
+    --danger:#a33;
+    --ok:#2b6a3f;
+  }
+  body.dark{
+    --bg:#101010;
+    --fg:#f2f2f2;
+    --muted:#a7a7a7;
+    --line:#333333;
+    --panel:rgba(24,24,24,.94);
+    --panelSolid:#181818;
+    --shadow:0 10px 32px rgba(0,0,0,.36);
+    --highlight:#5c5223;
+    --highlightActive:#8d741c;
+    --accent:#f2f2f2;
+    --danger:#e59b9b;
+    --ok:#9bd2aa;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{
+    background:var(--bg);color:var(--fg);
+    font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    overflow:hidden;transition:background .15s,color .15s;
+  }
+  button,input,select{font:inherit}
+  button{
+    border:1px solid var(--line);background:var(--bg);color:var(--fg);
+    border-radius:8px;padding:8px 11px;cursor:pointer;
+  }
+  button:hover{background:var(--panelSolid)}
+  button.primary{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+  button.small{padding:6px 8px;font-size:12px}
+  button:disabled{opacity:.45;cursor:default}
+  .hidden{display:none!important}
+
+  #welcome{height:100%;display:grid;place-items:center;padding:24px}
+  .welcome-card{
+    width:min(760px,94vw);border:1px solid var(--line);background:var(--panel);
+    backdrop-filter:blur(8px);border-radius:18px;padding:34px;box-shadow:var(--shadow)
+  }
+  .brand{color:var(--muted);text-transform:uppercase;letter-spacing:.14em;font-size:12px;margin-bottom:10px}
+  h1{font-size:34px;margin:0 0 8px}
+  .sub{color:var(--muted);line-height:1.55;margin-bottom:22px}
+  .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 24px}
+  .feature{border:1px solid var(--line);border-radius:10px;padding:12px;font-size:13px;color:var(--muted)}
+  .feature strong{display:block;color:var(--fg);margin-bottom:3px}
+  .notice{margin-top:16px;color:var(--muted);font-size:13px;line-height:1.5}
+
+  #app{height:100%;display:flex;flex-direction:column}
+  #toolbar{
+    height:52px;border-bottom:1px solid var(--line);display:flex;align-items:center;
+    gap:7px;padding:0 12px;background:var(--panel);backdrop-filter:blur(9px);z-index:20
+  }
+  #title{font-weight:650;margin-right:auto}
+  #status{font-size:12px;color:var(--muted);margin-left:4px}
+  .divider{width:1px;height:25px;background:var(--line);margin:0 2px}
+
+  #workspace{flex:1;display:flex;min-height:0}
+  #editorWrap{flex:1;overflow:auto;padding:48px 52px 140px;scroll-behavior:smooth}
+  #editor{
+    width:min(var(--editorWidth),100%);min-height:calc(100vh - 190px);margin:0 auto;
+    outline:none;font-family:Georgia,"Times New Roman",serif;font-size:20px;line-height:1.75;
+    white-space:pre-wrap;word-wrap:break-word;
+  }
+  #editor:empty:before{content:"Paste up to 10,000 words here…";color:var(--muted)}
+  mark.rep{background:var(--highlight);color:inherit;border-radius:3px;padding:0 1px}
+  mark.rep.active{background:var(--highlightActive);outline:2px solid var(--highlightActive)}
+
+  #sidePanel{
+    width:330px;border-left:1px solid var(--line);background:var(--panel);backdrop-filter:blur(8px);
+    padding:16px;overflow:auto
+  }
+  .panel-section{margin-bottom:20px}
+  .panel-heading{
+    color:var(--muted);text-transform:uppercase;letter-spacing:.11em;font-size:12px;margin-bottom:9px
+  }
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .stat{
+    border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--bg)
+  }
+  .stat strong{display:block;font-size:21px}
+  .stat span{font-size:12px;color:var(--muted)}
+  .scanBtn{width:100%;margin-top:10px}
+  .result-tabs{display:flex;gap:6px;margin-bottom:10px}
+  .result-tabs button{flex:1}
+  .result-tabs button.active{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+  .result-list{display:grid;gap:6px;max-height:255px;overflow:auto;padding-right:2px}
+  .result-item{
+    border:1px solid var(--line);background:var(--bg);border-radius:9px;padding:9px 10px;
+    display:flex;justify-content:space-between;gap:8px;align-items:center;cursor:pointer
+  }
+  .result-item:hover{background:var(--panelSolid)}
+  .result-item.selected{outline:2px solid var(--fg)}
+  .result-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .pill{font-size:11px;color:var(--muted);border:1px solid var(--line);padding:2px 6px;border-radius:999px}
+  .navrow{display:flex;align-items:center;gap:6px}
+  .navrow button{flex:1}
+  .current-count{text-align:center;font-size:12px;color:var(--muted);min-width:55px}
+  .suggestions{display:flex;flex-wrap:wrap;gap:6px}
+  .suggestions button{font-size:12px;padding:6px 8px}
+  .empty-note,.tip{color:var(--muted);font-size:13px;line-height:1.5}
+  .stop-card{
+    border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--bg);font-size:13px
+  }
+  .stop-card.good{color:var(--ok)}
+  .stop-card.warn{color:var(--danger)}
+
+  #pomodoro{
+    position:fixed;right:350px;bottom:18px;z-index:30;display:flex;align-items:center;gap:7px;
+    padding:8px 10px;border:1px solid var(--line);border-radius:12px;background:var(--panel);
+    opacity:.72;backdrop-filter:blur(8px);box-shadow:var(--shadow)
+  }
+  #pomodoro:hover{opacity:1}
+  #timerDisplay{min-width:58px;text-align:center;font-size:14px;font-weight:650;font-variant-numeric:tabular-nums}
+  #timerPreset{border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:7px;padding:6px 7px}
+
+  .toast{
+    position:fixed;left:50%;bottom:20px;transform:translateX(-50%);
+    background:var(--fg);color:var(--bg);padding:9px 13px;border-radius:999px;font-size:12px;
+    opacity:0;pointer-events:none;transition:opacity .15s;z-index:60
+  }
+  .toast.show{opacity:.92}
+
+  @media(max-width:900px){
+    #sidePanel{width:300px}
+    #pomodoro{right:320px}
+  }
+  @media(max-width:760px){
+    #sidePanel{display:none}
+    #pomodoro{right:18px}
+    #editorWrap{padding:35px 22px 120px}
+    .feature-grid{grid-template-columns:1fr}
+    .hide-small{display:none}
+  }
+</style>
+</head>
+<body>
+<section id="welcome">
+  <div class="welcome-card">
+    <div class="brand">Repetition Finder v1</div>
+    <h1>Find the words you didn't realize you kept using.</h1>
+    <div class="sub">
+      Paste a draft, scan for unusually repeated words and phrases, then move through each instance one at a time.
+      The tool ignores common English words and keeps all analysis local in your browser.
+    </div>
+    <div class="feature-grid">
+      <div class="feature"><strong>Up to 10,000 words</strong>Designed for scenes, chapters, and short drafts.</div>
+      <div class="feature"><strong>Words + phrases</strong>Flags repetition without counting common filler words.</div>
+      <div class="feature"><strong>Jump & replace</strong>Navigate instances and swap individual words with one click.</div>
+    </div>
+    <button class="primary" id="startBtn">Open Repetition Finder</button>
+    <div class="notice">
+      Suggestions are intentionally lightweight. This tool is meant to help you notice repetition, not rewrite your voice.
+    </div>
+  </div>
+</section>
+
+<section id="app" class="hidden">
+  <header id="toolbar">
+    <div id="title">Repetition Finder</div>
+    <button id="clearBtn">New</button>
+    <button id="copyBtn">Copy All</button>
+    <button id="downloadBtn" class="hide-small">TXT</button>
+    <div class="divider"></div>
+    <button id="themeBtn" title="Toggle light/dark mode">◐</button>
+    <button id="fullBtn" title="Full screen">⛶</button>
+    <button id="homeBtn">Home</button>
+    <span id="status">Ready</span>
+  </header>
+
+  <div id="workspace">
+    <main id="editorWrap">
+      <article id="editor" contenteditable="true" spellcheck="true"></article>
+    </main>
+
+    <aside id="sidePanel">
+      <div class="panel-section">
+        <div class="panel-heading">Draft</div>
+        <div class="stats">
+          <div class="stat"><strong id="wordCount">0</strong><span>words</span></div>
+          <div class="stat"><strong id="phraseCount">0</strong><span>flagged phrases</span></div>
+        </div>
+        <button class="primary scanBtn" id="scanBtn">Check for repetition</button>
+        <div class="tip" id="limitNote" style="margin-top:8px">Maximum: 10,000 words.</div>
+      </div>
+
+      <div class="panel-section">
+        <div class="panel-heading">Results</div>
+        <div class="result-tabs">
+          <button id="wordsTab" class="active">Words <span id="wordResultCount"></span></button>
+          <button id="phrasesTab">Phrases <span id="phraseResultCount"></span></button>
+        </div>
+        <div id="resultList" class="result-list">
+          <div class="empty-note">Paste a draft and run a scan.</div>
+        </div>
+      </div>
+
+      <div class="panel-section" id="instanceSection">
+        <div class="panel-heading">Selected repetition</div>
+        <div id="selectionTitle" class="tip">Choose a flagged word or phrase.</div>
+        <div class="navrow" style="margin-top:9px">
+          <button id="prevBtn" disabled>← Previous</button>
+          <div id="instanceCounter" class="current-count">—</div>
+          <button id="nextBtn" disabled>Next →</button>
+        </div>
+      </div>
+
+      <div class="panel-section" id="suggestionSection">
+        <div class="panel-heading">Thesaurus</div>
+        <div id="suggestions" class="suggestions">
+          <div class="empty-note">Select a repeated word to see alternatives.</div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <div class="panel-heading">Progress</div>
+        <div id="progressCard" class="stop-card">Run a scan to see whether any repetition stands out.</div>
+      </div>
+    </aside>
+  </div>
+
+  <div id="pomodoro">
+    <select id="timerPreset">
+      <option value="5">5m</option>
+      <option value="10">10m</option>
+      <option value="15">15m</option>
+      <option value="25" selected>25m</option>
+      <option value="45">45m</option>
+    </select>
+    <div id="timerDisplay">25:00</div>
+    <button id="timerStart">▶</button>
+    <button id="timerReset">↺</button>
+  </div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+  "use strict";
+
+  const $ = s => document.querySelector(s);
+  const editor = $("#editor");
+  const MAX_WORDS = 10000;
+
+  const STOPWORDS = new Set(`
+a about above after again against all am an and any are aren't as at be because been before being below
+between both but by can can't cannot could couldn't did didn't do does doesn't doing don't down during each
+few for from further had hadn't has hasn't have haven't having he he'd he'll he's her here here's hers herself
+him himself his how how's i i'd i'll i'm i've if in into is isn't it it's its itself just me more most mustn't
+my myself no nor not of off on once only or other ought our ours ourselves out over own same shan't she she'd
+she'll she's should shouldn't so some such than that that's the their theirs them themselves then there there's
+these they they'd they'll they're they've this those through to too under until up very was wasn't we we'd we'll
+we're we've were weren't what what's when when's where where's which while who who's whom why why's with won't
+would wouldn't you you'd you'll you're you've your yours yourself yourselves said says say get got gets getting
+also like one two three really still even back well way much many every ever never
+  `.trim().split(/\s+/));
+
+  const THESAURUS = {
+    "looked":["glanced","watched","studied","peered","gazed","stared","observed"],
+    "look":["glance","watch","study","peer","gaze","stare","observe"],
+    "walked":["strolled","paced","strode","wandered","marched","crossed","moved"],
+    "walk":["stroll","pace","stride","wander","march","move"],
+    "smiled":["grinned","beamed","smirked","brightened"],
+    "smile":["grin","beam","smirk"],
+    "nodded":["agreed","acknowledged","inclined","bobbed"],
+    "turned":["pivoted","rotated","swiveled","shifted"],
+    "went":["moved","traveled","headed","left","crossed"],
+    "go":["move","head","travel","leave"],
+    "big":["large","huge","broad","substantial","massive"],
+    "small":["little","tiny","compact","slight","narrow"],
+    "good":["strong","solid","fine","excellent","useful"],
+    "bad":["poor","rough","awful","weak","harmful"],
+    "happy":["glad","pleased","cheerful","delighted","content"],
+    "sad":["unhappy","somber","downcast","mournful","blue"],
+    "angry":["irritated","furious","annoyed","enraged","frustrated"],
+    "quiet":["silent","hushed","still","muted","soft"],
+    "loud":["noisy","booming","deafening","sharp","clamorous"],
+    "quickly":["rapidly","swiftly","promptly","hastily"],
+    "slowly":["gradually","steadily","leisurely","carefully"],
+    "felt":["sensed","noticed","experienced","perceived"],
+    "feel":["sense","notice","experience","perceive"],
+    "thought":["considered","wondered","reflected","reasoned"],
+    "think":["consider","wonder","reflect","reason"],
+    "asked":["questioned","inquired","pressed"],
+    "answered":["replied","responded","returned"],
+    "replied":["answered","responded","returned"],
+    "started":["began","launched","opened","commenced"],
+    "began":["started","opened","commenced"],
+    "saw":["noticed","spotted","observed","glimpsed","watched"],
+    "see":["notice","spot","observe","glimpse","watch"],
+    "heard":["caught","noticed","detected","overheard"],
+    "voice":["tone","speech","words","sound"],
+    "hand":["palm","fingers","grip"],
+    "eyes":["gaze","stare","glance","expression"],
+    "door":["entry","doorway","entrance"],
+    "room":["space","chamber","area"],
+    "house":["home","residence","place"],
+    "made":["created","formed","built","produced"],
+    "make":["create","form","build","produce"],
+    "moved":["shifted","stepped","crossed","advanced"],
+    "move":["shift","step","cross","advance"]
+  };
+
+  let analysis = {words:[],phrases:[]};
+  let activeTab = "words";
+  let selected = null;
+  let currentInstance = 0;
+
+  function plainText(){
+    return editor.innerText.replace(/\u00A0/g," ");
+  }
+
+  function countWords(text){
+    return (text.match(/\b[\w’'-]+\b/g) || []).length;
+  }
+
+  function updateCounts(){
+    const count = countWords(plainText());
+    $("#wordCount").textContent = count.toLocaleString();
+    $("#limitNote").textContent = count > MAX_WORDS
+      ? `Over limit by ${(count-MAX_WORDS).toLocaleString()} words. Trim the draft before scanning.`
+      : `Maximum: 10,000 words. ${MAX_WORDS-count >= 0 ? (MAX_WORDS-count).toLocaleString()+" remaining." : ""}`;
+    $("#limitNote").style.color = count > MAX_WORDS ? "var(--danger)" : "";
+    $("#scanBtn").disabled = count === 0 || count > MAX_WORDS;
+  }
+
+  function tokenize(text){
+    const matches = [...text.matchAll(/\b[A-Za-z][A-Za-z’'-]*\b/g)];
+    return matches.map(m => ({word:m[0], lower:m[0].toLowerCase(), index:m.index}));
+  }
+
+  function stemish(w){
+    let s = w.toLowerCase();
+    if(s.length > 5 && s.endsWith("ing")) s = s.slice(0,-3);
+    else if(s.length > 4 && s.endsWith("ed")) s = s.slice(0,-2);
+    else if(s.length > 4 && s.endsWith("es")) s = s.slice(0,-2);
+    else if(s.length > 3 && s.endsWith("s")) s = s.slice(0,-1);
+    return s;
+  }
+
+  function scan(){
+    const text = plainText();
+    const wc = countWords(text);
+    if(!wc || wc > MAX_WORDS) return;
+
+    clearMarks();
+    const tokens = tokenize(text);
+
+    const exact = new Map();
+    for(const t of tokens){
+      if(STOPWORDS.has(t.lower) || t.lower.length < 4) continue;
+      exact.set(t.lower,(exact.get(t.lower)||0)+1);
+    }
+
+    const threshold = Math.max(4, Math.ceil(wc / 700));
+    const wordResults = [...exact.entries()]
+      .filter(([w,c]) => c >= threshold)
+      .map(([word,count]) => {
+        const rate = count / wc * 1000;
+        return {type:"word", text:word, count, rate, score:rate * Math.log2(count+1)};
+      })
+      .sort((a,b)=>b.score-a.score)
+      .slice(0,40);
+
+    // Phrase scan: 2- and 3-word phrases, filtered heavily to avoid junk.
+    const words = tokens.map(t=>t.lower);
+    const phraseMap = new Map();
+    for(let n=2;n<=3;n++){
+      for(let i=0;i<=words.length-n;i++){
+        const arr = words.slice(i,i+n);
+        if(arr.every(w=>STOPWORDS.has(w))) continue;
+        if(STOPWORDS.has(arr[0]) && STOPWORDS.has(arr[arr.length-1])) continue;
+        const phrase = arr.join(" ");
+        if(phrase.length < 8) continue;
+        phraseMap.set(phrase,(phraseMap.get(phrase)||0)+1);
+      }
+    }
+    const phraseThreshold = wc < 1500 ? 3 : 4;
+    const phraseResults = [...phraseMap.entries()]
+      .filter(([p,c]) => c >= phraseThreshold)
+      .map(([text,count]) => ({type:"phrase",text,count,score:count*text.split(" ").length}))
+      .sort((a,b)=>b.score-a.score)
+      .filter((item,idx,arr)=>{
+        // suppress 2-word phrase if it is mostly represented by a stronger 3-word phrase
+        if(item.text.split(" ").length === 2){
+          return !arr.some(x=>x.text.split(" ").length===3 && x.count===item.count && x.text.includes(item.text));
+        }
+        return true;
+      })
+      .slice(0,30);
+
+    analysis = {words:wordResults,phrases:phraseResults};
+    $("#wordResultCount").textContent = `(${wordResults.length})`;
+    $("#phraseResultCount").textContent = `(${phraseResults.length})`;
+    $("#phraseCount").textContent = phraseResults.length;
+    selected = null;
+    currentInstance = 0;
+    renderResults();
+    renderSelection();
+    updateProgress();
+    $("#status").textContent = "Scan complete";
+  }
+
+  function renderResults(){
+    const list = $("#resultList");
+    const arr = analysis[activeTab];
+    list.innerHTML = "";
+    if(!arr.length){
+      list.innerHTML = `<div class="empty-note">No standout ${activeTab === "words" ? "word" : "phrase"} repetition found.</div>`;
+      return;
+    }
+    for(const item of arr){
+      const div = document.createElement("div");
+      div.className = "result-item" + (selected && selected.type===item.type && selected.text===item.text ? " selected" : "");
+      div.innerHTML = `<span class="result-label">${escapeHtml(item.text)}</span><span class="pill">${item.count}×</span>`;
+      div.onclick = () => selectResult(item);
+      list.appendChild(div);
+    }
+  }
+
+  function selectResult(item){
+    selected = item;
+    currentInstance = 0;
+    renderResults();
+    highlightSelected();
+    renderSelection();
+  }
+
+  function clearMarks(){
+    editor.querySelectorAll("mark.rep").forEach(mark=>{
+      const parent = mark.parentNode;
+      parent.replaceChild(document.createTextNode(mark.textContent),mark);
+      parent.normalize();
+    });
+  }
+
+  function highlightSelected(){
+    clearMarks();
+    if(!selected) return;
+    const text = editor.innerText;
+    const needle = selected.text;
+    const regex = selected.type === "word"
+      ? new RegExp(`\\b${escapeRegex(needle)}\\b`,"gi")
+      : new RegExp(escapeRegex(needle).replace(/\s+/g,"\\s+"),"gi");
+
+    const walker = document.createTreeWalker(editor,NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    let node;
+    while(node = walker.nextNode()) nodes.push(node);
+
+    for(const textNode of nodes){
+      const source = textNode.nodeValue;
+      regex.lastIndex = 0;
+      let match, last = 0;
+      const frag = document.createDocumentFragment();
+      let found = false;
+      while(match = regex.exec(source)){
+        found = true;
+        frag.appendChild(document.createTextNode(source.slice(last,match.index)));
+        const mark = document.createElement("mark");
+        mark.className = "rep";
+        mark.textContent = match[0];
+        frag.appendChild(mark);
+        last = match.index + match[0].length;
+        if(match[0].length===0) regex.lastIndex++;
+      }
+      if(found){
+        frag.appendChild(document.createTextNode(source.slice(last)));
+        textNode.parentNode.replaceChild(frag,textNode);
+      }
+    }
+    activateCurrent();
+  }
+
+  function activeMarks(){
+    return [...editor.querySelectorAll("mark.rep")];
+  }
+
+  function activateCurrent(){
+    const marks = activeMarks();
+    if(!marks.length){
+      renderSelection();
+      return;
+    }
+    if(currentInstance >= marks.length) currentInstance = marks.length-1;
+    if(currentInstance < 0) currentInstance = 0;
+    marks.forEach(m=>m.classList.remove("active"));
+    marks[currentInstance].classList.add("active");
+    marks[currentInstance].scrollIntoView({behavior:"smooth",block:"center"});
+    renderSelection();
+  }
+
+  function navigate(delta){
+    const marks = activeMarks();
+    if(!marks.length) return;
+    currentInstance = (currentInstance + delta + marks.length) % marks.length;
+    activateCurrent();
+  }
+
+  function renderSelection(){
+    const title = $("#selectionTitle");
+    const counter = $("#instanceCounter");
+    const prev = $("#prevBtn");
+    const next = $("#nextBtn");
+    const sugg = $("#suggestions");
+
+    if(!selected){
+      title.textContent = "Choose a flagged word or phrase.";
+      counter.textContent = "—";
+      prev.disabled = next.disabled = true;
+      sugg.innerHTML = `<div class="empty-note">Select a repeated word to see alternatives.</div>`;
+      return;
+    }
+
+    const marks = activeMarks();
+    title.innerHTML = `<strong>${escapeHtml(selected.text)}</strong> — ${marks.length} instance${marks.length===1?"":"s"}`;
+    counter.textContent = marks.length ? `${currentInstance+1} / ${marks.length}` : "0";
+    prev.disabled = next.disabled = marks.length < 2;
+
+    if(selected.type === "phrase"){
+      sugg.innerHTML = `<div class="empty-note">Phrase replacements are intentionally not suggested. Edit the highlighted phrase directly, then rescan.</div>`;
+      return;
+    }
+
+    const options = getSuggestions(selected.text);
+    sugg.innerHTML = "";
+    if(!options.length){
+      sugg.innerHTML = `<div class="empty-note">No built-in alternatives for this word. You can edit the highlighted instance directly.</div>`;
+    }else{
+      for(const s of options){
+        const b = document.createElement("button");
+        b.textContent = s;
+        b.onclick = ()=>replaceActive(s);
+        sugg.appendChild(b);
+      }
+    }
+  }
+
+  function getSuggestions(word){
+    const lower = word.toLowerCase();
+    if(THESAURUS[lower]) return THESAURUS[lower];
+    const stem = stemish(lower);
+    for(const [k,v] of Object.entries(THESAURUS)){
+      if(stemish(k)===stem) return v;
+    }
+    return [];
+  }
+
+  function replaceActive(replacement){
+    const marks = activeMarks();
+    const mark = marks[currentInstance];
+    if(!mark) return;
+
+    const original = mark.textContent;
+    let out = replacement;
+    if(/^[A-Z]/.test(original)) out = out.charAt(0).toUpperCase()+out.slice(1);
+
+    const textNode = document.createTextNode(out);
+    mark.parentNode.replaceChild(textNode,mark);
+    textNode.parentNode.normalize();
+
+    const remaining = activeMarks();
+    if(remaining.length){
+      if(currentInstance >= remaining.length) currentInstance = remaining.length-1;
+      activateCurrent();
+    }else{
+      selected = null;
+      renderSelection();
+    }
+    updateCounts();
+    $("#status").textContent = "Edited — rescan when ready";
+  }
+
+  function updateProgress(){
+    const card = $("#progressCard");
+    const severeWords = analysis.words.filter(x=>x.count >= Math.max(5,Math.ceil(countWords(plainText())/500)));
+    if(analysis.words.length===0 && analysis.phrases.length===0){
+      card.className = "stop-card good";
+      card.textContent = "Nothing stands out strongly. This is a good place to stop.";
+    }else if(severeWords.length===0 && analysis.phrases.length<=2){
+      card.className = "stop-card good";
+      card.textContent = "Repetition is now fairly light. You can stop here or keep refining.";
+    }else{
+      card.className = "stop-card";
+      card.textContent = `${analysis.words.length} repeated word${analysis.words.length===1?"":"s"} and ${analysis.phrases.length} repeated phrase${analysis.phrases.length===1?"":"s"} are still worth reviewing.`;
+    }
+  }
+
+  function escapeRegex(s){return s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}
+  function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+
+  editor.addEventListener("input",()=>{
+    updateCounts();
+    $("#status").textContent = "Edited";
+  });
+
+  editor.addEventListener("paste",e=>{
+    e.preventDefault();
+    const text = (e.clipboardData || window.clipboardData).getData("text");
+    const existing = plainText();
+    const combined = existing + (existing ? "\n" : "") + text;
+    const words = combined.match(/\b[\w’'-]+\b/g) || [];
+    let inserted = text;
+    if(words.length > MAX_WORDS){
+      const currentCount = countWords(existing);
+      const allowance = Math.max(0,MAX_WORDS-currentCount);
+      const pastedWords = [...text.matchAll(/\b[\w’'-]+\b/g)];
+      if(allowance <= 0){
+        showToast("10,000-word limit reached");
+        return;
+      }
+      if(pastedWords.length > allowance){
+        const cutoff = pastedWords[allowance-1].index + pastedWords[allowance-1][0].length;
+        inserted = text.slice(0,cutoff);
+        showToast("Paste trimmed to 10,000 words");
+      }
+    }
+    document.execCommand("insertText",false,inserted);
+  });
+
+  $("#startBtn").onclick=()=>{
+    $("#welcome").classList.add("hidden");
+    $("#app").classList.remove("hidden");
+    editor.focus();
+  };
+  $("#homeBtn").onclick=()=>{
+    $("#app").classList.add("hidden");
+    $("#welcome").classList.remove("hidden");
+  };
+  $("#scanBtn").onclick=scan;
+  $("#prevBtn").onclick=()=>navigate(-1);
+  $("#nextBtn").onclick=()=>navigate(1);
+
+  $("#wordsTab").onclick=()=>{
+    activeTab="words"; selected=null; clearMarks();
+    $("#wordsTab").classList.add("active"); $("#phrasesTab").classList.remove("active");
+    renderResults(); renderSelection();
+  };
+  $("#phrasesTab").onclick=()=>{
+    activeTab="phrases"; selected=null; clearMarks();
+    $("#phrasesTab").classList.add("active"); $("#wordsTab").classList.remove("active");
+    renderResults(); renderSelection();
+  };
+
+  $("#clearBtn").onclick=()=>{
+    if(editor.innerText.trim() && !confirm("Clear this draft?")) return;
+    editor.innerHTML=""; analysis={words:[],phrases:[]}; selected=null;
+    $("#wordResultCount").textContent=""; $("#phraseResultCount").textContent="";
+    $("#phraseCount").textContent="0"; renderResults(); renderSelection(); updateCounts();
+    $("#progressCard").className="stop-card"; $("#progressCard").textContent="Run a scan to see whether any repetition stands out.";
+  };
+
+  $("#copyBtn").onclick=async()=>{
+    clearMarks();
+    try{await navigator.clipboard.writeText(plainText());showToast("Draft copied")}
+    catch(e){showToast("Copy unavailable")}
+  };
+
+  $("#downloadBtn").onclick=()=>{
+    clearMarks();
+    const blob=new Blob([plainText()],{type:"text/plain;charset=utf-8"});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a");a.href=url;a.download="repetition-reviewed-draft.txt";
+    document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  };
+
+  $("#themeBtn").onclick=()=>{
+    document.body.classList.toggle("dark");
+    localStorage.setItem("repetitionFinderTheme",document.body.classList.contains("dark")?"dark":"light");
+  };
+
+  $("#fullBtn").onclick=async()=>{
+    try{
+      if(!document.fullscreenElement) await document.documentElement.requestFullscreen();
+      else await document.exitFullscreen();
+    }catch(e){}
+  };
+
+  function showToast(msg){
+    const t=$("#toast");t.textContent=msg;t.classList.add("show");
+    setTimeout(()=>t.classList.remove("show"),1300);
+  }
+
+  // Pomodoro
+  let timerSeconds=25*60,timerRunning=false,timerId=null;
+  function renderTimer(){
+    const m=Math.floor(timerSeconds/60).toString().padStart(2,"0");
+    const s=(timerSeconds%60).toString().padStart(2,"0");
+    $("#timerDisplay").textContent=`${m}:${s}`;
+  }
+  function resetTimer(){
+    timerRunning=false;clearInterval(timerId);timerId=null;
+    timerSeconds=parseInt($("#timerPreset").value,10)*60;$("#timerStart").textContent="▶";renderTimer();
+  }
+  function toggleTimer(){
+    if(timerRunning){timerRunning=false;clearInterval(timerId);timerId=null;$("#timerStart").textContent="▶";return}
+    timerRunning=true;$("#timerStart").textContent="Ⅱ";
+    timerId=setInterval(()=>{
+      timerSeconds--;renderTimer();
+      if(timerSeconds<=0){
+        clearInterval(timerId);timerId=null;timerRunning=false;$("#timerStart").textContent="▶";
+        alert("Writing sprint complete.");
+      }
+    },1000);
+  }
+  $("#timerStart").onclick=toggleTimer;
+  $("#timerReset").onclick=resetTimer;
+  $("#timerPreset").onchange=resetTimer;
+
+  if(localStorage.getItem("repetitionFinderTheme")==="dark") document.body.classList.add("dark");
+  updateCounts();
+  renderTimer();
+})();
+</script>
+</body>
+</html>
