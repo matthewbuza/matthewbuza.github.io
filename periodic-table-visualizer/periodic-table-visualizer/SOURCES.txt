@@ -1,0 +1,2610 @@
+PHASE 6M SOURCES — 2026-09-13
+
+NIST — Periodic table, June 2024
+https://www.nist.gov/system/files/documents/2024/06/25/NIST_periodictable_June24_iupac.pdf
+Accessed 2026-09-13. Cm–Lr neutral configurations, including Cm 6d1, No 5f14 and Lr 7p1. The published table retains representative Lr-262.
+
+IAEA / AMDC — NUBASE2020 evaluated nuclear properties, published 2021
+https://www-nds.iaea.org/amdc/ame2020/NUBASE2020.pdf
+Accessed 2026-09-13. Named evaluation for Cm-244/247, Bk-247/249, Cf-249/251/252, Es-252, Fm-257, Md-258 and No-259. Lr-262 is approximately 4 h; Lr-266 symmetric 22(14) h derives from the same sparse 11(+21,-5) h result used below.
+
+Royal Society of Chemistry — Curium: properties and uses
+https://periodic-table.rsc.org/element/96/curium
+Accessed 2026-09-13. Element family, occurrence, history and applications. Nuclear lifetimes and fractions use separate evaluated references.
+
+NASA / JPL Planetary Data System — Mars Pathfinder alpha proton X-ray spectrometer
+https://planetarydata.jpl.nasa.gov/img/data/mpf/rover/mprv_0001/document/apxsinst.htm
+Accessed 2026-09-13. Cm-244 in planetary elemental-analysis instruments; no instrument construction or source-handling instructions included.
+
+Royal Society of Chemistry — Berkelium: properties and uses
+https://periodic-table.rsc.org/element/97/berkelium
+Accessed 2026-09-13. Element family, occurrence, history and applications. Nuclear lifetimes and fractions use separate evaluated references.
+
+Royal Society of Chemistry — Californium: properties and uses
+https://periodic-table.rsc.org/element/98/californium
+Accessed 2026-09-13. Element family, occurrence, history and applications. Nuclear lifetimes and fractions use separate evaluated references.
+
+Oak Ridge National Laboratory — Californium-252 and reactor startups
+https://www.ornl.gov/news/ornls-californium-252-will-play-pivotal-role-new-reactor-startups
+Accessed 2026-09-13. Specialized neutron-source applications, including reactor startup; no production or handling procedures included.
+
+Royal Society of Chemistry — Einsteinium: properties and uses
+https://periodic-table.rsc.org/element/99/einsteinium
+Accessed 2026-09-13. Element family, occurrence, history and applications. Nuclear lifetimes and fractions use separate evaluated references.
+
+Lawrence Berkeley National Laboratory — The search for heavy elements
+https://www2.lbl.gov/abc/wallchart/chapters/08/0.html
+Accessed 2026-09-13. Es/Fm discovery history and identifying mendelevium one atom at a time; historical context only.
+
+Royal Society of Chemistry — Fermium: properties and uses
+https://periodic-table.rsc.org/element/100/fermium
+Accessed 2026-09-13. Element family, occurrence, history and applications. Nuclear lifetimes and fractions use separate evaluated references.
+
+Royal Society of Chemistry — Mendelevium: properties and uses
+https://periodic-table.rsc.org/element/101/mendelevium
+Accessed 2026-09-13. Element family, occurrence, history and applications. Nuclear lifetimes and fractions use separate evaluated references.
+
+Royal Society of Chemistry — Nobelium: properties and uses
+https://periodic-table.rsc.org/element/102/nobelium
+Accessed 2026-09-13. Element family, occurrence, history and applications. Nuclear lifetimes and fractions use separate evaluated references.
+
+Royal Society of Chemistry — Lawrencium: properties and uses
+https://periodic-table.rsc.org/element/103/lawrencium
+Accessed 2026-09-13. Element family, occurrence, history and applications. Nuclear lifetimes and fractions use separate evaluated references.
+
+NNDC / ENSDF — Lr-262 adopted levels
+https://www.nndc.bnl.gov/ensnds/262/Lr/adopted.pdf
+Accessed 2026-09-13. Approximately 4 h; electron-capture/positron decay to No-262 observed indirectly, branching unknown; SF below 10%; alpha decay not observed.
+
+NNDC / ENSDF — Lr-266 tentative adopted level, 2019
+https://www.nndc.bnl.gov/ensnds/266/Lr/adopted.pdf
+Accessed 2026-09-13. Tentative ground-state assignment, 11 h with +21/-5 h uncertainty; spontaneous fission. Sparse events, not a precise well-established lifetime.
+
+JAEA — First ionization potential of lawrencium
+https://asrc.jaea.go.jp/soshiki/gr/schaedel-gr/Lr-IP/Lr-IP.htm
+Accessed 2026-09-13. Measurements test calculations consistent with 7p1; ionization energy does not directly determine the full electron configuration by itself.
+
+Nuclear values use NUBASE2020 for Cm–No and ENSDF for qualified Lr values.
+Lr tile [262] preserves the project convention; explorer default is Lr-266.
+See PHASE-6M-REPORT.md for uncertainties, rounded displays and model limits.
+
+Earlier source notes below are historical snapshots.
+------------------------------------------------
+
+PHASE 6L — Ac–Am sources
+
+actAtomic — NIST — Periodic table: neutral ground-state configurations
+https://www.nist.gov/document/periodictable2016pdf-0
+Ac–Am: explicit 5f/6d/7s occupations; no generic filling-rule substitution.
+Accessed: 2026-09-13
+
+actAbundance — CIAAW / IUPAC — Isotopic compositions 2024
+https://www.ciaaw.org/isotopic-abundances.htm
+Th-230/232, Pa-231 and U-234/235/238 terrestrial fractions; no fixed fraction for produced or trace-only isotopes.
+Accessed: 2026-09-13
+
+actDecay — NNDC / Brookhaven — Nuclear Wallet Cards, April 2005
+https://www.lnl.infn.it/wp-content/uploads/Nuclear_Wallet_Cards.pdf
+Named evaluated snapshot: Ac-227; Th-228/230/232; Pa-231; U-234/235/238; Np-237; Pu-238/239/240. Primary decay modes; minor branches omitted in the student panel. Newer Ac-225, Pu-244 and Am values cited separately.
+Accessed: 2026-09-13
+
+actAc225 — NNDC / ENSDF — Ac-225 ground state in Ra-225 decay dataset
+https://www.nndc.bnl.gov/nudat3/getdecaydataset.jsp?dsid=225ra+bM+decay+%2814.9+d%29&nucleus=225AC
+Ac-225 half-life 9.920 days.
+Accessed: 2026-09-13
+
+actPu244 — NNDC / ENSDF — Pu-244 adopted levels, August 2017 evaluation
+https://www.nndc.bnl.gov/ensnds/244/Pu/adopted.pdf
+Pu-244 half-life 81.3 million years; predominantly alpha decay with a spontaneous-fission branch.
+Accessed: 2026-09-13
+
+actAm241 — NNDC / ENSDF — Am-241 adopted levels
+https://www.nndc.bnl.gov/ensnds/241/Am/adopted.pdf
+Am-241 half-life 432.6 years; primarily alpha decay.
+Accessed: 2026-09-13
+
+actAm243 — NNDC / ENSDF — Am-243 ground state in Bk-247 decay dataset
+https://www.nndc.bnl.gov/nudat3/getdecaydataset.jsp?dsid=247bk+a+decay&nucleus=243AM
+Am-243 half-life 7364 years.
+Accessed: 2026-09-13
+
+actTherapy — US Department of Energy — Actinium-225 and targeted alpha therapy
+https://www.energy.gov/orem/articles/terrapower-cardinal-health-isotek-and-doe-celebrate-historic-achievement-next
+Specialized targeted alpha therapy and clinical research; no blanket claim of routine approved treatment.
+Accessed: 2026-09-13
+
+actSpace — NASA — About plutonium-238
+https://science.nasa.gov/planetary-science/programs/radioisotope-power-systems/about-plutonium-238/
+Spacecraft radioisotope systems convert natural decay heat to electricity, rather than using a fission chain reaction.
+Accessed: 2026-09-13
+
+actCosmic — Wallner et al. / Nature Communications — Live interstellar plutonium-244 in deep-sea reservoirs, 2015
+https://www.nature.com/articles/ncomms6956
+Detected tiny natural interstellar Pu-244 traces in deep-sea deposits; supports heavy-element formation studies.
+Accessed: 2026-09-13
+
+actSmoke — US EPA — Americium in ionization smoke detectors
+https://www.epa.gov/radtown/americium-ionization-smoke-detectors
+Small enclosed Am-241 sources; do not tamper with the source or its shielding.
+Accessed: 2026-09-13
+
+actFissile — US NRC — Fissile material
+https://www.nrc.gov/reading-rm/basic-ref/glossary/fissile-material
+Conceptual distinction between fissile and radioactive; U-235 and Pu-239.
+Accessed: 2026-09-13
+
+actFertile — US NRC — Fertile material
+https://www.nrc.gov/reading-rm/basic-ref/glossary/fertile-material
+Fertile isotopes can be transformed into fissile isotopes by nuclear reactions; no procedures are included.
+Accessed: 2026-09-13
+
+actAcUses — Royal Society of Chemistry — Actinium: properties and uses
+https://periodic-table.rsc.org/element/89/actinium
+Element family, occurrence, history and applications. Nuclear lifetimes and fractions use separate evaluated references.
+Accessed: 2026-09-13
+
+actThUses — Royal Society of Chemistry — Thorium: properties and uses
+https://periodic-table.rsc.org/element/90/thorium
+Element family, occurrence, history and applications. Nuclear lifetimes and fractions use separate evaluated references.
+Accessed: 2026-09-13
+
+actPaUses — Royal Society of Chemistry — Protactinium: properties and uses
+https://periodic-table.rsc.org/element/91/protactinium
+Element family, occurrence, history and applications. Nuclear lifetimes and fractions use separate evaluated references.
+Accessed: 2026-09-13
+
+actUUses — Royal Society of Chemistry — Uranium: properties and uses
+https://periodic-table.rsc.org/element/92/uranium
+Element family, occurrence, history and applications. Nuclear lifetimes and fractions use separate evaluated references.
+Accessed: 2026-09-13
+
+actNpUses — Royal Society of Chemistry — Neptunium: properties and uses
+https://periodic-table.rsc.org/element/93/neptunium
+Element family, occurrence, history and applications. Nuclear lifetimes and fractions use separate evaluated references.
+Accessed: 2026-09-13
+
+actPuUses — Royal Society of Chemistry — Plutonium: properties and uses
+https://periodic-table.rsc.org/element/94/plutonium
+Element family, occurrence, history and applications. Nuclear lifetimes and fractions use separate evaluated references.
+Accessed: 2026-09-13
+
+actAmUses — Royal Society of Chemistry — Americium: properties and uses
+https://periodic-table.rsc.org/element/95/americium
+Element family, occurrence, history and applications. Nuclear lifetimes and fractions use separate evaluated references.
+Accessed: 2026-09-13
+
+Earlier sources follow (historical phases).
+
+PHASE 6K — Hg–Rn — SOURCES CHECKED 2026-09-13
+
+The 19 local source records in js/period6-completion-data.js contain exact
+URLs, organizations, dates and claim scope. Source links do not fetch during
+offline use. Seven RSC element pages support properties and material uses.
+
+NIST periodic table (2016): exact neutral configurations, Hg–Rn.
+https://www.nist.gov/document/periodictable2016pdf-0
+CIAAW 2024 compositions: Hg fractions and uncertainties; Tl/Pb terrestrial
+ranges, Bi-209 100% natural composition, Po/At/Rn representative masses.
+https://www.ciaaw.org/isotopic-abundances.htm
+The existing table retains CIAAW abridged atomic weights for Hg/Tl/Pb/Bi.
+
+Bi-209: current hosted ENSDF adopted-level evaluation was explicitly checked:
+2.01(8)e19 years, alpha decay to Tl-205. It is not stable. Main display rounds.
+https://www.nndc.bnl.gov/ensnds/209/Bi/adopted.pdf
+Po-209: named NIST 2014 measurement, 125.2(3.3) years, not the old 102 years.
+https://www.nist.gov/publications/half-life-209po-revisited
+Po-210, At-210/211, Rn-219/220/222 and decay branches use the named NNDC
+April 2005 Wallet Cards snapshot. At-211 also checked against 2013 ENSDF:
+https://www.lnl.infn.it/wp-content/uploads/Nuclear_Wallet_Cards.pdf
+https://www.nndc.bnl.gov/nudat3/getdecaydataset.jsp?dsid=211at+ec+decay&nucleus=211PO
+These values form a curated offline snapshot, not a live nuclear-data feed.
+
+NCI clinical-trial listings support At-211 research wording. EPA supports
+mercury vapor toxicity, lead effects on developing brains, and radon formation,
+indoor accumulation, lung-cancer risk, testing and mitigation. No exposure
+thresholds, medical instructions or handling procedures are reproduced.
+NIST supports lead-free solder alternatives. RSC's relativity education
+article supports the qualitative mercury/heavy-electron-energy discussion.
+
+Earlier source sections below are historical.
+
+PHASE 6J SOURCE CONVENTIONS — 2026-09-12
+
+29 new local source records are stored in js/heavy-d-data.js and available
+in the expandable source list. Offline use never fetches these links.
+NIST handbook neutral configurations: Hf–Au; platinum uses table1_a.htm.
+CIAAW 2024 isotope compositions: terrestrial fractions and uncertainty.
+Hf rounded percentages total 100.011%; preserve the published values rather
+than silently normalize. Ta's mass-180 abundance belongs to Ta-180m.
+
+Half-life choices are named measurements/snapshots, not claims of a live feed:
+- Hf-174: Caracciolo et al., 2020, 7.0e16 years (arxiv.org/abs/2005.01373).
+- W-180: CRESST, 2004, 1.8e18 years (doi:10.1103/PhysRevC.70.064606).
+- Pt-190: Braun et al., 2017, 4.97e11 years (arxiv.org/abs/1703.00764).
+- Re-187, Re-188, Os-186, Ir-192 and Au-198: named NNDC April 2005
+  Nuclear Wallet Cards snapshot. Exact adopted values and rounded displays
+  are separate in data. Older snapshot Hf/Pt values are not reused.
+- Ta-180m: Majorana 2023 search (arxiv.org/abs/2306.01965), no observed
+  decay. Lower limits are not measured lifetimes. Nesterenko et al. 2022
+  (arxiv.org/abs/2205.10534): 76.79(55) keV excitation energy, stored
+  as nuclear-state metadata, not a main-panel numerical distraction.
+- Os-184: 2024 rare-decay searches (arxiv.org/abs/2406.19062) support
+  observational status; search bounds are not assigned as half-lives.
+
+RSC element pages support material and engineering uses. NCI supports the
+cisplatin compound distinction. IAEA supports specialized Re-188 work,
+Ir-192 radiography/brachytherapy and historical/specialized Au-198 sources.
+RSC's relativity education article supports the concise gold-color note;
+NIST TN 1053 supports silver/copper/gold conductivity comparisons.
+All exact URLs, organizations, access dates and claim scope are in the code.
+
+Earlier source sections below are historical.
+
+PHASE 6I — SCIENTIFIC SOURCES — 2026-09-12
+
+The shared lanthanide registry now contains 56 source records, including
+22 additions for Tb–Lu. All are local metadata; references are not fetched
+at runtime. Each new element has its own NIST neutral-configuration reference
+and RSC uses reference. CIAAW 2024 supplies natural terrestrial percentages.
+All reference titles, organizations, access dates, URLs and supported facts
+are also available through the existing isotope source panel.
+
+DECAY CONVENTIONS
+Tb-161: 6.906 days, beta-minus to Dy-161 (NNDC Wallet Cards, April 2005).
+Ho-166 ground state: 26.83 hours, beta-minus to Er-166 (same snapshot).
+Tm-170: 128.6 days, mainly beta-minus to Yb-170, rare electron capture to Er-170.
+Lu-176: 3.57(14)e10 years from the named CIAAW lutetium page; beta-minus to
+Hf-176. The display rounds to about 36 billion years. Published evaluations
+differ; the advanced source note makes the chosen reference explicit.
+Lu-177: 6.647 days, beta-minus to Hf-177 (FDA Lutathera label, 2024).
+These physical half-lives are not biological clearance times.
+The IAEA patient-release report supports historical Ho-166 treatment research;
+its printed '26.8 days' is a unit error. Nuclear data here correctly uses hours.
+
+All other new choices have no observed radioactive decay and no half-life
+shown. Natural occurrence is distinct from stability; Lu-176 is the naturally
+radioactive choice. CIAAW's 2024 Lu abundances are 97.414% and 2.586%.
+Tb-161 medical applications are research/clinical trials, not routine approval.
+Lu-177 wording describes approved radioactive medicines with targeting molecules
+and specialist controls. Holmium lasers are distinct from Ho-166 source use.
+
+lnTbTrial: Paul Scherrer Institute
+Using terbium against lymphoma
+https://www.psi.ch/en/news/media-releases/using-terbium-against-lymphoma
+Accessed: 2026-09-12
+Supports: Tb-161 clinical-trial research and roughly 6.9-day half-life.
+
+lnHoResearch: IAEA
+Release of Patients After Radionuclide Therapy
+https://www-pub.iaea.org/MTCD/Publications/PDF/pub1417_web.pdf
+Accessed: 2026-09-12
+Supports: Historical Ho-166 compounds and microsphere treatment studies. Its printed days unit is erroneous; Ho-166 half-life uses NNDC hours.
+
+lnHoLaser: US FDA
+Holmium laser system K201455
+https://www.accessdata.fda.gov/cdrh_docs/pdf20/K201455.pdf
+Accessed: 2026-09-12
+Supports: Holmium surgical laser and kidney-stone fragmentation applications.
+
+lnLu176: CIAAW / IUPAC
+Atomic Weight of Lutetium
+https://ciaaw.org/lutetium.htm
+Accessed: 2026-09-12
+Supports: Lu-176 naturally radioactive; cited 3.57(14)e10-year half-life and Lu-Hf geological dating.
+
+lnLuTherapy: US FDA
+Lutathera prescribing information, 2024
+https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/208700s031lbl.pdf
+Accessed: 2026-09-12
+Supports: Approved Lu-177 dotatate therapy; 6.647-day physical half-life; beta-minus to Hf-177.
+
+lnYbClock: NIST
+Yb Optical Lattice Clock
+https://www.nist.gov/programs-projects/yb-optical-lattice-clock
+Accessed: 2026-09-12
+Supports: Yb-171 atoms used in optical lattice clock research.
+
+lnLateUses: US Geological Survey
+Potential Uses of Rare Earth Elements Found in Marine Minerals
+https://www.usgs.gov/media/images/potential-uses-rare-earth-elements-found-marine-minerals
+Accessed: 2026-09-12
+Supports: Terbium green phosphors and lutetium PET detector materials.
+
+lnErFiber: NIST
+Symposium on Optical Fiber Measurements, 1990
+https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication792.pdf
+Accessed: 2026-09-12
+Supports: Erbium-doped fiber amplification around 1.55 micrometers.
+
+lnTbAtomic: NIST
+Atomic Data for Terbium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/terbiumtable1.htm
+Accessed: 2026-09-12
+Supports: Neutral ground-state 4f⁹ 6s². Only configurations are taken from this older page; abundances use CIAAW 2024.
+
+lnTbUses: Royal Society of Chemistry
+Terbium: properties and uses
+https://periodic-table.rsc.org/element/65/terbium
+Accessed: 2026-09-12
+Supports: Element, compound and alloy applications. Nuclear classifications use the separately named sources.
+
+lnDyAtomic: NIST
+Atomic Data for Dysprosium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/dysprosiumtable1.htm
+Accessed: 2026-09-12
+Supports: Neutral ground-state 4f¹⁰ 6s². Only configurations are taken from this older page; abundances use CIAAW 2024.
+
+lnDyUses: Royal Society of Chemistry
+Dysprosium: properties and uses
+https://periodic-table.rsc.org/element/66/dysprosium
+Accessed: 2026-09-12
+Supports: Element, compound and alloy applications. Nuclear classifications use the separately named sources.
+
+lnHoAtomic: NIST
+Atomic Data for Holmium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/holmiumtable1.htm
+Accessed: 2026-09-12
+Supports: Neutral ground-state 4f¹¹ 6s². Only configurations are taken from this older page; abundances use CIAAW 2024.
+
+lnHoUses: Royal Society of Chemistry
+Holmium: properties and uses
+https://periodic-table.rsc.org/element/67/holmium
+Accessed: 2026-09-12
+Supports: Element, compound and alloy applications. Nuclear classifications use the separately named sources.
+
+lnErAtomic: NIST
+Atomic Data for Erbium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/erbiumtable1.htm
+Accessed: 2026-09-12
+Supports: Neutral ground-state 4f¹² 6s². Only configurations are taken from this older page; abundances use CIAAW 2024.
+
+lnErUses: Royal Society of Chemistry
+Erbium: properties and uses
+https://periodic-table.rsc.org/element/68/erbium
+Accessed: 2026-09-12
+Supports: Element, compound and alloy applications. Nuclear classifications use the separately named sources.
+
+lnTmAtomic: NIST
+Atomic Data for Thulium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/thuliumtable1.htm
+Accessed: 2026-09-12
+Supports: Neutral ground-state 4f¹³ 6s². Only configurations are taken from this older page; abundances use CIAAW 2024.
+
+lnTmUses: Royal Society of Chemistry
+Thulium: properties and uses
+https://periodic-table.rsc.org/element/69/thulium
+Accessed: 2026-09-12
+Supports: Element, compound and alloy applications. Nuclear classifications use the separately named sources.
+
+lnYbAtomic: NIST
+Atomic Data for Ytterbium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/ytterbiumtable1.htm
+Accessed: 2026-09-12
+Supports: Neutral ground-state 4f¹⁴ 6s². Only configurations are taken from this older page; abundances use CIAAW 2024.
+
+lnYbUses: Royal Society of Chemistry
+Ytterbium: properties and uses
+https://periodic-table.rsc.org/element/70/ytterbium
+Accessed: 2026-09-12
+Supports: Element, compound and alloy applications. Nuclear classifications use the separately named sources.
+
+lnLuAtomic: NIST
+Atomic Data for Lutetium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/lutetiumtable1.htm
+Accessed: 2026-09-12
+Supports: Neutral ground-state 4f¹⁴ 5d¹ 6s². Only configurations are taken from this older page; abundances use CIAAW 2024.
+
+lnLuUses: Royal Society of Chemistry
+Lutetium: properties and uses
+https://periodic-table.rsc.org/element/71/lutetium
+Accessed: 2026-09-12
+Supports: Element, compound and alloy applications. Nuclear classifications use the separately named sources.
+
+EARLIER SOURCE SECTIONS
+
+PHASE 6H SCIENTIFIC SOURCES — 2026-09-12
+
+These 34 locally stored records support La–Gd. The app never fetches them.
+NIST neutral ground states are explicit, not predicted by a filling rule.
+CIAAW 2024 supplies terrestrial abundances, not older handbook percentages.
+Decay references are named snapshots; newer measured Eu-151 and Nd-150
+results and the NIST Eu-152 certificate take precedence as documented.
+Search lower limits never become measured lifetimes.
+
+lnAbundance: CIAAW / IUPAC
+Isotopic compositions 2024
+https://www.ciaaw.org/isotopic-abundances.htm
+Accessed: 2026-09-12
+Supports: Representative La–Gd terrestrial percentages and uncertainties. No ordinary promethium composition.
+
+lnDecay: NNDC / Brookhaven
+Nuclear Wallet Cards, April 2005
+https://www.lnl.infn.it/wp-content/uploads/Nuclear_Wallet_Cards.pdf
+Accessed: 2026-09-12
+Supports: Named nuclear snapshot: La-138 1.02e11 y EC/beta-minus; Pr-144 17.28 min beta-minus; Nd-144 2.29e15 y alpha; Pm-145 17.7 y mainly EC; Pm-147 2.6234 y beta-minus; Sm-147 1.06e11 y and Sm-148 7e15 y alpha; Eu-152 decay branches; the half-life uses the newer NIST SRM certificate; Gd-152 1.08e14 y alpha; Gd-153 240.4 d EC. Search limits are not measured half-lives.
+
+lnCeLimits: Danevich et al. / Institute for Nuclear Research
+Quest for double beta decay of 160Gd and Ce isotopes
+https://lpd.kinr.kyiv.ua/publications/2001/npa-2001-694-375.pdf
+Accessed: 2026-09-12
+Supports: Primary experiment reports lower bounds, not observed decay, for Ce-136/138/142 and Gd-160. These remain observationally stable here.
+
+lnEu151: Casali et al. / INFN collaboration
+Discovery of the 151Eu alpha decay
+https://arxiv.org/abs/1311.2834
+Accessed: 2026-09-12
+Supports: Observed Eu-151 alpha decay to Pm-147: 4.62e18 years, 2014 publication. Supersedes older stable classifications.
+
+lnNd150: NEMO-3 Collaboration
+Measurement of the 150Nd two-neutrino double-beta decay half-life
+https://arxiv.org/abs/1606.08494
+Accessed: 2026-09-12
+Supports: 2016 full-exposure result: 9.34e18 years to the Sm-150 ground state. Distinct from limits on neutrinoless modes.
+
+lnDating: US Geological Survey
+Using Radioactive Decay to Determine Geologic Age
+https://www.usgs.gov/educational-resources/geologic-age-using-radioactive-decay-determine-geologic-age
+Accessed: 2026-09-12
+Supports: Sm-147 alpha decay to Nd-143 and its geological dating use.
+
+lnCapture: NIST Center for Neutron Research
+Neutron scattering lengths and cross sections
+https://www.ncnr.nist.gov/resources/n-lengths/list.html
+Accessed: 2026-09-12
+Supports: Strong thermal-neutron absorption by Sm-149 and exceptionally large Gd-157 absorption. Cross sections depend on neutron energy.
+
+lnPmUse: Oak Ridge National Laboratory
+Changing process leads to purer Pm-147 — and more of it
+https://www.ornl.gov/news/changing-process-leads-purer-pm-147-and-more-it
+Accessed: 2026-09-12
+Supports: 2023 report: Pm-147 production for research and plastic-film thickness instruments.
+
+lnPmBattery: Oak Ridge National Laboratory
+Reactor production of promethium-147
+https://impact.ornl.gov/en/publications/reactor-production-of-promethium-147/
+Accessed: 2026-09-12
+Supports: Research on Pm-147 production for specialized betavoltaic batteries.
+
+lnEuCalibration: NIST
+SRM 4370d Europium-152 Solution
+https://tsapps.nist.gov/srmext/certificates/4370d.pdf
+Accessed: 2026-09-12
+Supports: Eu-152 instrument calibration; certificate uses a 13.517-year half-life.
+
+lnGd153: US DOE / National Isotope Development Center
+DOE and MURR Secure Critical Radioisotope Supply Chain for Medical Imaging
+https://www.isotopes.gov/node/1546
+Accessed: 2026-09-12
+Supports: Gd-153 radiation sources for medical imaging instrument calibration. Distinct from non-radioactive MRI contrast compounds.
+
+lnMRI: US Food and Drug Administration
+MRI (Magnetic Resonance Imaging)
+https://www.fda.gov/radiation-emitting-products/medical-imaging/mri-magnetic-resonance-imaging
+Accessed: 2026-09-12
+Supports: Some MRI exams use gadolinium-based contrast drugs, not elemental gadolinium metal.
+
+lnMagnets: US Department of Energy
+Scientists Stick to a New Efficient Magnet
+https://www.energy.gov/cmei/ammto/articles/scientists-stick-new-efficient-magnet
+Accessed: 2026-09-12
+Supports: Samarium-cobalt magnets and high-temperature magnetic performance.
+
+lnMotor: US Department of Energy
+Electric Motors Research and Development
+https://www.energy.gov/cmei/vehicles/electric-motors-research-and-development
+Accessed: 2026-09-12
+Supports: Permanent-magnet motor operation and energy conversion; magnets alone do not generate electrical energy.
+
+lnCeAlpha: DAMA collaboration / INFN
+Search for alpha decay of naturally occurring cerium isotopes
+https://web.sites.lngs.infn.it/lngs_infn/contents/lngs_en/research/experiments_scientific_info/library_publications/preprint_reports/preprint/preprint78.pdf
+Accessed: 2026-09-12
+Supports: Cerium alpha-decay search lower bounds are not observed lifetimes.
+
+lnEuLED: Jia et al.
+First-principles Study of the Luminescence of Eu2+-doped Phosphors
+https://arxiv.org/abs/1709.00311
+Accessed: 2026-09-12
+Supports: Europium-doped phosphors studied for white LEDs and scintillation.
+
+lnGdSensor: Faltinath et al.
+Simulating Gadolinium-Induced Magnetic Field Variations for Temperature Sensing with Magneto-Mechanical Resonators
+https://arxiv.org/abs/2508.21794
+Accessed: 2026-09-12
+Supports: Simulation research on gadolinium temperature sensing; not a claim of commercial deployment.
+
+lnSmSensor: National Bureau of Standards / NIST
+Publications of the National Bureau of Standards 1987 Catalog
+https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication305supp20.pdf
+Accessed: 2026-09-12
+Supports: Catalog includes research on heat-resistant samarium-cobalt magnets in electromagnetic acoustic transducers.
+
+lnLaAtomic: NIST
+Atomic Data for Lanthanum
+https://physics.nist.gov/PhysRefData/Handbook/Tables/lanthanumtable1.htm
+Accessed: 2026-09-12
+Supports: Neutral ground-state 5d¹ 6s². Only configurations are taken from this older page; abundances use CIAAW 2024.
+
+lnLaUses: Royal Society of Chemistry
+Lanthanum: properties and uses
+https://periodic-table.rsc.org/element/57/lanthanum
+Accessed: 2026-09-12
+Supports: Element, compound and alloy applications. Nuclear classifications use the separately named sources.
+
+lnCeAtomic: NIST
+Atomic Data for Cerium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/ceriumtable1.htm
+Accessed: 2026-09-12
+Supports: Neutral ground-state 4f¹ 5d¹ 6s². Only configurations are taken from this older page; abundances use CIAAW 2024.
+
+lnCeUses: Royal Society of Chemistry
+Cerium: properties and uses
+https://periodic-table.rsc.org/element/58/cerium
+Accessed: 2026-09-12
+Supports: Element, compound and alloy applications. Nuclear classifications use the separately named sources.
+
+lnPrAtomic: NIST
+Atomic Data for Praseodymium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/praseodymiumtable1.htm
+Accessed: 2026-09-12
+Supports: Neutral ground-state 4f³ 6s². Only configurations are taken from this older page; abundances use CIAAW 2024.
+
+lnPrUses: Royal Society of Chemistry
+Praseodymium: properties and uses
+https://periodic-table.rsc.org/element/59/praseodymium
+Accessed: 2026-09-12
+Supports: Element, compound and alloy applications. Nuclear classifications use the separately named sources.
+
+lnNdAtomic: NIST
+Atomic Data for Neodymium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/neodymiumtable1.htm
+Accessed: 2026-09-12
+Supports: Neutral ground-state 4f⁴ 6s². Only configurations are taken from this older page; abundances use CIAAW 2024.
+
+lnNdUses: Royal Society of Chemistry
+Neodymium: properties and uses
+https://periodic-table.rsc.org/element/60/neodymium
+Accessed: 2026-09-12
+Supports: Element, compound and alloy applications. Nuclear classifications use the separately named sources.
+
+lnPmAtomic: NIST
+Atomic Data for Promethium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/promethiumtable1.htm
+Accessed: 2026-09-12
+Supports: Neutral ground-state 4f⁵ 6s². Only configurations are taken from this older page; abundances use CIAAW 2024.
+
+lnPmUses: Royal Society of Chemistry
+Promethium: properties and uses
+https://periodic-table.rsc.org/element/61/promethium
+Accessed: 2026-09-12
+Supports: Element, compound and alloy applications. Nuclear classifications use the separately named sources.
+
+lnSmAtomic: NIST
+Atomic Data for Samarium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/samariumtable1.htm
+Accessed: 2026-09-12
+Supports: Neutral ground-state 4f⁶ 6s². Only configurations are taken from this older page; abundances use CIAAW 2024.
+
+lnSmUses: Royal Society of Chemistry
+Samarium: properties and uses
+https://periodic-table.rsc.org/element/62/samarium
+Accessed: 2026-09-12
+Supports: Element, compound and alloy applications. Nuclear classifications use the separately named sources.
+
+lnEuAtomic: NIST
+Atomic Data for Europium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/europiumtable1.htm
+Accessed: 2026-09-12
+Supports: Neutral ground-state 4f⁷ 6s². Only configurations are taken from this older page; abundances use CIAAW 2024.
+
+lnEuUses: Royal Society of Chemistry
+Europium: properties and uses
+https://periodic-table.rsc.org/element/63/europium
+Accessed: 2026-09-12
+Supports: Element, compound and alloy applications. Nuclear classifications use the separately named sources.
+
+lnGdAtomic: NIST
+Atomic Data for Gadolinium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/gadoliniumtable1.htm
+Accessed: 2026-09-12
+Supports: Neutral ground-state 4f⁷ 5d¹ 6s². Only configurations are taken from this older page; abundances use CIAAW 2024.
+
+lnGdUses: Royal Society of Chemistry
+Gadolinium: properties and uses
+https://periodic-table.rsc.org/element/64/gadolinium
+Accessed: 2026-09-12
+Supports: Element, compound and alloy applications. Nuclear classifications use the separately named sources.
+
+EARLIER PHASE SOURCES
+
+PHASE 6G LOCAL SOURCE RECORDS — VERIFIED 2026-09-12
+
+NIST: Cs [Xe] 6s1; Ba [Xe] 6s2; Fr [Rn] 7s1; Ra [Rn] 7s2.
+Full cores are explicit. Shell counts are derived by summing the principal n.
+CIAAW 2024: Cs-133 100%; Ba-130 .11(.01), 132 .10(.01), 134 2.42(.15),
+135 6.59(.10), 136 7.85(.24), 137 11.23(.23), 138 71.70(.29) percent.
+Ba-130 belongs in the natural mixture despite being radioactive. Fr/Ra have
+no ordinary terrestrial percentage entries. Values in parentheses above are
+uncertainties in percentage points, not percentages of those percentages.
+
+Ba-130: Meshik et al. (2001), 2.2(5)e21 years from accumulated xenon in barite.
+This geochemical measurement combines possible weak channels; double electron
+capture is expected to dominate. It is not a direct channel-resolved observation.
+Ba-132 remains observationally stable. A search limit is not a measured lifetime.
+
+Other lifetimes use the named April 2005 NNDC Wallet Cards snapshot, displayed
+with classroom rounding: Cs-134 2.0652 y; Cs-137 30.03 y; Ba-133 3841 d;
+Ba-140 12.752 d; Fr-221 4.9 min; Fr-223 22 min; Ra-223 11.43 d;
+Ra-224 3.6319 d; Ra-226 1600 y; Ra-228 5.75 y. This is not a claim that an
+old snapshot is the newest evaluation. Minor channels are retained separately.
+Cs-134 reactor production is primarily neutron capture on Cs-133, rather than
+direct fission; its relation to fission products is qualified in the high text.
+Cs-133's defining atomic transition is distinct from radioactive nuclear decay.
+Ra-223 approval is indication-specific; the cited Ra-224 example is a trial.
+
+outerAbundance: CIAAW / IUPAC — Isotopic compositions 2024
+https://www.ciaaw.org/isotopic-abundances.htm
+Accessed 2026-09-12. Supports: Cs-133 100%; Ba-130/132/134/135/136/137/138 percentages and uncertainties. No ordinary Fr or Ra mixture.
+
+outerDecay: NNDC / Brookhaven — Nuclear Wallet Cards, April 2005
+https://www.lnl.infn.it/wp-content/uploads/Nuclear_Wallet_Cards.pdf
+Accessed 2026-09-12. Supports: Named snapshot: Cs-134 2.0652 y, Cs-137 30.03 y; Ba-133 3841 d, Ba-140 12.752 d; Fr-221 4.9 min, Fr-223 22.00 min; Ra-223 11.43 d, Ra-224 3.6319 d, Ra-226 1600 y, Ra-228 5.75 y. Major and minor decay channels. Old Ba-130 limits and abundance values are not reused.
+
+outerBa130: Meshik et al. / Washington University — Weak decay of Ba-130 and Ba-132: geochemical measurements
+https://profiles.wustl.edu/en/publications/weak-decay-of-sup130supba-and-sup132supba-geochemical-measurement
+Accessed 2026-09-12. Supports: Primary 2001 measurement of daughter Xe-130 in barite: 2.2(5) × 10^21 y for combined weak-decay modes. Double electron capture is the expected dominant channel. Geochemical evidence does not resolve the individual channels.
+
+outerSecond: BIPM — The SI second
+https://www.bipm.org/en/si-base-units/second
+Accessed 2026-09-12. Supports: The unperturbed Cs-133 ground-state hyperfine transition frequency is exactly 9,192,631,770 Hz. This clock transition is not radioactive decay.
+
+outerCs137: US EPA — Radionuclide Basics: Cesium-137
+https://www.epa.gov/radiation/radionuclide-basics-cesium-137
+Accessed 2026-09-12. Supports: Fission product, detector calibration, industrial measurement and environmental radiation context.
+
+outerBaCalibration: NIST — Radioactivity Standard Reference Material Quality Procedures
+https://www.nist.gov/system/files/documents/2022/06/21/Procedure15v600.pdf
+Accessed 2026-09-12. Supports: Ba-133 reference sources calibrate radioactivity instruments and monitor radiochemical procedures.
+
+outerRa223: NLM / DailyMed — Xofigo prescribing information
+https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a398400e-bd31-41a9-9696-4f7c06569ede
+Accessed 2026-09-12. Supports: Radium-223 dichloride is an approved treatment for specified prostate cancer with symptomatic bone metastases. Alpha emission; medical use requires specialist radiation protection.
+
+outerRa224: US National Cancer Institute — Alpha Radiation Emitters Device trial
+https://www.cancer.gov/research/participate/clinical-trials-search/v?id=NCI-2022-10859&r=1
+Accessed 2026-09-12. Supports: Ra-224 implanted sources are investigated in a clinical trial. This example is investigational, not a claim of routine approved treatment.
+
+outerRaSafety: US EPA — Radioactivity in Antiques
+https://www.epa.gov/radtown/radioactivity-antiques
+Accessed 2026-09-12. Supports: Historical luminous paint exposed workers to radium, which can enter bones and cause serious harm.
+
+outerRaNature: US EPA — Radionuclide Basics: Radium
+https://www.epa.gov/radiation/radionuclide-basics-radium
+Accessed 2026-09-12. Supports: Natural radioactive radium, decay-series occurrence and environmental significance.
+
+outerCs134: IAEA — Radiological Characterization of Shut Down Nuclear Reactors, TRS 389
+https://www-pub.iaea.org/MTCD/Publications/PDF/TRS389_scr.pdf
+Accessed 2026-09-12. Supports: Page 23: Cs-134 production by neutron capture on Cs-133.
+
+outerPhotoelectric: Los Alamos / US DOE OSTI — Performance of cesium telluride photocathodes
+https://www.osti.gov/servlets/purl/10180003
+Accessed 2026-09-12. Supports: Primary measurements of cesium telluride light-sensitive electron sources.
+
+outerFrResearch: NIST — Lifetime Measurements of the 7p levels of atomic francium
+https://www.nist.gov/publications/lifetime-measurements-7p-levels-atomic-francium
+Accessed 2026-09-12. Supports: Example of atomic francium research; excited-state lifetimes are distinct from nuclear half-lives.
+
+outerCsNIST: NIST — Atomic Data for Cesium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/cesiumtable1.htm
+Accessed 2026-09-12. Supports: Neutral ground state [Xe] 6s1, including the complete occupied core.
+
+outerCsRSC: Royal Society of Chemistry — Cesium: properties and uses
+https://periodic-table.rsc.org/element/55/caesium
+Accessed 2026-09-12. Supports: Element properties, natural occurrence and applications. Nuclear values use separately named snapshots.
+
+outerBaNIST: NIST — Atomic Data for Barium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/bariumtable1.htm
+Accessed 2026-09-12. Supports: Neutral ground state [Xe] 6s2, including the complete occupied core.
+
+outerBaRSC: Royal Society of Chemistry — Barium: properties and uses
+https://periodic-table.rsc.org/element/56/barium
+Accessed 2026-09-12. Supports: Element properties, natural occurrence and applications. Nuclear values use separately named snapshots.
+
+outerFrNIST: NIST — Atomic Data for Francium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/franciumtable1.htm
+Accessed 2026-09-12. Supports: Neutral ground state [Rn] 7s1, including the complete occupied core.
+
+outerFrRSC: Royal Society of Chemistry — Francium: properties and uses
+https://periodic-table.rsc.org/element/87/francium
+Accessed 2026-09-12. Supports: Element properties, natural occurrence and applications. Nuclear values use separately named snapshots.
+
+outerRaNIST: NIST — Atomic Data for Radium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/radiumtable1.htm
+Accessed 2026-09-12. Supports: Neutral ground state [Rn] 7s2, including the complete occupied core.
+
+outerRaRSC: Royal Society of Chemistry — Radium: properties and uses
+https://periodic-table.rsc.org/element/88/radium
+Accessed 2026-09-12. Supports: Element properties, natural occurrence and applications. Nuclear values use separately named snapshots.
+
+--- Earlier phase notes (historical) ---
+
+PHASE 6F LOCAL SOURCE RECORDS — VERIFIED 2026-09-11
+
+NIST measured neutral configurations; CIAAW 2024 terrestrial compositions.
+All abundances below are percent with uncertainties in percentage points.
+Natural occurrence does not establish stability. Search limits are not measured
+half-lives: Xe-126/134, Te-123 and the ten tin ground states remain labelled
+stable (no observed decay), while Xe-124/136 and Te-128/130 are radioactive.
+In-115 uses ENSDF 4.41e14 y, not an inconsistent CIAAW essay exponent.
+Te-128 uses the CUORE 2022 geochemical-ratio estimate 2.19e24 y; different
+geochemical determinations exist. Te-130 uses the named 7.71e20 y measurement.
+Sn-117m uses ENSDF's 14.00(5) d, 314.58(4) keV March 2012 update. The older
+Wallet Cards' 13.76 d is not used for Sn-117m. Natural percentages come only
+from CIAAW 2024, never the older Wallet Cards.
+
+Sources are stored locally and never fetched by the application. Medical and
+engineering examples are educational, not dosing or operating instructions.
+
+p5fAbundance — CIAAW / IUPAC
+Isotopic compositions 2024: In–Xe
+https://www.ciaaw.org/isotopic-abundances.htm
+Representative terrestrial fractions and uncertainties, converted to percent. Produced states have no ordinary abundance. Stability is evaluated separately.
+Accessed: 2026-09-11
+
+p5fWallet — NNDC / Brookhaven National Laboratory
+Nuclear Wallet Cards, April 2005, pages 30–35
+https://www.lnl.infn.it/wp-content/uploads/Nuclear_Wallet_Cards.pdf
+Named lifetime/decay snapshot: In-111 2.8047 d; Sn-117m 13.76 d, IT; Sn-126 230000 y; Sb-125 2.7586 y; I-123 13.232 h, I-125 59.400 d, I-129 15700000 y, I-131 8.02070 d; Xe-133 5.243 d, Xe-135 9.14 h. Old rare-decay limits and old abundances are not used.
+Accessed: 2026-09-11
+
+p5fIn115 — NNDC / ENSDF
+Indium-115 adopted levels
+https://www.nndc.bnl.gov/ensnds/115/In/adopted.pdf
+2012 evaluation: 4.41 × 10^14 years, beta-minus to Sn-115. This value takes precedence over an inconsistent exponent on the CIAAW indium essay.
+Accessed: 2026-09-11
+
+p5fSb124 — Unterweger and Fitzgerald / NIST
+Half-life measurement of Sb-124
+https://pubmed.ncbi.nlm.nih.gov/20044262/
+Primary 2010 measurement: 60.212(11) days; beta-minus decay.
+Accessed: 2026-09-11
+
+p5fTe128 — CUORE collaboration
+New direct limit on neutrinoless double-beta decay half-life of Te-128 with CUORE
+https://link.aps.org/accepted/10.1103/PhysRevLett.129.222501
+2022 paper derives a Te-128 two-neutrino estimate of 2.19(7) × 10^24 years from the measured geochemical ratio and Te-130 lifetime. Geochemical determinations vary. This estimate is separate from the paper’s neutrinoless-decay lower limit.
+Accessed: 2026-09-11
+
+p5fTe130 — CUORE collaboration
+Measurement of the two-neutrino double-beta decay half-life of Te-130
+https://arxiv.org/abs/2012.11749
+2020 measurement: 7.71 × 10^20 years, with statistical and systematic uncertainty. Observed two-neutrino decay to Xe-130.
+Accessed: 2026-09-11
+
+p5fXe124 — XENON collaboration
+Observation of two-neutrino double electron capture in Xe-124
+https://www.nature.com/articles/s41586-019-1124-4
+2019 observation: 1.8 × 10^22 years; double electron capture to Te-124. Do not classify Xe-124 as stable.
+Accessed: 2026-09-11
+
+p5fXe136 — EXO-200 collaboration
+An improved measurement of the two-neutrino double-beta decay half-life of Xe-136
+https://arxiv.org/abs/1306.6106
+2013 observed two-neutrino decay to Ba-136: 2.165 × 10^21 years. Searches for neutrinoless decay are separate.
+Accessed: 2026-09-11
+
+p5fInImaging — NLM / DailyMed
+Indium In-111 oxyquinoline prescribing information
+https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4c52c904-8137-4b10-8a85-d9b96c2d8a00
+Diagnostic radiolabelling of white blood cells. Used only for educational application context.
+Accessed: 2026-09-11
+
+p5fSnTherapy — IAEA
+Alternative Radionuclide Production with a Cyclotron, Reports No. 4
+https://www-pub.iaea.org/MTCD/Publications/PDF/P1937_web.pdf
+Sn-117m therapeutic radionuclide and bone-pain research. This source rounds its lifetime to 13.9 d; the data record uses the named ENSDF 2012 update (14.00 d).
+Accessed: 2026-09-11
+
+p5fSbSource — Los Alamos National Laboratory
+The Antimony-Beryllium Neutron Source
+https://www.osti.gov/servlets/purl/4275578
+Sb-124 gamma radiation produces neutrons in beryllium; specialized nuclear sources.
+Accessed: 2026-09-11
+
+p5fInNIST — NIST
+Atomic Data for Indium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/indiumtable1.htm
+Measured neutral ground state [Kr] 4d10 5s2 5p1.
+Accessed: 2026-09-11
+
+p5fInRSC — Royal Society of Chemistry
+Indium: properties and uses
+https://periodic-table.rsc.org/element/49/indium
+Element properties and applications. Isotope lifetimes use separately named sources.
+Accessed: 2026-09-11
+
+p5fSnNIST — NIST
+Atomic Data for Tin
+https://physics.nist.gov/PhysRefData/Handbook/Tables/tintable1.htm
+Measured neutral ground state [Kr] 4d10 5s2 5p2.
+Accessed: 2026-09-11
+
+p5fSnRSC — Royal Society of Chemistry
+Tin: properties and uses
+https://periodic-table.rsc.org/element/50/tin
+Element properties and applications. Isotope lifetimes use separately named sources.
+Accessed: 2026-09-11
+
+p5fSbNIST — NIST
+Atomic Data for Antimony
+https://physics.nist.gov/PhysRefData/Handbook/Tables/antimonytable1_a.htm
+Measured neutral ground state [Kr] 4d10 5s2 5p3.
+Accessed: 2026-09-11
+
+p5fSbRSC — Royal Society of Chemistry
+Antimony: properties and uses
+https://periodic-table.rsc.org/element/51/antimony
+Element properties and applications. Isotope lifetimes use separately named sources.
+Accessed: 2026-09-11
+
+p5fTeNIST — NIST
+Atomic Data for Tellurium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/telluriumtable1.htm
+Measured neutral ground state [Kr] 4d10 5s2 5p4.
+Accessed: 2026-09-11
+
+p5fTeRSC — Royal Society of Chemistry
+Tellurium: properties and uses
+https://periodic-table.rsc.org/element/52/tellurium
+Element properties and applications. Isotope lifetimes use separately named sources.
+Accessed: 2026-09-11
+
+p5fINIST — NIST
+Atomic Data for Iodine
+https://physics.nist.gov/PhysRefData/Handbook/Tables/iodinetable1.htm
+Measured neutral ground state [Kr] 4d10 5s2 5p5.
+Accessed: 2026-09-11
+
+p5fIRSC — Royal Society of Chemistry
+Iodine: properties and uses
+https://periodic-table.rsc.org/element/53/iodine
+Element properties and applications. Isotope lifetimes use separately named sources.
+Accessed: 2026-09-11
+
+p5fXeNIST — NIST
+Atomic Data for Xenon
+https://physics.nist.gov/PhysRefData/Handbook/Tables/xenontable1.htm
+Measured neutral ground state [Kr] 4d10 5s2 5p6.
+Accessed: 2026-09-11
+
+p5fXeRSC — Royal Society of Chemistry
+Xenon: properties and uses
+https://periodic-table.rsc.org/element/54/xenon
+Element properties and applications. Isotope lifetimes use separately named sources.
+Accessed: 2026-09-11
+
+p5fSnState — NNDC / ENSDF
+Sn-117 isomeric-transition decay, March 2012 update
+https://www.nndc.bnl.gov/nudat3/getdecaydataset.jsp?dsid=117sn+it+decay&nucleus=117SN
+Sn-117m: 314.58(4) keV, 14.00(5) days, isomeric transition to the ground state through electromagnetic decay. Older 13.76 d tables are superseded for this record by the named update.
+Accessed: 2026-09-11
+
+p5fTe123 — CUORICINO researchers
+New limits on naturally occurring electron capture of Te-123
+https://arxiv.org/abs/hep-ex/0211015
+No evidence of the previously claimed electron capture. Te-123 remains observationally stable here; a search limit is not a measured half-life.
+Accessed: 2026-09-11
+
+p5fXeImaging — FDA
+Drug Trials Snapshot: Xenoview
+https://www.fda.gov/drugs/drug-trials-snapshots/drug-trials-snapshots-xenoview
+Hyperpolarized stable Xe-129 is used for lung ventilation MRI. Not all xenon imaging is radioactive.
+Accessed: 2026-09-11
+
+p5fXe133 — NLM / DailyMed
+Xenon Xe-133 gas prescribing information
+https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=35bdc182-2a41-41d2-8fe7-aa0c140d4425
+Xe-133 lung ventilation imaging. The precise half-life record uses the named NNDC snapshot.
+Accessed: 2026-09-11
+
+p5fXePoison — US NRC
+Generic Fundamentals Examination Question Bank: reactor poisons
+https://www.nrc.gov/reactors/operator-licensing/history-rulemaking-activities/generic-fundamentals-examinations/pwr/pwr-files/192006.pdf
+Xe-135 is a major reactor poison because of strong neutron absorption and concentration changes.
+Accessed: 2026-09-11
+
+p5fXeEngine — NASA
+Dawn: Ion Propulsion
+https://science.nasa.gov/mission/dawn/technology/ion-propulsion/
+Xenon propellant is ionized and accelerated for spacecraft propulsion.
+Accessed: 2026-09-11
+
+p5fIEnvironment — US EPA
+Radionuclide Basics: Iodine
+https://www.epa.gov/radiation/radionuclide-basics-iodine
+I-129 and I-131 in nuclear and environmental contexts.
+Accessed: 2026-09-11
+
+p5fITreatment — US EPA
+Radiation Used in Nuclear Medicine
+https://www.epa.gov/radtown/radiation-used-nuclear-medicine
+I-131 diagnosis and treatment of thyroid disease.
+Accessed: 2026-09-11
+
+p5fI123 — NLM / DailyMed
+Sodium iodide I-123 prescribing information
+https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=50415c27-1928-4307-b1dc-648f47edf65d
+I-123 diagnostic thyroid imaging. No treatment or dosing guidance is reproduced.
+Accessed: 2026-09-11
+
+p5fI125 — US National Cancer Institute
+Prostate Cancer Treatment (PDQ): interstitial brachytherapy
+https://www.cancer.gov/types/prostate/hp/prostate-treatment-pdq
+I-125 sealed-source implants in brachytherapy. Educational context only.
+Accessed: 2026-09-11
+
+p5fIDetectors — NASA / RXTE
+Rossi X-ray Timing Explorer detectors
+https://ntrs.nasa.gov/api/citations/19960000976/downloads/19960000976.pdf
+Sodium iodide and cesium iodide crystals produce detectable light in response to X-rays.
+Accessed: 2026-09-11
+
+p5fSnSolder — NIST
+NEMI Group Recommends Standardized Lead-Free Solder Alternative
+https://www.nist.gov/publications/nemi-group-recommends-standardized-lead-free-solder-alternative
+Tin-rich silver-copper solder in electronics. No claim that one composition is the only lead-free solder.
+Accessed: 2026-09-11
+
+p5fTeThermo — US Department of Energy
+Thermoelectric material with high conductivity but slow thermal transfer
+https://www.energy.gov/science/bes/articles/hot-trail-thermoelectric-material-high-conductivity-slow-thermal-transfer
+Telluride compounds can support conversion of waste heat into electricity.
+Accessed: 2026-09-11
+
+p5fSbTracer — National Academies
+Isotopes for Medicine and the Life Sciences
+https://www.nationalacademies.org/read/4818/chapter/5
+Historical industrial use of antimony-124 as an oil-well tracer.
+Accessed: 2026-09-11
+
+p5fSb125Research — IAEA
+Substoichiometry in radiochemical analysis, TECDOC-435
+https://www-pub.iaea.org/MTCD/Publications/PDF/te_435_web.pdf
+Sb-125 in radiochemical tracer analysis; supports specialized research use.
+Accessed: 2026-09-11
+
+Reused: p5bCdSolar, US Department of Energy, Cadmium Telluride
+https://www.energy.gov/cmei/systems/cadmium-telluride
+CdTe semiconductor solar-cell context.
+
+
+--- Earlier phase notes (historical) ---
+
+PERIOD 5B LOCAL SOURCE RECORDS — VERIFIED 2026-09-10/11
+
+Configuration: NIST neutral ground states for each element; no Aufbau guesses.
+Abundances: CIAAW 2024, not the older NIST/RSC abundance tables.
+Stable means no radioactive decay observed, not a proof of infinite lifetime.
+Mo-100, Cd-113 and Cd-116 are naturally radioactive. Limits on proposed decay
+of Cd-106/108/114 or Ru/Pd isotopes are not treated as observed decay.
+RSC Cd-113's double-beta label is not reused: primary decay research identifies
+ordinary beta-minus. Medical Rh-105/Ag-111 applications are qualified as research.
+Tc natural-trace qualification follows EPA rather than RSC's simplified wording.
+Numerical lifetimes are named evaluation/measurement snapshots, not a live
+precision nuclear database. Later evaluations can differ. Long-lived Nb and Pd,
+Ag-110m and double-beta results especially merit review before precision reuse.
+
+p5bAbundance: CIAAW / IUPAC
+Isotopic compositions 2024: Nb–Cd
+https://www.ciaaw.org/isotopic-abundances.htm
+Supports: Representative terrestrial fractions and uncertainties, converted to percent. No ordinary terrestrial percentage for Tc or produced nuclear states. Natural occurrence alone does not establish stability.
+Accessed: 2026-09-10
+
+p5bNb92: NNDC / ENSDF
+Zr-92 adopted levels: Nb-92 electron capture
+https://www.nndc.bnl.gov/ensnds/92/Zr/adopted.pdf
+Supports: Nb-92 ground state: electron capture, 3.47 × 10^7 years (2012 evaluation).
+Accessed: 2026-09-10
+
+p5bNb94: NNDC / ENSDF
+Nb-94 beta decay to Mo-94
+https://www.nndc.bnl.gov/ensnds/94/Mo/beta_decay_2.03e%2B4_y.pdf
+Supports: Nb-94 beta-minus decay, 2.03 × 10^4 years (2006 evaluation).
+Accessed: 2026-09-10
+
+p5bTc98: NNDC / ENSDF
+Tc-98 beta decay to Ru-98
+https://www.nndc.bnl.gov/ensnds/98/Ru/beta_decay_4.2e%2B6_y.pdf
+Supports: Tc-98: 4.2 × 10^6 years, beta-minus (2020 evaluation).
+Accessed: 2026-09-10
+
+p5bTcStates: LNHB / DDEP
+Technetium-99m evaluated nuclear data
+https://www.lnhb.fr/nuclides/Tc-99m_tables.pdf
+Supports: 2012 evaluation: Tc-99m 6.0067(10) hours; excitation 142.683(1) keV; mainly isomeric transition to Tc-99, with very weak beta-minus branches to Ru-99. Tc-99 ground-state half-life 211.5(1.1) thousand years.
+Accessed: 2026-09-10
+
+p5bMoAg: BIPM / DDEP
+Table of Radionuclides, volume 1
+https://www.bipm.org/utils/common/pdf/monographieRI/Monographie_BIPM-5_Tables_Vol1.pdf
+Supports: Named 2004 snapshot: Mo-99 2.7479(5) days, beta-minus feeding Tc-99 including Tc-99m. Ag-110m 249.78(2) days, mainly beta-minus to Cd-110 and a smaller isomeric-transition branch to Ag-110; 117.59 keV excited state. Student displays round to 66 hours and 250 days.
+Accessed: 2026-09-10
+
+p5bMo100: NEMO-3 collaboration
+Detailed studies of Mo-100 two-neutrino double beta decay
+https://arxiv.org/abs/1903.08084
+Supports: Observed decay to Ru-100: 6.81 ±0.01 statistical +0.38/−0.40 systematic ×10^18 years (2019). This is a measured half-life, not a neutrinoless-decay lower limit.
+Accessed: 2026-09-10
+
+p5bRh105: IAEA
+Nuclear Data for the Production of Therapeutic Radionuclides, TRS 473
+https://www-nds.iaea.org/publications/tecdocs/technical-reports-series-473.pdf
+Supports: Rh-105 beta-minus decay, 35.36(6) hours; therapeutic radionuclide research. Inclusion is not a claim of routine clinical treatment.
+Accessed: 2026-09-10
+
+p5bPd107: NNDC / ENSDF
+Pd-107 adopted levels
+https://www.nndc.bnl.gov/ensnds/107/Pd/adopted.pdf
+Supports: 2008 evaluation: Pd-107 ground state, 6.5(3) million years, 100% beta-minus decay.
+Accessed: 2026-09-10
+
+p5bFission: PNNL
+Epsilon Metal: A Waste Form for Noble Metals from Used Nuclear Fuel
+https://www.pnnl.gov/publications/epsilon-metal-waste-form-noble-metals-used-nuclear-fuel
+Supports: Tc, Ru, Rh and Pd in used nuclear fuel; long-lived Pd-107 and nuclear-material research.
+Accessed: 2026-09-10
+
+p5bAg111: NNDC / ENSDF
+Ag-111 beta decay to Cd-111
+https://www.nndc.bnl.gov/ensnds/111/Cd/beta_decay_7.45_d.pdf
+Supports: Ag-111 beta-minus, half-life 7.45 days.
+Accessed: 2026-09-10
+
+p5bAgResearch: INFN / ISOLPHARM
+Silver-111 research
+https://isolpharm.pd.infn.it/?page_id=785
+Supports: Ag-111 is being investigated for targeted radiopharmaceutical therapy, not presented here as an established treatment.
+Accessed: 2026-09-10
+
+p5bCd109: BIPM / DDEP
+Table of Radionuclides, volume 8
+https://www.bipm.org/utils/common/pdf/monographieRI/Monographie_BIPM-5_Tables_Vol8.pdf
+Supports: Printed page 129: Cd-109 461.9(4) days; electron capture to the 88 keV excited state of Ag-109.
+Accessed: 2026-09-10
+
+p5bCdCalibration: NIST / NBS
+SRM 4219-B: Cd-109–Ag-109m gamma-ray standard
+https://tsapps.nist.gov/srmext/certificates/archives/4219-B.pdf
+Supports: Historical primary calibration standard demonstrates Cd-109 measurement use; no claim of current product availability.
+Accessed: 2026-09-10
+
+p5bCd113: Belli et al.
+Investigation of beta decay of Cd-113
+https://journals.aps.org/prc/abstract/10.1103/PhysRevC.76.064603
+Supports: Measured beta-minus decay to In-113: 8.04(5) ×10^15 years (2007). Named measurement, not a claim that later measurements are identical.
+Accessed: 2026-09-10
+
+p5bCd116: Aurora collaboration
+Final results of the Aurora Cd-116 experiment
+https://arxiv.org/abs/1811.06398
+Supports: Observed two-neutrino double-beta decay to Sn-116: 2.63 +0.11/−0.12 ×10^19 years. Neutrinoless-decay searches yield limits, not an observed decay.
+Accessed: 2026-09-10
+
+p5bTcNatural: US EPA
+Radionuclide Basics: Technetium-99
+https://www.epa.gov/radiation/radionuclide-basics-technetium-99
+Supports: Tiny natural crustal amounts exist; most Tc-99 is produced. Tc-99m is used for diagnostic imaging. This qualification takes precedence over simplified claims that technetium never occurs naturally.
+Accessed: 2026-09-10
+
+p5bApplications: USGS
+About the 2025 List of Critical Minerals
+https://www.usgs.gov/programs/mineral-resources-program/science/about-2025-list-critical-minerals
+Supports: Ru catalysts, contacts and chip resistors; Pd catalysts and electronics; Ag circuits, solar cells and antimicrobial materials. Used for applications, not changing classifications or current supply statistics.
+Accessed: 2026-09-10
+
+p5bAgProperties: Los Alamos National Laboratory
+Silver: properties
+https://periodic.lanl.gov/47.shtml
+Supports: Pure silver has the highest electrical conductivity among metals under ordinary conditions; sulfur-containing air causes tarnish. Historical market-share statements are not reused.
+Accessed: 2026-09-10
+
+p5bAgTracer: IAEA
+Radiation Protection and the Management of Radioactive Waste in the Oil and Gas Industry
+https://www-pub.iaea.org/MTCD/Publications/PDF/TCS-40_web.pdf
+Supports: Ag-110m is among the radionuclides used in specialized radiotracer studies. This is a research/application reference, not handling guidance.
+Accessed: 2026-09-10
+
+p5bMoFilms: US Department of Energy
+Copper Indium Gallium Diselenide
+https://www.energy.gov/cmei/systems/copper-indium-gallium-diselenide
+Supports: Molybdenum thin-film back contacts in CIS/CIGS solar devices.
+Accessed: 2026-09-10
+
+p5bMoSemiconductor: NIST
+Vertical semiconductor heterostructures based on molybdenum disulfide and gallium nitride
+https://www.nist.gov/publications/vertical-2d3d-semiconductor-heterostructures-based-epitaxial-molybdenum-disulfide-and
+Supports: Primary research on MoS2 semiconductor materials; distinguished from metallic molybdenum conductors.
+Accessed: 2026-09-10
+
+p5bNbChronology: ETH Zurich
+Extinct atom reveals the long-kept secrets of the solar system
+https://ethz.ch/en/news-and-events/eth-news/news/2021/03/extinct-atom-reveals-the-long-kept-secrets-of-the-solar-system.html
+Supports: Nb-92/Zr-92 studies constrain early solar-system history. This chronology source uses a different lifetime evaluation; the explorer names its ENSDF lifetime snapshot separately.
+Accessed: 2026-09-10
+
+p5bNbNIST: NIST
+Atomic Data for Niobium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/niobiumtable1.htm
+Supports: Neutral ground state [Kr] 4d4 5s1. NIST atomic configurations; abundances instead follow CIAAW 2024.
+Accessed: 2026-09-10
+
+p5bNbRSC: Royal Society of Chemistry
+Niobium: properties and uses
+https://periodic-table.rsc.org/element/41/niobium
+Supports: Element and material properties, applications and isotope context. Nuclear lifetimes use separately named evaluations.
+Accessed: 2026-09-10
+
+p5bMoNIST: NIST
+Atomic Data for Molybdenum
+https://physics.nist.gov/PhysRefData/Handbook/Tables/molybdenumtable1.htm
+Supports: Neutral ground state [Kr] 4d5 5s1. NIST atomic configurations; abundances instead follow CIAAW 2024.
+Accessed: 2026-09-10
+
+p5bMoRSC: Royal Society of Chemistry
+Molybdenum: properties and uses
+https://periodic-table.rsc.org/element/42/molybdenum
+Supports: Element and material properties, applications and isotope context. Nuclear lifetimes use separately named evaluations.
+Accessed: 2026-09-10
+
+p5bTcNIST: NIST
+Atomic Data for Technetium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/technetiumtable1.htm
+Supports: Neutral ground state [Kr] 4d5 5s2. NIST atomic configurations; abundances instead follow CIAAW 2024.
+Accessed: 2026-09-10
+
+p5bTcRSC: Royal Society of Chemistry
+Technetium: properties and uses
+https://periodic-table.rsc.org/element/43/technetium
+Supports: Element and material properties, applications and isotope context. Nuclear lifetimes use separately named evaluations.
+Accessed: 2026-09-10
+
+p5bRuNIST: NIST
+Atomic Data for Ruthenium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/rutheniumtable1.htm
+Supports: Neutral ground state [Kr] 4d7 5s1. NIST atomic configurations; abundances instead follow CIAAW 2024.
+Accessed: 2026-09-10
+
+p5bRuRSC: Royal Society of Chemistry
+Ruthenium: properties and uses
+https://periodic-table.rsc.org/element/44/ruthenium
+Supports: Element and material properties, applications and isotope context. Nuclear lifetimes use separately named evaluations.
+Accessed: 2026-09-10
+
+p5bRhNIST: NIST
+Atomic Data for Rhodium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/rhodiumtable1.htm
+Supports: Neutral ground state [Kr] 4d8 5s1. NIST atomic configurations; abundances instead follow CIAAW 2024.
+Accessed: 2026-09-10
+
+p5bRhRSC: Royal Society of Chemistry
+Rhodium: properties and uses
+https://periodic-table.rsc.org/element/45/rhodium
+Supports: Element and material properties, applications and isotope context. Nuclear lifetimes use separately named evaluations.
+Accessed: 2026-09-10
+
+p5bPdNIST: NIST
+Atomic Data for Palladium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/palladiumtable1.htm
+Supports: Neutral ground state [Kr] 4d10; no occupied 5s. NIST atomic configurations; abundances instead follow CIAAW 2024.
+Accessed: 2026-09-10
+
+p5bPdRSC: Royal Society of Chemistry
+Palladium: properties and uses
+https://periodic-table.rsc.org/element/46/palladium
+Supports: Element and material properties, applications and isotope context. Nuclear lifetimes use separately named evaluations.
+Accessed: 2026-09-10
+
+p5bAgNIST: NIST
+Atomic Data for Silver
+https://physics.nist.gov/PhysRefData/Handbook/Tables/silvertable1.htm
+Supports: Neutral ground state [Kr] 4d10 5s1. NIST atomic configurations; abundances instead follow CIAAW 2024.
+Accessed: 2026-09-10
+
+p5bAgRSC: Royal Society of Chemistry
+Silver: properties and uses
+https://periodic-table.rsc.org/element/47/silver
+Supports: Element and material properties, applications and isotope context. Nuclear lifetimes use separately named evaluations.
+Accessed: 2026-09-10
+
+p5bCdNIST: NIST
+Atomic Data for Cadmium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/cadmiumtable1.htm
+Supports: Neutral ground state [Kr] 4d10 5s2. NIST atomic configurations; abundances instead follow CIAAW 2024.
+Accessed: 2026-09-10
+
+p5bCdRSC: Royal Society of Chemistry
+Cadmium: properties and uses
+https://periodic-table.rsc.org/element/48/cadmium
+Supports: Element and material properties, applications and isotope context. Nuclear lifetimes use separately named evaluations.
+Accessed: 2026-09-10
+
+p5bRuGeochemistry: Fischer-Gödde et al. / Science
+Ruthenium isotopes show the Chicxulub impactor was a carbonaceous-type asteroid
+https://pubmed.ncbi.nlm.nih.gov/39146402/
+Supports: Primary 2024 isotope-ratio study of impact deposits; ruthenium isotope mixtures support geochemistry and cosmochemistry.
+Accessed: 2026-09-11
+
+p5bCdSolar: US Department of Energy
+Cadmium Telluride
+https://www.energy.gov/cmei/systems/cadmium-telluride
+Supports: CdTe is a semiconductor absorber in solar cells. This is a compound application, not a property demonstrated by one isolated cadmium atom.
+Accessed: 2026-09-11
+
+--- Earlier phase notes (historical) ---
+
+PERIOD 5A SOURCES — ACCESSED 2026-09-10
+
+p5Abundance: CIAAW / IUPAC
+Isotopic compositions of the elements 2024
+https://www.ciaaw.org/isotopic-abundances.htm
+Supports: Rb, Sr, Y and updated 2024 Zr terrestrial fractions and uncertainties. Natural radioactive Rb-87 and Zr-96 remain in the mixture.
+Accessed: 2026-09-10
+
+p5RbDecay: CIAAW / IUPAC
+Atomic weight of rubidium
+https://www.ciaaw.org/rubidium.htm
+Supports: Rb-87 beta-minus decay; half-life 48.8(5) billion years. Learning value follows this named source, not a precision geochronology calibration.
+Accessed: 2026-09-10
+
+p5Dating: USGS
+Geologic Time: Radiometric Time Scale
+https://pubs.usgs.gov/gip/geotime/radiometric.html
+Supports: Rb-87 decays to stable Sr-87; rubidium-strontium rock dating.
+Accessed: 2026-09-10
+
+p5Clock: NIST
+Time and Frequency from A to Z: Re to Ru
+https://www.nist.gov/pml/time-and-frequency-division/popular-links/time-frequency-z/time-and-frequency-z-re-ru
+Supports: Rubidium clocks use an atomic transition in Rb-87 to stabilize an oscillator; they do not count radioactive decays.
+Accessed: 2026-09-10
+
+p5SrYDecay: BIPM / DDEP
+Table of Radionuclides, volume 3
+https://www.bipm.org/utils/common/pdf/monographieRI/Monographie_BIPM-5_Tables_Vol3.pdf
+Supports: Printed pages 43 and 47: Sr-90 28.80(7) years, beta-minus to Y-90; Y-90 2.6684(13) days, beta-minus to Zr-90.
+Accessed: 2026-09-10
+
+p5SrUses: US EPA
+Radionuclide Basics: Strontium-90
+https://www.epa.gov/radiation/radionuclide-basics-strontium-90
+Supports: Radioactive fission product, industrial uses and historical fallout; ordinary natural strontium isotopes are stable.
+Accessed: 2026-09-10
+
+p5SrProvenance: British Geological Survey
+Updated biosphere map for the UK
+https://www.bgs.ac.uk/news/updated-biosphere-map-for-the-uk-released/
+Supports: Sr-87/Sr-86 ratios in geographical provenance and archaeological studies.
+Accessed: 2026-09-10
+
+p5YMedical: IAEA
+Trends and Practices in Diagnosis and Treatment of Hepatocellular Carcinoma
+https://www-pub.iaea.org/MTCD/Publications/PDF/Pub1446_web.pdf
+Supports: Y-90 microspheres deliver localized radiation in selected liver-cancer treatments; chemical form and delivery matter.
+Accessed: 2026-09-10
+
+p5Zr89Decay: BIPM / DDEP
+Table of Radionuclides, volume 8
+https://www.bipm.org/utils/common/pdf/monographieRI/Monographie_BIPM-5_Tables_Vol8.pdf
+Supports: Printed page 79: Zr-89 half-life 78.42(13) hours; electron capture and positron emission to Y-89.
+Accessed: 2026-09-10
+
+p5ZrPET: DOE / NIDC
+PNNL researchers automate purification of zirconium-89
+https://www.isotopes.gov/node/72
+Supports: Zr-89-labelled antibodies and related compounds for immunoPET imaging and research.
+Accessed: 2026-09-10
+
+p5Zr96: NEMO-3 collaboration / University of Manchester
+Measurement of the two-neutrino double-beta half-life of Zr-96
+https://research.manchester.ac.uk/en/publications/measurement-of-the-two-neutrino-double-beta-decay-half-life-of-zr-2/
+Supports: Observed two-neutrino double-beta decay: 2.35 ±0.14 statistical ±0.16 systematic ×10^19 years. Searches for neutrinoless decay are not an observation.
+Accessed: 2026-09-10
+
+p5RbNIST: NIST
+Atomic Data for Rubidium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/rubidiumtable1.htm
+Supports: Neutral ground state: [Kr] 5s1. Expanded krypton core contains 36 electrons.
+Accessed: 2026-09-10
+
+p5RbRSC: Royal Society of Chemistry
+Rubidium: properties and uses
+https://periodic-table.rsc.org/element/37/rubidium
+Supports: Element identity, compound/material applications, chemical family and natural stable isotope classifications.
+Accessed: 2026-09-10
+
+p5SrNIST: NIST
+Atomic Data for Strontium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/strontiumtable1.htm
+Supports: Neutral ground state: [Kr] 5s2. Expanded krypton core contains 36 electrons.
+Accessed: 2026-09-10
+
+p5SrRSC: Royal Society of Chemistry
+Strontium: properties and uses
+https://periodic-table.rsc.org/element/38/strontium
+Supports: Element identity, compound/material applications, chemical family and natural stable isotope classifications.
+Accessed: 2026-09-10
+
+p5YNIST: NIST
+Atomic Data for Yttrium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/yttriumtable1.htm
+Supports: Neutral ground state: [Kr] 4d1 5s2. Expanded krypton core contains 36 electrons.
+Accessed: 2026-09-10
+
+p5YRSC: Royal Society of Chemistry
+Yttrium: properties and uses
+https://periodic-table.rsc.org/element/39/yttrium
+Supports: Element identity, compound/material applications, chemical family and natural stable isotope classifications.
+Accessed: 2026-09-10
+
+p5ZrNIST: NIST
+Atomic Data for Zirconium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/zirconiumtable1.htm
+Supports: Neutral ground state: [Kr] 4d2 5s2. Expanded krypton core contains 36 electrons.
+Accessed: 2026-09-10
+
+p5ZrRSC: Royal Society of Chemistry
+Zirconium: properties and uses
+https://periodic-table.rsc.org/element/40/zirconium
+Supports: Element identity, compound/material applications, chemical family and natural stable isotope classifications.
+Accessed: 2026-09-10
+
+PREVIOUS PHASE RECORD (historical; current scope is above)
+
+PHASE 6D SOURCES — ACCESSED 2026-09-10
+
+p4dStars: NASA / Goddard
+Origins of the elements
+https://svs.gsfc.nasa.gov/13873
+Supports: Stellar processes contribute to the origins of Zn through Kr; Earth isotope fractions are not universal cosmic ratios.
+Accessed: 2026-09-10
+
+p4dBrUses: USGS
+Bromine: 2019 Minerals Yearbook
+https://pubs.usgs.gov/myb/vol1/2019/myb1-2019-bromine.pdf
+Supports: Bromine compounds in water treatment, disinfection and industrial applications.
+Accessed: 2026-09-10
+
+p4dKrPlanet: NASA / Mars Science Laboratory
+In situ measurement of atmospheric krypton and xenon on Mars
+https://ntrs.nasa.gov/citations/20180001919
+Supports: Measured krypton isotope ratios compare planetary atmospheres and meteorite records.
+Accessed: 2026-09-10
+
+p4dKrGauges: IAEA
+Radiation safety in the use of nuclear gauges
+https://www-pub.iaea.org/MTCD/Publications/PDF/P1881_web.pdf
+Supports: Krypton-85 beta radiation is used in industrial nuclear gauges, Table II-1.
+Accessed: 2026-09-10
+
+p4dSeTracer: Researchers / PubMed
+Bile acid malabsorption: measurement of SeHCAT retention
+https://pubmed.ncbi.nlm.nih.gov/3918708/
+Supports: Primary study using a selenium-75-labelled compound as a tracer; chemical form determines what is followed.
+Accessed: 2026-09-10
+
+p4dAbundance: CIAAW / IUPAC
+Isotopic abundances of the elements
+https://www.ciaaw.org/isotopic-abundances.htm
+Supports: Zn–Kr representative terrestrial isotope fractions and uncertainties; bromine has ranges, not one fixed mixture.
+Accessed: 2026-09-10
+
+p4dZnDecay: NNDC / ENSDF
+Zinc-65 electron-capture and positron decay
+https://www.nndc.bnl.gov/ensdf/DSfromRefServlet?kn=2000HE14&searchType=references
+Supports: 2025 evaluation: Zn-65 243.93 days, electron capture and beta-plus decay. Se-75 119.78 days and electron capture.
+Accessed: 2026-09-10
+
+p4dGaDecay: BIPM / DDEP
+Table of Radionuclides, volume 7
+https://www.bipm.org/utils/common/pdf/monographieRI/Monographie_BIPM-5_Tables_Vol7.pdf
+Supports: Ga-67 electron capture, 3.2613 days; Ga-68 positron and electron capture; Ge-68 electron capture, 270.95 days.
+Accessed: 2026-09-10
+
+p4dGaMedical: NLM / DailyMed
+Gallium citrate Ga-67 label
+https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=5f670c12-cca5-4d73-8a88-241f753d1bc7
+Supports: Established nuclear-medicine imaging uses of gallium citrate Ga-67; the compound determines distribution.
+Accessed: 2026-09-10
+
+p4dGenerator: European Medicines Agency
+GalliaPharm assessment report
+https://www.ema.europa.eu/en/documents/assessment-report/galliapharm-epar-public-assessment-report_en.pdf
+Supports: Ge-68/Ga-68 generator; Ga-68 67.71 minutes and Ge-68 270.95 days; labelling compounds for clinical PET.
+Accessed: 2026-09-10
+
+p4dAsDecay: NNDC / ENSDF
+Arsenic-74 decay datasets
+https://www.nndc.bnl.gov/ensdf/DSfromRefServlet?kn=1972EM01&searchType=references
+Supports: As-74: 17.77 days; electron capture/positron branch to Ge-74 and beta-minus branch to Se-74.
+Accessed: 2026-09-10
+
+p4dAsResearch: DOE / NIDC
+Radioarsenic: a promising theragnostic candidate
+https://isotopes.gov/radioarsenic%3A_a_promising_theragnostic_candidate_for_nuclear_medicine
+Supports: Arsenic-74 imaging/radiolabelling research; emerging applications, not routine clinical use or a claim of safe exposure.
+Accessed: 2026-09-10
+
+p4dGe76: GERDA collaboration
+Final two-neutrino double-beta half-life of germanium-76
+https://arxiv.org/abs/2308.09795
+Supports: Observed two-neutrino double-beta decay: (2.022 ± 0.018 stat ± 0.038 syst) × 10^21 years. Not a neutrinoless-decay observation.
+Accessed: 2026-09-10
+
+p4dSe82: CUPID-0 collaboration
+Two-neutrino double-beta decay of selenium-82
+https://arxiv.org/abs/1909.03397
+Supports: Observed two-neutrino double-beta decay, 8.60 × 10^19 years with experimental uncertainty.
+Accessed: 2026-09-10
+
+p4dKr78: A. S. Barabash
+Precise half-life values for two-neutrino double-beta decay: 2020 review
+https://arxiv.org/pdf/2009.14451
+Supports: Kr-78 double-K capture: reported 1.9 (+1.3/−0.7 stat ±0.3 syst) × 10^22 years. Section 3.14 cautions that evidence and systematic uncertainty need independent confirmation.
+Accessed: 2026-09-10
+
+p4dBrDecay: NNDC / ENSDF
+Mass-82 evaluated datasets
+https://www.nndc.bnl.gov/ensdf/DatasetFetchServlet?datasource=ensdf&mass=82&nucmass=isMass&searchType=ensdfIndex
+Supports: Ground-state Br-82 beta-minus decay: 35.282 hours. Do not confuse with the short-lived isomer.
+Accessed: 2026-09-10
+
+p4dKrDecay: BIPM / DDEP
+Table of Radionuclides, volume 1
+https://www.bipm.org/utils/common/pdf/monographieRI/Monographie_BIPM-5_Tables_Vol1.pdf
+Supports: Kr-85 beta-minus decay to rubidium-85; 10.752-year half-life.
+Accessed: 2026-09-10
+
+p4dApplications: DOE / NIDC
+Isotope applications
+https://isotopes.gov/applications
+Supports: Zn-65 research, Ga-68 imaging, Se-75 radiography.
+Accessed: 2026-09-10
+
+p4dZnNMR: Researchers / RSC
+Overcoming challenges in 67Zn NMR
+https://pubs.rsc.org/en/content/articlelanding/2023/cc/d3cc00716b
+Supports: Zinc-67 nuclear magnetic resonance probes zinc chemical surroundings.
+Accessed: 2026-09-10
+
+p4dSeNMR: Researchers / RSC
+77Se NMR chemical shifts and molecular structures
+https://pubs.rsc.org/en/content/articlelanding/2003/ob/b211130f
+Supports: Selenium-77 nuclear magnetic resonance studies molecular structure.
+Accessed: 2026-09-10
+
+p4dLeaks: IAEA
+Leak detection using radiotracers
+https://www-pub.iaea.org/MTCD/Publications/PDF/TCS-38_web.pdf
+Supports: Bromine-82 liquid tracers and krypton-85 leak detection; specialized controlled applications.
+Accessed: 2026-09-10
+
+p4dKrEnvironment: CIAAW / IUPAC
+Atomic Weight of Krypton
+https://www.ciaaw.org/krypton.htm
+Supports: Air-based krypton composition and environmental tracing; Kr-85 occurs in tiny atmosphere/hydrosphere amounts and has no ordinary percentage.
+Accessed: 2026-09-10
+
+p4dGeEngineering: USGS
+Mineral commodity profiles: Germanium
+https://www.usgs.gov/publications/mineral-commodity-profiles-germanium
+Supports: Early transistors, infrared optics, fiber-optic glass and specialized semiconductor devices.
+Accessed: 2026-09-10
+
+p4dWindows: DOE
+Energy-efficient smart windows
+https://www.energy.gov/node/1228576
+Supports: Krypton gas fill in insulated multi-pane windows.
+Accessed: 2026-09-10
+
+p4dZnNIST: NIST
+Atomic Data for Zinc
+https://physics.nist.gov/PhysRefData/Handbook/Tables/zinctable1.htm
+Supports: Verified neutral ground state: filled 3d10, 4s2 and 0 electrons in 4p.
+Accessed: 2026-09-10
+
+p4dZnRSC: Royal Society of Chemistry
+Zinc: properties and uses
+https://periodic-table.rsc.org/element/30/zinc
+Supports: Element identity, chemistry, material applications and distinctions between the element and its compounds.
+Accessed: 2026-09-10
+
+p4dGaNIST: NIST
+Atomic Data for Gallium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/galliumtable1.htm
+Supports: Verified neutral ground state: filled 3d10, 4s2 and 1 electrons in 4p.
+Accessed: 2026-09-10
+
+p4dGaRSC: Royal Society of Chemistry
+Gallium: properties and uses
+https://periodic-table.rsc.org/element/31/gallium
+Supports: Element identity, chemistry, material applications and distinctions between the element and its compounds.
+Accessed: 2026-09-10
+
+p4dGeNIST: NIST
+Atomic Data for Germanium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/germaniumtable1.htm
+Supports: Verified neutral ground state: filled 3d10, 4s2 and 2 electrons in 4p.
+Accessed: 2026-09-10
+
+p4dGeRSC: Royal Society of Chemistry
+Germanium: properties and uses
+https://periodic-table.rsc.org/element/32/germanium
+Supports: Element identity, chemistry, material applications and distinctions between the element and its compounds.
+Accessed: 2026-09-10
+
+p4dAsNIST: NIST
+Atomic Data for Arsenic
+https://physics.nist.gov/PhysRefData/Handbook/Tables/arsenictable1.htm
+Supports: Verified neutral ground state: filled 3d10, 4s2 and 3 electrons in 4p.
+Accessed: 2026-09-10
+
+p4dAsRSC: Royal Society of Chemistry
+Arsenic: properties and uses
+https://periodic-table.rsc.org/element/33/arsenic
+Supports: Element identity, chemistry, material applications and distinctions between the element and its compounds.
+Accessed: 2026-09-10
+
+p4dSeNIST: NIST
+Atomic Data for Selenium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/seleniumtable1.htm
+Supports: Verified neutral ground state: filled 3d10, 4s2 and 4 electrons in 4p.
+Accessed: 2026-09-10
+
+p4dSeRSC: Royal Society of Chemistry
+Selenium: properties and uses
+https://periodic-table.rsc.org/element/34/selenium
+Supports: Element identity, chemistry, material applications and distinctions between the element and its compounds.
+Accessed: 2026-09-10
+
+p4dBrNIST: NIST
+Atomic Data for Bromine
+https://physics.nist.gov/PhysRefData/Handbook/Tables/brominetable1.htm
+Supports: Verified neutral ground state: filled 3d10, 4s2 and 5 electrons in 4p.
+Accessed: 2026-09-10
+
+p4dBrRSC: Royal Society of Chemistry
+Bromine: properties and uses
+https://periodic-table.rsc.org/element/35/bromine
+Supports: Element identity, chemistry, material applications and distinctions between the element and its compounds.
+Accessed: 2026-09-10
+
+p4dKrNIST: NIST
+Atomic Data for Krypton
+https://physics.nist.gov/PhysRefData/Handbook/Tables/kryptontable1.htm
+Supports: Verified neutral ground state: filled 3d10, 4s2 and 6 electrons in 4p.
+Accessed: 2026-09-10
+
+p4dKrRSC: Royal Society of Chemistry
+Krypton: properties and uses
+https://periodic-table.rsc.org/element/36/krypton
+Supports: Element identity, chemistry, material applications and distinctions between the element and its compounds.
+Accessed: 2026-09-10
+
+PREVIOUS PHASE RECORD (historical; current scope is above)
+
+PHASE 6C SOURCES — ACCESSED 2026-09-10
+
+p4Decay: BIPM / DDEP
+Table of Radionuclides, volume 1
+https://www.bipm.org/utils/common/pdf/monographieRI/Monographie_BIPM-5_Tables_Vol1.pdf
+Supports: Mn-54 electron capture and approximately 312-day half-life; Ti-44 electron capture.
+Accessed: 2026-09-10
+
+p4KDecay: BIPM / DDEP
+Table of Radionuclides, volume 5
+https://www.bipm.org/utils/common/pdf/monographieRI/Monographie_BIPM-5_Tables_Vol5.pdf
+Supports: K-40: 1.2504 billion years; beta-minus, electron capture and a tiny positron branch.
+Accessed: 2026-09-10
+
+p4CaDecay: NEMO-3 collaboration
+Measurement of calcium-48 double-beta decay
+https://arxiv.org/abs/1604.01710
+Supports: Observed two-neutrino double-beta decay; measured half-life 6.4 × 10^19 years, with statistical and systematic uncertainty. Selected measurement, not an exact constant.
+Accessed: 2026-09-10
+
+p4ScHalf: De Felice et al.
+Half-life measurement of 44Sc and 44mSc
+https://www.iris.unina.it/handle/11588/966728
+Supports: Sc-44 ground-state half-life 4.042(7) hours, confirming the newer measurement rather than the older 3.97-hour recommendation.
+Accessed: 2026-09-10
+
+p4Sc: Scandium radionuclide researchers
+Production of scandium radionuclides for theranostic applications
+https://pmc.ncbi.nlm.nih.gov/articles/PMC8149571/
+Supports: Sc-44 positron/EC imaging; Sc-47 beta-minus therapy/imaging research, about 3.35 days; Ti-44/Sc-44 generator research. Emerging applications are qualified.
+Accessed: 2026-09-10
+
+p4TiHalf: DOE / NIDC
+Titanium-44 product information
+https://www.isotopes.gov/sites/default/files/2023-11/Ti-44.pdf
+Supports: Approximately 60 years; daughter scandium-44.
+Accessed: 2026-09-10
+
+p4TiSpace: NASA / NuSTAR
+The Creation of Titanium in Stars
+https://science.nasa.gov/photojournal/the-creation-of-titanium-in-stars/
+Supports: Titanium-44 traces supernova explosions.
+Accessed: 2026-09-10
+
+p4VDecay: Danevich et al.
+Decay scheme of 50V
+https://arxiv.org/abs/2008.02751
+Supports: Observed electron capture: partial half-life 2.77 (+0.20/−0.19) × 10^17 years. Beta-minus branch not detected; limit 8.9 × 10^18 years.
+Accessed: 2026-09-10
+
+p4MnUse: DOE / NIDC
+Introducing to market: Manganese-54
+https://isotopes.gov/new-domestic-supply-manganese-54
+Supports: Manganese-54 radiotracers in biomedical research.
+Accessed: 2026-09-10
+
+p4Geology: USGS
+Iron, chromium and calcium isotope analysis
+https://pubs.usgs.gov/publication/70032875
+Supports: Natural-material isotope ratios for calcium, iron and chromium.
+Accessed: 2026-09-10
+
+p4CrSpace: USGS
+Chromium isotope geochemistry
+https://wwwrcamnl.wr.usgs.gov/isoig/period/cr_iig.html
+Supports: Chromium-53 and manganese–chromium studies of early solar-system history.
+Accessed: 2026-09-10
+
+p4Fe57: NASA
+Characterization Strategies and Requirements
+https://www.nasa.gov/sites/default/files/atoms/files/carpenter.pdf
+Supports: Iron-57 Mössbauer spectroscopy for identifying iron-bearing planetary minerals.
+Accessed: 2026-09-10
+
+p4Fe60: NASA
+Observation of the 60Fe Nucleosynthesis-Clock Isotope
+https://ntrs.nasa.gov/citations/20170002656
+Supports: Iron-60: approximately 2.6 million years; supernova-produced cosmic rays.
+Accessed: 2026-09-10
+
+p4FeEarth: Wallner et al.
+Recent near-Earth supernovae probed by global deposition of interstellar 60Fe
+https://www.nature.com/articles/nature17196
+Supports: Measured iron-60 deposits on Earth as evidence of past nearby stellar explosions.
+Accessed: 2026-09-10
+
+p4Co60: CDC
+Cobalt-60
+https://www.cdc.gov/radiation-emergencies/hcp/isotopes/cobalt-60.html
+Supports: 5.27 years; beta particles and gamma rays; therapy, sterilization, industrial radiography and gauges; radiation protection.
+Accessed: 2026-09-10
+
+p4NiHalf: NIST
+Primary Radioactivity Standardization of Ni-63
+https://www.nist.gov/programs-projects/basic-metrology-archive-primary-radioactivity-standardization-ni-63
+Supports: Ni-63: measured 101.1 ± 1.4 years; radioactivity standards.
+Accessed: 2026-09-10
+
+p4NiUse: DOE / NIDC
+November 2024 isotope spotlights
+https://www.isotopes.gov/November-2024-spotlights
+Supports: Ni-63 beta emission; trace detectors and specialized betavoltaic batteries.
+Accessed: 2026-09-10
+
+p4Binding: M. P. Fewell / American Journal of Physics
+The atomic nuclide with the highest mean binding energy
+https://www.physics.smu.edu/scalise/quarknet2008/FewellAJP000653.pdf
+Supports: Ni-62 has exceptionally high binding energy per nucleon; mean binding energy is a specific measure, not a universal stability label.
+Accessed: 2026-09-10
+
+p4Energy: DOE
+Energy Storage Supply Chain Report
+https://www.energy.gov/sites/default/files/2022-02/Energy%20Storage%20Supply%20Chain%20Report%20-%20final.pdf
+Supports: Vanadium redox-flow storage, steel and catalysts.
+Accessed: 2026-09-10
+
+p4Core: DOE
+Distribution transformer technical discussion
+https://www.energy.gov/sites/default/files/2024-04/dt_ecs_fr.pdf
+Supports: Electrical steel is an iron alloy; thin laminations form magnetic transformer cores and reduce losses. Only material physics is used here.
+Accessed: 2026-09-10
+
+p4MnCalibration: NIST / NBS
+Standard Reference Materials catalog
+https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nbsspecialpublication260e1981.pdf
+Supports: Manganese-54 radioactivity calibration standards.
+Accessed: 2026-09-10
+
+p4Planet: Simon and DePaolo
+Calcium isotope composition of meteorites, Earth, and Mars
+https://doi.org/10.1088/0004-637X/702/1/707
+Supports: Calcium isotope ratios in planetary materials.
+Accessed: 2026-09-10
+
+p4TiPlanet: Researchers / Earth and Planetary Science Letters
+Calcium and titanium isotope fractionation in refractory inclusions
+https://www.sciencedirect.com/science/article/pii/S0012821X17302558
+Supports: Calcium and titanium isotope ratios as tracers of early solar-system processes.
+Accessed: 2026-09-10
+
+p4KDating: USGS
+Neutron Irradiations for Argon Isotopic Dating
+https://www.usgs.gov/usgs-triga-reactor/neutron-irradiations-argon-isotopic-dating
+Supports: Argon–argon dating is a variant of potassium–argon dating.
+Accessed: 2026-09-10
+
+p4KNatural: EPA
+Radiation Sources and Doses
+https://www.epa.gov/radiation/radiation-sources-and-doses
+Supports: Naturally occurring potassium-40 contributes to radioactivity within the body.
+Accessed: 2026-09-10
+
+p4FeDecay: NNDC / ENSDF
+Iron-60 beta-minus decay dataset
+https://www.nndc.bnl.gov/nudat3/getdecaydataset.jsp?dsid=60fe+bM+decay&nucleus=60CO
+Supports: Iron-60 beta-minus decay to cobalt-60. Half-life display follows the newer NASA-cited 2.6-million-year value.
+Accessed: 2026-09-10
+
+p4KCIAAW: CIAAW / IUPAC
+Atomic Weight of Potassium
+https://ciaaw.org/potassium.htm
+Supports: Natural isotope identities and representative terrestrial isotope percentages; not universal cosmic abundances.
+Accessed: 2026-09-10
+
+p4KNIST: NIST
+Atomic Data for Potassium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/potassiumtable1.htm
+Supports: Verified neutral ground-state configuration. Nickel uses 3d8 4s2; chromium uses 3d5 4s1.
+Accessed: 2026-09-10
+
+p4KRSC: Royal Society of Chemistry
+Potassium: properties and uses
+https://periodic-table.rsc.org/element/19/potassium
+Supports: Element identity, chemistry, compounds and material applications.
+Accessed: 2026-09-10
+
+p4CaCIAAW: CIAAW / IUPAC
+Atomic Weight of Calcium
+https://ciaaw.org/calcium.htm
+Supports: Natural isotope identities and representative terrestrial isotope percentages; not universal cosmic abundances.
+Accessed: 2026-09-10
+
+p4CaNIST: NIST
+Atomic Data for Calcium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/calciumtable1.htm
+Supports: Verified neutral ground-state configuration. Nickel uses 3d8 4s2; chromium uses 3d5 4s1.
+Accessed: 2026-09-10
+
+p4CaRSC: Royal Society of Chemistry
+Calcium: properties and uses
+https://periodic-table.rsc.org/element/20/calcium
+Supports: Element identity, chemistry, compounds and material applications.
+Accessed: 2026-09-10
+
+p4ScCIAAW: CIAAW / IUPAC
+Atomic Weight of Scandium
+https://ciaaw.org/scandium.htm
+Supports: Natural isotope identities and representative terrestrial isotope percentages; not universal cosmic abundances.
+Accessed: 2026-09-10
+
+p4ScNIST: NIST
+Atomic Data for Scandium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/scandiumtable1.htm
+Supports: Verified neutral ground-state configuration. Nickel uses 3d8 4s2; chromium uses 3d5 4s1.
+Accessed: 2026-09-10
+
+p4ScRSC: Royal Society of Chemistry
+Scandium: properties and uses
+https://periodic-table.rsc.org/element/21/scandium
+Supports: Element identity, chemistry, compounds and material applications.
+Accessed: 2026-09-10
+
+p4TiCIAAW: CIAAW / IUPAC
+Atomic Weight of Titanium
+https://ciaaw.org/titanium.htm
+Supports: Natural isotope identities and representative terrestrial isotope percentages; not universal cosmic abundances.
+Accessed: 2026-09-10
+
+p4TiNIST: NIST
+Atomic Data for Titanium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/titaniumtable1.htm
+Supports: Verified neutral ground-state configuration. Nickel uses 3d8 4s2; chromium uses 3d5 4s1.
+Accessed: 2026-09-10
+
+p4TiRSC: Royal Society of Chemistry
+Titanium: properties and uses
+https://periodic-table.rsc.org/element/22/titanium
+Supports: Element identity, chemistry, compounds and material applications.
+Accessed: 2026-09-10
+
+p4VCIAAW: CIAAW / IUPAC
+Atomic Weight of Vanadium
+https://ciaaw.org/vanadium.htm
+Supports: Natural isotope identities and representative terrestrial isotope percentages; not universal cosmic abundances.
+Accessed: 2026-09-10
+
+p4VNIST: NIST
+Atomic Data for Vanadium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/vanadiumtable1.htm
+Supports: Verified neutral ground-state configuration. Nickel uses 3d8 4s2; chromium uses 3d5 4s1.
+Accessed: 2026-09-10
+
+p4VRSC: Royal Society of Chemistry
+Vanadium: properties and uses
+https://periodic-table.rsc.org/element/23/vanadium
+Supports: Element identity, chemistry, compounds and material applications.
+Accessed: 2026-09-10
+
+p4CrCIAAW: CIAAW / IUPAC
+Atomic Weight of Chromium
+https://ciaaw.org/chromium.htm
+Supports: Natural isotope identities and representative terrestrial isotope percentages; not universal cosmic abundances.
+Accessed: 2026-09-10
+
+p4CrNIST: NIST
+Atomic Data for Chromium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/chromiumtable1.htm
+Supports: Verified neutral ground-state configuration. Nickel uses 3d8 4s2; chromium uses 3d5 4s1.
+Accessed: 2026-09-10
+
+p4CrRSC: Royal Society of Chemistry
+Chromium: properties and uses
+https://periodic-table.rsc.org/element/24/chromium
+Supports: Element identity, chemistry, compounds and material applications.
+Accessed: 2026-09-10
+
+p4MnCIAAW: CIAAW / IUPAC
+Atomic Weight of Manganese
+https://ciaaw.org/manganese.htm
+Supports: Natural isotope identities and representative terrestrial isotope percentages; not universal cosmic abundances.
+Accessed: 2026-09-10
+
+p4MnNIST: NIST
+Atomic Data for Manganese
+https://physics.nist.gov/PhysRefData/Handbook/Tables/manganesetable1.htm
+Supports: Verified neutral ground-state configuration. Nickel uses 3d8 4s2; chromium uses 3d5 4s1.
+Accessed: 2026-09-10
+
+p4MnRSC: Royal Society of Chemistry
+Manganese: properties and uses
+https://periodic-table.rsc.org/element/25/manganese
+Supports: Element identity, chemistry, compounds and material applications.
+Accessed: 2026-09-10
+
+p4FeCIAAW: CIAAW / IUPAC
+Atomic Weight of Iron
+https://ciaaw.org/iron.htm
+Supports: Natural isotope identities and representative terrestrial isotope percentages; not universal cosmic abundances.
+Accessed: 2026-09-10
+
+p4FeNIST: NIST
+Atomic Data for Iron
+https://physics.nist.gov/PhysRefData/Handbook/Tables/irontable1.htm
+Supports: Verified neutral ground-state configuration. Nickel uses 3d8 4s2; chromium uses 3d5 4s1.
+Accessed: 2026-09-10
+
+p4FeRSC: Royal Society of Chemistry
+Iron: properties and uses
+https://periodic-table.rsc.org/element/26/iron
+Supports: Element identity, chemistry, compounds and material applications.
+Accessed: 2026-09-10
+
+p4CoCIAAW: CIAAW / IUPAC
+Atomic Weight of Cobalt
+https://ciaaw.org/cobalt.htm
+Supports: Natural isotope identities and representative terrestrial isotope percentages; not universal cosmic abundances.
+Accessed: 2026-09-10
+
+p4CoNIST: NIST
+Atomic Data for Cobalt
+https://physics.nist.gov/PhysRefData/Handbook/Tables/cobalttable1.htm
+Supports: Verified neutral ground-state configuration. Nickel uses 3d8 4s2; chromium uses 3d5 4s1.
+Accessed: 2026-09-10
+
+p4CoRSC: Royal Society of Chemistry
+Cobalt: properties and uses
+https://periodic-table.rsc.org/element/27/cobalt
+Supports: Element identity, chemistry, compounds and material applications.
+Accessed: 2026-09-10
+
+p4NiCIAAW: CIAAW / IUPAC
+Atomic Weight of Nickel
+https://ciaaw.org/nickel.htm
+Supports: Natural isotope identities and representative terrestrial isotope percentages; not universal cosmic abundances.
+Accessed: 2026-09-10
+
+p4NiNIST: NIST
+Atomic Data for Nickel
+https://physics.nist.gov/PhysRefData/Handbook/Tables/nickeltable1.htm
+Supports: Verified neutral ground-state configuration. Nickel uses 3d8 4s2; chromium uses 3d5 4s1.
+Accessed: 2026-09-10
+
+p4NiRSC: Royal Society of Chemistry
+Nickel: properties and uses
+https://periodic-table.rsc.org/element/28/nickel
+Supports: Element identity, chemistry, compounds and material applications.
+Accessed: 2026-09-10
+
+PREVIOUS PHASE RECORD (historical; current scope is above)
+
+PHASE 4 — VERIFIED ISOTOPE REFERENCES
+
+These references are stored locally; following a link is optional and requires
+network access. The explorer itself does not fetch sources.
+
+CIAAW / IUPAC
+Atomic Weight of Copper
+https://ciaaw.org/copper.htm
+Accessed: 2026-09-08
+Supports: Stable isotope masses, terrestrial fractions, standard atomic weight and natural variation.
+
+International Atomic Energy Agency
+Cyclotron Produced Radionuclides: Physical Characteristics and Production Methods, TRS 468 (2009), sections 2.16–2.17
+https://pub.iaea.org/mtcd/publications/pdf/trs468_web.pdf
+Accessed: 2026-09-08
+Supports: Cu-64 half-life 12.7 h, three decay modes, PET/tracer and therapeutic research; Cu-67 rounded half-life 62 h, beta-minus decay, therapy and imaging.
+
+EURAMET / LNE-LNHB
+Standardization, decay data measurements and evaluation of 64Cu (project 1085)
+https://www.euramet.org/research-innovation/search-research-projects/details/project/standardization-decay-data-measurements-and-evaluation-of-64cu
+Accessed: 2026-09-08
+Supports: Cu-64 12.7-hour half-life and PET use; copper isotope diagnostic/therapy pairing.
+
+NASA Goddard / Imagine the Universe
+Ask an Astrophysicist: Physics of Stars — chemical composition
+https://imagine.gsfc.nasa.gov/ask_astro/stars.html
+Accessed: 2026-09-08
+Supports: Hydrogen/helium dominate cosmic matter; heavier-element content varies between environments.
+
+Romano et al., Monthly Notices of the Royal Astronomical Society 378, L59–L63 (2007)
+Contrasting copper evolution in Omega Centauri and the Milky Way
+https://arxiv.org/abs/astro-ph/0703760
+Accessed: 2026-09-08
+Supports: Copper production associated with stellar nucleosynthesis and supernova processes; no universal copper-isotope prevalence is established here.
+
+
+PHASE 4.5 — DEVELOPMENT RECORD SOURCES
+
+NIST Physical Measurement Laboratory — Atomic Data for Hydrogen
+https://physics.nist.gov/PhysRefData/Handbook/Tables/hydrogentable1_a.htm
+Accessed 2026-09-08. Supports atomic number, neutral ground-state configuration
+and the selected isotope identity. Shell counts are sums grouped by principal n.
+
+NIST Physical Measurement Laboratory — Atomic Data for Carbon
+https://physics.nist.gov/PhysRefData/Handbook/Tables/carbontable1.htm
+Accessed 2026-09-08. Supports atomic number, neutral ground-state configuration
+and the selected isotope identity. Shell counts are sums grouped by principal n.
+
+NIST Physical Measurement Laboratory — Atomic Data for Copper
+https://physics.nist.gov/PhysRefData/Handbook/Tables/coppertable1_a.htm
+Accessed 2026-09-08. Supports atomic number, neutral ground-state configuration
+and the selected isotope identity. Shell counts are sums grouped by principal n.
+
+NIST Physical Measurement Laboratory — Atomic Data for Xenon
+https://physics.nist.gov/PhysRefData/Handbook/Tables/xenontable1_a.htm
+Accessed 2026-09-08. Supports atomic number, neutral ground-state configuration
+and the selected isotope identity. Shell counts are sums grouped by principal n.
+
+NIST Physical Measurement Laboratory — Atomic Data for Uranium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/uraniumtable1_a.htm
+Accessed 2026-09-08. Supports atomic number, neutral ground-state configuration
+and the selected isotope identity. Shell counts are sums grouped by principal n.
+
+CIAAW / IUPAC — Atomic Weight of Hydrogen
+https://ciaaw.org/hydrogen.htm
+Accessed 2026-09-08. Isotope identity and terrestrial isotope context.
+
+CIAAW / IUPAC — Atomic Weight of Carbon
+https://ciaaw.org/carbon.htm
+Accessed 2026-09-08. Isotope identity and terrestrial isotope context.
+
+CIAAW / IUPAC — Atomic Weight of Copper
+https://ciaaw.org/copper.htm
+Accessed 2026-09-08. Isotope identity and terrestrial isotope context.
+
+CIAAW / IUPAC — Atomic Weight of Xenon
+https://ciaaw.org/xenon.htm
+Accessed 2026-09-08. Isotope identity and terrestrial isotope context.
+
+CIAAW / IUPAC — Atomic Weight of Uranium
+https://ciaaw.org/uranium.htm
+Accessed 2026-09-08. Isotope identity and terrestrial isotope context.
+
+CIAAW explicitly identifies all uranium isotopes as alpha emitters.
+The historical NIST copper table is used for configuration, not for isotope
+masses or abundance: Phase 4 retains the more precise CIAAW copper values.
+Development records do not introduce abundance or radioactive half-life values.
+
+Stability cross-check: Sandia National Laboratories report, table of xenon
+isotopes and half-lives (DOE OSTI repository, record 1089867).
+https://www.osti.gov/servlets/purl/1089867
+Accessed 2026-09-08 through the indexed table excerpt: xenon-132 is stable.
+Full PDF fetch timed out; this source is used only for that indexed status.
+
+
+PHASE 5 — PERIODIC TABLE
+
+CIAAW / IUPAC
+Abridged Standard Atomic Weights 2024
+https://ciaaw.org/abridged-atomic-weights.htm
+Accessed 2026-09-09
+Supports: Names, symbols, atomic numbers and abridged standard atomic weights with uncertainties, including the 2024 revisions.
+
+IUPAC
+Periodic Table of the Elements, 4 May 2022
+https://iupac.org/wp-content/uploads/2022/07/IUPAC_Periodic_Table-04May22_CRA.pdf
+Accessed 2026-09-09
+Supports: Conventional 18-column layout and representative isotope mass numbers for elements without standard atomic weights. These are a dated reference selection, not a claim about the latest longest-lived isotope.
+
+IUPAC
+Periodic Table of Elements: groups and collective names
+https://iupac.org/what-we-do/periodic-table-of-elements/
+Accessed 2026-09-09
+Supports: Groups 1–18, detached La–Lu and Ac–Lr series, and the group-3 convention discussion.
+
+Royal Society of Chemistry
+Periodic Table: element fact boxes and natural abundance
+https://periodic-table.rsc.org/
+Accessed 2026-09-09
+Supports: Block conventions and occurrence context. The individual element reference appears on every card. Tc, Pm and Np include naturally occurring traces despite being mainly produced artificially.
+
+Individual RSC checks
+
+Royal Society of Chemistry — Technetium: element information
+https://periodic-table.rsc.org/element/43/technetium
+Accessed 2026-09-09. Natural traces in uranium ores; mainly produced.
+
+Royal Society of Chemistry — Promethium: element information
+https://periodic-table.rsc.org/element/61/promethium
+Accessed 2026-09-09. Minute natural traces in uranium ores; mainly produced.
+
+Royal Society of Chemistry — Neptunium: element information
+https://periodic-table.rsc.org/element/93/neptunium
+Accessed 2026-09-09. Trace natural occurrence; reactor production.
+
+Royal Society of Chemistry — Plutonium: element information
+https://periodic-table.rsc.org/element/94/plutonium
+Accessed 2026-09-09. Primarily produced by irradiating uranium.
+
+Royal Society of Chemistry — Lanthanum: element information
+https://periodic-table.rsc.org/element/57/lanthanum
+Accessed 2026-09-09. Detached series; d-block convention.
+
+Royal Society of Chemistry — Lutetium: element information
+https://periodic-table.rsc.org/element/71/lutetium
+Accessed 2026-09-09. Detached series; f-block convention.
+
+Royal Society of Chemistry — Actinium: element information
+https://periodic-table.rsc.org/element/89/actinium
+Accessed 2026-09-09. Natural trace occurrence and d-block convention.
+
+Royal Society of Chemistry — Lawrencium: element information
+https://periodic-table.rsc.org/element/103/lawrencium
+Accessed 2026-09-09. Synthetic occurrence and f-block convention.
+
+All 118 identities and weight entries were compared to an independently
+extracted CIAAW 2024 fact table (qa/phase5-source-facts.json). All 34 bracketed
+representatives were checked against IUPAC 2022. CIAAW 2024 supersedes the
+2022 standard-weight values where revisions exist (notably zirconium).
+Family boundaries are project teaching conventions documented on the home
+page. RSC reports Lu and Lr as f-block; La and Ac as d-block. Group-3 numbering
+is omitted within the detached series, matching the adopted layout.
+
+
+PHASE 5.1 HYDROGEN SOURCES
+
+MIT OpenCourseWare
+Hydrogen atom wavefunctions (orbitals), Principles of Chemical Science
+https://ocw.mit.edu/courses/5-111-principles-of-chemical-science-fall-2008/resources/lecnotes06/
+Accessed: 2026-09-09
+Supports: Spherical s orbitals and radial probability. The 1s display samples a scaled, truncated exponential density; it is not a physical-size calculation.
+
+International Atomic Energy Agency
+Introduction to Body Composition Assessment Using the Deuterium Dilution Technique
+https://www-pub.iaea.org/MTCD/Publications/PDF/Pub1450_web.pdf
+Accessed: 2026-09-09
+Supports: Stable deuterium as a tracer in labelled water and body-water research.
+
+International Atomic Energy Agency
+Introduction to Body Composition Assessment Using the Deuterium Dilution Technique: Analysis of Urine Samples
+https://www-pub.iaea.org/MTCD/Publications/PDF/Pub1451_web.pdf
+Accessed: 2026-09-09
+Supports: Deuterium-labelled water and heavy-water terminology.
+
+CIAAW / IUPAC
+Atomic Weight of Hydrogen
+https://ciaaw.org/hydrogen.htm
+Accessed: 2026-09-09
+Supports: Stable isotope identities, terrestrial abundance intervals, natural variability, tritium beta-minus decay and 12.3-year half-life, natural and artificial production and environmental tracing.
+
+NIST
+Atomic Data for Hydrogen
+https://physics.nist.gov/PhysRefData/Handbook/Tables/hydrogentable1.htm
+Accessed: 2026-09-09
+Supports: Atomic number 1 and neutral ground state 1s. Historical fixed abundances on this page are not used.
+
+Royal Society of Chemistry
+Hydrogen: element information, properties and uses
+https://periodic-table.rsc.org/element/1/hydrogen
+Accessed: 2026-09-09
+Supports: Group 1, period 1, s-block, 1s¹ configuration, cosmic abundance, stars, ammonia production and biological molecules.
+
+NASA / LAMBDA
+Baryonic Density
+https://lambda.gsfc.nasa.gov/education/graphic_history/baryonicd.html
+Accessed: 2026-09-09
+Supports: Deuterium abundance as evidence about nucleosynthesis and matter content in the early universe.
+
+U.S. Department of Energy
+DOE Explains: Fusion Reactions
+https://www.energy.gov/science/doe-explainsfusion-reactions
+Accessed: 2026-09-09
+Supports: Deuterium and tritium in fusion research.
+
+U.S. Department of Energy
+Hydrogen: A Flexible Energy Carrier
+https://www.energy.gov/cmei/fuels/articles/hydrogen-flexible-energy-carrier
+Accessed: 2026-09-09
+Supports: Fuel cells, production from other materials using energy, and the distinction between an energy carrier and a primary energy source.
+
+U.S. Nuclear Regulatory Commission
+Backgrounder on Tritium EXIT Signs
+https://www.nrc.gov/reading-rm/doc-collections/fact-sheets/fs-tritium.html
+Accessed: 2026-09-09
+Supports: Tritium in some self-powered lighting applications.
+
+CIAAW abundance fractions were converted to percentages: H-1 [0.99972,
+0.99999] -> 99.972–99.999%; H-2 [0.00001,0.00028] -> 0.001–0.028%.
+These are intervals for normal terrestrial materials, not universal cosmic
+fractions. NIST/RSC historical fixed abundances are not used for this display.
+The 12.3-year half-life is the classroom precision given by CIAAW.
+All runtime facts and source metadata are local; links are optional references.
+
+
+PHASE 6A — LIGHT ELEMENTS AND ISOTOPES
+
+lightC14 — NIST
+Counting yields for beta and alpha particle sources, NISTIR 6464
+https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nistir6464.pdf
+Accessed: 2026-09-09
+Supports: Carbon-14 beta-minus decay and 5,730-year half-life convention.
+
+lightNeon — NASA Technical Reports Server / Honda and McDougall
+Solar helium and neon in the Earth
+https://ntrs.nasa.gov/citations/19950015376
+Accessed: 2026-09-09
+Supports: Neon isotope ratios distinguish atmospheric, mantle and solar components in geological and planetary studies.
+
+lightNuclear — Duke / TUNL Nuclear Data Evaluation
+10Be beta-minus decay evaluated data, September 2019
+https://webhome.phy.duke.edu/~gsheu/HalfLife/10/10Be.shtml
+Accessed: 2026-09-09
+Supports: Be-10 beta-minus decay; recommended half-life 1.385 ± 0.016 million years, displayed as about 1.39 million years. Supersedes the older value on CIAAW’s Be page.
+
+lightPET — International Atomic Energy Agency
+Cyclotron Produced Radionuclides: Principles and Practice, TRS 465, Table 2.2
+https://www-pub.iaea.org/MTCD/publications/PDF/trs465_web.pdf
+Accessed: 2026-09-09
+Supports: N-13 approximately 9.97 minutes and O-15 approximately 2 minutes; positron emission and PET imaging/research. These are rounded classroom values.
+
+lightF18 — International Atomic Energy Agency
+Cyclotron Produced Radionuclides: Physical Characteristics and Production Methods, TRS 468, section 2.18
+https://pub.iaea.org/mtcd/publications/pdf/trs468_web.pdf
+Accessed: 2026-09-09
+Supports: F-18 half-life 109.8 minutes; primary positron emission, minor electron capture; labelled PET tracers.
+
+lightGeology — Géologie Québec
+Datation par isotopes cosmogéniques
+https://gq.mines.gouv.qc.ca/bulletins-quaternaires/methode-de-travail-bq-datation-par-isotopes-cosmogeniques/
+Accessed: 2026-09-09
+Supports: Cosmogenic Be-10 in surface-exposure and erosion studies.
+
+lightDOE — U.S. Department of Energy
+Isotope R&D and Production
+https://www.energy.gov/science/ip/isotope-rd-and-production-doe-ip
+Accessed: 2026-09-09
+Supports: Helium-3 cryogenics; helium-3 and lithium-6 neutron detectors.
+
+lightBNCT — International Atomic Energy Agency
+Neutron Therapy
+https://nucleus.iaea.org/sites/neutrons/SitePages/Neutron-Therapy.aspx?web=1
+Accessed: 2026-09-09
+Supports: Boron-10 neutron capture in specialized cancer treatment and research; boron-containing drugs and neutron irradiation are required.
+
+lightTracing — FAO / IAEA
+Agriculture and Biotechnology Laboratories: Activities Report 2016
+https://www.iaea.org/sites/default/files/abl-activities-report-2016.pdf
+Accessed: 2026-09-09
+Supports: Carbon-13 and nitrogen-15 labelled materials in biological and agricultural tracing.
+
+lightC13 — NIST
+13C NMR Absorptions of Major Functional Groups
+https://www.nist.gov/publications/13c-nmr-absorptions-major-functional-groups
+Accessed: 2026-09-09
+Supports: Carbon-13 spectroscopy to study molecular structure.
+
+lightDoping — NIST
+Princeton NIST presentation, Lynn, 2023
+https://www.nist.gov/system/files/documents/2023/10/25/Princeton%20NIST%20talk%20Lynn.pdf
+Accessed: 2026-09-09
+Supports: Boron as a silicon dopant.
+
+lightStars — NASA
+Space Station Experiment to Probe Origins of Elements
+https://www.nasa.gov/universe/space-station-experiment-to-probe-origins-of-elements/
+Accessed: 2026-09-09
+Supports: Early-universe hydrogen/helium and a little lithium; production of heavier elements in processes related to stars.
+
+lightRays — NASA Goddard / Imagine the Universe
+Cosmic Rays
+https://imagine.gsfc.nasa.gov/science/toolbox/cosmic_rays2_orig.html
+Accessed: 2026-09-09
+Supports: Lithium, beryllium and boron produced by fragmentation of heavier nuclei in cosmic-ray collisions.
+
+heliumCIAAW — CIAAW / IUPAC
+Atomic Weight of Helium
+https://ciaaw.org/helium.htm
+Accessed: 2026-09-09
+Supports: Stable isotope identities, terrestrial abundance values and variability; standard atomic weight.
+
+heliumRSC — Royal Society of Chemistry
+Helium: element information, properties and uses
+https://periodic-table.rsc.org/element/2/helium
+Accessed: 2026-09-09
+Supports: Identity, neutral configuration, occurrence and concise element/application context.
+
+lithiumCIAAW — CIAAW / IUPAC
+Atomic Weight of Lithium
+https://ciaaw.org/lithium.htm
+Accessed: 2026-09-09
+Supports: Stable isotope identities, terrestrial abundance values and variability; standard atomic weight.
+
+lithiumRSC — Royal Society of Chemistry
+Lithium: element information, properties and uses
+https://periodic-table.rsc.org/element/3/lithium
+Accessed: 2026-09-09
+Supports: Identity, neutral configuration, occurrence and concise element/application context.
+
+berylliumCIAAW — CIAAW / IUPAC
+Atomic Weight of Beryllium
+https://ciaaw.org/beryllium.htm
+Accessed: 2026-09-09
+Supports: Stable isotope identities, terrestrial abundance values and variability; standard atomic weight.
+
+berylliumRSC — Royal Society of Chemistry
+Beryllium: element information, properties and uses
+https://periodic-table.rsc.org/element/4/beryllium
+Accessed: 2026-09-09
+Supports: Identity, neutral configuration, occurrence and concise element/application context.
+
+boronCIAAW — CIAAW / IUPAC
+Atomic Weight of Boron
+https://ciaaw.org/boron.htm
+Accessed: 2026-09-09
+Supports: Stable isotope identities, terrestrial abundance values and variability; standard atomic weight.
+
+boronRSC — Royal Society of Chemistry
+Boron: element information, properties and uses
+https://periodic-table.rsc.org/element/5/boron
+Accessed: 2026-09-09
+Supports: Identity, neutral configuration, occurrence and concise element/application context.
+
+carbonCIAAW — CIAAW / IUPAC
+Atomic Weight of Carbon
+https://ciaaw.org/carbon.htm
+Accessed: 2026-09-09
+Supports: Stable isotope identities, terrestrial abundance values and variability; carbon-12 mass reference and carbon-14 5,730-year display convention.
+
+carbonRSC — Royal Society of Chemistry
+Carbon: element information, properties and uses
+https://periodic-table.rsc.org/element/6/carbon
+Accessed: 2026-09-09
+Supports: Identity, neutral configuration, occurrence and concise element/application context.
+
+nitrogenCIAAW — CIAAW / IUPAC
+Atomic Weight of Nitrogen
+https://ciaaw.org/nitrogen.htm
+Accessed: 2026-09-09
+Supports: Stable isotope identities, terrestrial abundance values and variability; standard atomic weight.
+
+nitrogenRSC — Royal Society of Chemistry
+Nitrogen: element information, properties and uses
+https://periodic-table.rsc.org/element/7/nitrogen
+Accessed: 2026-09-09
+Supports: Identity, neutral configuration, occurrence and concise element/application context.
+
+oxygenCIAAW — CIAAW / IUPAC
+Atomic Weight of Oxygen
+https://ciaaw.org/oxygen.htm
+Accessed: 2026-09-09
+Supports: Stable isotope identities, terrestrial abundance values and variability; standard atomic weight.
+
+oxygenRSC — Royal Society of Chemistry
+Oxygen: element information, properties and uses
+https://periodic-table.rsc.org/element/8/oxygen
+Accessed: 2026-09-09
+Supports: Identity, neutral configuration, occurrence and concise element/application context.
+
+fluorineCIAAW — CIAAW / IUPAC
+Atomic Weight of Fluorine
+https://ciaaw.org/fluorine.htm
+Accessed: 2026-09-09
+Supports: Stable isotope identities, terrestrial abundance values and variability; standard atomic weight.
+
+fluorineRSC — Royal Society of Chemistry
+Fluorine: element information, properties and uses
+https://periodic-table.rsc.org/element/9/fluorine
+Accessed: 2026-09-09
+Supports: Identity, neutral configuration, occurrence and concise element/application context.
+
+neonCIAAW — CIAAW / IUPAC
+Atomic Weight of Neon
+https://ciaaw.org/neon.htm
+Accessed: 2026-09-09
+Supports: Stable isotope identities, terrestrial abundance values and variability; standard atomic weight.
+
+neonRSC — Royal Society of Chemistry
+Neon: element information, properties and uses
+https://periodic-table.rsc.org/element/10/neon
+Accessed: 2026-09-09
+Supports: Identity, neutral configuration, occurrence and concise element/application context.
+
+
+PHASE 6B — PERIOD 3 SOURCES
+
+p3NaHalf — NIST
+Corrigendum: Update of NIST half-life results
+https://pmc.ncbi.nlm.nih.gov/articles/PMC7668314/
+Accessed: 2026-09-09
+Supports: Na-22: 950.4 +/- 0.4 days (rounded here to 2.60 years); Na-24: 14.951 +/- 0.003 hours (display 15 hours).
+
+p3Na22 — DOE / NIDC
+Isotope Availability September 2020
+https://isotopes.gov/node/728
+Accessed: 2026-09-09
+Supports: Na-22 imaging-related applications. Educational copy describes equipment research, not routine patient injection.
+
+p3Calibration — NIST / NBS
+Radioactivity calibration standards
+https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nbsspecialpublication331.pdf
+Accessed: 2026-09-09
+Supports: Sodium-22 radioactivity calibration standards.
+
+p3NaDecay — BIPM / DDEP
+Monographie BIPM-5, volume 5: Sodium-22
+https://www.bipm.org/utils/common/pdf/monographieRI/Monographie_BIPM-5_Tables_Vol5.pdf
+Accessed: 2026-09-09
+Supports: Sodium-22 primary positron emission and minor electron capture.
+
+p3Na24 — University of Missouri EHS
+Radionuclide data sheet: Sodium-24
+https://ehs.missouri.edu/sites/ehs/files/pdf/isotopedata/na-24.pdf
+Accessed: 2026-09-09
+Supports: Na-24 beta-minus decay, approximately 15-hour half-life.
+
+p3Tracer — IAEA
+Leak Detection in Heat Exchangers and Underground Pipelines, TCS 38
+https://www-pub.iaea.org/MTCD/Publications/PDF/TCS-38_web.pdf
+Accessed: 2026-09-09
+Supports: Na-24 compounds as aqueous tracers.
+
+p3MgNMR — Hebrew University of Jerusalem
+Magnesium-25 NMR
+https://chem.ch.huji.ac.il/nmr/techniques/1d/row3/mg.html
+Accessed: 2026-09-09
+Supports: Mg-25 nuclear spin 5/2 and magnetic resonance spectroscopy.
+
+p3MgEarth — USGS
+Investigation of magnesium isotope fractionation during basalt differentiation
+https://www.usgs.gov/publications/investigation-magnesium-isotope-fractionation-during-basalt-differentiation
+Accessed: 2026-09-09
+Supports: Magnesium isotope ratios in geological and planetary studies.
+
+p3AlHalf — BIPM / Decay Data Evaluation Project
+Aluminum-26 evaluation report
+https://www.bipm.org/documents/d/guest/al-26_report
+Accessed: 2026-09-09
+Supports: Recommended half-life 7.17(24) x 10^5 years; primary positron emission plus electron capture to Mg-26.
+
+p3Early — NASA Astrobiology
+Using Isotopes to Probe the Earliest History of the Solar Nebula
+https://astrobiology.nasa.gov/news/using-isotopes-to-probe-the-earliest-history-of-the-solar-nebula/
+Accessed: 2026-09-09
+Supports: Al-26 decay to Mg-26 in early solar-system meteorite studies.
+
+p3Galaxy — NASA / GSFC
+Aluminum-26 and the Galaxy
+https://heasarc.gsfc.nasa.gov/docs/objects/heapow/archive/normal_galaxies/al26_integral_map.html
+Accessed: 2026-09-09
+Supports: Galactic Al-26 from evolved and exploding massive stars.
+
+p3SiEnriched — NIST
+Spotlight: Silicon-28 in Quantum Computers
+https://www.nist.gov/news-events/news/2020/01/spotlight-silicon-28-quantum-computers
+Accessed: 2026-09-09
+Supports: Enriched Si-28 in quantum-device research; isotope enrichment differs from ordinary chemical purity.
+
+p3SiNMR — NIST
+Characterization of Flame Retarded Polymer Combustion Chars by Solid-State 13C and 29Si NMR and EPR
+https://www.nist.gov/publications/characterization-flame-retarded-polymer-combustion-chars-solid-state-13c-and-29si-nmr
+Accessed: 2026-09-09
+Supports: Si-29 nuclear magnetic resonance in materials research.
+
+p3Doping — NIST
+Atom-based Silicon Quantum Electronics
+https://www.nist.gov/programs-projects/atom-based-silicon-quantum-electronics
+Accessed: 2026-09-09
+Supports: Phosphorus donors in silicon electronic devices.
+
+p3PHalf — Princeton University EHS
+Phosphorus-32
+https://ehs.princeton.edu/laboratory-research/radiation-safety/radioactive-materials/radioisotope-fact-sheets/phosphorus-32
+Accessed: 2026-09-09
+Supports: P-32 approximately 14.3 days; beta emission.
+
+p3Agriculture — IAEA / FAO
+IAEA Bulletin 36, number 3, 1994
+https://www.iaea.org/sites/default/files/vol36no3.pdf
+Accessed: 2026-09-09
+Supports: P-32 tracer studies of fertilizer uptake.
+
+p3Medicine — National Cancer Institute
+Phosphorus P 32
+https://www.cancer.gov/publications/dictionaries/cancer-terms/def/phosphorus-p-32
+Accessed: 2026-09-09
+Supports: Specialized medical use of radioactive P-32; not a general treatment claim.
+
+p3SHalf — Princeton University EHS
+Sulfur-35
+https://ehs.princeton.edu/laboratory-research/radiation-safety/radioactive-materials/radioisotope-fact-sheets/sulfur-35
+Accessed: 2026-09-09
+Supports: S-35 approximately 87.6 days, beta emission, labelled biological amino acids.
+
+p3ClDecay — KAERI / NNDC data
+Chlorine-36 nuclear data
+https://atom.kaeri.re.kr/cgi-bin/nuclide?nuc=Cl-36
+Accessed: 2026-09-09
+Supports: Cl-36 approximately 301000 years; primary beta-minus decay with minor electron capture.
+
+p3Water — IAEA
+Isotope Methods for Dating Old Groundwater
+https://www-pub.iaea.org/MTCD/Publications/PDF/Pub1587_web.pdf
+Accessed: 2026-09-09
+Supports: Chlorine-36 groundwater dating.
+
+p3ArDating — Heidelberg University / IAEA symposium
+Dating with Atom Trap Trace Analysis of Argon-39
+https://conferences.iaea.org/event/49/contributions/9111/
+Accessed: 2026-09-09
+Supports: Ar-39 dating with groundwater and ice samples.
+
+p3ArOcean — DEAP-3600 collaboration
+Direct Measurement of the 39Ar Half-life from 3.4 Years of Data
+https://arxiv.org/abs/2501.13196
+Accessed: 2026-09-09
+Supports: Ar-39 beta decay. A recent measurement reports 302 +/- 8 statistical +/- 6 systematic years; catalog retains the conventional 269-year CIAAW/IAEA value, explicitly labelled conventional.
+
+p3ArClimate — American Physical Society
+What Was the Climate Like 1,000 Years Ago? Ask Argon-39
+https://www.aps.org/apsnews/2022/07/argon-39
+Accessed: 2026-09-09
+Supports: Ar-39 applications in ocean water, groundwater and ice.
+
+p3Stars — NASA
+Chandra Reveals the Elementary Nature of Cassiopeia A
+https://www.nasa.gov/image-article/chandra-reveals-elementary-nature-of-cassiopeia/
+Accessed: 2026-09-09
+Supports: Silicon and sulfur production and dispersal in stellar evolution and explosions.
+
+p3Anode — U.S. Bureau of Reclamation
+Corrosion Mitigation of Gates
+https://www.usbr.gov/tsc/techreferences/mands/mands-pdfs/Webinar_2014-07_Corrosion%20Mitigation%20of%20Gates.pdf
+Accessed: 2026-09-09
+Supports: Magnesium sacrificial anodes for corrosion protection.
+
+p3Battery — DOE
+Keeping Tabs on Polysulfides in Batteries
+https://www.energy.gov/science/bes/articles/keeping-tabs-polysulfides-batteries
+Accessed: 2026-09-09
+Supports: Sulfur battery research; not a claim of universal commercial adoption.
+
+p3NaCIAAW — CIAAW / IUPAC
+Atomic Weight of Sodium
+https://ciaaw.org/sodium.htm
+Accessed: 2026-09-09
+Supports: Stable identities, terrestrial composition ranges and standard atomic weight; natural variation and isotope context.
+
+p3NaRSC — Royal Society of Chemistry
+Sodium: properties and uses
+https://periodic-table.rsc.org/element/11/sodium
+Accessed: 2026-09-09
+Supports: Ground-state configuration, identity, occurrence, chemistry and applications.
+
+p3MgCIAAW — CIAAW / IUPAC
+Atomic Weight of Magnesium
+https://ciaaw.org/magnesium.htm
+Accessed: 2026-09-09
+Supports: Stable identities, terrestrial composition ranges and standard atomic weight; natural variation and isotope context.
+
+p3MgRSC — Royal Society of Chemistry
+Magnesium: properties and uses
+https://periodic-table.rsc.org/element/12/magnesium
+Accessed: 2026-09-09
+Supports: Ground-state configuration, identity, occurrence, chemistry and applications.
+
+p3AlCIAAW — CIAAW / IUPAC
+Atomic Weight of Aluminium
+https://ciaaw.org/aluminium.htm
+Accessed: 2026-09-09
+Supports: Stable identities, terrestrial composition ranges and standard atomic weight; natural variation and isotope context.
+
+p3AlRSC — Royal Society of Chemistry
+Aluminium: properties and uses
+https://periodic-table.rsc.org/element/13/aluminium
+Accessed: 2026-09-09
+Supports: Ground-state configuration, identity, occurrence, chemistry and applications.
+
+p3SiCIAAW — CIAAW / IUPAC
+Atomic Weight of Silicon
+https://ciaaw.org/silicon.htm
+Accessed: 2026-09-09
+Supports: Stable identities, terrestrial composition ranges and standard atomic weight; natural variation and isotope context.
+
+p3SiRSC — Royal Society of Chemistry
+Silicon: properties and uses
+https://periodic-table.rsc.org/element/14/silicon
+Accessed: 2026-09-09
+Supports: Ground-state configuration, identity, occurrence, chemistry and applications.
+
+p3PCIAAW — CIAAW / IUPAC
+Atomic Weight of Phosphorus
+https://ciaaw.org/phosphorus.htm
+Accessed: 2026-09-09
+Supports: Stable identities, terrestrial composition ranges and standard atomic weight; natural variation and isotope context.
+
+p3PRSC — Royal Society of Chemistry
+Phosphorus: properties and uses
+https://periodic-table.rsc.org/element/15/phosphorus
+Accessed: 2026-09-09
+Supports: Ground-state configuration, identity, occurrence, chemistry and applications.
+
+p3SCIAAW — CIAAW / IUPAC
+Atomic Weight of Sulfur
+https://ciaaw.org/sulfur.htm
+Accessed: 2026-09-09
+Supports: Stable identities, terrestrial composition ranges and standard atomic weight; natural variation and isotope context.
+
+p3SRSC — Royal Society of Chemistry
+Sulfur: properties and uses
+https://periodic-table.rsc.org/element/16/sulfur
+Accessed: 2026-09-09
+Supports: Ground-state configuration, identity, occurrence, chemistry and applications.
+
+p3ClCIAAW — CIAAW / IUPAC
+Atomic Weight of Chlorine
+https://ciaaw.org/chlorine.htm
+Accessed: 2026-09-09
+Supports: Stable identities, terrestrial composition ranges and standard atomic weight; natural variation and isotope context.
+
+p3ClRSC — Royal Society of Chemistry
+Chlorine: properties and uses
+https://periodic-table.rsc.org/element/17/chlorine
+Accessed: 2026-09-09
+Supports: Ground-state configuration, identity, occurrence, chemistry and applications.
+
+p3ArCIAAW — CIAAW / IUPAC
+Atomic Weight of Argon
+https://ciaaw.org/argon.htm
+Accessed: 2026-09-09
+Supports: Stable identities, terrestrial composition ranges and standard atomic weight; natural variation and isotope context.
+
+p3ArRSC — Royal Society of Chemistry
+Argon: properties and uses
+https://periodic-table.rsc.org/element/18/argon
+Accessed: 2026-09-09
+Supports: Ground-state configuration, identity, occurrence, chemistry and applications.

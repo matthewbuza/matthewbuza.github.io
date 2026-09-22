@@ -1,0 +1,218 @@
+INTERACTIVE PERIODIC TABLE & ATOM EXPLORER — PHASE 6M — COMPLETE ACTINIDE ROW
+
+1. Copy the entire periodic-table-visualizer folder to your computer or thumb drive.
+2. Keep all files and subfolders together.
+3. Open index.html in Chrome, Edge, Firefox, or Safari.
+4. No internet connection, installation, or server is required.
+5. If double-clicking does not work, right-click index.html, choose Open with,
+   and select a modern browser. You can also use the browser's Open File command.
+   If a school device blocks local pages, ask your teacher or IT administrator.
+
+NEW: COMPLETE ACTINIDE ROW
+All actinides Ac–Lr now open from the detached row. Cm–Lr add 13 radioactive
+isotope choices, with tiny-quantity research uses and clear measurement limits.
+Open Completing the Actinides to follow 5f filling, Cm's 6d exception, No's
+filled 5f group, and Lr's unusual 7p electron. Lr has three electrons in shell 7.
+Choose Proton, Neutron, Electron or Outer-region electron in the particle menu.
+Double-click a proton or neutron to explore its simplified internal structure.
+Lr defaults to Lr-266. Its [262] tile follows the established table convention;
+neither bracketed value is an average atomic weight. Lr-266's reported half-life
+is very uncertain. A long half-life does not mean a radioactive material is safe.
+These are educational models, not instructions for handling radioactive materials.
+
+PERIODIC TABLE HOME
+Opening index.html shows all 118 elements. Search by name, symbol or exact
+atomic number. Select family buttons to combine filters; clear them at any time.
+Colors match the family legend and can be turned off. Tiles keep their positions.
+Use Table for periodic relationships or List for an easy-to-scan alternative.
+On smaller screens, scroll the table sideways. View details jumps to the
+selected element card. Close or Escape returns focus to the selected tile.
+
+Every element has basic information. Hydrogen through lawrencium have
+complete explorers. Single-click or tap an element for its card, then use
+Explore Atom to enter. Double-click an enabled tile with a mouse to enter
+directly. Other elements still open their information cards. Tiles no longer
+carry a 3D badge.
+Touch users should use the Explore button; table double-tap is not a shortcut.
+Back to Periodic Table preserves your
+search, filters, selection, scroll and current explorer settings. Browser Back/Forward
+works too. Reload retains the main view; temporary settings reset.
+Direct local links use symbols, for example index.html#explore=He,
+index.html#explore=Na, index.html#explore=Si or index.html#explore=Ar.
+Use the isotope selector in Atom Profile to change the neutron count.
+Returning to the same explorer retains its settings. Changing elements loads
+the new default isotope and resets the camera to fit. Reload also resets
+temporary settings. The folder name is unchanged.
+
+TRY MERCURY THROUGH RADON
+Open index.html#explore=Hg (or Tl, Pb, Bi, Po, At, Rn).
+Defaults: Hg-202, Tl-205, Pb-208, Bi-209, Po-209, At-210 and Rn-222.
+Use the Atom Profile dropdown for the 21 isotope choices in this group.
+Bi-209 is radioactive but changes extraordinarily slowly. Po, At and Rn have
+no stable isotopes. The bracketed table values are not average atomic weights.
+Open Completing Period 6 to follow 6p from Tl1 to Rn6, after Hg's filled 5d10.
+Descriptions distinguish one atom from mercury liquid or radon gas in bulk.
+Read the Science and Electrical Engineering panel for age-appropriate uses
+and safety context, including indoor radon testing and mitigation.
+Navigation continues through all elements H–Lr and stops before Rf.
+See PHASE-6L-REPORT.md for this phase's sources, tests and limitations.
+
+TRY HAFNIUM THROUGH GOLD
+Open index.html#explore=Hf (or Ta, W, Re, Os, Ir, Pt, Au).
+Defaults: Hf-180, Ta-181, W-184, Re-187, Os-192, Ir-193, Pt-195, Au-197.
+The Atom Profile offers 34 new isotope/state choices. Ta-180m is a very
+long-lived natural nuclear isomer. Re-187 is naturally radioactive.
+Open Across the 5d Metals for the filling pattern and Pt/Au exceptions.
+Science and Electrical Engineering explains devices, alloys and compounds.
+Gold resists corrosion, although silver and copper conduct electricity better.
+Next connects Lu to Hf and continues through the completed period 6.
+See PHASE-6J-REPORT.md for this phase's tests, sources and limitations.
+
+TRY TERBIUM THROUGH LUTETIUM
+The detached lanthanide row is now complete. Open index.html#explore=Tb,
+#explore=Dy, #explore=Ho, #explore=Er, #explore=Tm, #explore=Yb or #explore=Lu.
+Defaults: Tb-159, Dy-164, Ho-165, Er-166, Tm-169, Yb-174 and Lu-175.
+Atom Profile offers 29 isotope choices across these seven elements.
+The inner 4f group fills from nine electrons in Tb to fourteen in Yb.
+Lu keeps fourteen 4f electrons and adds one 5d electron. The two outermost
+6s electrons are not the entire bonding picture. Open Across the Lanthanides.
+Lu-176 is naturally radioactive; Tb-161, Ho-166, Tm-170 and Lu-177 are
+produced radioactive choices. Lu-177 medicines have established uses;
+Tb-161 cancer treatments are described as research and clinical trials.
+The full app now has 95 explorers and 383 isotope/nuclear-state records.
+See PHASE-6I-REPORT.md for this phase's tests, sources and limitations.
+
+TRY THE FIRST EIGHT LANTHANIDES
+Open index.html#explore=La (or Ce, Pr, Nd, Pm, Sm, Eu, Gd).
+Defaults: La-139, Ce-140, Pr-141, Nd-142, Pm-145, Sm-152, Eu-153, Gd-158.
+Use Atom Profile to choose isotopes. Promethium has no stable choice and no
+ordinary natural percentage. Natural Eu-151, Sm-147/148 and Gd-152 are
+radioactive. Ce-142 has no observed decay; a search limit is not a half-life.
+All eight show six shells. Quantum groups a 54-electron core; use Explore
+Subshells to isolate occupied 4f, 5d or 6s states. La has no occupied 4f.
+Open Across the Lanthanides for the row placement and electron-filling guide.
+See PHASE-6H-REPORT.md for sources, all 35 isotopes and validation.
+
+TRY CESIUM, BARIUM, FRANCIUM AND RADIUM
+Open index.html#explore=Cs, #explore=Ba, #explore=Fr or #explore=Ra.
+Defaults: Cs-133 (55p/78n/55e), Ba-138 (56p/82n/56e),
+Fr-223 (87p/136n/87e), Ra-226 (88p/138n/88e).
+Isotopes: Cs 133/134/137; Ba 130/132/134/135/136/137/138/133/140;
+Fr 223/221; Ra 223/224/226/228. All Fr/Ra isotopes are radioactive.
+Cs/Ba show twelve occupied subshells at full detail. Fr/Ra show every Bohr
+electron and nucleon, seven rings and sixteen selectable wave/subshell states.
+The heavy quantum overview combines the inner core; Explore Subshells can
+isolate any occupied state. Open Compare Groups 1 and 2 below the science panel.
+See PHASE-6G-REPORT.md for verification and limitations.
+
+TRY THE FIRST FOUR ELEMENTS OF PERIOD 5
+Open index.html#explore=Rb, #explore=Sr, #explore=Y or #explore=Zr.
+Rubidium begins 5s; strontium fills it. Yttrium and zirconium add 4d
+electrons. Across Period 5 explains why both 4d and 5s matter in these metals.
+All electrons, nucleons and occupied states remain visible at full detail.
+The isotope selector includes:
+Rubidium: 85 (default), 87. Strontium: 84, 86, 87, 88 (default), 90.
+Yttrium: 89 (default), 90. Zirconium: 90 (default), 91, 92, 94, 96, 89.
+Rb-87 and Zr-96 are naturally radioactive and extremely long-lived.
+Ordinary natural strontium and yttrium are stable. Sr-90, Y-90 and Zr-89
+are radioactive choices with specialized uses, not ordinary percentages.
+Use the source and isotope guides to learn more.
+
+TRY PERIOD 4
+Select potassium through krypton, or open index.html#explore=Kr.
+Open Across Period 4 below Engineering Connection. Chromium uses 3d5 4s1;
+copper uses 3d10 4s1. Zinc completes 3d; gallium through krypton fill 4p.
+Select Filled 3d subshell or Valence electrons in the new elements to compare
+their roles. In quantum Explore Subshells, select 3d for one clear shape.
+All electrons, nucleons and occupied states remain present at full detail.
+Natural K-40, Ca-48 and V-50 are radioactive; the isotope selector and
+abundance guide explain them. No decay animation or radiation experiment
+is performed. All three explanation levels remain available.
+
+NEW ISOTOPE CHOICES
+Zn: 64 (default), 66, 67, 68, 70, 65. Ga: 69 (default), 71, 67, 68.
+Ge: 70, 72, 73, 74 (default), 76, 68. As: 75 (default), 74.
+Se: 74, 76, 77, 78, 80 (default), 82, 75. Br: 79 (default), 81, 82.
+Kr: 78, 80, 82, 83, 84 (default), 86, 85.
+Ge-76 and Se-82 are natural, extremely long-lived radioactive isotopes.
+Kr-78 has reported rare-decay evidence that needs independent confirmation.
+Bromine proportions are ranges. Produced isotopes have no invented percentage.
+
+TRY PERIOD 3
+Sodium through argon show three occupied shells, with 1 through 8 outer
+electrons. Sodium begins 3s, magnesium fills it, and aluminum through argon
+fill 3p. Open Across Period 3 below Engineering Connection for a short guide.
+Use the explanation-level buttons to change the reading level.
+All electrons remain selectable in Bohr mode. Wave mode has a band for each
+occupied subshell. Quantum Overview shows them all; Explore Subshells isolates
+one. No medium/heavy visual reduction is applied to sodium through barium.
+New isotope sets: Na-22/23/24; Mg-24/25/26; Al-26/27; Si-28/29/30;
+P-31/32; S-32/33/34/35/36; Cl-35/36/37; Ar-36/38/39/40.
+Use Previous Element and Next Element to move by atomic number.
+Previous stops at hydrogen. Navigation is continuous through lawrencium, which
+stops before Rf when going forward. Unfinished
+neighbors are never skipped.
+Return to the table to choose any other element.
+
+TRY HYDROGEN
+Hydrogen-1 (Protium) has 1 proton, no neutron and 1 electron.
+Hydrogen-2 (Deuterium) has 1 proton, 1 neutron and 1 electron; it is stable.
+Hydrogen-3 (Tritium) has 1 proton, 2 neutrons and 1 electron; it is radioactive
+with a half-life of about 12.3 years. The picture does not simulate decay.
+The isotope selector changes only the neutron count. Hydrogen-1's Neutron
+option is disabled. Hydrogen's only electron is also its valence electron.
+All three models work. Schrödinger shows only the occupied 1s cloud.
+Natural Abundance and Cosmic Context explains variable Earth abundances and
+their distinction from space. Verified sources are available in the profile.
+
+TRY THE COPPER EXPLORER
+- Choose an isotope in the atom profile: stable 63/65 or radioactive 64/67.
+- Open the isotope details for Earth abundance, space context, and sources.
+- Choose Bohr for shells, de Broglie for waves, or Schrödinger for clouds.
+- Choose Elementary, Middle School, or High School for the explanations.
+- Drag to turn the atom. Scroll or pinch to zoom.
+- Select a particle type, or click/tap the atom to inspect it.
+- In Schrödinger view, choose a subshell to see its region and electron count.
+- Use Full Screen for an atom-only presentation. Exit Full Screen or Escape
+  returns to the normal view. If browser fullscreen is blocked, the presentation
+  still fills the browser window.
+- Pause stops electron motion or pulsing. Reset View restores the starting view.
+- Help / Controls lists keyboard and touch controls.
+
+All three views show the same selected copper isotope. These are learning models,
+not exact pictures or numerical simulations. See README.txt for details.
+
+EXPLORE INSIDE A PROTON OR NEUTRON
+Select Proton or Neutron, then press Explore Inside. You can also double-click
+or double-tap a visible proton or neutron. A drag only rotates the picture.
+
+Inside, choose Up quark, Down quark, Gluon field, or the whole particle.
+Drag to turn, scroll/pinch to zoom, and use Pause or Reset as usual.
+Back to Atom or Escape returns. Back to Nucleus returns at a closer atom zoom.
+The explanation-level selector works inside too.
+
+Full Screen presents the current view. Inside fullscreen, Back to Atom keeps
+presentation open; Exit Full Screen returns the normal panels.
+
+Proton: two up quarks and one down quark.
+Neutron: one up quark and two down quarks.
+The changing field shows a simplified strong interaction, not real footage.
+The whole folder still opens offline through index.html.
+
+NEW NB–CD EXPLORERS
+Open #explore=Nb, Mo, Tc, Ru, Rh, Pd, Ag or Cd after index.html.
+The isotope selector includes nuclear isomers Tc-99m and Ag-110m.
+The m means an excited nucleus, not an extra neutron. Pd has no occupied 5s.
+See PHASE-7B-REPORT.md for the earlier Nb–Cd phase report.
+
+PHASE 6F — INDIUM THROUGH XENON
+In, Sn, Sb, Te, I and Xe complete Period 5. Their explorers remain available.
+This earlier phase brought the total to 54 explorers and 230 records; the
+current totals are 95 explorers and 383 records.
+
+Choose isotopes in Atom Profile. Tin-117m has the same 50 protons and 67
+neutrons as tin-117, but an excited nucleus. The m does not add a neutron.
+Natural In-115, Te-128/130 and Xe-124/136 are labelled very long-lived
+radioactive isotopes. Tin-117m and produced isotopes have no invented natural
+percentages. Five shells, every electron and all eleven occupied subshells
+remain available in the new elements. See PHASE-6F-REPORT.md for details.

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; font-src 'none'; base-uri 'none'">
+  <title>Interactive Periodic Table &amp; Atom Explorer</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/periodic.css">
+  <script defer src="js/atom-data.js"></script>
+  <script defer src="js/isotope-data.js"></script>
+  <script defer src="js/engine-config.js"></script>
+  <script defer src="js/hydrogen-data.js"></script>
+  <script defer src="js/light-elements-data.js"></script>
+<script defer src="js/period3-data.js"></script>
+<script defer src="js/period4-data.js"></script>
+<script defer src="js/period4-completion-data.js"></script>
+<script defer src="js/period5-data.js"></script>
+<script defer src="js/period5-transition-data.js"></script>
+<script defer src="js/period5-completion-data.js"></script>
+<script defer src="js/outer-s-data.js"></script>
+<script defer src="js/lanthanide-data.js"></script>
+<script defer src="js/heavy-d-data.js"></script>
+<script defer src="js/period6-completion-data.js"></script>
+<script defer src="js/actinide-data.js"></script>
+<script defer src="js/transactinide-data.js"></script>
+<script defer src="js/period7p-data.js"></script>
+  <script defer src="js/periodic-data.js"></script>
+  <script defer src="js/nucleon-data.js"></script>
+  <script defer src="js/explanations.js"></script>
+  <script defer src="js/particle-geometry.js"></script>
+  <script defer src="js/atom-model.js"></script>
+  <script defer src="js/quantum-models.js"></script>
+  <script defer src="js/nucleon-model.js"></script>
+  <script defer src="js/isotope-ui.js"></script>
+  <script defer src="js/subatomic.js"></script>
+  <script defer src="js/presentation.js"></script>
+  <script defer src="js/interactions.js"></script>
+  <script defer src="js/ui.js"></script>
+  <script defer src="js/engine-ui.js"></script>
+  <script defer src="js/app.js"></script>
+<script defer src="js/periodic-ui.js"></script>
+</head>
+<body>
+<section id="periodic-page" role="main">
+ <header class="periodic-header"><div><span class="eyebrow">118 ELEMENTS · ONE CONNECTED STORY</span><h1>Interactive Periodic Table &amp; Atom Explorer</h1><p>Explore the elements from atomic structure to quarks</p></div><a class="home-copper" href="#element=H">H <span>Explore hydrogen</span></a><a class="home-copper" href="#element=Cu">Cu <span>Explore copper</span></a></header>
+ <div class="periodic-content">
+  <div class="home-intro"><p id="table-introduction"></p><div class="home-levels" role="group" aria-label="Explanation level"><button data-home-level="elementary" aria-pressed="false">Elementary</button><button data-home-level="middle" aria-pressed="false">Middle School</button><button data-home-level="high" aria-pressed="true">High School</button></div></div>
+  <div class="table-controls"><label class="search-label" for="element-search">Find an element <span>Name, symbol, or atomic number</span><div class="search-row"><input id="element-search" type="search" placeholder="Try copper, Cu, or 29" autocomplete="off"><button id="clear-search">Clear search</button></div></label><div class="view-options"><div role="group" aria-label="Element display"><button data-table-view="table" aria-pressed="true">Table</button><button data-table-view="list" aria-pressed="false">List</button></div><label><input id="category-color" type="checkbox" checked> Category colors</label></div></div>
+  <fieldset class="family-filters"><legend>Element families · select to filter</legend><div id="family-buttons"></div><button id="clear-filters">Clear filters</button></fieldset>
+  <div class="table-meta"><p id="match-count" role="status" aria-live="polite"></p><p id="scroll-guidance">Groups run across the top; periods run down the side. Scroll sideways on smaller screens.</p></div>
+  <button id="card-jump" hidden>View selected element</button><div class="table-and-card"><div class="table-area"><div id="table-scroll" tabindex="0" role="region" aria-label="Periodic table, horizontally scrollable" aria-describedby="scroll-guidance"><div id="periodic-grid" role="group" aria-label="118 elements in periodic-table order"></div></div><div id="element-list" role="group" aria-label="Elements by atomic number" hidden></div></div>
+  <section id="element-card" aria-labelledby="element-card-title"><div id="card-empty"><span class="eyebrow">START EXPLORING</span><h2 id="element-card-title">Select an element</h2><p>Every element has a story in its place on the table.</p><a href="#element=H">Start with hydrogen →</a><br><a href="#element=Cu">Explore copper →</a></div><div id="card-content" hidden></div></section></div>
+  <details class="table-about"><summary>About this table · Help &amp; sources</summary><div class="about-columns"><section><h2>Reading the table</h2><p>Hydrogen through cadmium have complete explorers. Click or tap a tile for its card, then use Explore. Double-click is a mouse shortcut. Other elements have information cards only.</p><dl id="table-explanations"></dl><p>Keyboard: Tab moves between tiles. Arrow keys move to neighboring occupied positions. Enter selects. Escape closes the element card and returns focus to its tile.</p></section><section><h2>Our conventions</h2><p>Hydrogen is a reactive nonmetal, even though it sits in group 1. The detached rows contain La–Lu and Ac–Lr; their individual group numbers are omitted because group-3 conventions vary.</p><p>Families are useful teaching labels, not absolute boundaries. Here Zn, Cd and Hg share the broad d-block/transition-metal family; Po is a post-transition metal and At a halogen. The six metalloids are B, Si, Ge, As, Sb and Te. Elements 109–118 use “Unknown / uncertain properties” to avoid presenting predicted bulk behavior as measured fact. Their conventional groups remain visible.</p><p>Block labels follow the RSC convention, including d for La and Ac and f for Lu and Lr. Block and family are different labels. A filled shell or an exceptional electron configuration does not make a complete classification rule.</p><h2>Local source notes</h2><div id="periodic-sources"></div><p>The table works offline. Opening a reference link is optional and requires internet access.</p></section></div></details>
+ </div>
+</section>
+<section id="explorer-page" hidden>
+<div class="explorer-navigation"><a id="back-table" href="#element=Cu">← Back to Periodic Table</a><span id="explorer-name">Copper Atom Explorer</span><nav class="element-steps" aria-label="Adjacent elements"><button id="previous-element">Previous Element</button><button id="next-element">Next Element</button></nav></div>
+<header>
+  <div class="brand"><span class="element-mark">Cu<small>29</small></span><div><h1 id="explorer-title">Copper Atom Explorer</h1><p id="explorer-subtitle">From electrical conduction to subatomic structure</p></div></div>
+  <nav aria-label="Atomic model"><button data-model="bohr" aria-pressed="true">Bohr Model</button><button data-model="wave" aria-pressed="false">de Broglie Model</button><button data-model="quantum" aria-pressed="false">Schrödinger Model</button></nav>
+</header>
+<main>
+  <section class="instrument" aria-label="Interactive atom">
+    <div class="scene-heading"><div><span id="model-heading" class="eyebrow">01 / BOHR REPRESENTATION</span><h2><b id="isotope-title">Copper-63</b> <span id="charge-title">Neutral atom</span></h2></div><button id="help">Help / Controls</button></div>
+    <nav id="scale-nav" aria-label="Current scale" hidden><button id="back-atom">Back to Atom</button><button id="back-nucleus">Back to Nucleus</button><span id="breadcrumb" aria-live="polite"></span></nav><div id="stage" class="stage"><button id="presentation-back" class="presentation-only" hidden>Back to Atom</button><span id="presentation-model" class="presentation-only"></span><button id="exit-fullscreen" class="presentation-only">Exit Full Screen</button><canvas id="atom" tabindex="0" aria-label="Three-dimensional conceptual copper atom. Arrow keys rotate, plus and minus zoom. Use the particle list to inspect with a keyboard." aria-describedby="model-note">Your browser cannot display the atom. The information panel and particle list remain available.</canvas><canvas id="transition-canvas" aria-hidden="true" hidden></canvas><p id="fallback" hidden>The visualization could not initialize. Try a current version of Chrome, Edge, Firefox, or Safari. You can still explore the particle information below.</p><div class="zoom"><button id="zoom-in" aria-label="Zoom in">+</button><output id="zoom-level" aria-label="Zoom level">1.0×</output><button id="zoom-out" aria-label="Zoom out">−</button></div><span class="scale-note">Not to physical scale</span></div>
+    <div class="toolbar"><button id="fullscreen">Full Screen</button><button id="reset">Reset View</button><button id="pause" aria-pressed="false">Pause Animation</button><button id="labels" aria-pressed="true">Hide Labels</button></div>
+    <div class="legend" aria-label="Particle colors"><span><i class="proton"></i>Proton · +1</span><span><i class="neutron"></i>Neutron · 0</span><span><i class="electron"></i>Electron · −1</span><span><i class="selected"></i>Selected</span></div>
+    <p id="model-note">This is a simplified model. Particle sizes and distances are not to scale. Real electrons do not follow fixed circular tracks.</p>
+  </section>
+  <aside>
+    <section class="info model-info"><label id="level-label">Explanation level</label><div class="levels" role="group" aria-labelledby="level-label"><button data-level="elementary" aria-pressed="false">Elementary</button><button data-level="middle" aria-pressed="false">Middle School</button><button data-level="high" aria-pressed="true">High School</button></div><h3 id="model-title">Bohr Model</h3><p id="model-description"></p><div id="quantum-modes" role="group" aria-label="Schrödinger display" hidden><button data-quantum="overview" aria-pressed="true">Overview</button><button data-quantum="explore" aria-pressed="false">Explore Subshells</button></div><p id="quantum-summary" hidden></p><div id="wave-control" hidden><label for="wave-shell">Standing-wave levels</label><select id="wave-shell"><option value="all">All occupied levels</option></select></div><p id="engine-error" role="alert" hidden></p><div id="subshell-control" hidden><label for="subshell">Occupied subshell</label><select id="subshell"><option value="all">All occupied orbitals</option></select><p id="subshell-info" aria-live="polite"></p></div><details id="models-about"><summary>About These Models</summary><p id="simplification-notice"></p><p id="simplification-details"></p></details><details id="compare"><summary>Compare Models</summary><p id="compare-text"></p></details></section>
+    <section class="info"><span class="eyebrow">ATOM PROFILE</span><div class="isotope"><strong id="nuclear-symbol">⁶³Cu</strong><span><span id="profile-isotope">Copper-63</span><br><small id="stability">Stable isotope</small></span></div><label for="isotope-select">Isotope</label><select id="isotope-select" aria-describedby="isotope-change-note"></select><p id="isotope-change-note" class="hint">Change neutrons; keep the same element.</p><dl class="stats"><div><dt>Atomic number</dt><dd id="atomic-number">29</dd></div><div><dt>Mass number</dt><dd id="mass-number">63</dd></div><div><dt>Protons</dt><dd id="protons">29</dd></div><div><dt>Neutrons</dt><dd id="neutrons">34</dd></div><div><dt>Electrons</dt><dd id="electrons">29</dd></div><div><dt>Net charge</dt><dd id="net-charge">0 · neutral</dd></div></dl><p id="configuration" class="configuration">2 – 8 – 18 – 1 <small>Electron shells · [Ar] 3d¹⁰ 4s¹</small></p>
+      <div id="isotope-information"><p id="isotope-half-life"></p><p id="isotope-abundance"></p><p id="isotope-decay"></p><h3>Why this isotope matters</h3><p id="isotope-why"></p><p id="isotope-uses"></p>
+      <details><summary>Natural Abundance and Cosmic Context</summary><div id="abundance-comparison"><div id="abundance-bar" role="img" aria-label="Typical terrestrial copper: Copper-63 69.15 percent; Copper-65 30.85 percent"><span class="abundance-63"></span><span class="abundance-65"></span></div><p class="abundance-labels">Copper-63: 69.15%<br>Copper-65: 30.85%</p></div><p id="abundance-explanation"></p><p id="weighted-explanation"></p><p id="cosmic-explanation"></p></details>
+      <details><summary>Isotope guide</summary><dl id="isotope-guide"></dl></details>
+      <details><summary>Verified sources</summary><ul id="isotope-sources"></ul><p>Source notes are stored locally. Reference links need internet only if opened.</p></details></div></section>
+    <section class="info inspect"><span class="eyebrow">PARTICLE INSPECTOR</span><div id="particle-info" aria-live="polite"><h3>Copper-63</h3><p>Copper-63 contains 29 protons, 34 neutrons, and 29 electrons. It is neutral because it has the same number of positive protons and negative electrons.</p><p>Copper has one electron in its outer shell in this simplified model. Copper’s electron arrangement helps make it a good electrical conductor.</p></div><button id="clear" hidden>Clear Selection</button><button id="explore-inside" hidden>Explore Inside</button><label for="particle-list">Inspect a particle type</label><select id="particle-list" aria-describedby="category-note"><option value="" hidden>Choose a particle type…</option></select><p id="category-note" class="hint"></p><p class="hint">Pause motion for easier selection. Choose a type to highlight a visible representative.</p></section>
+    <section id="internal-panel" class="info" hidden>
+      <h3 id="internal-title"></h3><p id="internal-description"></p>
+      <p id="charge-parts"></p><p id="charge-equation" class="charge-equation"></p><p id="charge-guidance"></p>
+      <label for="internal-selector">Inspect inside</label><select id="internal-selector"><option value="" hidden>Choose a component…</option><option value="up">Up quark</option><option value="down">Down quark</option><option value="gluon">Gluon field</option><option value="whole">Whole nucleon</option></select>
+      <div id="internal-component" aria-live="polite"></div><button id="internal-clear" hidden>Clear Selection</button>
+      <h3>Strong interaction</h3><p id="strong-description"></p><h3>Where the mass comes from</h3><p id="mass-description"></p>
+      <details><summary>More inside</summary><p id="sea-description"></p><p id="color-description"></p></details>
+      <details><summary>About this view</summary><p id="internal-limits"></p></details>
+      <details><summary>Compare Proton and Neutron</summary><table class="nucleon-table"><thead><tr><th>Property</th><th>Proton</th><th>Neutron</th></tr></thead><tbody><tr><th>Valence quarks</th><td>up, up, down</td><td>up, down, down</td></tr><tr><th>Electric charge</th><td>+1</td><td>0</td></tr><tr><th>Location</th><td>nucleus</td><td>nucleus</td></tr><tr><th>Relative mass</th><td>about 1</td><td>about 1</td></tr></tbody></table><p id="nucleon-compare"></p></details>
+    </section>
+    <section class="conduction"><h3>One outer electron. A starting point.</h3><p>Copper has one electron in its outer shell in this simplified model. In solid copper, outer electrons can move through the material and carry electrical current.</p></section>
+  </aside>
+  <section class="reference"><details><summary>About this model</summary><p id="about-model">Particle sizes are not shown to scale, and nucleus-to-electron distances are compressed to make both visible. Bohr-style paths are conceptual, not literal physical tracks. Protons and neutrons have internal structure, which will be explored in a later phase. Copper-63 is one stable isotope of copper.</p></details><details><summary>Quick definitions</summary><dl id="definitions"><dt>Proton</dt><dd>A positively charged particle in the nucleus.</dd><dt>Neutron</dt><dd>An electrically neutral particle in the nucleus.</dd><dt>Electron</dt><dd>A negatively charged particle described by quantum states around the nucleus.</dd><dt>Element</dt><dd>A substance whose atoms share the same proton count.</dd><dt>Atomic number</dt><dd>The number of protons; it identifies the element.</dd><dt>Mass number</dt><dd>Total protons and neutrons in this isotope, not the periodic table’s weighted average atomic mass.</dd><dt>Ion</dt><dd>An atom with a net charge caused by gaining or losing electrons.</dd><dt>Isotope</dt><dd>Atoms of the same element with different numbers of neutrons.</dd><dt>Valence electron</dt><dd>An electron in the outer region involved in bonding; this model highlights copper’s single outer-shell electron.</dd></dl></details></section>
+</main>
+<p id="status" role="status" aria-live="polite"></p>
+<dialog id="help-dialog" aria-labelledby="help-title"><h2 id="help-title">Explore the atom</h2><ul><li>Drag with a mouse or one finger to rotate.</li><li>Scroll or pinch with two fingers to zoom.</li><li>Tap or click a particle to inspect it; empty space clears it.</li><li>Use Pause if motion makes selection difficult.</li><li>Reset View restores the starting angle and zoom.</li><li>Focus the atom: arrow keys rotate; + and − zoom.</li><li>Use the particle list to select with a keyboard.</li></ul><p>Zoom is limited so the nucleus stays in view. Rotate it to reveal other nucleons.</p><button id="close-help">Close</button></dialog>
+</section>
+<noscript><p>JavaScript is disabled. Enable it to interact with the atom. The atom profile and definitions above are still available offline.</p></noscript>
+</body>
+</html>

@@ -1,0 +1,793 @@
+PHASE 6M — COMPLETE ACTINIDE ROW — 2026-09-13
+
+Curium through lawrencium now extend the existing explorer. All 15 detached
+actinide tiles (Ac–Lr) open; americium's existing data and explorer are preserved.
+Current coverage: 103 explorers (H–Lr), 396 isotope/nuclear-state choices.
+Elements 104–118 retain information cards. Next stops at Lr, before Rf.
+
+This phase adds Cm-244/247, Bk-247/249, Cf-249/251/252, Es-252, Fm-257,
+Md-258, No-259 and Lr-262/266. All 13 are radioactive. Lawrencium defaults to
+Lr-266, while its table tile retains [262] under the project's IUPAC convention.
+Lr-266's tentative assignment and large half-life uncertainty are explicit.
+Nobelium completes 5f14; lawrencium uses [Rn] 5f14 7s2 7p1, not the older 6d1
+prediction. Exact seven-shell counts and neutral configurations survive isotope changes.
+All three shared models, reading levels and nucleon interiors remain available.
+No dependencies or network runtime were added. Open index.html directly.
+All 69 earlier regressions and ten Phase 6M suites pass. Copper canvas goldens
+are unchanged. No pending checks remain. See PHASE-6M-REPORT.md for the data,
+sources, file list and measured test results.
+
+Earlier phase notes below are historical snapshots.
+------------------------------------------------
+
+PHASE 6L — ACTINIUM THROUGH AMERICIUM — 2026-09-13
+
+The detached actinide row now opens Ac, Th, Pa, U, Np, Pu and Am.
+There are 95 enabled explorers (H–Am) and 383 isotope/nuclear-state choices.
+The remaining 23 elements retain information cards; Next stops before Cm.
+This phase adds 16 isotope choices, all radioactive, with calculated neutrons.
+
+Explicit NIST ground states preserve the 5f/6d/7s exceptions. Seven Bohr shells
+show every electron. Quantum Overview groups an 86-electron radon core and
+emphasizes occupied 5f, 6d and outer 7s states. Every occupied subshell remains
+inspectable. The shared renderers and existing nucleon interiors are retained.
+
+Original three-level text explains natural traces, nuclear versus chemical
+changes, decay versus fission, spacecraft decay heat, specialized Ac-225 therapy
+and sealed Am-241 smoke-detector sources. No production or handling procedures.
+Rounded half-lives keep the panel readable; named evaluated values remain in data.
+Ac [227], Np [237], Pu [244] and Am [243] are representative mass numbers.
+Th, Pa and U retain standard atomic weights and supported terrestrial fractions.
+
+Open index.html directly from file://. No server, installation, build or network.
+See PHASE-6L-REPORT.md for the data, sources, changed files and validation results.
+The earlier phase sections below are historical and retain their original totals.
+
+PHASE 6K — MERCURY THROUGH RADON — 2026-09-13
+
+Period 6 is complete. All H–Ra explorers are enabled: 88 elements with 367
+isotope/nuclear-state choices. The other 30 elements retain information cards.
+This phase adds Hg, Tl, Pb, Bi, Po, At and Rn and 21 isotope choices.
+Au connects through Hg–Rn to the existing Fr/Ra explorers; Next stops at Ac.
+
+All three models use the existing shared engine and exact six-shell counts.
+A 78-electron inner core is grouped in Quantum Overview, with 6s and occupied
+6p emphasized. Hg has no 6p electrons; Tl–Rn progress from 6p1 to 6p6.
+All occupied subshells remain inspectable. Atom views are not bulk liquids or gases.
+
+Bi-209 is radioactive but effectively stable for everyday purposes. All Po,
+At and Rn isotopes are radioactive. Half-life appears only for radioactive
+choices. Tl/Pb abundance ranges describe different Earth samples, not one
+fixed mixture. Po [209], At [210] and Rn [222] are representative mass numbers.
+New element tiles show compact standard or bracketed masses without moving cells.
+
+Original three-level explanations cover material uses, exposure prevention,
+radon testing/mitigation and specialized At-211 research. No handling methods
+are included. Open index.html directly: no server, packages, build or network.
+See PHASE-6K-REPORT.md for changed files, data, sources, tests and limitations.
+Implementation: period6-completion-data.js loads after heavy-d-data.js and
+before periodic-data.js in both entry points. heavyPExplorer opts into the
+existing heavy-atom rendering paths. The inner core is reused from validated
+Au data; 6s/6p occupancy and default nuclei are checked independently.
+validatePeriod6CompletionData checks identities, shell/subshell progression,
+defaults and required radioactivity. validatePeriodicData rejects replacement
+of the three bracketed masses with ordinary decimal weights. The data module
+contains 19 source records. No renderer, control or route is duplicated.
+
+Earlier sections below are historical and retain their original totals.
+
+PHASE 6J — HAFNIUM THROUGH GOLD — 2026-09-12
+
+There are now 81 explorers: H through Au, plus Fr and Ra, with 346
+isotope/nuclear-state records. The remaining 37 elements have information
+cards. This phase adds Hf, Ta, W, Re, Os, Ir, Pt and Au with 34 choices.
+Use Explore Atom or double-click an enabled table tile. Next runs through
+Lu–Hf–Au and stops before Hg; the Fr/Ra navigation gaps remain unchanged.
+
+All three models and reading levels use the existing shared engine.
+Pt is [Xe] 4f14 5d9 6s1; Au is [Xe] 4f14 5d10 6s1. Exact particle,
+shell and subshell totals are validated, including their exceptions.
+Ta-180m is a natural observationally stable nuclear isomer, not an ordinary
+stable isotope. Search limits are not displayed as measured half-lives.
+
+Open index.html directly. No install, server, build or network is required.
+See PHASE-6J-REPORT.md for the full data, changed files, tests and limitations.
+IMPLEMENTATION: js/heavy-d-data.js loads after lanthanide-data.js and before
+periodic-data.js in both HTML entry points. It reuses the validated 68-electron
+[Xe] 4f14 core. heavyDExplorer opts into existing heavy-atom display rules;
+filledCoreSubshells identifies 4f, and importantSubshells identifies 5d/6s.
+The quantum overview has three layers; all fourteen occupied subshells remain
+inspectable. No geometry is duplicated per element. validateHeavyDData checks
+measured configurations, defaults, identities and isotope classifications.
+createAtom distinguishes produced radioactive isomers from explicitly natural,
+observationally stable isomers. Both require coherent excited/ground-state data.
+
+Earlier sections below are historical and retain their original totals.
+
+PHASE 6I — TERBIUM THROUGH LUTETIUM — 2026-09-12
+
+The lanthanide row is complete. There are 73 explorers: H through Lu, plus
+Fr and Ra, with 312 isotope/nuclear-state records. The 45 other elements
+retain information cards. Hafnium and the actinides are not enabled.
+
+This phase adds Tb, Dy, Ho, Er, Tm, Yb and Lu with 29 isotope choices.
+Single-click for a card; use Explore Atom or double-click an enabled tile.
+Navigation now continues from Gd through Lu, then stops before unfinished Hf.
+
+All three models, reading levels, isotope choices, representative particle
+selections, nucleon interiors, gestures and fullscreen controls are supported.
+Yb has [Xe] 4f¹⁴ 6s². Lu has [Xe] 4f¹⁴ 5d¹ 6s². Each has six shells;
+all electron and nucleon counts remain exact at reduced visual detail.
+
+Open index.html directly with all its companion files together. No server,
+installation, framework, CDN, build step or runtime network access is needed.
+See PHASE-6I-REPORT.md for files, sources, QA evidence and limitations.
+Earlier phase sections below are historical and contain their original totals.
+
+PHASE 6H — LANTHANUM THROUGH GADOLINIUM — 2026-09-12
+
+66 explorers are enabled: hydrogen through gadolinium, plus francium and
+radium. There are 283 selectable isotope/nuclear-state records. The other
+52 elements keep information cards. The 118-position table is unchanged.
+Open index.html directly; no installation, build, server or internet is needed.
+
+This phase adds La, Ce, Pr, Nd, Pm, Sm, Eu and Gd and 35 isotopes. The detached
+lanthanide row belongs in Period 6 between Ba and Hf and saves table space.
+Barium now connects to lanthanum. Navigation continues through gadolinium,
+then stops before unfinished terbium. Francium/radium boundaries are unchanged.
+
+All three models and reading levels are supported. Bohr keeps every electron
+and nucleon. Wave shows all occupied subshells. Quantum Overview groups the
+54-electron xenon core and emphasizes occupied 4f, 5d and 6s states.
+Explore Subshells isolates any occupied state, with a representative f shape.
+Across the Lanthanides explains the series and why outer 6s alone is not the
+whole bonding picture. Science and Engineering covers compounds, alloys,
+magnets, electronics, optics and specialized radioactive applications.
+
+See PHASE-6H-REPORT.md for all records, conventions, validation, measured
+performance and limitations. Earlier phase sections below are historical.
+
+PHASE 6G IMPLEMENTATION — 2026-09-12
+
+outer-s-data.js loads after period5-completion-data.js and before periodic-data.js
+in both entry points. Four immutable element records, eighteen isotope records
+and 21 local source records extend the existing schema. Totals: 58 / 248.
+Explicit Xe and Rn cores plus 6s1/2 and 7s1/2 avoid a generic filling prediction.
+Rn includes 4f14, 5d10, 6s2 and 6p6; Fr/Ra have sixteen occupied subshells.
+validateOuterSData composes shared validation with exact-core/default checks
+and rejects stable Fr/Ra or assigned ordinary abundance percentages.
+
+outerSExplorer opts into subshell particle metadata, separate display radii,
+subdued inner wave bands, visible lower wave labels and gold outer clouds.
+All geometric radii and shapes are illustrative, not scientific atomic radii.
+Full detail extends through Z=56. Fr/Ra use the existing heavy complexity tier:
+72 wave segments, DPR cap 1.5, electron decorative scale .78, flat nucleon fill.
+exactHeavyParticles adds a shared unit-circle Path2D per renderer for nucleons.
+The path is released on dispose; actual particles and hit targets stay exact.
+Heavy quantum Overview uses 700 core points plus 262 outer points; isolated
+subshells use 1200 representative points. Cloud points never count electrons.
+core-overview is a distinct selection target with count 86 and no false 6p
+identity. Its information panel explains that the region combines fifteen
+subshells. Existing element rendering stays outside these opt-in conditions.
+
+Source metadata records titles, organizations, supported facts and access dates.
+Nuclear lifetimes are dated snapshots, not live precision evaluations. Ba-130
+uses the 2001 geochemical estimate; CIAAW 2024 supplies abundances. Minor decay
+channels remain in advancedDecayNotes. The shared UI handles all reading levels,
+isotopes, immediate-neighbor guards, fullscreen and nucleon navigation.
+
+qa/phase6g*.cjs are permanent Playwright checks. Earlier suites only change
+availability totals and the unfinished boundary, retaining their science checks.
+See the completion report for measured results and untested hardware.
+
+--- Earlier phase notes (historical) ---
+
+PHASE 6F IMPLEMENTATION — 2026-09-11
+
+js/period5-completion-data.js loads after period5-transition-data.js and before
+periodic-data.js in index.html and tests/atom-engine-test.html. It adds explicit
+In–Xe neutral configurations, 43 nuclear records, three-level teaching content
+and local source metadata. validatePeriod5CompletionData composes the shared
+record checks with independent 4d10/5s2/5p1–6, five-shell and default-mass checks.
+Enabled totals are 54 elements / 230 selectable isotope or isomer records.
+
+period5Completion opts into a distinct eleven-cloud display-radius map. The
+map is display geometry, never scientific atomic radii. Full detail extends
+through Z=54. No particle grouping, dropped subshells or reduced content was
+introduced. Core label and selection code reads filledCoreSubshells instead
+of assuming 3d. Existing 3d elements keep their labels and behavior.
+
+All 18 Period 5 elements share the extended Across Period 5 explanation.
+Earlier scientific records are untouched; only their progression text changes.
+New records use filledCoreSubshells ['4d'], valence.shells [5] and important
+subshells ['5s','5p']. They have no transitionRegion. Quantum Explore reports
+the full subshell occupancy for one representative orbital shape.
+
+Sn-117m uses massNumber 117, metastableStateLabel m, excitationStateId
+excited-314.58-keV, energy 314.58 keV and a selectable ground-state relationship
+to tin-117. It has no natural abundance despite the ground state's abundance.
+Existing same-A switching handles this without architecture changes.
+
+Nuclear lifetimes are named snapshots, not a live precision database. The
+Sn-117m record follows ENSDF's March 2012 update (14.00 days); older 13.76-day
+tables and other measurements differ. Te-128 follows CUORE's 2022 estimate
+(2.19e24 years), distinct from its neutrinoless-decay search limit. Sources
+retain these qualifications without filling the main particle panel with them.
+
+Development QA uses local Node/Playwright/Chrome; users need none of these.
+qa/phase6f*.cjs covers the new batch and previous phases. Earlier availability
+assertions were extended to H–Xe; unsupported guards now target Cs. No old
+science expectations were weakened. Never regenerate the copper golden baseline.
+
+--- Earlier phase notes (historical) ---
+
+PERIOD 5B IMPLEMENTATION — 2026-09-11
+
+js/period5-transition-data.js loads after period5-data.js and before
+periodic-data.js. It adds explicit Nb–Cd configurations and 43 nuclear records.
+validatePeriod5TransitionData composes the existing record validator and checks
+the independently specified defaults, 4d/5s occupancy and occupied shells.
+Full-detail rendering now extends through Z=48. No renderer grouping was added.
+
+Pd: neutralShells [2,8,18,18], no 5s subshell. valence.shells [] intentionally
+means no outer-s selection group, NOT chemically inert/no valence electrons.
+importantSubshells ['4d'] and transitionRegion '4d' retain 4d selection and
+emphasis. noOuterS hides the nonexistent outer-s category. Existing occupied
+subshell selectors and geometry omit 5s directly from the data.
+
+Nuclear states have massNumber, metastableStateLabel, excitationStateId,
+excitationEnergyKeV, groundState identity/link, halfLife, decayModes and
+nuclearStateDescriptions at all three levels. All new records explicitly store
+neutralElectronCount. Tc-99m and Ag-110m use the familiar m suffix; the excitation
+identifier disambiguates which energy level this means. Ag-110 ground-state
+identity is stored but is not a selectable record in this phase.
+
+createAtom validates isomer counts, energy/state identity, ground-state relation,
+radioactive metadata and absent ordinary abundance before state mutation.
+app.setIsotope only rebuilds nucleus geometry when massNumber changes. Same-A
+changes retain particle-array/object identity, all renderer instances and camera.
+C.atomLabel preserves displayName, including m, across profile, particle panel,
+status, fullscreen and nucleon breadcrumb. Isomer information lives near isotope
+information and clears on ordinary-state selection. Isotope switching from a
+nucleon interior keeps the established return-to-atom behavior.
+
+Across Period 5 is updated for Rb–Cd by cloning only the four earlier element
+records' explanation field. Copper rendering was checked against byte-identical
+canvas snapshots. Scientific records remain separate from display geometry.
+
+Tests are in ../qa/phase7b*.cjs. The QA runtime is a development dependency only;
+the distributed app requires no Node or Playwright. Historical suites received
+only availability/boundary expectations needed for the expanded completed set.
+
+--- Earlier phase notes (historical) ---
+
+PERIOD 5A IMPLEMENTATION — 2026-09-10
+
+New js/period5-data.js defines four explicit frozen neutral records and
+15 isotopes. It loads after period4-completion-data.js in the main page and
+development harness. period5Detail opts these records into five-shell
+display extents and subshell role metadata. Full tier now extends to Z=40.
+
+The 36-electron krypton core is stored explicitly. 4d occupancy is 0,0,1,2;
+5s occupancy is 1,2,2,2. transitionRegion is 4d for Y/Zr. valence.shells [5]
+defines the outer-shell selection group; importantSubshells includes both
+4d and 5s for transition chemistry. Never equate the outer-shell count with
+all chemically relevant states. No generic filling-order algorithm is used.
+
+particle-geometry.js assigns metadata over every occupied shell. The
+existing transition group now reads its subshell and principal number
+from the element record. ui.js/engine-ui.js use active 4d/5s labels while
+retaining prior 3d/4s behavior. quantum-models.js adds five-shell extents,
+subdued inner waves, representative 4d isolation and correct singular
+electron labels. Physical geometry, isotope replacement and renderer
+disposal remain shared. No cloud is made per electron.
+
+index.html adds native adjacent-element buttons; periodic-ui.js binds them
+once through the existing hash router. It validates adjacent availability
+both when setting disabled state and on activation. H has no previous
+explorer; Zr cannot navigate into unfinished Nb. periodic.css wraps controls
+on narrow screens. The separate engine harness does not load table routing.
+
+validatePeriod5Data composes prior isotope validation with independent
+Kr-core / 4d / 5s and shell expectations. enabledValidation covers 40
+elements and 144 isotopes. Natural Rb-87/Zr-96 have radioactive labels but
+retain CIAAW fractions. Produced radioisotopes have null naturalAbundance.
+Half-lives preserve named source values; student displays round them.
+
+../qa/phase7a*.cjs covers the new isotope/model matrix, native selection,
+fullscreen/interiors, gestures, adjacent routing, state, shapes and
+performance. The regression runner executes all earlier suites through
+6D. Availability/unfinished guards were updated to H–Zr / Nb without
+relaxing earlier scientific expectations. QA is outside the portable app.
+
+Next: curate Nb and later records, explicitly verify 4d/5s exceptions and
+profile the additional states before enabling routes. Current measurements
+support full detail through Zr. No student ions, reactions, decay animation,
+molecules or new model were introduced. See PHASE-7A-REPORT.md.
+
+PREVIOUS PHASE RECORD (historical; current scope is above)
+
+PHASE 6D IMPLEMENTATION — 2026-09-10
+
+js/period4-completion-data.js adds 7 frozen neutral records and 35 isotopes.
+It loads after period4-data.js in index.html and the development harness.
+period4Completion opts only these records into filledCoreSubshells ['3d'],
+3d/4s/4p roles and distinct cloud extents. Existing renderers are reused.
+No inferred Aufbau filling, per-electron cloud or runtime source fetch.
+
+engine-config.js extends the full tier to Z=36; light H–Ne behavior remains.
+periodic-data.js completedExplorerSymbols enables exactly H–Kr.
+particle-geometry.js attaches filledCore metadata and a category without
+changing positions. engine-ui.js selects a physical 3d electron in Bohr,
+wave-3d in Wave and orbital-3d in Quantum. Valence highlights the actual
+outer 4s/4p electron group. Filled core is not the earlier transition role.
+ui.js and engine-ui.js explain roles and capacities; quantum-models.js
+retains all occupied states with representative d/p shapes on isolation.
+
+period4-data.js validation accepts valid rangePercent pairs or percentages.
+Natural eligibility is independent of radioactivity. halfLife.evidence
+qualifies Kr-78 across selection, stability and abundance display, while
+stable=false is the internal grouping flag. Do not strip that evidence
+when displaying/exporting the value. Source notes retain uncertainty and
+the need for independent confirmation; it is not a settled stable/unstable
+claim. Br abundance ranges do not form one fixed 100-percent bar chart.
+
+validatePeriod4Completion checks new configurations, shell populations,
+isotope identity, decay, sources and three-level text. enabledValidation
+checks all 36 elements and 129 isotopes. Tests inject six invalid records.
+Across Period 4 updates existing K–Ni lesson records while leaving copper's
+configuration, lesson visibility and saved canvas baselines intact.
+
+QA lives in ../qa; phase6d*.cjs and their JSON results cover all new isotope
+and model combinations, input/navigation/levels, shape roles, performance
+and regressions. Prior availability/guard assertions now use H–Kr / Rb;
+earlier scientific and functional expectations are unchanged.
+
+Next Rb–Xe: add reviewed data first, verify explicit 4d/5s/5p exceptions,
+extend source validation and test matrix, then benchmark fifth-shell views.
+Do not simply raise a threshold. Retain full Kr detail; use measured device
+constraints to choose later visual sampling. No moderate simplification
+is needed for the current batch based on the measured desktop results.
+See PHASE-6D-REPORT.md for the complete file inventory and limitations.
+
+PREVIOUS PHASE RECORD (historical; current scope is above)
+
+PHASE 6C IMPLEMENTATION — 2026-09-10
+
+Created js/period4-data.js: ten explicit ground-state records, 39 isotopes,
+three-level education, transition roles, period progression and local sources.
+Loaded in index.html and tests/atom-engine-test.html after period3-data.js.
+Scientific data remains frozen and separate from renderer/view state.
+
+Updated js/periodic-data.js and periodic-ui.js: availability H–Cu and wording.
+particle-geometry.js: opt-in period4Detail subshell assignments; transition
+category alongside outer 4s, without changing earlier physical geometry.
+atom-model.js: virtual group-transition selection highlights all actual 3d
+electrons. Virtual groups never add a physical particle.
+quantum-models.js: separate period-4 s/p/d wave extents; subdued core bands,
+emphasized 3d/4s; four-shell cloud extents; transition metadata on hit targets.
+Existing representative orbital algorithm and all-layer full-tier rendering
+are reused. No per-element page or renderer, no per-electron cloud.
+ui.js / engine-ui.js: role-aware headings, 3d selection across models,
+principal level/capacity/region labels, dynamic Across Period 3/4 title and
+Cr exception, no redundant long valence appendix in the new particle panel.
+Clear stale status messages when loading another element.
+isotope-ui.js: permit documented naturalComponent radioisotopes in abundance
+comparisons; explicit radioactive text labels and long-lived classifications.
+
+C.validatePeriod4Data validates configurations, identity arithmetic, decay,
+natural-abundance eligibility, sources and three-level texts. Shared
+C.validateEnabledData validates all 29 elements and 94 isotopes. Full tier
+for Z=11..29 was already present; no engine-config edit was needed.
+
+QA additions: phase6c.cjs, phase6c-interactions.cjs, phase6c-roles.cjs,
+phase6c-performance.cjs and phase6c-golden.cjs. Existing phase5/51/6a/6b
+tests only update availability expectations and move the unfinished guard
+from potassium to zinc. Earlier functional expectations remain intact.
+
+Future Zn–Kr: add authoritative explicit records and sources, then review
+shell/subshell roles and 4p radii. Enable through completedExplorerSymbols
+only after tests pass. The generalized engine remains the single path.
+No new runtime dependency, fetch, listener loop, or duplicated scene cache.
+
+PREVIOUS PHASE RECORD (historical; current scope is above)
+
+PHASE 6B IMPLEMENTATION — 2026-09-09
+
+Created js/period3-data.js: 8 elements, 25 isotopes, configurations, valence,
+three-level explanations, applications, Period 3 progression and local sources.
+It loads after light-elements-data and before periodic-data. New frozen records
+use the shared scientific atom and generalized rendering engines.
+
+Updated runtime:
+index.html and tests/atom-engine-test.html: load the new local module.
+js/periodic-data.js and js/periodic-ui.js: 19-symbol availability and home text.
+js/light-elements-data.js: validate isotope explanations through atomic number 18.
+js/engine-config.js: explicit full tier for Z=11..29; age-adjusted full-detail
+notices. Existing medium/heavy rules remain for future larger atoms.
+js/quantum-models.js: separate s/p wave radii at any occupied shell; three-shell
+cloud extents; full-tier Overview renders each occupied subshell. No cloud per
+electron, no hidden inner-state grouping. Transparency preserves the nucleus.
+js/engine-ui.js: native Across Period 3 disclosure, synchronized level text,
+full-detail notices, and no irrelevant valence paragraph on Period 3 inner states.
+No element-specific renderer, separate HTML page, remote dependency or CSS
+redesign was introduced. Existing paths and controls are preserved.
+
+Validation:
+C.validatePeriod3Data checks every default/isotope through C.validateRecord,
+identity arithmetic, full configuration text, three-level fields, radioactive
+half-life and decay metadata, abundance and source keys. C.period3Validation
+reports 8/25; C.enabledValidation reports 19/55. QA includes negative cases.
+The basic table still uses Aluminium; isotope IDs use aluminum-MASS.
+
+QA created: phase6b.cjs, phase6b-interactions.cjs, phase6b-performance.cjs in qa/.
+Updated earlier phase5, phase51 and phase6a availability/guard expectations.
+PNG screenshots and JSON reports stay in qa/, outside the portable app.
+Updated START-HERE, README, SOURCES and TEST-RESULTS.
+
+Sources:
+CIAAW terrestrial intervals are rendered as labelled ranges, not midpoints.
+Na/Al/P have one stable isotope and no spurious multi-component bar. Ar-40's
+atmospheric dominance is distinguished from CIAAW's broader terrestrial range.
+Na-22/24 half-lives use rounded NIST results; Al-26 uses BIPM/DDEP 717000 y;
+P-32/S-35 use Princeton rounded values. Cl-36 includes its minor EC branch.
+Ar-39 retains the conventional CIAAW/IAEA 269 y with that label. DEAP-3600's
+newer 302 +/- 8(stat) +/- 6(sys) y measurement is recorded in source metadata;
+269 y must not be described as an uncontested latest precision evaluation.
+Uses are qualified as research, specialized medicine or material applications.
+Chemical purity is explicitly distinguished from Si-28 isotope enrichment.
+
+Future enablement:
+Add curated neutral element and isotope records, three-level education and
+source keys, load the data module before periodic-data, and add only verified
+symbols to completedExplorerSymbols. C.mergeBasic supplies shared table facts.
+Validate before availability is enabled. Do not manufacture ion structures.
+For potassium through copper, next add K/Ca first, then Sc–Ni in a bounded
+batch with careful 3d/4s occupancy, chromium/copper exceptions and valence
+explanations. Copper already exists: regress it rather than duplicate it.
+Full-detail tier is already reserved through Z=29; unfinished symbols stay guarded.
+
+Known limits: qualitative clouds (not exact radial nodes or calculated total
+density), compressed scales, no decay animation. No Previous/Next controls.
+See TEST-RESULTS for actual execution and device/browser limitations.
+
+HISTORICAL PHASE 6A NOTES (availability superseded above)
+
+PHASE 6A IMPLEMENTATION — 2026-09-09
+
+Created js/light-elements-data.js: nine full element records, 23 isotope
+records, three explanation levels, engineering/isotope/cosmic context and
+source metadata. It loads after hydrogen-data and before periodic-data.
+C.validateEnabledData checks all 11 elements and 30 isotopes at startup.
+Records remain separate from view state and geometry; shared engine retained.
+
+Changed runtime files:
+index.html — data loading, home/help availability text.
+js/periodic-data.js — explicit 11-symbol explorer registry.
+js/periodic-ui.js and css/periodic.css — remove tile badge markup and style.
+js/particle-geometry.js — valence count and single-shell categories.
+js/ui.js and js/engine-ui.js — occupied choices, group inspection, per-electron
+charge/mass, level-aware copy and duplicate-paragraph suppression.
+js/atom-model.js — highlight all selected outer electrons, no extra particles.
+js/quantum-models.js — opt-in occupied 1s/2s/2p wave bands and light-atom cloud
+extents; concentrated spherical 1s density. Existing heavy-atom behavior retained.
+js/isotope-ui.js — range-aware terrestrial comparisons, single-isotope handling,
+per-level isotope uses and accessible abundance labels.
+tests/atom-engine-test.html and tests/development-data.js — share public carbon
+records instead of a second copy; retain Xe/U development-only fixtures.
+
+New QA: qa/phase6a.cjs and qa/phase6a-performance.cjs; JSON reports and PNGs.
+Updated QA availability expectations: phase5.cjs and phase51.cjs.
+Updated phase45.cjs to select the first actual wave option (carbon now uses 1s).
+Updated START-HERE, README, SOURCES and TEST-RESULTS documentation.
+
+The virtual group-valence selection is view state, never a scientific particle.
+C.waveStates preserves old shell IDs for H/Cu/development heavy atoms; the new
+waveResolution: subshell records opt into occupied subshell IDs. loadAtom
+validates before replacing a scene and disposes old particle/cloud caches.
+
+Sources use CIAAW for stable compositions, RSC for neutral configurations and
+applications, evaluated TUNL for Be-10, IAEA for PET radionuclides, NIST for
+C-14 and spectroscopy, DOE for isotope applications, NASA for cosmic context.
+Be-10 uses the 2019 recommended 1.385 +/- 0.016 million years (display 1.39),
+not the older CIAAW Be page value. C-14 uses the familiar NIST/CIAAW 5730-year
+classroom convention; do not label it the newest precision evaluation.
+
+Recommended next batch: sodium through argon (11–18), retaining a small,
+source-checked isotope catalog. This batch is not implemented here.
+
+HISTORICAL IMPLEMENTATION NOTES (availability superseded above)
+
+PHASE 5.1 IMPLEMENTATION
+
+New runtime file: js/hydrogen-data.js. It loads after engine-config and before
+periodic-data, adds full hydrogen/isotope records and structured education,
+then C.mergeBasic supplies the same basic metadata as the table. Development
+hydrogen records reference this same catalog; the old fixture copies are gone.
+C.hydrogenValidation validates all three neutral isotopes at startup. The
+118-element validator now expects exactly H and Cu in completedExplorerSymbols.
+
+Changed runtime files: index.html, js/periodic-data.js, js/periodic-ui.js,
+js/ui.js, js/engine-ui.js, js/engine-config.js, js/isotope-ui.js,
+js/particle-geometry.js, js/explanations.js and js/quantum-models.js. No new rendering engine,
+external library, stylesheet, server route or end-user build was introduced.
+Also changed tests/atom-engine-test.html and tests/development-data.js.
+QA: new qa/phase51.cjs and qa/phase51-performance.cjs; phase5.cjs availability
+expectations updated to H/Cu.
+Documentation: START-HERE, README, this file, SOURCES and TEST-RESULTS.
+
+Tile double-click uses native dblclick, guarded by two primary mouse pointer
+sequences on that tile. Movement over 6 CSS pixels invalidates the gesture;
+pointer cancellation clears it. Touch cannot pass the mouse guard. Single
+click still selects immediately. Both shortcut and Explore link use the same
+hash router and shared availability registry. List tiles share this behavior.
+No touch preventDefault or custom touch-action changes were added to the table.
+
+Element records may supply context, conciseOverview, isotopeEducation,
+isotopeGuideKeys and isotopeSourceKeys. Isotopes may supply displayName,
+descriptions, abundanceText and naturalAbundance.rangePercent. Percentage bars
+require finite scalar percentages; interval records get qualified text instead.
+The profile uses the active record's sources rather than appending copper refs.
+
+Hydrogen 1s point sampling uses isotropic directions and a radial density
+proportional to r² exp(-2r/a). The sum of three exponential variates gives this
+shape. The display truncates the tail at seven exponential scales and applies
+illustrative size/opacity. It is not a physical-size or isotope-shift calculation.
+Other atoms retain their existing qualitative cloud shapes. A one-shell atom
+uses one conceptual wave cycle. One shared canvas/engine handles both elements.
+
+To add future explorers: provide verified default/optional isotope records,
+neutral shells, occupied subshells, configuration, valence and education;
+validate data, selection, scale, models and cleanup in the harness; then add
+the symbol to completedExplorerSymbols. The registry derives routes/buttons
+without a new per-element UI branch. Do not enable unfinished harness fixtures.
+
+PHASE 5 ADDITIONS
+
+New files: js/periodic-data.js, js/periodic-ui.js, css/periodic.css.
+Changed: index.html, js/app.js, tests/atom-engine-test.html,
+tests/development-data.js and tests/test-harness.js; documentation and QA.
+The original project folder and portable subfolder paths are retained.
+
+Basic records and full scientific records
+C.basicElements contains 118 immutable card records, keyed additionally by
+C.basicBySymbol. Each has identity, group/period/block/family, position, mass
+kind, occurrence, availability and a source reference. It intentionally lacks
+unverified configurations and isotopes for unfinished explorers.
+C.mergeBasic gives full explorer and internal test records the same identity,
+placement and basic metadata. Detailed electron/isotope data stays in the
+existing verified catalogs. The harness displays the 118-record validation
+result and still loads its five internal atoms. Do not enable these test
+remaining carbon, xenon or uranium fixtures without completed classroom validation.
+
+Weights: mass.kind='standard' stores value and uncertainty strings so trailing
+zeros survive. mass.kind='representative' stores integer massNumber, with no
+standard weight field. Never use a bracketed value as an average or as a
+finished explorer's default isotope without independent validation.
+
+Layout: grid.row/column are scientific display positions, not sort order.
+Main periods 1–7 use groups 1–18; detached rows are 9/10, columns 3–17, with
+57–71 and 89–103 placeholders in the main grid. UI adds a header row and
+period-label column. Search/filter only changes appearance, never position.
+List view uses the same records in atomic-number order. All tiles are buttons
+with full accessible identity/category/availability labels. Arrow keys find
+the nearest occupied position along the same displayed row or column.
+
+State and routing
+C.applicationState owns page, selectedElement, query, filters, layout, level,
+category coloring and scroll snapshots. Its explorer and activeIsotope getters
+reference C.app.state and C.app.atom; they do not duplicate mutable engine data.
+Hash routes: #periodic-table, #element=SYMBOL, #explore=SYMBOL. Missing hashes
+show the table. Invalid hashes replace the current route with the table.
+Unfinished explore routes replace themselves with a valid basic card route.
+Browser history owns route order; the navigation store retains temporary
+search/filter/camera state within this document. No progress storage is used.
+Reload retains only the major route and selected card symbol from the hash.
+
+C.startExplorer initializes the existing engine on first entry. C.app.setActive
+stops its frame scheduling when leaving and resumes on return. The app object,
+atom, geometry and renderer caches are reused. Browsing cards never creates
+118 renderers or recreates copper. The test harness starts the engine directly.
+Returning from fullscreen exits presentation. Internal depth, atom camera,
+isotope and subshell remain available when returning to copper.
+
+Enabling an explorer in Phase 6
+1. Add a fully verified element record and default/useful isotope records.
+2. Merge basic metadata and validate neutral/ion shell and subshell data.
+3. Supply age-level descriptions, important-valence metadata and isotope text.
+4. Run engine and UI regressions, including responsive and internal views.
+5. Add its symbol to C.completedExplorerSymbols in periodic-data.js.
+The explorer registry, card action and hash guard derive from this flag plus
+a registered full record. They call the same loadAtom entry point without
+per-element periodic-table UI branches or separate HTML pages. Phase 5 tests
+independently require that H and Cu are the only available symbols.
+
+Validation and tests
+C.validatePeriodicData checks 118 unique identities/positions, all numbers
+1–118, group/period/block/family, occurrence, detached rows, distinct mass
+fields and completed availability. qa/phase5.cjs independently verifies
+conventional positions, all cards, 118 CIAAW source rows, all 34 IUPAC mass
+representatives, search/filter/list, keyboard/touch, six widths, hash history,
+state restoration, lazy startup, idle drawing and copper entry.
+Older copper tests now open #explore=Cu, scope the explorer header, and treat
+hash hrefs as routes rather than missing files. The Phase 4.5 harness remains
+standalone and offline. No screenshot or physical-screen-reader performance
+claim substitutes for an actual device run.
+
+Sources
+CIAAW / IUPAC
+Abridged Standard Atomic Weights 2024
+https://ciaaw.org/abridged-atomic-weights.htm
+Accessed 2026-09-09
+Supports: Names, symbols, atomic numbers and abridged standard atomic weights with uncertainties, including the 2024 revisions.
+
+IUPAC
+Periodic Table of the Elements, 4 May 2022
+https://iupac.org/wp-content/uploads/2022/07/IUPAC_Periodic_Table-04May22_CRA.pdf
+Accessed 2026-09-09
+Supports: Conventional 18-column layout and representative isotope mass numbers for elements without standard atomic weights. These are a dated reference selection, not a claim about the latest longest-lived isotope.
+
+IUPAC
+Periodic Table of Elements: groups and collective names
+https://iupac.org/what-we-do/periodic-table-of-elements/
+Accessed 2026-09-09
+Supports: Groups 1–18, detached La–Lu and Ac–Lr series, and the group-3 convention discussion.
+
+Royal Society of Chemistry
+Periodic Table: element fact boxes and natural abundance
+https://periodic-table.rsc.org/
+Accessed 2026-09-09
+Supports: Block conventions and occurrence context. The individual element reference appears on every card. Tc, Pm and Np include naturally occurring traces despite being mainly produced artificially.
+
+See SOURCES.txt for individual RSC checks and the explicit family convention.
+
+EXISTING ENGINE NOTES
+
+PHASE 5 — PERIODIC TABLE AND ATOM ENGINE DEVELOPMENT
+
+Entry and data flow
+Open tests/atom-engine-test.html with file://. It includes the same classic
+deferred scripts and UI shell as index.html plus development-data.js and
+test-harness.js. No fetch, modules, server, installation, or network is used.
+The harness HTML mirrors the student shell; keep its shared markup in sync
+when changing control IDs. Only the harness loads non-copper full electron/isotope records.
+
+A future periodic table calls:
+Copper.app.loadAtom({element, isotope, ion: {charge: 0}, model: 'bohr',
+                    level: 'high'})
+Models: bohr, wave, quantum. Levels: elementary, middle, high.
+For a nonzero charge, supply electronStructure explicitly.
+The result is {ok:true, atom, tier} or {ok:false, error}. Validation failure
+retains the current atom. Return to Copper in the harness reloads its verified
+default. Phase 5 uses a shared periodic-table home page; hydrogen and copper have student-facing explorers.
+The existing Copper namespace is a compatibility name, not an engine constraint.
+
+Adding scientific records
+Register elements in a frozen catalog with atomicNumber, name, symbol,
+neutralShells, neutralSubshells, neutralConfiguration, defaultIsotope and
+availableIsotopes. Add fullConfiguration, neutralElectronCount, category,
+period, group (null is allowed), block, descriptions by level, classroom notes,
+and warnings as appropriate. Descriptions may be omitted: generic particle and
+count descriptions are used. Do not copy copper conduction text into elements.
+Register an isotope by ID with matching atomicNumber, integer massNumber and
+boolean stable status in C.isotopes (or the development catalog). The default
+isotope must be registered and belong to the same element. Document sources
+locally. Optional isotope-specific lifetime/use/abundance content must be
+verified independently; the current expanded isotope card is copper content.
+Development elements use counts and stability without borrowing that card.
+
+Configurations and validation
+neutralSubshells is an explicit array, e.g.
+{id:'2p', n:2, l:'p', occupancy:2}. IDs must be unique and agree with n and l.
+Allowed l values are s/p/d/f with capacities 2/6/10/14 and l < n. Shell
+populations are indexed by n-1; their sum must equal Z-charge, each shell is
+bounded by 2*n*n, and each shell must equal its subshell sum. Nonzero electron
+counts require occupied-subshell data at the engine entry point. Text full
+configurations are formatted from those records, not parsed to guess filling.
+The five test shell totals are independently asserted in qa/phase45.cjs.
+Ion electronStructure supplies shells, subshells, configuration and valence.
+Isotope changes use withIsotope and retain the ion structure unchanged.
+Scientific records are deep-frozen; geometry and temporary view state are separate.
+
+Valence metadata
+valence.shells identifies outer shells for representative markers. Optional
+importantSubshells identifies occupied states relevant to chemistry; studentNote
+explains the distinction. Copper lists 3d/4s; uranium lists 5f/6d/7s. This is
+metadata, not a universal rule for counting bonding electrons. Multiple outer
+electron markers are retained. Selecting a category chooses one representative.
+
+Rendering and complexity
+engine-config.js is the central tuning point. Mass >150 or >12 occupied
+subshells selects Heavy; otherwise Z>10 or mass>30 selects Medium; else Light.
+Budgets: base cloud points 2400/3600/4200, wave segments 140/120/72 per shell,
+DPR caps 2/2/1.5; heavy electron size multiplier .78 and flat nucleon disks.
+Overview uses up to four layers: a 700-sample grouped core and important outer
+regions. The outer-region set comes from the record. Shapes share sprite
+resources. Explore caches only one 1200-point detailed representative at a time.
+Sustained slow draws reduce background sampling but retain selected detail.
+Bohr includes every electron. Waves represent occupied levels, not particles.
+Orbit radius and framing derive from the shell count (tested 1 through 7).
+Nucleus placement uses a compact set of rotated, perturbed packing sites with
+exact balanced proton/neutron allocation. No nuclear energy calculation is made.
+
+Ownership and recovery
+loadAtom validates and constructs the replacement before disposing old atomic
+renderers. It returns from a nucleon first, clears selection, rebuilds options,
+and resets framing for the new element. It preserves pause and explanation
+level unless a level is supplied. Model caches are bounded to three. dispose
+clears old particles, hit arrays, clouds, sprites and focused/grouped clouds.
+setIsotope rebuilds only the nucleus and shares existing electron objects.
+A detail-generation failure falls back to Overview and displays a message.
+Invalid science is rejected rather than invented. Basic low-level createAtom
+retains compatibility with older arithmetic-only fixtures; loadAtom requires
+complete display records and status.
+
+Limitations and next phase
+Overview is qualitative grouped density, not an exact many-electron solution.
+Explore shows one orientation, not every magnetic orbital simultaneously.
+Radial nodes/energies are not calculated. Electron/gluon motions and nuclear
+positions are educational representations. Test records are not finished
+classroom content. The engine interface is ready for periodic-table integration
+with validated records; expanding to all 118 requires verified records, isotope
+content, age-level writing and further visual/device tests.
+
+Verified scientific references
+
+NIST Physical Measurement Laboratory — Atomic Data for Hydrogen
+https://physics.nist.gov/PhysRefData/Handbook/Tables/hydrogentable1_a.htm
+Accessed 2026-09-08. Supports atomic number, neutral ground-state configuration
+and the selected isotope identity. Shell counts are sums grouped by principal n.
+
+NIST Physical Measurement Laboratory — Atomic Data for Carbon
+https://physics.nist.gov/PhysRefData/Handbook/Tables/carbontable1.htm
+Accessed 2026-09-08. Supports atomic number, neutral ground-state configuration
+and the selected isotope identity. Shell counts are sums grouped by principal n.
+
+NIST Physical Measurement Laboratory — Atomic Data for Copper
+https://physics.nist.gov/PhysRefData/Handbook/Tables/coppertable1_a.htm
+Accessed 2026-09-08. Supports atomic number, neutral ground-state configuration
+and the selected isotope identity. Shell counts are sums grouped by principal n.
+
+NIST Physical Measurement Laboratory — Atomic Data for Xenon
+https://physics.nist.gov/PhysRefData/Handbook/Tables/xenontable1_a.htm
+Accessed 2026-09-08. Supports atomic number, neutral ground-state configuration
+and the selected isotope identity. Shell counts are sums grouped by principal n.
+
+NIST Physical Measurement Laboratory — Atomic Data for Uranium
+https://physics.nist.gov/PhysRefData/Handbook/Tables/uraniumtable1_a.htm
+Accessed 2026-09-08. Supports atomic number, neutral ground-state configuration
+and the selected isotope identity. Shell counts are sums grouped by principal n.
+
+CIAAW / IUPAC — Atomic Weight of Hydrogen
+https://ciaaw.org/hydrogen.htm
+Accessed 2026-09-08. Isotope identity and terrestrial isotope context.
+
+CIAAW / IUPAC — Atomic Weight of Carbon
+https://ciaaw.org/carbon.htm
+Accessed 2026-09-08. Isotope identity and terrestrial isotope context.
+
+CIAAW / IUPAC — Atomic Weight of Copper
+https://ciaaw.org/copper.htm
+Accessed 2026-09-08. Isotope identity and terrestrial isotope context.
+
+CIAAW / IUPAC — Atomic Weight of Xenon
+https://ciaaw.org/xenon.htm
+Accessed 2026-09-08. Isotope identity and terrestrial isotope context.
+
+CIAAW / IUPAC — Atomic Weight of Uranium
+https://ciaaw.org/uranium.htm
+Accessed 2026-09-08. Isotope identity and terrestrial isotope context.
+
+Neutron counts are mass number minus Z. Shell counts are sums of the verified
+subshell configurations. Uranium uses [Rn] 5f3 6d1 7s2, not a naive filling rule.
+See SOURCES.txt for the retained Phase 4 copper isotope references.
+
+Verification
+qa/phase45.cjs exercises all records, models, occupied subshells, representative
+selection and nucleon interiors, invalid records, ion separation, deliberate
+detailed-cloud failure, 70 atom loads, disposal and retained heap, four widths,
+and local-file resources. qa/phase45-results.json records measured draw times.
+The harness benchmark measures 30 synchronous draws, not end-to-end frame rate.
+Existing verify/phase11/phase2/phase3/phase4 suites cover copper regressions,
+including emulated mouse/touch/stylus and native/fallback fullscreen.
+No physical Chromebook/tablet, other browser or screen-reader run is claimed.

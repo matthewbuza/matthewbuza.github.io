@@ -1,0 +1,978 @@
+PHASE 6M — PASS — FINALIZED 2026-09-13
+
+103 enabled explorers / 396 isotope-state records (H–Lr).
+Cm–Lr adds 8 elements / 13 isotope choices, all radioactive.
+Ten Phase 6M suites pass, plus all three original Copper canvas goldens.
+All 69 earlier regression suites pass, including the full Ac–Am phase.
+No browser-suite retries were needed. All 31 app scripts parse successfully.
+No checks remain pending.
+
+All 103 enabled tiles open by button and double-click. Each new tile's native
+double-click loads once. All 13 isotopes pass all three models (39 cases), with
+26 isotope/nucleon round trips. All previous 95 element and 383 isotope records
+are byte-equivalent after serialization. 134 invalid data cases are rejected.
+
+16 native electron clicks; 48 native nucleon double-clicks; 48 fullscreen interior
+cases; 24 mouse/wheel and 45 full-actinide-row touch/pinch model cases; 192 subatomic
+panels; 432 model/level/width cases at 320, 390, 768, 1024, 1366, 1920 pixels;
+24 low-detail exact-count cases and 39 isotope/level panels. No page/panel overflow.
+Mendelevium's long profile name wraps below the symbol on narrow screens.
+
+Native arrows traverse all 15 detached actinide tiles. Tab crosses Am to Cm;
+Down maps Lu to Lr. Rf–Og remain information-only. All eight requested state
+transitions clear interiors and stale selections, reset the camera and retain
+model/reading level. Browser history, reload, filtering and focus checks pass.
+
+Nobelium retains 5f14; Lr has 5f14 7s2 7p1 and three shell-7 electrons.
+Lr's 7s/7p wave radii and labels are separated. All occupied subshells remain
+inspectable; quantum overview uses at most four layers. Reduced-motion time is fixed.
+
+600 repeated loads: 3 renderers, 2 canvases, 1 pending animation frame; 1720 event
+listeners before/after; 166,696-byte post-GC heap growth. Lr's 369 physical particles
+remain exact. Cached geometry is reused during draws; obsolete scenes are released.
+Lr post-switch median draw times: Bohr 1.4 ms, wave 1.2 ms, quantum 2.1 ms.
+Three local ready-explorer navigations: approximately 490–660 ms on this machine.
+These synchronous measurements are not a device frame-rate guarantee.
+
+All browser checks use file:// in installed Windows Chrome with emulated touch
+and viewport sizes. No remote requests, missing files or JavaScript errors.
+No dependencies, server or build added. Full report: PHASE-6M-REPORT.md.
+
+Earlier results below are historical snapshots.
+---------------------------------------------
+
+PHASE 6L — PASS — FINALIZED 2026-09-13
+
+95 enabled explorers / 383 isotope-state records (H–Am).
+Ac–Am adds 7 elements / 16 isotope choices, all radioactive.
+All 61 earlier regression suites PASS. All nine Phase 6L result files PASS.
+Three initial browser timeouts passed on serial rerun; no pending checks remain.
+
+All 95 enabled tiles opened by button and double-click. Each new tile's double-click
+triggers exactly one load. All 16 new isotopes passed three models (48 cases), with
+32 isotope/nucleon round trips. Exact seven-shell populations, explicit 5f/6d/7s
+exceptions, neutron arithmetic, capacities and neutral electron counts are validated.
+
+14 direct electron clicks; 42 native nucleon double-clicks; 42 fullscreen interiors;
+21 mouse/wheel and 21 touch/pinch model cases; 168 subatomic panels; 378 responsive
+model/level cases at 320, 390, 768, 1024, 1366 and 1920 px; 21 low-detail exact-count
+checks. No horizontal panel/page overflow. All 48 expanded isotope/level panels
+show correct radioactivity, half-life, origin and abundance text. No copper examples.
+Four-category particle menu and all three models retain selection and readable text.
+
+Detached actinide row: category styling, positions, mass labels, header spacing,
+keyboard Tab/arrows/Enter, touch entry, source metadata and Am/Cm boundary pass.
+Seven cross-element interior transitions retain model/level and fit/reset correctly.
+Count-preserving 5f/6d mistakes are rejected as well as schema and isotope errors.
+
+600 repeated loads: 3 renderers, 2 canvases, 1 pending animation frame; 1720 event
+listeners before/after. Released renderer references checked. Heap growth after
+collection: 158,316 bytes. Am median draw times: Bohr 1.3 ms, wave 1.0 ms, quantum
+1.7 ms. These measurements describe this Windows/Chrome machine.
+Copper's three original canvas goldens match exactly; baselines were not regenerated.
+
+All browser checks run from file://. No remote requests, JavaScript errors or missing
+local resources were observed in the new-batch checks. No runtime dependencies,
+server, build step or network connection are needed to use the app.
+
+See PHASE-6L-REPORT.md and ../qa/phase6l*-results.json for the full evidence.
+Earlier phase records below are historical.
+
+PHASE 6K — PASS — FINALIZED 2026-09-13
+
+Period 6 is complete: 88 explorers / 367 isotope-state records (H–Ra).
+Hg–Rn adds 7 elements / 21 choices. All 54 previous regression suites PASS.
+All eight Phase 6K result files PASS; no remaining failed or pending checks.
+
+All 88 enabled tiles opened by button and double-click. Each new tile's
+double-click triggers exactly one load. Every new isotope passed all three
+models (63 cases), with 42 nucleon interior returns. Electron, shell and
+subshell totals, capacities and the 6p progression are validated.
+
+14 direct electron clicks; 42 native nucleon double-clicks; 42 fullscreen
+interiors; 21 mouse/wheel and 21 touch/pinch model cases; 168 subatomic panels;
+378 responsive cases at 320–1920 px; 21 low-detail cases retain all particles.
+63 isotope/level panels have no overflow or inherited copper examples.
+Bi-209 is explicitly radioactive; all Po/At/Rn choices are radioactive.
+Stable choices hide half-life. Tl/Pb abundance ranges and Po/At/Rn bracketed
+masses are checked, including three negative mass-display cases.
+
+Au→Hg, Hg→Rn, Rn→H, Pb→Cu, Bi→Po, At→Rn and Rn→Au transitions pass
+from nucleon interiors with changed isotopes. Model and reading level survive;
+particle, isotope, text and camera states update correctly.
+
+600 repeated loads retain 3 renderers, 2 canvases and 1 pending animation
+frame. Listeners remain 1720; post-GC heap growth is 149568 bytes.
+Rn after-switch median draw times: Bohr 1.1 ms, wave 0.9 ms, quantum 1.8 ms.
+Copper's three images exactly match the unchanged Phase 6C canvas baselines.
+No browser errors, missing local resources or runtime network requests.
+
+Evidence: ../qa/phase6k-regression-results.json and all phase6k-*-results.json,
+plus phase6k-results.json, screenshots and logs. Two older global isotope-sum
+tests now explicitly validate ranges rather than adding range endpoints.
+See PHASE-6K-REPORT.md for sources, changed files and model simplifications.
+Tests use installed headless Chrome and emulated touch over file://; timings
+are local measurements, not a guarantee for every device or browser.
+
+EARLIER RESULTS (historical counts)
+
+PHASE 6J — PASS — FINALIZED 2026-09-13
+
+81 explorers / 346 isotope-state records. Hf–Au adds 8 elements / 34 choices.
+All 47 earlier regression suites PASS. All new Phase 6J suites PASS.
+Every enabled tile opened by button and double-click. All 34 new isotope
+choices passed in all three models (102 cases), with 68 nucleon returns.
+432 responsive cases at widths 320–1920; no panel or page overflow.
+48 native nucleon double-clicks, 16 direct electron clicks, 48 fullscreen
+interiors, 24 mouse and 24 touch/pinch model cases, 192 subatomic panels.
+24 low-detail cases retain all particles. Pt/Au exceptions and Ta-180m
+metadata/labels are checked, including nine isomer model/level round trips.
+Direct H→Au, Cu→W, Lu→Hf, Pt→Au and Au→H switches restore correct state.
+
+650 repeated loads: 3 renderers, 2 canvases, at most 1 pending animation
+frame; listeners unchanged at 1720; post-GC heap growth 147752 bytes.
+Copper's three canvas images match the unchanged Phase 6C baselines exactly.
+No missing local resources, runtime network requests or browser errors.
+
+Three stale older test expectations were corrected: Hf's published rounded
+abundances total 100.011%, and Hg is now the unavailable navigation boundary.
+The affected suites were rerun and passed; scientific data were not normalized
+or changed to satisfy the old expectations.
+
+Evidence: ../qa/phase6j-regression-results.json (47 PASS), phase6j-results.json,
+phase6j-check-results.json, individual suite results and screenshots.
+See PHASE-6J-REPORT.md for files, data, sources and measurement limitations.
+Testing used installed headless Chrome with touch emulation and file:// URLs;
+it does not certify every physical device or browser.
+
+EARLIER RESULTS (historical counts)
+
+PHASE 6I — PASS — 2026-09-12
+
+73 explorers / 312 records. Added Tb–Lu: 7 elements / 29 isotopes.
+All 41 earlier regression suites pass. New tests cover every added isotope
+and model, 378 responsive cases, 42 native nucleon double-clicks, 21 touch
+and 21 mouse gesture cases, 168 subatomic panels, 21 reduced-detail cases,
+state restoration, source/data validation and 550 repeated element switches.
+Copper golden images unchanged. No runtime network requests or console errors.
+See PHASE-6I-REPORT.md for measured timings and tests not completed.
+
+EARLIER RESULTS (historical counts)
+
+PHASE 6H — PASS — 2026-09-12
+
+See PHASE-6H-REPORT.md for test scope, limitations and performance.
+66 explorers / 283 records; La–Gd batch 8 / 35. All 36 earlier regression
+suites pass, along with the new isotope, interaction, role, subatomic,
+responsive and 550-switch stress suites. Copper golden images unchanged.
+432 responsive model/level cases; 24 forced-low-detail cases; file:// offline
+with no remote requests or normal-use console errors.
+
+EARLIER RESULTS (historical counts)
+
+PHASE 6G — COMPLETED 2026-09-12 — PASS
+
+58 enabled explorers / 248 selectable records; new batch 4 elements / 18 isotopes.
+All 54 new isotope/model cases and 36 nucleon round trips passed.
+8 native electron clicks; 24 fullscreen nucleon cases; 12 touch gesture cases.
+96 quark/gluon/whole-nucleon panels across three reading levels passed.
+6 invalid isotope records and 16 invalid configurations/defaults rejected.
+216 model/level/width combinations passed at 320/390/768/1024/1366/1920 pixels.
+Expanded panels and full configurations fit without horizontal text overflow.
+12 forced low-detail checks retain exact physical-particle counts.
+All occupied subshells are individually selectable; Fr/Ra include 4f14.
+Fr/Ra have no stable options or ordinary abundance chart. Natural Ba-130 is
+radioactive. Cs/Ba natural percentages each sum to 100%.
+
+Xe -> Cs -> Ba stops before La; Fr -> Ra stops before Ac; Fr Previous stops
+before Rn. Ra Previous returns to Fr; H Previous is disabled. No gap skipping.
+Search, filters, keyboard, touch, direct hashes, reload and history passed.
+All 31 earlier regression suites passed, including existing nuclear isomers.
+Copper's three saved reference canvases remain byte-identical.
+Direct file://: no runtime remote requests, missing assets or console errors.
+
+500 repeated Xe/Cs/Ba/Fr/Ra loads with all three models per load passed.
+Listeners 1720 -> 1720; 3 cached renderers; disposed buffers/paths released.
+Retained heap growth: 809892 bytes (~0.77 MiB), below the 4 MiB test threshold.
+Post-cycle draw medians (Bohr/wave/quantum): Cs 1.2/1.1/4.8 ms;
+Ba 1.1/1.1/4.8 ms; Fr 1.3/.9/1.4 ms; Ra 1.3/.9/1.4 ms.
+Ra wave p95 was 11.7 ms in this desktop run with other work active.
+Fr/Ra use flat nucleon shading, shared circle geometry, DPR cap 1.5,
+electron decorative scale .78, 72 wave segments and a grouped-core quantum
+overview. All particles and occupied subshell data remain exact.
+
+Not tested: real mobile/Chromebook hardware, other browsers, screen readers,
+or school-managed file restrictions. Draw timings are not frame-rate promises.
+See PHASE-6G-REPORT.md and ../qa/phase6g*-results.json for evidence.
+
+--- Earlier test results (historical) ---
+PHASE 6F — COMPLETED 2026-09-12 — PASS
+
+54 elements / 230 selectable records; new batch 6 / 43.
+129 model cases; 86 nucleon round trips; 18 native electron clicks.
+36 fullscreen nucleon cases; 144 subatomic panels; 18 gesture/model cases.
+27 Sn-117/117m switches preserve particles, geometry, renderers and view state.
+Eight invalid isomer and six invalid isotope records rejected.
+Three explanation levels; widths 320/390/768/1024/1366/1920; no overflow.
+All 26 older regression suites passed. Copper's three golden canvases match.
+Direct file:// operation: no remote requests, missing assets or console errors.
+
+Performance: 540 element loads with three models per load. Listener count
+1720 -> 1720; three cached renderers; old scene buffers disposed. Post-GC heap
+change +804640 bytes (~0.77 MiB). No tested before/after slowdown threshold
+exceeded. Xe medians after cycling: Bohr 0.9 ms, wave 1.0 ms, quantum 4.9 ms.
+Measurements describe this desktop Chrome run, not guaranteed mobile speed.
+
+Browser tests used Chrome with emulated widths and touch. Real mobile devices,
+Safari, Firefox, Edge and school device policies were not tested. Qualitative
+models and documented nuclear-data snapshots remain the scientific limits.
+See PHASE-6F-REPORT.md and ../qa/phase6f*-results.json for details.
+
+--- Earlier phase notes (historical) ---
+PERIOD 5B — COMPLETED 2026-09-11 — PASS
+
+PASS: 48 elements / 187 selectable records; new batch 8 / 43.
+43 isotope/state cases across 3 models = 129; 86 nucleon round trips.
+23 native canvas electron clicks; 48 fullscreen nucleon cases.
+192 subatomic panels; 24 gesture/model cases; three reading levels.
+27 Tc same-A state switches preserve array, object and renderer identity,
+geometry, camera, selection and pause; 8 invalid isomer records rejected.
+Six additional corrupted isotope records rejected. Pd: 4 rings, 46 individual
+electrons, 9 occupied wave/cloud states, no 5s options or outer-s category.
+Other new elements: 5 rings, 10 occupied wave/cloud states, individual electrons.
+Widths 320, 390, 768, 1024, 1366, 1920: no document or particle-panel overflow.
+All 21 earlier regression suites pass, including targeted phase51 rerun.
+Copper's three canvas PNGs remain byte-identical to the earlier golden baseline.
+Direct file:// testing: no remote requests, missing assets or normal-use errors.
+
+Performance: 480 repeated element switches; 1720 listeners before/after;
+3 cached model renderers, no retained disposed scene or duplicate particles.
+Post-GC heap growth 0.78 MiB. Nb–Cd median draw times after cycling:
+Bohr 0.6–1.2 ms, wave 0.8–1.3 ms, quantum 4.8–6.7 ms.
+No progressive slowdown under the benchmark's median threshold. These are
+headless desktop Chrome observations, not physical-device frame-rate guarantees.
+
+Not run: physical phones/tablets, classroom hardware, real screen-reader sessions,
+Firefox/Edge/Safari in this phase, precision quantum/nuclear simulation validation.
+
+--- Earlier phase notes (historical) ---
+
+PERIOD 5A — RUBIDIUM THROUGH ZIRCONIUM — EXECUTED 2026-09-10 — PASS
+
+Chrome / Playwright, direct file:// launch, desktop and emulated touch.
+New functional checks: all 40 enabled elements open through Explore and
+native double-click; 118 cards remain; no tile badges; Nb/U/invalid guards.
+All 15 new isotopes: 45 model cases and 30 nucleon interior round trips.
+Correct p/n/e counts, five shells, full Bohr electrons, nine/ten wave and
+quantum states. All occupied subshell selectors and capacities checked.
+Three reading levels preserve isotope/model/camera state. Fullscreen,
+history/reload, search/filter/scroll restoration, keyboard/touch tested.
+
+Interaction checks: 10 native electron clicks; 24 fullscreen nucleon
+returns; six deliberately invalid isotope records rejected. Independent
+Kr core, 5s/4d occupancy, outer/transition role and isotope-mixture checks.
+Animation and representative d shape checked. Twelve new element/model
+gesture cases cover touch rotation/pinch, wheel zoom and Reset View.
+Adjacent controls: keyboard Kr–Rb–Sr–Y–Zr traversal, Previous, history and
+reload; H Previous disabled; Zr Next disabled; synthetic click cannot open Nb.
+Subatomic checks: 96 panel combinations, up/down/gluon/whole for both
+nucleons of all four new elements at all three levels, with 390px fit.
+
+Responsive widths: 320,390,768,1024,1366,1920 px. Expanded panels checked
+at 320/390/768. No document or particle-panel horizontal overflow. Native
+accessible labels, keyboard controls and minimum table target sizes retained.
+Reviewed screenshots: Zr quantum Overview, Y 4d, narrow Zr reading view.
+No new functional console errors, missing local files or runtime requests.
+
+PERFORMANCE
+400 element replacements (40 elements, ten rounds), all three models
+per replacement. No duplicate physical IDs; old scene objects and sprite/
+cloud caches emptied; exactly 3 current renderer instances retained.
+Listener count 1720 before and 1720 after. Post-GC heap growth
+862084 bytes (0.82 MiB). Before/after threshold found no progressive slowdown.
+After-switch median draw times in milliseconds:
+
+| Element | Bohr | Wave | Quantum |
+|---|---|---|---|
+| Rb | 0.7 | 0.8 | 4.6 |
+| Sr | 0.7 | 0.7 | 4.6 |
+| Y | 0.6 | 0.8 | 4.6 |
+| Zr | 0.7 | 0.8 | 4.6 |
+
+Desktop draw timings are not guaranteed FPS or physical-device benchmarks.
+They support retaining full detail through Zr. Profile later elements and
+representative classroom hardware before changing visualization detail.
+
+REGRESSIONS — EXECUTED
+verify: PASS
+phase11: PASS
+phase2: PASS
+phase3: PASS
+phase4: PASS
+phase45: PASS
+phase5: PASS
+phase51: PASS
+phase6a: PASS
+phase6b: PASS
+phase6b-interactions: PASS
+phase6c: PASS
+phase6c-interactions: PASS
+phase6c-roles: PASS
+phase6d: PASS
+phase6d-interactions: PASS
+phase6d-roles: PASS
+Copper golden: all three saved canvas PNG baselines match byte-for-byte.
+Earlier availability/unfinished guards were updated to H–Zr / Nb. Prior
+scientific/model/isotope expectations were preserved. Development harness
+and its error/validation cases are included in phase45.
+
+NOT TESTED / LIMITATIONS
+Physical phones/tablets, screen readers, Firefox, Edge, Safari, low-end
+classroom hardware and multi-hour operation. Emulated input is not physical
+hardware testing. Clouds/waves are qualitative, with compressed scale.
+Optional source links require internet only when opened; the app does not.
+
+Evidence: ../qa/phase7a*-results.json, ../qa/phase7a-regression-*.log and
+../qa/phase7a-*.png. Complete source/file inventory: PHASE-7A-REPORT.md.
+
+PREVIOUS PHASE RECORD (historical)
+
+PHASE 6D — EXECUTED 2026-09-10 — PASS
+
+Desktop Google Chrome, headless Playwright, direct file:// launch.
+New functional matrix: 36 enabled elements; 35 new isotopes; 105 model
+cases; 70 proton/neutron interior round trips; all default counts verified.
+Input/state matrix: 21 physical canvas electron clicks; 42 fullscreen
+interior returns; all three explanation levels; six invalid-data cases.
+Responsive: 320/390/768/1024/1366/1920 px; expanded panels 320/390/768.
+No document or particle-panel horizontal overflow. Labels, keyboard,
+emulated touch, minimum table target dimensions, history/reload, filtering,
+scroll/focus restoration and reduced motion are covered by the QA suites.
+Role tests independently check explicit occupancies and isotope defaults,
+filled-3d roles, outer electron counts, animated positions, representative
+d/p shapes, mixture sums/Br ranges, and qualified Kr-78 rare-decay text.
+Screenshot review covered Kr Overview, Zn 3d, Kr 4p and a 390px reading view.
+No errors, failed local resources or runtime network requests in the new
+functional matrix. Optional external source links were not counted as
+runtime requests and were not opened by the offline test.
+
+PERFORMANCE
+360 element replacements, cycling all 36 elements ten times and
+switching through all three models each time. Disposed scene arrays and
+sprite/cloud resources are emptied. Exactly 3 renderer instances remain
+in the current cache. Listener count 1718 before and 1718 after.
+Post-GC JavaScript heap growth: 854764 bytes (about 0.82 MiB).
+No progressive slowdown detected by the before/after regression threshold.
+After-switch median draw times in milliseconds:
+
+| Element | Bohr | Wave | Quantum |
+|---|---|---|---|
+| Zn | 0.5 | 0.6 | 4.7 |
+| Ga | 0.5 | 0.7 | 4.6 |
+| Ge | 0.5 | 0.7 | 4.5 |
+| As | 0.6 | 0.7 | 4.7 |
+| Se | 0.5 | 0.7 | 4.5 |
+| Br | 0.5 | 0.7 | 5.0 |
+| Kr | 0.7 | 0.7 | 4.6 |
+
+These are local desktop draw timings, not frame-rate guarantees or physical
+mobile benchmarks. Current measurements do not justify moderate reduction
+through Kr. Profile representative classroom hardware before the Rb–Xe batch.
+
+REGRESSIONS — ALL EXECUTED AND PASSED
+verify: PASS
+phase11: PASS
+phase2: PASS
+phase3: PASS
+phase4: PASS
+phase45: PASS
+phase5: PASS
+phase51: PASS
+phase6a: PASS
+phase6b: PASS
+phase6b-interactions: PASS
+phase6c: PASS
+phase6c-interactions: PASS
+phase6c-roles: PASS
+Copper golden comparison: Bohr, Wave and Quantum canvas PNGs match the
+saved pre-change baselines byte-for-byte (phase6c-golden.cjs after).
+Earlier suite availability assertions were updated to H–Kr; unfinished
+route checks now use Rb. Earlier data and interaction expectations remain.
+The generic atom-engine harness, validation/error handling and prior
+isotope/model controls were included through phase45 and earlier suites.
+
+NOT TESTED
+Physical mobile devices; screen-reader software; Firefox, Safari or Edge;
+low-end classroom hardware; hardware FPS/power or long multi-hour sessions.
+No claim of exact many-electron cloud physics is made. Existing qualitative
+shapes, compressed scale and model limitations remain visible.
+
+Evidence: ../qa/phase6d*-results.json, ../qa/phase6d-*.png,
+and ../qa/phase6d-regression-*.log. See PHASE-6D-REPORT.md for the full
+record/source inventory, implementation and next-batch recommendation.
+
+PREVIOUS PHASE RECORD (historical)
+
+# Phase 6C — completed 10 September 2026
+
+Implemented in the existing Periodic Table Visualizer project. All **29 elements from hydrogen through copper** now have complete explorers. Zinc and the 89 remaining unfinished elements retain information cards. No replacement application, new page, runtime dependency or network feature was introduced.
+
+## Enabled records
+
+| Element | Default | Default p / n / e | Shells | Configuration after [Ar] | Included mass numbers |
+|---|---|---|---|---|---|
+| Potassium | K-39 | 19 / 20 / 19 | 2, 8, 8, 1 | 4s¹ | 39, 40, 41 |
+| Calcium | Ca-40 | 20 / 20 / 20 | 2, 8, 8, 2 | 4s² | 40, 42, 43, 44, 46, 48 |
+| Scandium | Sc-45 | 21 / 24 / 21 | 2, 8, 9, 2 | 3d¹ 4s² | 45, 44, 47 |
+| Titanium | Ti-48 | 22 / 26 / 22 | 2, 8, 10, 2 | 3d² 4s² | 46, 47, 48, 49, 50, 44 |
+| Vanadium | V-51 | 23 / 28 / 23 | 2, 8, 11, 2 | 3d³ 4s² | 50, 51 |
+| Chromium | Cr-52 | 24 / 28 / 24 | 2, 8, 13, 1 | 3d⁵ 4s¹ | 50, 52, 53, 54 |
+| Manganese | Mn-55 | 25 / 30 / 25 | 2, 8, 13, 2 | 3d⁵ 4s² | 55, 54 |
+| Iron | Fe-56 | 26 / 30 / 26 | 2, 8, 14, 2 | 3d⁶ 4s² | 54, 56, 57, 58, 60 |
+| Cobalt | Co-59 | 27 / 32 / 27 | 2, 8, 15, 2 | 3d⁷ 4s² | 59, 60 |
+| Nickel | Ni-58 | 28 / 30 / 28 | 2, 8, 16, 2 | 3d⁸ 4s² | 58, 60, 61, 62, 64, 63 |
+
+The 39 new isotope records bring the total to **94**. Neutron counts are calculated from mass number minus atomic number. Isotope replacement preserves the neutral electron configuration.
+
+## Scientific decisions
+
+- Every neutral configuration was checked against the corresponding NIST Atomic Data handbook record. The [Ar] core expands to 1s² 2s² 2p⁶ 3s² 3p⁶. Explicit independent test expectations confirm all ten configurations and defaults.
+- Chromium is stored as **[Ar] 3d⁵ 4s¹**, never generated as 3d⁴ 4s². Its three reading-level explanations appear in Across Period 4. The explanation avoids a universal preference for half-filled subshells.
+- Nickel consistently follows the NIST neutral ground state **[Ar] 3d⁸ 4s²**.
+- Transition-metal selection distinguishes outermost 4s electrons from chemically important 3d electrons. It does not equate one outer-shell count with a universal transition-metal valence. Bonding and variable ion charges are explained without adding ion controls.
+- Natural abundance and stability are independent. K-40, Ca-48 and V-50 retain their CIAAW natural percentages and explicit radioactive labels, including accessible text in comparisons. Produced radioisotopes receive no invented ordinary percentage.
+- Ca-48 uses the NEMO-3 measured double-beta half-life, approximately 6.4 × 10¹⁹ years, with its measurement provenance documented. V-50 quotes the measured electron-capture **partial** half-life, approximately 2.77 × 10¹⁷ years. Its possible beta-minus branch is not described as observed.
+- Sc-44 uses the newer approximately 4.04-hour measurement. Ni-63 displays approximately 101 years. Ti-44 is included with a rounded 60-year half-life and supernova/generator context.
+- Medical research applications are qualified. Co-60 source uses include radiation protection and are distinguished from ordinary cobalt. Ni-62 is described through binding energy per nucleon, not an unqualified “most stable nucleus” label.
+
+The 56 new local source entries include organization, title, URL, access date and supported claims. Sources comprise **NIST, CIAAW/IUPAC, RSC, BIPM/DDEP, NNDC/ENSDF, USGS, NASA, DOE/NIDC, EPA, CDC**, and the cited nuclear/isotope research papers. Full references and qualifications are in `SOURCES.txt` and the app’s Verified sources disclosure.
+
+## Model and interaction results
+
+- All ten new elements opened through generated Explore buttons and native mouse double-click. Single-click remained on the information card; zinc and invalid routes remained guarded. All 118 tile positions and badge removal were checked.
+- **39 isotope cases × 3 models = 117 model cases passed.** Every Bohr scene retained all nucleons and all electrons, four occupied shells and correct shell populations. Animation was checked separately.
+- Matter-wave views retained all six occupied subshell bands for K/Ca and all seven for Sc–Ni. Every band could be isolated; occupancy text matched data. There are no electron balls in this view.
+- Quantum Overview retained every occupied subshell. Explore Subshells checked occupancy, capacity, principal level and region role. The 3d focus uses one representative multi-lobed orientation from five related orbitals, retaining its total occupancy in text. Visual inspection confirmed a visible nucleus and transparent Overview.
+- Separate role checks exercised 3d and 4s selection in every model, every 3d Bohr group count, and the representative d orientation.
+- **78 isotope/nucleon round trips**, **60 fullscreen nucleon visits**, and **28 native electron clicks** passed. Model, isotope, camera, pause and subshell state survived the relevant explanation/fullscreen/interior round trips.
+- Three explanation levels updated element, engineering, isotope, model and progression text. Six malformed isotope cases were rejected by the new validator; the shared development suite rejected ten additional invalid records.
+- Direct hashes, reload, browser history, Back to Periodic Table, search/filter/scroll preservation, and keyboard/touch routes passed.
+- All runtime test pages used **file://**. Tests observed **zero console/page errors, missing local resources or remote runtime requests**.
+
+## Accessibility and visual checks
+
+Tested widths: **320, 390, 768, 1024, 1366 and 1920 pixels**. Particle panels did not overflow. Expanded isotope references and progression were also checked at 320/390/768 pixels for all three levels. Labels and numeric values accompany color, including radioactive natural isotopes.
+
+Keyboard selection, native disclosure toggling, focus behavior, accessible controls, touch taps, rotation/pinch, reduced-motion behavior, and fullscreen exit/Escape were exercised. Screenshots of Bohr, wave, Overview, 1s and representative 3d views were inspected. Source lists remain in an optional disclosure to keep the ordinary panel shorter.
+
+## Regression and performance
+
+Executed regression suites passed:
+
+- `phase6b.cjs`: 25 earlier isotopes, 75 model cases, 50 interiors.
+- `phase6a.cjs`: 23 earlier isotopes, 69 model cases, 46 interiors.
+- `phase51.cjs`: all hydrogen isotopes/models and 44 route switches; touch, camera and routing checks.
+- `phase5.cjs`: 118 cards/source rows, layout, search, keyboard, offline navigation and copper state.
+- `phase45.cjs`: generalized engine and development fixtures, 70 cycles, ten invalid records rejected. Xe/U remain development fixtures, not enabled student explorers.
+- `phase4.cjs`: all four copper isotopes, 12 model combinations and 24 interiors.
+- `phase2.cjs`: copper models, levels, selections, 60 switches, native/denied/absent fullscreen and fallback behavior.
+- `phase6c-golden.cjs`: all three copper canvases were **byte-identical PNGs** to baselines captured before Phase 6C runtime edits.
+
+The performance run covered **290 element switches** and three models per element. Listener count stayed **1,718 → 1,718** across the measured surfaces. The renderer cache stayed at three; disposed scenes released physical particles, hits, clouds and sprites. Post-GC heap growth was **888,572 bytes**. Measured post-run median draws for K–Ni were roughly **0.4–0.6 ms for Bohr/waves and 4.5–4.6 ms for quantum**. No progressive slowdown was detected by the test thresholds. These are synchronous desktop measurements, not a frame-rate guarantee for other devices.
+
+Machine-readable results and screenshots are retained in the workspace’s `qa` folder. Portable application files remain together inside `periodic-table-visualizer`.
+
+## Files created or changed
+
+New application file: `js/period4-data.js`.
+
+Updated application files: `index.html`, `tests/atom-engine-test.html`, `js/periodic-data.js`, `js/periodic-ui.js`, `js/particle-geometry.js`, `js/atom-model.js`, `js/quantum-models.js`, `js/ui.js`, `js/engine-ui.js`, `js/isotope-ui.js`.
+
+Updated documentation: `README.txt`, `START-HERE.txt`, `DEVELOPER-NOTES.txt`, `SOURCES.txt`, `TEST-RESULTS.txt`. This completion report is new.
+
+New QA scripts: `phase6c.cjs`, `phase6c-interactions.cjs`, `phase6c-roles.cjs`, `phase6c-performance.cjs`, `phase6c-golden.cjs`. Availability expectations in `phase5.cjs`, `phase51.cjs`, `phase6a.cjs` and `phase6b.cjs` were updated to H–Cu, with zinc replacing potassium as the unfinished-element guard where applicable.
+
+## Limits and next step
+
+Tests ran in desktop Google Chrome with Playwright. **Physical mobile devices, screen readers, Firefox, Safari and Edge were not tested.** Portable copying to a physical thumb drive and school-device restrictions were not exercised.
+
+Waves and clouds remain qualitative teaching shapes, not computed many-electron solutions. Bohr tracks and scale are simplified. Solid magnetism and conductivity also depend on interactions, structure and processing; no lattice, domain, spin or decay simulation was added.
+
+Recommended next phase: **zinc through krypton**, using verified explicit configurations and isotope records in the shared engine. Review the filled 3d core and developing 4p valence region, then extend these data, interaction, accessibility and performance checks before enabling their Explore buttons.
+
+
+PREVIOUS PHASE VERIFICATION (historical)
+
+PHASE 6B VERIFICATION — 2026-09-09 — PASS
+
+Environment: desktop Google Chrome controlled through Playwright, file://.
+All statements below describe executed checks. Browser touch and reduced
+motion were emulated; no physical mobile device or screen reader was used.
+
+qa/phase6b.cjs — PASS
+- 118 tiles; 19 enabled explorers; no 3D badges; tile positions unchanged.
+- All enabled Explore buttons and double-click routes exercised. Single click
+  remains on the card. Unfinished potassium/uranium and invalid routes guarded.
+- Startup catalog: 19 elements / 55 isotopes. Period 3: 8 elements / 25 isotopes.
+- All 25 new isotopes checked against independent identity/default/count
+  expectations. Protons, neutrons, neutral electrons, shell and subshell totals,
+  occupancy, stability, radioactive half-life/decay and source presence passed.
+- 75 isotope/model combinations: every Bohr electron and 3 occupied shells;
+  all occupied wave bands; full-tier quantum Overview and each occupied subshell.
+  Correct outer-group highlighting, occupancy/capacity text and inner/valence roles.
+- 50 isotope/nucleon interior visits: charges, breadcrumb and state restoration.
+- All three explanation levels and Across Period 3 update without resetting
+  isotope, model, subshell, camera or animation. Engineering text changes by level.
+- Fullscreen: each new element in all 3 models (24 combinations).
+- Direct hashes/reloads, Back/Forward, Back to Table, search/filter/scroll state,
+  keyboard entry/isotope selection and touch Explore passed.
+- 320, 390, 768, 1024, 1366 and 1920px: no horizontal document/particle-panel
+  overflow. Periodic table retains its own scroll and >=44px tile targets.
+- No page errors, failed local resources or non-file requests.
+
+qa/phase6b-interactions.cjs — PASS
+- 16 native canvas clicks: visible inner/outer electrons on all 8 new defaults.
+- 48 fullscreen nucleon visits: 8 elements x 3 models x 2 nucleons,
+  Back to Atom and Escape, active-model retention, no visible table.
+- Explanation changes dispatched while fullscreen preserve isotope, model,
+  selected subshell, camera, paused state and fullscreen state.
+- All 8 elements x 3 explanation levels x 4 particle categories checked at
+  320/390/768px; expanded isotope/source disclosures do not overflow horizontally.
+- Period 3 native disclosure opens/closes with Enter and is hidden for copper.
+- Six malformed record cases are rejected: neutron/proton/symbol mismatches,
+  missing age-level relevance, unknown source key and invalid radioactive fields.
+- Cu Overview keeps all 7 occupied subshell regions. Screenshot review covered
+  sodium Bohr/waves/1s, magnesium/aluminum clouds, silicon narrow panel, argon
+  waves/clouds and copper full Overview. Nucleus remains visible, defaults fit.
+
+REGRESSIONS — all executed and PASS
+qa/phase6a.cjs: all 23 He–Ne isotopes, 69 model combinations, 46 interiors,
+levels, fullscreen, responsive panels and routing; H/Cu entry also exercised.
+qa/phase51.cjs: H-1/2/3, all models, levels, mouse/touch gestures, fullscreen,
+44 H/Cu route changes and disposal. Availability/unfinished guard updated.
+qa/phase4.cjs: four Cu isotopes, 12 model combinations, 24 interiors, abundance,
+source/half-life fields, responsive/fullscreen behavior and internal ion independence.
+qa/phase2.cjs: Cu models/categories/subshells, 60 switches, native/denied/absent
+fullscreen, exit/Escape, touch/pinch, reduced motion and responsive checks.
+qa/phase3.cjs: Cu nucleon charges, mouse/keyboard/touch exploration, restoration,
+fullscreen, 30 disposal cycles and responsive checks.
+qa/phase45.cjs: H/C/Cu/Xe/U harness, 70 loads, 10 invalid-record rejections,
+all model/subshell choices, renderer disposal and heavy-tier budgets.
+qa/phase5.cjs: 118 table facts/cards, search/filter/list, keyboard/touch,
+placement, availability, route/history state and offline behavior.
+
+PERFORMANCE — qa/phase6b-performance.cjs — PASS
+190 repeated element loads, all three models initialized each time.
+Exactly 3 live renderer caches; no duplicate physical particles; old particle,
+hit, cloud and sprite arrays disposed. Only one Period 3 disclosure remains.
+Event listeners on window/document/canvas/buttons/selects/summaries:
+1718 before and 1718 after (CDP instrumentation).
+GC-measured heap growth in this instrumented run: 770116 bytes.
+Median draw times after cycling across all 57 element/model cases:
+0.10–4.80 ms. No progressive slowdown detected by the suite's relative threshold.
+CPU/GPU timings are local observations, not guarantees for school hardware.
+Raw measurements and coverage: qa/phase6b-*-results.json and phase6b-results.json.
+
+LIMITATIONS / NOT TESTED
+Non-Chrome browsers, physical mobile devices, screen-reader speech and long
+classroom sessions were not tested. Touch/reduced motion were emulated.
+Clouds remain qualitative, not exact radial-node solutions or physical scale.
+Radioactive decay is described, not animated. No Previous/Next controls added.
+Ar-39 uses the labelled conventional reference half-life; the newer differing
+measurement is retained in SOURCES and code metadata.
+
+HISTORICAL TEST REPORTS (earlier availability and performance below)
+
+PHASE 6A VERIFICATION — 2026-09-09 — PASS
+
+Executed in desktop Google Chrome through Playwright using file://.
+qa/phase6a.cjs: all 118 tiles retain their positions; no 3D badges remain.
+All 11 enabled explorers pass card/Explore and mouse double-click entry.
+Unfinished and invalid routes remain guarded. Table search, filters, scroll,
+keyboard navigation, touch entry and browser Back/Forward retain behavior.
+Startup validation: 11 elements, 30 isotopes, no errors.
+New catalog: 23 isotopes, correct protons/neutrons/neutral electrons, shell
+and subshell totals, isotope ownership, stable/radioactive fields and sources.
+69 isotope/model combinations passed. Occupied 1s/2s/2p choices and electron
+counts checked. Multi-electron Bohr selection highlights every valence electron.
+46 proton/neutron interior visits passed, including charges and return state.
+All three explanation levels and 27 new-element/model fullscreen cycles passed.
+Widths 320, 390, 768, 1024, 1366 and 1920: no document or particle-panel
+horizontal overflow; table keeps its own horizontal scroll and 44px targets.
+Reduced motion, keyboard isotope changes and touch Explore were exercised.
+Screenshots inspected for helium/boron clouds and the narrow neon wave panel.
+No page errors, remote requests or missing local resources in Phase 6A tests.
+
+Executed regression suites (all PASS):
+qa/verify.cjs: copper counts, selection, mouse/touch and offline checks.
+qa/phase2.cjs: copper models, levels, categories, occupied subshells, 60 model
+switches, native/denied/absent fullscreen, touch/pinch and reduced motion.
+qa/phase3.cjs: both nucleons, charges, keyboard/touch, restoration, fullscreen,
+30 disposal cycles and responsive widths.
+qa/phase4.cjs: all four copper isotopes, 12 model combinations, 24 interior
+visits, abundance/half-life/source fields and existing internal ion fixture.
+qa/phase45.cjs: H/C/Cu/Xe/U development harness, all models, 70 loads,
+invalid-record rejection and bounded disposal/caches.
+qa/phase5.cjs: 118 periodic records/cards, filters, keyboard, routes and widths.
+qa/phase51.cjs: three H isotopes/all models, levels, gestures, routes and disposal.
+Availability assertions updated for the intended 11 enabled explorers.
+
+qa/phase6a-performance.cjs: PASS after 110 element loads and all
+three models on every load. Exactly 3 live renderer caches, no duplicate
+particles or retained old particle/cloud arrays. GC-measured heap growth:
+63352 bytes. Post-cycle median draw times across the 33 element/model
+cases: 0.10–2.90 ms. No progressive slowdown detected
+under the suite's relative threshold. These are local measurements, not a
+frame-rate guarantee on school hardware. Raw before/after data is in
+qa/phase6a-performance-results.json; coverage in qa/phase6a-results.json.
+
+Limitations: physical phones/tablets, actual screen-reader speech, non-Chrome
+browsers and long classroom sessions were not tested. Touch/reduced motion
+were browser-emulated. Scientific pictures are qualitative and not to scale;
+no calculated many-electron total density or radioactive decay animation.
+Older test records below describe their historical phase scope and availability.
+
+PHASE 5.1 VERIFICATION — 2026-09-09 — PASS
+
+Performed locally in desktop Google Chrome through Playwright, using file://.
+These are executed tests, not a checklist of intended tests.
+
+qa/phase51.cjs — PASS
+- Exactly H and Cu marked available; hydrogen startup data validation passes.
+- Single click selects; mouse double-click opens H/Cu; unfinished He stays on
+  its card. Table and List work. Keyboard Space selects and Enter opens Explore.
+- Touch taps stay on the card. Touch scrolling/pinching over tiles does not
+  enter an explorer. Explore buttons remain available.
+- All 3 hydrogen isotopes x 3 models, and all 3 explanation levels exercised.
+- H-1: 1p/0n/1e; H-2: 1p/1n/1e; H-3: 1p/2n/1e. All shells [1], 1s¹, neutral.
+  H-1/H-2 stable; H-3 beta-minus decay, half-life approximately 12.3 years.
+- Disabled H-1 neutron, one valence-electron control, no duplicate inner electron.
+- Bohr: one electron, one shell. Wave: one closed level, no electron ball.
+  Quantum: occupied 1s only, one spherical layer, higher central density,
+  no fixed path or electron ball. Overview and Explore Subshells exercised.
+- Proton/neutron selection and interiors, exact quark charge sums, hydrogen
+  breadcrumbs, native proton double-click and fullscreen inside each nucleon.
+- No visible copper text in hydrogen at any tested model/explanation level.
+- Mouse rotation, wheel zoom, keyboard controls, actual emulated touch drag and
+  pinch; pause/resume, reset, fullscreen preserve isotope/model/camera/animation.
+- Offline hashes, direct reloads, browser Back/Forward, unavailable hash guard,
+  table query/filter/scroll restoration and active-element titles.
+- 44 route switches including warmup: old renderers disposed, unique particles,
+  bounded caches, extent 76 for H and 214 for Cu. Retained heap growth 59,848 bytes
+  after forced garbage collection across the measured 40 switches.
+- Widths 320, 390, 768, 1024, 1366, 1920: no document or particle-panel overflow.
+  Screenshots saved; hydrogen Bohr/quantum and phone layout visually inspected.
+- Zero page/console errors, remote requests or missing resources.
+
+qa/phase51-performance.cjs — PASS
+Separate single-browser run, 50 H/Cu engine switches with all model caches.
+50 timed draws/model before and after; no progressive slowdown detected.
+Median ms before -> after:
+H: Bohr 0.1 -> 0.1; wave 0.1 -> 0.1; quantum 3.0 -> 2.9.
+Cu: Bohr 0.7 -> 0.5; wave 0.4 -> 0.3; quantum 2.3 -> 2.2.
+These are synchronous desktop measurements, not physical-device FPS guarantees.
+
+REGRESSIONS EXECUTED IN THIS PHASE — ALL PASS
+qa/verify.cjs: copper counts, selection, mouse/touch, keyboard, fallback/offline.
+qa/phase11.cjs: 10 invalid records, 24 representative views, mouse/touch/pen.
+qa/phase2.cjs: 3 copper models/levels, subshells, 60 switches, native/denied/
+  absent fullscreen, touch/pinch and responsive widths.
+qa/phase3.cjs: both nucleons, exact charges, double-click/double-tap, restoration,
+  fullscreen, 30 disposal cycles, 4 viewport widths.
+qa/phase4.cjs: 12 copper isotope/model combinations, 24 internal views, all
+  four copper isotopes, isotope switching, scientific counts/half-lives/sources.
+qa/phase45.cjs: five-atom harness, 70 loads, validation rejection, all models,
+  heavy-atom simplification, bounded resources and heap growth 45,316 bytes.
+qa/phase5.cjs: all 118 records/source rows/cards, layout, search/filter/list,
+  keyboard/focus, touch, routes, state preservation, six widths and offline.
+  Availability assertions updated explicitly from Cu to H/Cu; no other checks
+  removed. Full suite still passes.
+
+NOT TESTED / LIMITATIONS
+Physical phones/tablets/Chromebooks/projectors, other browser engines and real
+screen-reader software were not available for this run. Accessible names and
+keyboard/focus behavior were checked in Chrome; touch was emulated.
+No custom double-tap shortcut on the table. Use the Explore button on touch.
+Only H and Cu are completed. Hydrogen excited states, spectral lines, molecular
+bonding, ion controls and radioactive decay/fusion simulations are out of scope.
+The cloud has an illustrative finite boundary and opacity; sizes are not physical.
+No saved student progress or separate persistent per-element sessions. Switching
+between elements loads the new default isotope and reframes the shared engine.
+Returning from the table to the same element retains the live explorer state.
+
+Full results: ../qa/phase51-results.json, phase51-performance-results.json,
+phase45-results.json and phase5-results.json. Remaining suites print their
+actual summaries when executed. Earlier phase records below are historical.
+
+----------------------------------------------------------------------
+PHASE 5 VERIFICATION — 2026-09-09
+
+PASS: qa/phase5.cjs using installed desktop Chrome through Playwright and
+direct file:// launch. No web server, runtime network, missing local file,
+JavaScript error or console error occurred.
+
+Data and layout
+- Exactly 118 unique records and 118 table tiles. Every number 1–118 present.
+- All names/symbols/numbers and standard-weight/undefined-weight fields match
+  118 independently extracted CIAAW 2024 source rows.
+- All 34 representative isotope mass numbers match the IUPAC 2022 table.
+- Independent conventional group/period/grid checks, plus detached 57–71 and
+  89–103 rows, no collisions and Copper at period 4/group 11/d-block.
+- Only Cu is available as a completed student-facing explorer.
+- Every one of 118 tiles was clicked and its card title/availability checked.
+  Standard weights and representative isotopes use different labels.
+
+Interaction and navigation
+- Search: copper, mixed-case Cu, 29, 2 (only helium), aluminum and cesium.
+- Multiple family filters, search/filter intersection, zero matches, independent
+  clear buttons and preserved grid positions. Table/List and list filtering.
+- Tile labels contain number/name/symbol/category/availability. Arrow keys work
+  across occupied positions and detached rows; Enter selects and Escape closes
+  the card with focus returned to its tile. Keyboard focus outline verified.
+- Emulated touchscreen selection, category-color toggle, reduced-motion CSS.
+- Empty hash home, exact card hashes, direct copper explorer, reload, Back and
+  Forward, malformed hashes, invalid symbols and unfinished explorer guards.
+- No copper app is initialized while browsing all 118 basic cards.
+- Copper renderer and particle object identities survive table round trips.
+  Isotope 67, quantum 3d selection, camera, level and nucleon depth persist.
+- Table query, family filters and horizontal scroll survive copper round trips.
+  The copper clock stops while its page is inactive.
+- Copper fullscreen remains available and exits normally.
+
+Responsive verification
+Widths 320, 390, 768, 1024, 1366 and 1920 px: no document overflow, controlled
+horizontal table scrolling, >=44px tile targets, names within tile bounds,
+and selected copper tile horizontally visible. Level changes retain scroll.
+Desktop and phone screenshots inspected. The 1366/1024 checks are viewport
+simulations, not claims of testing a physical Chromebook.
+
+Copper/engine regression suites passed
+verify.cjs, phase11.cjs, phase2.cjs, phase3.cjs, phase4.cjs and phase45.cjs.
+These cover all copper isotopes/models, both Schrödinger modes, selection,
+proton/neutron/quark/gluon views, levels, camera, pause/reset, emulated
+mouse/touch/stylus, wheel/pinch, native/fallback fullscreen and data invariants.
+The five-atom offline harness still passes its counts/subshells/rendering,
+invalid-record recovery, repeated switching and cleanup checks.
+
+Test maintenance
+Copper regression routes now explicitly include #explore=Cu. The fullscreen
+header assertion is scoped to the explorer. Local-resource checks distinguish
+hash routes from filesystem paths. No behavioral checks were removed.
+
+Not performed
+Physical Chromebook/tablet/projector/stylus, non-Chrome browsers, actual screen
+readers or long-duration classroom use. Accessible names/keyboard/focus were
+checked programmatically, not with a screen-reader user session.
+
+Known limits
+Only copper has a finished 3D explorer. Other cards are deliberately basic.
+Category and series/block conventions are documented, not absolute claims.
+Representative isotope values are the dated IUPAC 2022 reference selection.
+Temporary settings do not persist across reload; the major hash route does.
+
+PREVIOUS PHASE COVERAGE
+
+PHASE 4.5 VERIFICATION — 2026-09-08
+
+PASS: normal index.html and tests/atom-engine-test.html use file:// in installed
+Chrome via Playwright. No remote requests, missing resources or normal-use
+console/JavaScript errors. START-HERE launch instructions are unchanged.
+
+Five verified counts and shells:
+Hydrogen-1  1p   0n   1e   [1]
+Carbon-12   6p   6n   6e   [2,4]
+Copper-63  29p  34n  29e   [2,8,18,1]
+Xenon-132  54p  78n  54e   [2,8,18,18,8]
+Uranium-238 92p 146n 92e   [2,8,18,32,21,9,2]
+Shell and occupied-subshell sums equal the electron count for every record.
+All 15 atom/model combinations passed. Every occupied subshell was isolated
+with occupancy, capacity, camera preservation and a bounded 1200-point focus.
+Carbon's 2p2, xenon's 5s2/5p6 and uranium's 5f3/6d1/7s2 were exercised.
+Overview layers stay <=4 and base points stay within their tier budget.
+
+Hydrogen disables Neutron with the required reason and allows proton entry.
+All available nucleon interiors work in every model with active breadcrumbs
+and atom restoration. All representative particle categories, wave-level
+isolation, model controls, camera reset and explanation levels passed.
+Invalid records: 10 rejected before mutation, with record/field errors.
+Explicit hydrogen +1 ion retains isotope and nucleons with zero electrons.
+An injected detailed-cloud failure recovers to Overview with a visible message.
+
+70 atom loads across all models: old visualizations dispose their arrays;
+final uranium inventory is 330 unique physical particles, 3 atomic renderers,
+18 coarse subshell caches. Retained JavaScript heap after explicit collection:
+3584268 -> 3628304 bytes (growth 44036 bytes).
+This finite-run result does not establish multi-hour memory behavior.
+
+Median / p95 synchronous draw time (ms), 1366x900 desktop Chrome:
+Element      Bohr        de Broglie   Overview
+1            0.2 / 0.5    0.1 / 0.3    3.1 / 3.8    
+6            0.3 / 0.8    0.2 / 0.6    2.9 / 4.2    
+29           0.7 / 1.6    0.5 / 0.7    2.3 / 3.5    
+54           1.1 / 2.2    0.6 / 0.9    2.3 / 3.4    
+92           1.5 / 2.7    0.4 / 0.6    1.7 / 2.9    
+40 draws per model, local machine. These are draw costs, not guaranteed frame
+rates or measurements of classroom devices. See qa/phase45-results.json.
+
+320/390/768/1366 px: no document or subshell-panel overflow in the harness.
+Screenshots inspected for hydrogen Overview, uranium Overview and 5f detail.
+Existing copper regression suites passed: verify, phase11, phase2, phase3,
+phase4. Coverage includes all copper isotopes, all models, particle selection,
+nucleon interiors, levels, native/denied/absent fullscreen, mouse and emulated
+touch/stylus, pinch, reset, pause, reduced motion and offline operation.
+The older subshell test now uses Overview/Explore controls, preserving its
+checks of all occupied copper subshells and clear-selection behavior.
+
+Not tested: physical Chromebook/tablet/stylus, other browsers, actual screen
+readers, school device policies or multi-hour sessions. Shapes and nucleus
+positions remain illustrative; no exact orbital/nuclear solutions are claimed.
+
+PREVIOUS PHASE COVERAGE
+
+PHASE 4 VERIFICATION — 2026-09-08
+
+PASS in installed Chrome through Playwright using direct file:// launch.
+- All 4 isotopes across all 3 atomic models: 29 protons, mass number minus 29
+  neutrons, 29 neutral electrons, shells 2/8/18/1, correct profile and notation.
+- Electron object identity, camera, model, and explanation level retained.
+  All cached renderers receive the rebuilt nucleus and updated scientific record.
+- Both nucleon interiors across all 12 combinations: 24 internal-view checks.
+  Isotope changes during internal entry return safely and clear old selection.
+- Stable/radioactive status, half-lives, decay visibility, local source entries,
+  and terrestrial-only 63/65 abundance comparison verified.
+- Keyboard selector and focus, all explanation levels, fullscreen, ordinary
+  transition and reduced motion, and independence of ionic charge checked.
+- 80 repeated isotope changes: renderer cache bounded to 3, 29 electron objects,
+  and correct final physical inventory of 96 for copper-67. This checks retained
+  resources; it is not a long-duration benchmark on classroom hardware.
+- 320/390/768/1366 px widths, all isotopes and levels: no page/panel text overflow.
+  Screenshots saved in ../qa; phone layout visually inspected.
+- Zero normal-use JavaScript/console errors and zero remote requests.
+
+Passed suites after Phase 4: verify.cjs, phase11.cjs, phase2.cjs, phase3.cjs,
+phase4.cjs. The single-isotope catalog test now uses an explicit one-record
+fixture so that its edge-case coverage survives the expanded shipped catalog.
+
+Not tested: physical touch/stylus hardware, other installed browsers, school
+managed-device policies, assistive-technology sessions, or multi-hour performance.
+Cu-67 half-life follows IAEA's rounded 62 h; no decay animation or numerical
+nuclear simulation is claimed. No universal cosmic isotope percentages supplied.
+
+PHASE 3 VERIFICATION — regression coverage
+
+Passed using actual file:// index.html in installed Chrome via Playwright:
+- All three atomic models enter both proton and neutron interiors.
+- Correct compositions: up/up/down and up/down/down. Exact generated equations
+  +⅔ + +⅔ − ⅓ = +1 and +⅔ − ⅓ − ⅓ = 0; no rounding artifacts.
+- Single click selects; double-click enters the matching nucleon. Chromium
+  emulated double-tap enters. Explore Inside works with keyboard and touch tap.
+- A drag that moves away and back cancels double-activation eligibility.
+- Normal transition remains active at 500 ms and completes around 1.5 seconds;
+  reduced-motion transition completes as a short fade.
+- Up/down quark regions, gluon field, and boundary accept direct selections.
+  Four representative categories and Clear Selection work.
+- Three explanation levels preserve the internal camera/component selection.
+- Back to Atom restores model, camera, selected nucleon, and prior pause state.
+  Escape returns to the atom. Copper scientific records remain unchanged.
+- Internal drag direction, wheel zoom, emulated pinch, pause/resume, and reset.
+- Native fullscreen entered from inside, hides panels, and provides Back to Atom.
+  Return keeps presentation active. Exiting fullscreen retains internal view.
+- Phone viewport fallback presents the nucleon. Actual pointer double-click
+  from the fullscreen atom re-enters a proton without leaving presentation.
+  Escape returns to atom, then another Escape exits presentation.
+- Thirty entry/return cycles dispose component, hit, field, and transition state.
+  Physical atom inventory stays 92; atomic renderer cache stays bounded to 3.
+- Both nucleons and all levels checked at 320/390/768/1366px: no page/panel overflow.
+  Phone details and comparison table expanded: no overflow. Screenshots inspected.
+- Zero normal-use console/JavaScript errors and zero remote requests.
+
+Regression suites rerun and passed after Phase 3:
+qa/verify.cjs, qa/phase11.cjs, qa/phase2.cjs.
+New suite: qa/phase3.cjs. Additional targeted phone/fullscreen/pinch checks ran
+through the same installed Playwright browser. No end-user tooling is required.
+
+Not tested / limitations
+Physical touch/stylus devices, classroom Chromebook/tablet hardware, Safari,
+Firefox, Edge, projectors, and screen readers were not tested. Touch and pinch
+were emulated in Chromium. No heap-profiler leak audit or physical thumb-drive
+transfer was performed. Background-tab scheduling remains code-reviewed.
+The quark/gluon motion and boundary are qualitative teaching illustrations,
+not numerical QCD, real trajectories, or measured density. Color charge is
+explained in text; decorative colors do not encode it.
+
+The previous Phase 2 test record follows; its suite was rerun successfully.
+=======================================================================
+
+PHASE 2 VERIFICATION
+
+Automated in the installed Chrome browser through Playwright; actual index.html
+opened with file://. No development server used.
+
+PASS — science and existing behavior
+- Copper-63: 29 protons, 34 neutrons, 29 electrons, charge 0, 92 unique IDs.
+- Bohr shells 2/8/18/1; quantum subshell occupancies 2/2/6/2/6/10/1.
+- Three models share the same atom and physical particles; switching never
+  changes element, isotope, charge, or scientific records.
+- Phase 1.1 suite: all four mouse/touch/pen drag directions, representatives
+  visible at 24 camera/zoom combinations, ten invalid-data rejections,
+  isotope/ion independence, zero-neutron fixture, nucleus-only replacement.
+- Base suite: mouse/wheel, click and empty clearing, category/clear controls,
+  pause/resume, reset, labels, help/Escape, keyboard rotation/zoom, pinch,
+  zoom bounds, reduced-motion initialization, Canvas-failure text fallback.
+
+PASS — Phase 2
+- All 3 model buttons, 3 explanation levels, 4 particle categories, and 8
+  occupied-subshell choices exercised. Levels remain selected across changes.
+- Model buttons expose exactly one selected state; descriptions and panel text
+  update. Nuclear selection survives model changes; electron selection clears.
+- Direct nucleus/region clicks work in all models. Wave/cloud electron selection
+  selects a region, never an extra physical particle. Clear removes highlights.
+- Subshell emphasis reports occupancy/capacity and leaves camera unchanged.
+- Standing-wave node stays fixed as time changes; a non-node point oscillates.
+- Quantum cloud sample positions stay fixed as time changes, and its rendered
+  particle-hit list contains only nucleons, not orbiting electron balls.
+- Pause/Resume advances/stops animation time in every model.
+- 60 repeated switches retain exactly 3 cached renderers, 92 shared particles,
+  and one 3,480-point quantum geometry cache. No duplicated atom objects.
+- Native Chrome fullscreen used successfully. Atom drag/wheel remain functional.
+- Exit button, Escape, and browser-initiated fullscreen exit all restore UI,
+  saved camera, model, and explanation level. Distracting UI is hidden.
+- Simulated unavailable Fullscreen API and rejected request both use viewport
+  presentation with a working visible exit and Escape.
+- Model/level/category combinations checked at widths 320, 390, 768, 1366:
+  no horizontal page or particle-panel overflow. Desktop/mobile screenshots
+  inspected; p/d focus and standing-wave screenshots inspected separately.
+- New visible buttons accept keyboard focus; pressed states available.
+- Emulated touch drag and pinch checked in each model.
+- Reduced motion suppresses transitions and starts/stays paused until Resume.
+- Synthetic slow-render timings trigger reduced detail (no scientific changes).
+- Zero remote/network requests, zero normal-use console/JavaScript errors,
+  and no missing relative files in the local page.
+
+Performance observations
+Initial full Phase 2 suite averaged approximately 0.67 ms Bohr, 0.50 ms wave,
+and 4.82 ms quantum per draw over 60 calls per model on this development machine.
+These are renderer timings, not guaranteed frame rates or a Chromebook benchmark.
+Caches are bounded; points and gradient sprites are reused. Hidden-tab scheduling
+is reviewed in code rather than measured in a real background browser tab.
+
+Not tested / limits
+- Physical touch or stylus devices, real Chromebook/tablet hardware, classroom
+  projector, macOS, Safari, Firefox, Edge, and screen readers were not tested.
+- Native/fallback fullscreen testing used desktop Chrome, not mobile browsers.
+- Fullscreen touch uses the same pointer handlers but was not separately tested
+  with physical fingers. Normal-mode pinch/drag were emulated for all models.
+- Focus/pressed-state checks are not a complete accessibility audit.
+- No heap-profiler leak audit; bounded object cache and repeated switching tested.
+- No physical thumb-drive transfer or school security-policy test performed.
+- Cloud radial geometry, angular envelopes, nodes, energies, sizes, and density
+  are qualitative teaching approximations, not numerical copper wavefunctions.
+- Pulsing is a display effect; no physical ground-state density change implied.
+
+Developer tests: ../qa/verify.cjs, ../qa/phase11.cjs, ../qa/phase2.cjs.
+Screenshots remain in ../qa. None are required by the portable application.
+
+Phase 4.5 final smoke: keyboard Enter changes the accessible display-mode
+state; phone controls are readable. The normal page does not load development
+records. An invalid model shows a message and Return to Copper recovers.
+

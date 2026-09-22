@@ -1,0 +1,10 @@
+# Generated local QA outputs
+qa/*.json
+qa/*.png
+qa/*.log
+qa/*results.json
+qa/*-after.json
+qa/*-before.json
+deploy/
+Thumbs.db
+.DS_Store
