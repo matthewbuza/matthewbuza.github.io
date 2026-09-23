@@ -55,6 +55,7 @@ footer{padding:34px 0;color:var(--muted);font-size:.9rem}
 .footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 @media(max-width:850px){.hero-grid,.about-grid{grid-template-columns:1fr}.hero{padding-top:65px}.concept{transform:none}.grid{grid-template-columns:repeat(2,1fr)}.section-head{align-items:start;flex-direction:column}.principles{grid-template-columns:1fr}}
 @media(max-width:570px){.navlinks{gap:14px;font-size:.9rem}.brand span:last-child{display:none}.grid{grid-template-columns:1fr}h1{font-size:3.4rem}.section{padding:58px 0}.hero{padding-bottom:50px}}
+.tool-group{margin-top:38px;scroll-margin-top:96px}.group-title{font-size:1.55rem;margin:0 0 6px;letter-spacing:-.025em}.group-description{color:var(--muted);margin:0 0 18px}.subject-links{display:flex;gap:10px;flex-wrap:wrap}.planned{margin-top:38px;padding:20px;border:1px solid var(--line);border-radius:16px;background:var(--soft)}.planned summary{cursor:pointer;font-weight:800;min-height:28px}.planned>p{color:var(--muted)}.planned-card{box-shadow:none;min-height:210px}.planned-card:hover{transform:none;box-shadow:none}.card:focus-visible,.btn:focus-visible,summary:focus-visible,.navlinks a:focus-visible{outline:3px solid var(--accent);outline-offset:5px}#writing-tools,#tools,#about{scroll-margin-top:90px}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card{transition:none}.card:hover{transform:none}}
 </style>
 </head>
 <body>
@@ -86,25 +87,16 @@ footer{padding:34px 0;color:var(--muted);font-size:.9rem}
 </div>
 </section>
 
-<section class="section" id="tools">
-<div class="wrap">
-<div class="section-head">
-<div>
-<div class="eyebrow">Project Library</div>
-<h2>Explore the tools</h2>
-</div>
-<p>This library will keep growing as new classroom games, simulations, engineering references, and maker activities are built.</p>
-</div>
-
-<div class="grid">
-<a class="card" href="/electrical-engineering/circuit-lab/">
+<section class="section" id="tools"><div class="wrap">
+<div class="section-head"><div><div class="eyebrow">Project Library</div><h2>Choose a tool</h2></div><p>Browse by subject. Every card below opens a working tool.</p></div>
+<div class="subject-links" aria-label="Browse tool categories"><a class="btn" href="#electronics">Electronics</a><a class="btn" href="#science">Science &amp; energy</a><a class="btn" href="#racing">Racing</a><a class="btn" href="#writing-tools">Writing</a></div>
+<section class="tool-group" id="electronics" aria-labelledby="electronics-heading"><h3 class="group-title" id="electronics-heading">Electronics</h3><p class="group-description">Build connections, measure circuits, and explore timing.</p><div class="grid"><a class="card" href="/electrical-engineering/circuit-lab/">
 <div class="icon">💡</div>
 <div class="tag">Electrical Engineering</div>
 <h3>5V Circuit Lab</h3>
 <p>Explore LEDs, resistors, and Ohm's law. Adjust voltage and resistance, and practice digital multimeter measurements.</p>
 <div class="open">Open the lab →</div>
 </a>
-
 <a class="card" href="/electrical-engineering/breadboard-node-lab/">
 <div class="icon">🔌</div>
 <div class="tag">Electrical Engineering</div>
@@ -112,65 +104,50 @@ footer{padding:34px 0;color:var(--muted);font-size:.9rem}
 <p>Connect jumper wires, add power and ground, and discover which breadboard holes share the same electrical node.</p>
 <div class="open">Open the lab →</div>
 </a>
-
-<a class="card" href="#">
-<div class="icon">⚡</div>
-<div class="tag">Engineering</div>
-<h3>Electrical Engineering</h3>
-<p>Interactive circuit tools, voltage and current visualizations, Arduino references, and electronics experiments.</p>
-<div class="open">Projects coming soon →</div>
-</a>
-
-<a class="card" href="/solar-oven/">
-<div class="icon" aria-hidden="true">☀️</div>
-<div class="tag">Energy + Physics</div>
-<h3>Solar Oven Demo</h3>
-<p>Adjust sunlight intensity and watch a solar oven warm up or cool down. Explore how its clear cover helps retain heat.</p>
-<div class="open">Open the demo →</div>
-</a>
-
-<a class="card" href="/periodic-table-visualizer/">
+<a class="card" href="/electrical-engineering/555-timer/"><div class="icon" aria-hidden="true">⏱️</div><div class="tag">Electrical Engineering</div><h3>555 Timer Lab</h3><p>Adjust resistors and a capacitor to change an LED’s flash rate. Try timing presets and explore the timer’s internal circuit.</p><div class="open">Open the lab →</div></a></div></section>
+<section class="tool-group" id="science" aria-labelledby="science-heading"><h3 class="group-title" id="science-heading">Science &amp; energy</h3><p class="group-description">Explore atomic structure and see how sunlight becomes heat.</p><div class="grid"><a class="card" href="/periodic-table-visualizer/">
 <div class="icon">⚛️</div>
 <div class="tag">Chemistry + Physics</div>
 <h3>Periodic Table Visualizer</h3>
 <p>Explore atoms and the periodic table through interactive models built to make atomic structure easier to visualize.</p>
 <div class="open">Open the visualizer →</div>
 </a>
-
-<a class="card" href="#">
-<div class="icon">🎯</div>
-<div class="tag">Physics Game</div>
-<h3>Catapult Mr. Matt</h3>
-<p>Experiment with projectile mass, spring strength, arm length, trajectories, obstacles, and a very questionable homework delivery system.</p>
-<div class="open">Projects coming soon →</div>
-</a>
-
-<a class="card" href="#">
-<div class="icon">⚙️</div>
-<div class="tag">Physics Sandbox</div>
-<h3>Simple Machines, Big Problems</h3>
-<p>Solve ridiculous problems using levers, pulleys, wedges, inclined planes, wheels and axles, and screws.</p>
-<div class="open">Projects coming soon →</div>
-</a>
-
-<a class="card" href="/micro-circuit/">
+<a class="card" href="/solar-oven/">
+<div class="icon" aria-hidden="true">☀️</div>
+<div class="tag">Energy + Physics</div>
+<h3>Solar Oven Demo</h3>
+<p>Adjust sunlight intensity and watch a solar oven warm up or cool down. Explore how its clear cover helps retain heat.</p>
+<div class="open">Open the demo →</div>
+</a></div></section>
+<section class="tool-group" id="racing" aria-labelledby="racing-heading"><h3 class="group-title" id="racing-heading">Racing &amp; data</h3><p class="group-description">Practice driving and compare lap times.</p><div class="grid"><a class="card" href="/micro-circuit/">
 <div class="icon">🏁</div>
 <div class="tag">Data + Racing</div>
 <h3>Micro Circuit — RC Racing</h3>
 <p>Race Monaco, Le Mans, or the Workshop. Choose your difficulty and lap count, then compare lap times and session averages.</p>
 <div class="open">Play Micro Circuit →</div>
-</a>
-
-<div class="card coming">
-<div class="icon">🛠️</div>
-<div class="tag">Maker Lab</div>
-<h3>More projects are coming</h3>
-<p>3D printing challenges, maker races, classroom references, and new experiments will be added here.</p>
-<div class="open">Under construction</div>
+</a></div></section>
+<details class="planned"><summary>Coming later</summary><p>These projects are still in development. More maker activities and classroom references are also planned.</p><div class="grid"><div class="card planned-card">
+<div class="icon">⚡</div>
+<div class="tag">Engineering</div>
+<h3>Electrical Engineering</h3>
+<p>Interactive circuit tools, voltage and current visualizations, Arduino references, and electronics experiments.</p>
+<div class="open">Coming soon</div>
 </div>
+<div class="card planned-card">
+<div class="icon">🎯</div>
+<div class="tag">Physics Game</div>
+<h3>Catapult Mr. Matt</h3>
+<p>Experiment with projectile mass, spring strength, arm length, trajectories, obstacles, and a very questionable homework delivery system.</p>
+<div class="open">Coming soon</div>
 </div>
-</div>
-</section>
+<div class="card planned-card">
+<div class="icon">⚙️</div>
+<div class="tag">Physics Sandbox</div>
+<h3>Simple Machines, Big Problems</h3>
+<p>Solve ridiculous problems using levers, pulleys, wedges, inclined planes, wheels and axles, and screws.</p>
+<div class="open">Coming soon</div>
+</div></div></details>
+</div></section>
 
 <section class="section" id="writing-tools" aria-labelledby="writing-tools-heading">
 <div class="wrap">

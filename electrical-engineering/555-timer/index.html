@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>555 Astable Oscillator Lab</title>
+<style>
+:root{--bg:#eef2f5;--panel:#fff;--ink:#1f2933;--muted:#65727e;--accent:#2563eb;--red:#b94040;--blue:#376b92}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}
+header{padding:18px 22px;background:#17212b;color:#fff}
+header h1{margin:0 0 5px;font-size:24px} header p{margin:0;color:#cbd5df}
+main{max-width:1200px;margin:auto;padding:18px;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(290px,.75fr);gap:16px}
+.card{background:var(--panel);border:1px solid #d5dce2;border-radius:14px;padding:15px}
+h2{font-size:17px;margin:0 0 12px}
+.boardwrap{overflow:auto}.board{min-width:720px;width:100%;display:block}
+.controls label{display:block;margin:15px 0;font-weight:bold}.controls input{width:100%;margin-top:8px}
+.value{float:right;color:var(--accent)}
+.presets{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+button{font:inherit;min-height:44px;border:1px solid #c7d0d9;border-radius:9px;background:#f7f9fb;cursor:pointer;padding:8px}
+button:hover{background:#edf3fb} button.primary{background:#e8f0ff;border-color:#a8c2f4}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}
+.stat{padding:10px;background:#f4f6f8;border-radius:9px}.stat small{display:block;color:var(--muted)}.stat strong{font-size:18px}
+.note{font-size:13px;color:var(--muted);line-height:1.45;margin-top:12px}
+.formula{font-family:Consolas,monospace;background:#f4f6f8;padding:10px;border-radius:8px;font-size:13px}
+@media(max-width:850px){main{grid-template-columns:1fr}}
+
+#inside555{display:none;position:fixed;inset:0;background:rgba(10,18,25,.72);z-index:1000;padding:24px;overflow:auto}
+#inside555.open{display:flex;align-items:flex-start;justify-content:center}
+.insidePanel{width:min(1000px,100%);margin:auto;background:#fff;border-radius:15px;padding:18px;box-shadow:0 16px 50px rgba(0,0,0,.35)}
+.insideHead{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:8px}
+.insideHead h2{margin:0}.close555{width:44px;font-size:22px}
+.insideDiagram{width:100%;height:auto;display:block;background:#fafbfc;border:1px solid #d8dee4;border-radius:10px}
+.legend555{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.legend555 div{background:#f3f6f8;border-radius:8px;padding:9px;font-size:13px}
+@media(max-width:650px){.legend555{grid-template-columns:1fr}#inside555{padding:8px}}
+main > section,main > aside{min-width:0}
+</style>
+</head>
+<body>
+<header>
+<h1>555 Timer Astable Oscillator</h1>
+<p>Portable, offline breadboard simulation — adjust R1, R2 and C to change the LED flash rate.</p>
+</header>
+<main>
+<section class="card">
+<h2>Breadboard Circuit</h2>
+<div class="boardwrap">
+<svg class="board" viewBox="0 0 900 560" role="img" aria-label="White breadboard with correctly oriented NE555 astable oscillator">
+<rect x="12" y="12" width="876" height="530" rx="20" fill="#fbfbf8" stroke="#bfc5c9" stroke-width="3"/>
+<text x="40" y="45" font-size="14" fill="#a33131">+5V</text><text x="40" y="72" font-size="14" fill="#315f82">GND</text>
+<line x1="85" y1="40" x2="850" y2="40" stroke="#b94040" stroke-width="4"/><line x1="85" y1="68" x2="850" y2="68" stroke="#376b92" stroke-width="4"/>
+<text x="40" y="505" font-size="14" fill="#a33131">+5V</text><text x="40" y="532" font-size="14" fill="#315f82">GND</text>
+<line x1="85" y1="500" x2="850" y2="500" stroke="#b94040" stroke-width="4"/><line x1="85" y1="528" x2="850" y2="528" stroke="#376b92" stroke-width="4"/>
+<defs><pattern id="holes" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="14" cy="14" r="3" fill="#c9ccca"/></pattern></defs>
+<rect x="45" y="95" width="810" height="145" fill="url(#holes)"/><rect x="45" y="320" width="810" height="145" fill="url(#holes)"/>
+<rect x="35" y="247" width="830" height="66" rx="6" fill="#e9e9e5"/><line x1="45" y1="280" x2="855" y2="280" stroke="#c8c8c3" stroke-width="2" stroke-dasharray="8 7"/>
+<text x="52" y="274" font-size="11" fill="#999">CENTER TRENCH</text>
+
+<!-- 555 rotated 90 degrees clockwise relative to V1: long axis horizontal, four pins above and four below trench -->
+<rect id="chip555" x="360" y="205" width="180" height="150" rx="8" fill="#2c3035" stroke="#111" stroke-width="3" style="cursor:pointer"/>
+<path d="M360 260 A20 20 0 0 1 360 300" fill="#fbfbf8"/><circle cx="385" cy="225" r="5" fill="#aeb4b9"/>
+<text x="450" y="270" text-anchor="middle" font-size="24" font-weight="bold" fill="white">NE555</text><text x="450" y="294" text-anchor="middle" font-size="13" fill="#d7dce0" style="pointer-events:none">TIMER</text><text x="450" y="318" text-anchor="middle" font-size="10" fill="#bfc8d0" style="pointer-events:none">DOUBLE-CLICK TO LOOK INSIDE</text>
+<text x="335" y="192" font-size="12" fill="#555">Notch / pin-1 end ←</text>
+<g stroke="#747b80" stroke-width="8">
+<line x1="385" y1="205" x2="385" y2="180"/><line x1="425" y1="205" x2="425" y2="180"/><line x1="475" y1="205" x2="475" y2="180"/><line x1="515" y1="205" x2="515" y2="180"/>
+<line x1="515" y1="355" x2="515" y2="380"/><line x1="475" y1="355" x2="475" y2="380"/><line x1="425" y1="355" x2="425" y2="380"/><line x1="385" y1="355" x2="385" y2="380"/></g>
+<g font-size="11" font-weight="bold" fill="#333">
+<text x="365" y="168">1 GND</text><text x="406" y="168">2 TRIG</text><text x="457" y="168">3 OUT</text><text x="492" y="168">4 RESET</text>
+<text x="497" y="399">5 CTRL</text><text x="454" y="399">6 THRESH</text><text x="407" y="399">7 DISCH</text><text x="367" y="399">8 VCC</text></g>
+
+<!-- pin 1 ground, pin 4 reset +5, pin 8 VCC +5 -->
+<path d="M385 180 V120 H180 V68" fill="none" stroke="#376b92" stroke-width="5"/>
+<path d="M515 180 V105 H680 V40" fill="none" stroke="#b94040" stroke-width="5"/>
+<path d="M385 380 V455 H720 V40" fill="none" stroke="#b94040" stroke-width="5"/>
+
+<!-- R1 from +5 to pin 7 discharge -->
+<path d="M610 40 V105" fill="none" stroke="#b94040" stroke-width="4"/><rect x="594" y="105" width="32" height="76" rx="7" fill="#e5d0a0" stroke="#6c5d44"/>
+<g stroke="#70553d" stroke-width="4"><line x1="598" y1="118" x2="622" y2="118"/><line x1="598" y1="133" x2="622" y2="133"/><line x1="598" y1="155" x2="622" y2="155"/></g>
+<text id="r1Label" x="638" y="145" font-size="13">R1</text><path d="M610 181 V420 H425 V380" fill="none" stroke="#8b6840" stroke-width="4"/>
+
+<!-- R2 from discharge to timing node -->
+<path d="M425 420 H300" fill="none" stroke="#8b6840" stroke-width="4"/><rect x="224" y="404" width="76" height="32" rx="7" fill="#e5d0a0" stroke="#6c5d44"/>
+<g stroke="#70553d" stroke-width="4"><line x1="238" y1="408" x2="238" y2="432"/><line x1="254" y1="408" x2="254" y2="432"/><line x1="278" y1="408" x2="278" y2="432"/></g>
+<text id="r2Label" x="225" y="456" font-size="13">R2</text><path d="M224 420 H175 V150 H425 V180" fill="none" stroke="#7a6197" stroke-width="4"/>
+<!-- pin 6 threshold joins timing node -->
+<path d="M175 150 H145 V445 H475 V380" fill="none" stroke="#7a6197" stroke-width="4"/>
+
+<!-- C from timing node to ground -->
+<line x1="145" y1="445" x2="145" y2="462" stroke="#555" stroke-width="4"/><line x1="125" y1="462" x2="165" y2="462" stroke="#555" stroke-width="4"/><line x1="129" y1="474" x2="161" y2="474" stroke="#555" stroke-width="4"/>
+<path d="M145 474 V528" fill="none" stroke="#376b92" stroke-width="4"/><text id="cLabel" x="175" y="476" font-size="13">C</text>
+
+<!-- output pin 3 through 330 ohm and LED -->
+<path d="M475 180 V125 H750" fill="none" stroke="#a07c3f" stroke-width="4"/><rect x="750" y="109" width="70" height="32" rx="7" fill="#e5d0a0" stroke="#6c5d44"/>
+<g stroke="#70553d" stroke-width="4"><line x1="764" y1="113" x2="764" y2="137"/><line x1="780" y1="113" x2="780" y2="137"/><line x1="802" y1="113" x2="802" y2="137"/></g>
+<text x="755" y="100" font-size="12">330 Ω</text><path d="M820 125 H842 V215" fill="none" stroke="#777" stroke-width="4"/>
+<g id="led"><circle id="glow" cx="842" cy="240" r="29" fill="#e24940" opacity=".12"/><circle cx="842" cy="240" r="15" fill="#b93630" stroke="#762723" stroke-width="2"/></g>
+<path d="M842 255 V528" fill="none" stroke="#376b92" stroke-width="4"/><text x="821" y="280" font-size="13" font-weight="bold">LED</text>
+
+<!-- pin 5 10nF bypass -->
+<path d="M515 380 V430 H545" fill="none" stroke="#777" stroke-width="3"/><line x1="545" y1="418" x2="545" y2="442" stroke="#555" stroke-width="3"/><line x1="555" y1="421" x2="555" y2="439" stroke="#555" stroke-width="3"/>
+<path d="M555 430 H575 V528" fill="none" stroke="#376b92" stroke-width="3"/><text x="565" y="418" font-size="11">10 nF</text>
+</svg>
+</div>
+<p class="note"><strong>Orientation:</strong> the breadboard remains in its original orientation with the center trench running horizontally. The 555 has been rotated 90° clockwise so its long axis runs left-to-right and its two rows of four pins sit on opposite sides of the trench. The notch is at the left.</p>
+</section>
+
+<aside>
+<section class="card controls">
+<h2>Timing Components</h2>
+<label>R1 <span class="value" id="r1v"></span><input id="r1" type="range" min="1" max="100" value="10" step="1"></label>
+<label>R2 <span class="value" id="r2v"></span><input id="r2" type="range" min="1" max="330" value="68" step="1"></label>
+<label>Capacitor C <span class="value" id="cv"></span><input id="c" type="range" min="1" max="100" value="10" step="1"></label>
+<h2>Preset Period</h2>
+<div class="presets">
+<button class="primary preset" data-t=".5">0.5 sec</button><button class="primary preset" data-t="1">1 sec</button>
+<button class="primary preset" data-t="2">2 sec</button><button class="primary preset" data-t="5">5 sec</button>
+</div>
+<div class="stats">
+<div class="stat"><small>Period</small><strong id="period"></strong></div>
+<div class="stat"><small>Frequency</small><strong id="freq"></strong></div>
+<div class="stat"><small>LED ON</small><strong id="ton"></strong></div>
+<div class="stat"><small>LED OFF</small><strong id="toff"></strong></div>
+</div>
+<p class="formula">T = 0.693 × (R1 + 2R2) × C<br>tON = 0.693 × (R1 + R2) × C<br>tOFF = 0.693 × R2 × C</p>
+<button id="pause" style="width:100%">Pause Simulation</button>
+<p class="note">Preset buttons keep R1 at 10 kΩ and automatically choose practical R2 and C values to get close to the requested full ON+OFF cycle time.</p>
+</section>
+</aside>
+</main>
+<div id="inside555" aria-hidden="true">
+ <div class="insidePanel" role="dialog" aria-modal="true" aria-labelledby="insideTitle">
+  <div class="insideHead"><div><h2 id="insideTitle">Inside the 555 Timer</h2><div class="note">Simplified functional diagram of the classic bipolar 555 architecture.</div></div><button id="close555" class="close555" type="button" aria-label="Close">×</button></div>
+  <svg class="insideDiagram" viewBox="0 0 1000 590" role="img" aria-label="Internal functional diagram of a 555 timer showing three 5 kilo-ohm resistors, two comparators, SR latch, discharge transistor and output stage">
+   <rect x="20" y="20" width="960" height="550" rx="18" fill="#fff" stroke="#aeb8c1" stroke-width="2"/>
+   <text x="500" y="52" text-anchor="middle" font-size="20" font-weight="bold">NE555 — Simplified Internal Circuit</text>
+
+   <!-- divider -->
+   <text x="125" y="82" text-anchor="middle" font-size="13" font-weight="bold">Three 5 kΩ resistors</text>
+   <line x1="125" y1="100" x2="125" y2="125" stroke="#b94040" stroke-width="4"/>
+   <text x="78" y="112" font-size="12">8 VCC</text>
+   <rect x="100" y="125" width="50" height="75" rx="8" fill="#e5d0a0" stroke="#6c5d44"/><text x="125" y="168" text-anchor="middle" font-size="14" font-weight="bold">5 kΩ</text>
+   <rect x="100" y="245" width="50" height="75" rx="8" fill="#e5d0a0" stroke="#6c5d44"/><text x="125" y="288" text-anchor="middle" font-size="14" font-weight="bold">5 kΩ</text>
+   <rect x="100" y="365" width="50" height="75" rx="8" fill="#e5d0a0" stroke="#6c5d44"/><text x="125" y="408" text-anchor="middle" font-size="14" font-weight="bold">5 kΩ</text>
+   <line x1="125" y1="200" x2="125" y2="245" stroke="#555" stroke-width="4"/><line x1="125" y1="320" x2="125" y2="365" stroke="#555" stroke-width="4"/><line x1="125" y1="440" x2="125" y2="485" stroke="#376b92" stroke-width="4"/>
+   <text x="70" y="490" font-size="12">1 GND</text>
+   <circle cx="125" cy="222" r="5" fill="#333"/><circle cx="125" cy="342" r="5" fill="#333"/>
+   <text x="155" y="218" font-size="12">2/3 VCC</text><text x="155" y="338" font-size="12">1/3 VCC</text>
+
+   <!-- comparators -->
+   <path d="M300 165 L300 245 L390 205 Z" fill="#e8eef3" stroke="#53616d" stroke-width="2"/>
+   <text x="325" y="210" font-size="20" font-weight="bold">+</text><text x="325" y="237" font-size="20" font-weight="bold">−</text>
+   <text x="330" y="152" text-anchor="middle" font-size="13" font-weight="bold">Threshold Comparator</text>
+   <path d="M300 335 L300 415 L390 375 Z" fill="#e8eef3" stroke="#53616d" stroke-width="2"/>
+   <text x="325" y="360" font-size="20" font-weight="bold">−</text><text x="325" y="398" font-size="20" font-weight="bold">+</text>
+   <text x="330" y="432" text-anchor="middle" font-size="13" font-weight="bold">Trigger Comparator</text>
+
+   <!-- reference and input connections -->
+   <path d="M125 222 H270 V225 H300" fill="none" stroke="#777" stroke-width="3"/>
+   <path d="M125 342 H270 V395 H300" fill="none" stroke="#777" stroke-width="3"/>
+   <path d="M300 185 H235 V105" fill="none" stroke="#7a6197" stroke-width="3"/><text x="205" y="98" font-size="12">6 THRESHOLD</text>
+   <path d="M300 355 H235 V475" fill="none" stroke="#7a6197" stroke-width="3"/><text x="200" y="495" font-size="12">2 TRIGGER</text>
+   <path d="M125 222 H205 V275" fill="none" stroke="#888" stroke-width="2"/><text x="160" y="292" font-size="12">5 CONTROL</text>
+
+   <!-- latch -->
+   <path d="M390 205 H465 V225" fill="none" stroke="#a05b4e" stroke-width="3"/><text x="430" y="196" font-size="12">RESET</text>
+   <path d="M390 375 H465 V335" fill="none" stroke="#4d7290" stroke-width="3"/><text x="430" y="392" font-size="12">SET</text>
+   <rect x="465" y="205" width="155" height="150" rx="12" fill="#eef2f5" stroke="#53616d" stroke-width="2"/>
+   <text x="542" y="260" text-anchor="middle" font-size="20" font-weight="bold">S–R LATCH</text>
+   <text x="542" y="287" text-anchor="middle" font-size="13">(flip-flop)</text>
+   <text x="480" y="230" font-size="14">R</text><text x="480" y="342" font-size="14">S</text><text x="600" y="245" font-size="14">Q</text><text x="592" y="326" font-size="14">Q̅</text>
+   <path d="M515 205 V160 H555" fill="none" stroke="#b94040" stroke-width="3"/><text x="565" y="164" font-size="12">4 RESET</text>
+
+   <!-- output -->
+   <path d="M620 240 H700" fill="none" stroke="#555" stroke-width="4"/>
+   <rect x="700" y="190" width="125" height="100" rx="12" fill="#edf3e8" stroke="#60705b" stroke-width="2"/>
+   <text x="762" y="230" text-anchor="middle" font-size="15" font-weight="bold">OUTPUT</text><text x="762" y="252" text-anchor="middle" font-size="13">DRIVER</text>
+   <path id="internalOutWire" d="M825 240 H935" fill="none" stroke="#777" stroke-width="5"/><text x="900" y="225" font-size="13">3 OUTPUT</text>
+   <circle id="internalLed" cx="935" cy="240" r="11" fill="#b93630"/>
+
+   <!-- discharge -->
+   <path d="M620 320 H700 V390" fill="none" stroke="#555" stroke-width="4"/>
+   <circle cx="700" cy="415" r="25" fill="#eef2f5" stroke="#53616d" stroke-width="2"/><text x="700" y="420" text-anchor="middle" font-size="14" font-weight="bold">NPN</text>
+   <text x="735" y="420" font-size="13">Discharge transistor</text>
+   <path d="M700 390 V340 H865" fill="none" stroke="#8b6840" stroke-width="3"/><text x="870" y="345" font-size="13">7 DISCHARGE</text>
+   <path d="M700 440 V485" fill="none" stroke="#376b92" stroke-width="3"/>
+
+   <!-- explanation arrows -->
+   <text x="500" y="525" text-anchor="middle" font-size="14" fill="#4b5863">The resistor divider creates 1/3 VCC and 2/3 VCC reference levels. The comparators SET and RESET the S–R latch.</text>
+   <text x="500" y="548" text-anchor="middle" font-size="14" fill="#4b5863">The latch controls both the output driver and the discharge transistor.</text>
+  </svg>
+  <div class="legend555">
+   <div><strong>1/3 VCC:</strong> If TRIGGER falls below this level, the lower comparator sets the latch and the output goes HIGH.</div>
+   <div><strong>2/3 VCC:</strong> If THRESHOLD rises above this level, the upper comparator resets the latch and the output goes LOW.</div>
+   <div><strong>Why “555”?</strong> The classic internal divider uses three 5 kΩ resistors in series between VCC and ground.</div>
+  </div>
+ </div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const r1=$('r1'),r2=$('r2'),c=$('c');
+let running=true, epoch=performance.now();
+
+function values(){
+ const R1=+r1.value*1000,R2=+r2.value*1000,C=+c.value/1e6;
+ const on=.693*(R1+R2)*C, off=.693*R2*C;
+ return {R1,R2,C,on,off,T:on+off,f:1/(on+off)};
+}
+function timeText(x){return x<1?(x*1000).toFixed(0)+' ms':x.toFixed(x<10?2:1)+' s'}
+function update(){
+ const x=values();
+ $('r1v').textContent=r1.value+' kΩ'; $('r2v').textContent=r2.value+' kΩ'; $('cv').textContent=c.value+' µF';
+ $('period').textContent=timeText(x.T); $('freq').textContent=x.f.toFixed(x.f<10?2:1)+' Hz';
+ $('ton').textContent=timeText(x.on); $('toff').textContent=timeText(x.off);
+ $('r1Label').textContent='R1  '+r1.value+' kΩ'; $('r2Label').textContent='R2  '+r2.value+' kΩ'; $('cLabel').textContent='C  '+c.value+' µF';
+ epoch=performance.now();
+}
+[r1,r2,c].forEach(x=>x.addEventListener('input',update));
+
+function setPeriod(target){
+ // Search integer µF values and integer kΩ R2 values for a close practical match.
+ let best=null;
+ const fixedR1=10;
+ for(let C=1;C<=100;C++){
+   for(let R2=1;R2<=330;R2++){
+     const T=.693*((fixedR1*1000)+2*(R2*1000))*(C/1e6);
+     const err=Math.abs(T-target);
+     if(!best||err<best.err)best={C,R2,err};
+   }
+ }
+ r1.value=fixedR1;r2.value=best.R2;c.value=best.C;update();
+}
+document.querySelectorAll('.preset').forEach(b=>b.addEventListener('click',()=>setPeriod(+b.dataset.t)));
+$('pause').addEventListener('click',()=>{
+ running=!running;$('pause').textContent=running?'Pause Simulation':'Resume Simulation';epoch=performance.now();
+ if(!running)$('glow').setAttribute('opacity','.12');
+});
+const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function animate(now){
+ if(running&&!reduce){
+   const x=values(),elapsed=((now-epoch)/1000)%x.T,on=elapsed<x.on;
+   $('glow').setAttribute('opacity',on?'.72':'.06');
+   $('glow').setAttribute('r',on?'34':'25');
+ }else if(reduce){$('glow').setAttribute('opacity','.45');}
+ requestAnimationFrame(animate);
+}
+
+const modal555=$('inside555'), chip555=$('chip555'), close555=$('close555');
+function openInside(){modal555.classList.add('open');modal555.setAttribute('aria-hidden','false');close555.focus();}
+function closeInside(){modal555.classList.remove('open');modal555.setAttribute('aria-hidden','true');}
+chip555.addEventListener('dblclick',openInside);
+chip555.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openInside();}});
+chip555.setAttribute('tabindex','0');chip555.setAttribute('role','button');chip555.setAttribute('aria-label','Double click or press Enter to view the internal 555 timer circuitry');
+close555.addEventListener('click',closeInside);
+modal555.addEventListener('click',e=>{if(e.target===modal555)closeInside();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal555.classList.contains('open'))closeInside();});
+update();requestAnimationFrame(animate);
+</script>
+
+
+</body>
+</html>
