@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Solar Oven Greenhouse Effect Demo</title>
+<style>
+  :root{
+    --sky:#9bd8ff; --ground:#7bb45a; --oven:#34383f; --glass:#bfe9ff99;
+    --sun:#ffd34d; --hot:#ff6b35; --panel:#ffffffee; --ink:#17212b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#eef5f8;color:var(--ink)}
+  .app{max-width:1100px;margin:auto;padding:18px}
+  h1{margin:0 0 5px;font-size:clamp(25px,4vw,38px)}
+  .sub{margin:0 0 14px;color:#4b5966}
+  .scene{
+    position:relative;height:520px;overflow:hidden;border-radius:18px;
+    background:linear-gradient(var(--sky) 0 72%,var(--ground) 72%);
+    box-shadow:0 8px 30px #0002;
+  }
+  .sun{
+    position:absolute;left:65px;top:55px;width:95px;height:95px;border-radius:50%;
+    background:var(--sun);box-shadow:0 0 40px 18px #ffe16b88;
+    transition:.2s;
+  }
+  .sun:after{content:"SUN";position:absolute;inset:0;display:grid;place-items:center;font-weight:bold;color:#765700}
+  .ray{position:absolute;left:145px;top:122px;width:580px;height:9px;border-radius:8px;
+    background:linear-gradient(90deg,#fff9b8,#ffd83d);transform:rotate(24deg);transform-origin:left center;
+    box-shadow:0 0 14px #fff4a8;transition:.2s}
+  .ray.r2{top:145px;transform:rotate(20deg)}
+  .ray.r3{top:98px;transform:rotate(28deg)}
+  .oven{position:absolute;right:105px;bottom:64px;width:350px;height:230px}
+  .box{position:absolute;left:25px;bottom:0;width:300px;height:150px;background:var(--oven);
+    border:8px solid #20242a;border-radius:8px 8px 18px 18px;box-shadow:0 14px 18px #0003}
+  .inside{position:absolute;inset:18px;background:linear-gradient(#202126,#111);border-radius:5px;overflow:hidden}
+  .food{position:absolute;width:120px;height:32px;border-radius:50%;background:#b76d31;left:72px;bottom:25px;
+    box-shadow:0 7px 0 #713f20}
+  .glass{position:absolute;left:25px;bottom:142px;width:300px;height:15px;background:#c9f2ffcc;border:3px solid #eaffff;
+    transform:skewX(-12deg);box-shadow:0 0 12px #fff}
+  .reflector{position:absolute;left:38px;bottom:155px;width:270px;height:105px;background:linear-gradient(135deg,#fff,#b9c1c8,#fff);
+    border:4px solid #7d858b;transform:skewX(-18deg) rotate(-7deg);transform-origin:bottom right;opacity:.9}
+  .heat{position:absolute;left:62px;bottom:42px;width:225px;height:105px;border-radius:50%;
+    background:radial-gradient(ellipse,#ff7b3244,#ff3b0011 55%,transparent 70%);opacity:.2;transition:.3s}
+  .ir{position:absolute;color:#ff8a54;font-size:25px;font-weight:bold;opacity:.25;animation:rise 1.7s infinite}
+  .ir.a{left:80px;bottom:65px}.ir.b{left:145px;bottom:75px;animation-delay:.5s}.ir.c{left:215px;bottom:60px;animation-delay:1s}
+  @keyframes rise{0%{transform:translateY(15px);opacity:.15}50%{opacity:.85}100%{transform:translateY(-55px);opacity:.1}}
+  .thermo{position:absolute;right:22px;top:22px;width:150px;background:#fffE;border-radius:14px;padding:12px;text-align:center;
+    box-shadow:0 5px 18px #0002}
+  .temp{font-size:36px;font-weight:800}
+  .bar{height:145px;width:30px;margin:8px auto;background:#e5e9ed;border:3px solid #59636c;border-radius:18px;position:relative;overflow:hidden}
+  .fill{position:absolute;left:0;right:0;bottom:0;height:8%;background:linear-gradient(#ffb33c,#ef3e2f);transition:.35s}
+  .controls{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;margin-top:16px;background:var(--panel);
+    border-radius:16px;padding:16px;box-shadow:0 4px 18px #0001}
+  input[type=range]{width:100%;accent-color:#f2a900}
+  .labels{display:flex;justify-content:space-between;font-size:13px;color:#52606c}
+  button{border:0;border-radius:10px;padding:11px 16px;font-weight:bold;cursor:pointer;background:#263746;color:white}
+  .info{margin-top:14px;padding:14px 16px;background:white;border-radius:14px;line-height:1.45}
+  .legend{position:absolute;left:18px;bottom:18px;background:#fffD;padding:9px 12px;border-radius:10px;font-size:13px}
+  @media(max-width:700px){.scene{height:470px}.oven{transform:scale(.78);transform-origin:right bottom;right:20px}.thermo{transform:scale(.85);transform-origin:right top}.ray{width:440px}.controls{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+  <h1>☀️ Solar Oven Greenhouse Effect</h1>
+  <p class="sub">Increase the sunlight and watch how energy entering the oven raises its temperature.</p>
+
+  <div class="scene">
+    <div class="sun" id="sun"></div>
+    <div class="ray r1" id="r1"></div><div class="ray r2" id="r2"></div><div class="ray r3" id="r3"></div>
+
+    <div class="oven">
+      <div class="reflector"></div>
+      <div class="glass"></div>
+      <div class="box">
+        <div class="inside">
+          <div class="heat" id="heat"></div>
+          <div class="food"></div>
+          <div class="ir a">〰</div><div class="ir b">〰</div><div class="ir c">〰</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="thermo">
+      <div>OVEN TEMP</div>
+      <div class="temp"><span id="temp">72</span>°F</div>
+      <div class="bar"><div class="fill" id="fill"></div></div>
+      <div id="status">Room temperature</div>
+    </div>
+    <div class="legend">Yellow = incoming light<br>Orange waves = heat energy</div>
+  </div>
+
+  <div class="controls">
+    <div>
+      <b>Sunlight Intensity: <span id="pct">0</span>%</b>
+      <input id="light" type="range" min="0" max="100" value="0">
+      <div class="labels"><span>Cloudy / Low</span><span>Bright Sunlight</span></div>
+    </div>
+    <button id="reset">Reset Oven</button>
+  </div>
+
+  <div class="info">
+    <b>What is happening?</b> Shortwave sunlight passes through the clear cover and is absorbed by the dark interior.
+    The interior warms and gives off infrared heat. The cover also reduces heat loss by limiting air movement and
+    slowing the escape of thermal energy. More incoming sunlight means the oven can reach a higher equilibrium temperature.
+    <br><br><b>Try it:</b> Move the slider high, watch the temperature climb, then lower the sunlight and watch the oven cool.
+  </div>
+</div>
+
+<script>
+const slider=document.getElementById('light'), pct=document.getElementById('pct');
+const tempEl=document.getElementById('temp'), fill=document.getElementById('fill');
+const sun=document.getElementById('sun'), heat=document.getElementById('heat');
+const rays=[r1,r2,r3], statusEl=document.getElementById('status');
+let temp=72, ambient=72;
+
+function targetTemp(){
+  const s=+slider.value/100;
+  // Classroom demonstration model, not a calibrated physical simulation.
+  return ambient + 228*Math.pow(s,0.82);
+}
+function updateLight(){
+  let v=+slider.value; pct.textContent=v;
+  let glow=12+v*.42;
+  sun.style.boxShadow=`0 0 ${glow}px ${8+v*.16}px rgba(255,225,90,${.25+v/180})`;
+  sun.style.filter=`brightness(${.65+v/100})`;
+  rays.forEach(x=>{x.style.opacity=.08+v/110;x.style.height=(3+v*.08)+'px'});
+}
+function tick(){
+  let target=targetTemp();
+  temp += (target-temp)*0.012;
+  tempEl.textContent=Math.round(temp);
+  let level=Math.max(0,Math.min(100,(temp-ambient)/(300-ambient)*100));
+  fill.style.height=Math.max(5,level)+'%';
+  heat.style.opacity=.12+level/115;
+  if(temp<90) statusEl.textContent='Room temperature';
+  else if(temp<140) statusEl.textContent='Warming';
+  else if(temp<200) statusEl.textContent='Hot';
+  else if(temp<250) statusEl.textContent='Very hot';
+  else statusEl.textContent='Cooking temperature';
+  requestAnimationFrame(tick);
+}
+slider.addEventListener('input',updateLight);
+document.getElementById('reset').onclick=()=>{temp=ambient;slider.value=0;updateLight()};
+updateLight(); tick();
+</script>
+</body>
+</html>
