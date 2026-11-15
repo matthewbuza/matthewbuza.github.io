@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Build-a-Melody Studio • v1.5.0</title>
+<style>
+:root{--ink:#24354a;--muted:#70819a;--line:#dee6f1;--blue:#547be8;--blue2:#8da4ec;--violet:#8b70db;--mint:#27b49c;--paper:#f5f8fd;--white:#fff;--warm:#ffbd76;--red:#d35d71;--cell:36px;--step:38px;--key:80px}*{box-sizing:border-box}body{margin:0;background:var(--paper);font:14px/1.4 system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--ink)}button,input,select{font:inherit}button{cursor:pointer}header{display:flex;align-items:center;gap:12px;padding:16px 25px;border-bottom:1px solid var(--line);background:#fff}header .logo{height:40px;width:40px;display:grid;place-items:center;background:#edf1ff;color:#536bdc;border-radius:13px;font-size:24px}h1{font-size:20px;letter-spacing:-.5px;margin:0}h2{font-size:15px;margin:0 0 11px}p{margin:0}.sub{color:var(--muted);font-size:12px}header .right{margin-left:auto;display:flex;align-items:center;gap:10px}.version{border:1px solid #dce4f0;padding:5px 9px;border-radius:50px;color:var(--muted);font-size:12px}.app{max-width:1640px;margin:auto;padding:18px 23px;display:grid;grid-template-columns:minmax(0,1fr) 308px;gap:17px}.surface{background:#fff;border:1px solid #e0e7f0;border-radius:16px;box-shadow:0 6px 24px #23395709;overflow:hidden}.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:16px 17px;border-bottom:1px solid var(--line)}button{border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);padding:9px 13px;font-weight:600}button:hover{background:#f4f7ff}button.primary{background:var(--blue);border-color:var(--blue);color:#fff}button.primary:hover{background:#436ad2}button.danger{color:#c04e62}button.active{background:#e9f0ff;color:#3a5cba;border-color:#c4d4fa}.group{display:flex;align-items:center;gap:6px}.group label,.field label{font-size:12px;font-weight:700;color:#62738e}.spacer{flex:1}.tempo{width:104px;accent-color:var(--blue)}.tempoVal{font-variant-numeric:tabular-nums;min-width:54px;font-weight:700}select{padding:9px;border:1px solid var(--line);background:white;border-radius:9px;color:var(--ink)}.pill{font-size:11px;color:#556e98;background:#edf2fc;padding:5px 9px;border-radius:30px}.instructions{padding:12px 18px;display:flex;gap:16px;flex-wrap:wrap;color:#64768f;font-size:12px;border-bottom:1px solid var(--line);background:#fbfcff}.instructions strong{color:#3c5eac}.timeline{height:clamp(320px,52vh,560px);overscroll-behavior:contain;overflow:auto;scrollbar-color:#bfcae2 #f8faff;position:relative}.timelineInner{width:max-content;min-width:100%;position:relative}.barHead{display:flex;height:38px;position:sticky;top:0;z-index:8;margin-left:var(--key);background:#fcfdff}.bar{flex:none;width:calc(var(--step)*4);border-left:1px solid #c6d3e8;padding:11px 10px;font-size:12px;font-weight:750;color:#61748e}.roll{display:flex;position:relative}.keys{width:var(--key);flex:none;position:sticky;left:0;z-index:5;background:#f9fbff;box-shadow:2px 0 5px #2344a315}.key{height:var(--cell);display:flex;align-items:center;justify-content:flex-end;padding:0 12px;font-size:12px;border-top:1px solid #e4eaf2;color:#536581;font-weight:650}.key.black{background:#ecf0f9}.key.c{color:#3e5fc1;font-weight:850}.gridWrap{position:relative;flex:none}.noteGrid{position:relative;background-image:linear-gradient(to right,#e2e8f2 1px,transparent 1px),linear-gradient(to bottom,#e6ecf4 1px,transparent 1px);background-size:var(--step) var(--cell);cursor:crosshair;touch-action:none;user-select:none}.noteGrid:before{content:"";inset:0;position:absolute;pointer-events:none;background:linear-gradient(90deg,#8aa2e21b 1px,transparent 1px);background-size:calc(var(--step)*4) 100%}.rowShade{position:absolute;left:0;right:0;height:var(--cell);background:#8399cc0c;pointer-events:none}.note{position:absolute;height:calc(var(--cell) - 7px);border-radius:7px;background:linear-gradient(135deg,#6d8aeb,#5772d1);border:1px solid #4e69c6;box-shadow:0 2px 3px #1f378b20;color:#fff;display:flex;align-items:center;gap:5px;padding:0 7px;font-size:12px;font-weight:700;cursor:grab;touch-action:none;white-space:nowrap;overflow:hidden;user-select:none;z-index:3}.note:focus-visible{outline:3px solid #253d77;outline-offset:1px}.note.selected{background:linear-gradient(135deg,#987ddd,#7455be);outline:2px solid #d5c9fb;z-index:4}.note .grab{margin-left:auto;opacity:.65;font-size:15px;cursor:ew-resize;padding:4px 0}.note.dragging{opacity:.82;cursor:grabbing;z-index:9}.playhead{position:absolute;top:0;bottom:0;width:2px;background:#ec7a72;pointer-events:none;z-index:7;box-shadow:0 0 0 1px #fff9;display:none}.playhead::before{content:'▼';position:absolute;top:-18px;left:-6px;font-size:15px;color:#ec7a72}.under{padding:11px 17px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:9px;align-items:center}.under .tip{margin-left:auto;color:#7b8da4;font-size:12px}.sidebar{display:flex;flex-direction:column;gap:15px;align-self:start}.panel{padding:17px}.field{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:12px 0}.field input{width:76px;padding:7px 8px;border:1px solid var(--line);border-radius:8px;color:#31486a}.field input[type=range]{width:137px;accent-color:var(--blue)}.field select{max-width:160px}.sectionline{border-top:1px solid var(--line);margin:16px 0}.statRow{display:grid;grid-template-columns:1fr 1fr;gap:8px}.stat{background:#f5f8fe;border:1px solid #e9eef7;border-radius:11px;padding:11px}.stat .num{font-size:21px;font-weight:800;letter-spacing:-.5px}.stat .tag{color:#788aa1;font-size:11px}.insight{background:#f5f8fe;border-radius:10px;padding:11px 12px;margin:8px 0;color:#556883;font-size:12px;border-left:3px solid #879fdf}.miniCurve{width:100%;height:108px;display:block;background:#f9fbff;border:1px solid var(--line);border-radius:10px}.legend{font-size:11px;color:#71829b;margin-top:6px}.exercise{background:#f3f7ff;border:1px solid #dfe8fb;border-radius:12px;padding:11px 12px}.exercise strong{display:block;font-size:13px;margin-bottom:4px}.exercise p{font-size:12px;color:#61728d}.exercise .status{margin-top:9px;font-size:12px;font-weight:750}.exercise select{width:100%;margin-top:10px}.soundStatus{color:#6d7c97;font-size:11px;padding:0 18px 9px;background:#fff}.soundStatus.good{color:#16866e}.soundStatus.bad{color:#aa6571}.resource{font-size:11px;color:#7b8b9e;margin-top:10px}.footer{max-width:1640px;margin:0 auto;padding:0 24px 18px;color:#8291a5;font-size:11px}.meter{display:flex;align-items:center;gap:5px}.dot{width:8px;height:8px;background:#a8b7d0;border-radius:50%}.dot.on{background:#3fb699}#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#2f4261;color:#fff;padding:11px 18px;border-radius:11px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:20}#toast.show{opacity:1}@media(max-width:1100px){.app{grid-template-columns:minmax(0,1fr)}.sidebar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:650px){.app{padding:10px;gap:10px}.toolbar{padding:11px}.sidebar{grid-template-columns:1fr}header{padding:12px}header .right .sub{display:none}.under{padding:10px}h1{font-size:17px}}
+
+/* v1.5.0: independently resizable piano roll and scale-aware visualization */
+.timeline{height:var(--editor-height,440px);min-height:220px;max-height:75vh;resize:none}
+.editorResize{height:20px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:ns-resize;user-select:none;touch-action:none;background:#f3f6fc;border-top:1px solid var(--line);color:#617591;font-size:11px;font-weight:700}
+.editorResize:before,.editorResize:after{content:"";width:27px;height:4px;border-radius:8px;background:#a6b6d2}
+.editorResize:hover{background:#e7eefe;color:#3159bd}
+.scaleToolbar{padding:12px 17px;background:#f9fbff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.scaleToolbar .scaleSelect{display:flex;flex-direction:column;gap:3px;min-width:130px}
+.scaleToolbar label{font-size:11px;font-weight:750;color:#617490}
+.scaleToolbar select{min-width:130px;padding:8px 10px}
+.scaleNotes{display:flex;flex:1;gap:6px;align-items:center;flex-wrap:wrap;color:#496283;font-size:12px;line-height:1.5}
+.scaleNotes strong{font-size:12px}
+.pitchChip{border:1px solid #d9e5fa;border-radius:7px;padding:2px 6px;background:#eaf1ff;font-weight:750;color:#35579e}
+.pitchChip.root{background:#dcebe5;border:1.5px solid #318d77;color:#176d58}
+#snapKey{white-space:nowrap;background:#e8f6f2;border-color:#a7d9cd;color:#137560}
+#snapKey:disabled{opacity:.45;cursor:default}
+#clashStatus{font-size:12px;color:#a6612f;font-weight:750}
+.scaleHint{padding:5px 18px 9px;color:#b76a36;background:#f9fbff;min-height:21px;font-size:12px;font-weight:700}
+.key.disabled{color:#a3adbf!important;background:#edf0f5!important;opacity:.7;cursor:not-allowed;text-decoration:none}
+.key.root{background:#d8f2e9!important;color:#147d68!important;box-shadow:inset -4px 0 #2aab8f;font-weight:850}
+.key.valid:not(.root){cursor:pointer}
+.key.valid:not(.root):hover{background:#e5ebfa}
+.rowDisabled{position:absolute;left:0;right:0;height:var(--cell);background:repeating-linear-gradient(135deg,#e3e7ed91 0px,#e3e7ed91 2px,#f4f6fa91 2px,#f4f6fa91 10px);border-top:1px solid #dce2eb;pointer-events:none}
+.rowRoot{position:absolute;left:0;right:0;height:var(--cell);background:#d0eee34d;border-top:2px solid #57b7a2;border-bottom:1px solid #57b7a2;pointer-events:none}
+.note.clash{border:2px solid #c44f37;box-shadow:0 0 0 2px #f8b66d,0 2px 3px #1f378b20;background:linear-gradient(135deg,#bf816a,#ae5844)}
+.note.clash.selected{outline:2px solid #f0aa57}
+.chordComposer{margin:12px 0;padding:13px;border:1px solid #d9e4fa;border-radius:12px;background:#f6f9ff;display:grid;gap:8px}.chordComposer .chordHeading{font-size:13px;font-weight:800;color:#465e9c}.chordComposer p{font-size:12px;color:#637590}.chordComposer label{font-size:11px;font-weight:750;color:#60728d}.chordComposer select{width:100%}.chordComposer .primary{width:100%}.stackInfo{font-size:11px;color:#506c9b;min-height:16px}.note.chordTone{box-shadow:inset 3px 0 0 #f3d56b,0 2px 3px #1f378b20}.note.chordTone.selected{box-shadow:inset 3px 0 0 #f3d56b,0 0 0 2px #b5a4ef}
+@media(max-width:650px){.scaleToolbar .scaleSelect{flex:1;min-width:120px}.scaleToolbar select{width:100%;min-width:0}.scaleNotes{flex-basis:100%}}
+
+button:disabled{opacity:.45;cursor:not-allowed}
+.chordBackdrop[hidden]{display:none!important}.chordBackdrop{position:fixed;inset:0;z-index:70;background:#13243d88;display:grid;place-items:center;padding:18px}
+.chordDialog{width:min(770px,96vw);max-height:min(90vh,740px);display:flex;flex-direction:column;background:#fff;border:1px solid #dbe4f4;border-radius:20px;box-shadow:0 22px 90px #15274655;overflow:hidden}
+.chordDialogHead,.chordDialogFoot{display:flex;align-items:center;gap:12px;padding:17px 21px;background:#fbfcff}.chordDialogHead{border-bottom:1px solid #e2e9f3;justify-content:space-between}.chordDialogHead h2{font-size:21px;margin:2px 0 4px}.chordDialogFoot{border-top:1px solid #e2e9f3;flex-wrap:wrap}.chordEyebrow{font-size:10px;letter-spacing:1.2px;font-weight:800;color:#647caa}.chordDialogBody{display:grid;grid-template-columns:minmax(170px,42%) 1fr;gap:16px;min-height:0;padding:18px}.chordTypes{display:flex;flex-direction:column;gap:7px;overflow-y:auto;min-height:170px;max-height:min(55vh,400px);padding:2px 8px 2px 2px;scrollbar-color:#bfcae2 #f8faff}.chordType{display:flex;align-items:center;justify-content:space-between;text-align:left;width:100%;font-size:13px}.chordType small{font-size:10px;color:#8391a8;font-weight:500}.chordType.active{border:1px solid #6f88de;background:#edf2ff;color:#324e9f}.chordPreview{background:#f6f8fd;border:1px solid #e5eaf4;border-radius:13px;padding:17px}.chordPreview h3{font-size:22px;margin:8px 0 16px}.chordPitches{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:15px}.chordPitches span{background:#dce6fc;border:1px solid #b6c8ed;border-radius:7px;padding:7px 9px;font-weight:700}.chordPitches span.rootTone{background:#d9f5ec;border-color:#69c5ad}.chordPitches span.outTone{background:#fff1dd;border-color:#e3b67b}.chordWarning{font-size:12px;color:#a46c2a;min-height:32px}.previewExplanation{font-size:12px;color:#687e99;line-height:1.55;margin-top:14px}
+@media(max-width:560px){.chordDialogBody{grid-template-columns:1fr;overflow-y:auto}.chordTypes{max-height:170px}.chordDialog{max-height:95vh}}
+
+/* v1.5 compact workspace */
+.app{grid-template-columns:minmax(0,1fr) 284px;gap:12px;padding-top:12px}
+.toolbar{padding:10px 14px;gap:9px}
+.scaleToolbar{padding:9px 14px;gap:8px}
+.scaleNotes{font-size:11px}
+.scaleNotes .pitchChip{padding:1px 5px}
+.scaleHint{padding:3px 14px 5px}
+.soundStatus{padding:3px 14px 5px;font-size:10px}
+.compactBar{gap:7px;padding:9px 13px}
+.compactBar button{padding:7px 10px;font-size:12px}
+.presetGroup,.editGroup{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.presetGroup label{font-size:11px;font-weight:800;color:#586c8a;white-space:nowrap}
+.presetGroup select{max-width:242px;width:clamp(160px,20vw,242px);padding:7px 8px;font-size:12px}
+.toolbarDivider{width:1px;height:26px;background:var(--line);margin:0 2px}
+.smallPrimary{background:#eaf0ff;border-color:#c7d6f8;color:#355cbe}
+.toolsMenu{position:relative;z-index:16}
+.toolsMenu>summary{list-style:none;cursor:pointer;border:1px solid var(--line);border-radius:9px;padding:7px 10px;background:#fff;font-size:12px;font-weight:750;white-space:nowrap}
+.toolsMenu>summary::-webkit-details-marker,.helpStrip>summary::-webkit-details-marker,.foldPanel>summary::-webkit-details-marker,.composeFold>summary::-webkit-details-marker{display:none}
+.toolsMenu[open]>summary{border-color:#b2c8f4;background:#eef3ff}
+.menuBody{position:absolute;right:0;top:calc(100% + 6px);width:270px;padding:10px;display:grid;gap:7px;background:white;border:1px solid #dbe4f3;border-radius:12px;box-shadow:0 12px 35px #2339572a}
+.menuBody button{text-align:left}
+.menuNote{font-size:11px;color:#73849b;line-height:1.45;padding:3px}
+.presetInfo{padding:5px 15px 7px;background:#fbfcff;color:#7687a1;font-size:11px;min-height:26px;border-bottom:1px solid var(--line)}
+.presetInfo a{color:#4568bd;text-decoration:none;font-weight:750}
+.presetInfo a:hover{text-decoration:underline}
+.helpStrip{border-bottom:1px solid var(--line)}
+.helpStrip>summary{cursor:pointer;padding:6px 16px;font-size:11px;color:#667b9a;background:#f9fbff;font-weight:700}
+.helpStrip .instructions{padding:9px 16px;border-bottom:0}
+.sidebar{gap:10px}
+.sidebar .panel{padding:13px}
+.composeFold>summary{list-style:none;font-size:13px;font-weight:750;cursor:pointer;color:#465d7d}
+.composeSettings{padding:4px 0 2px}
+.foldPanel>summary{list-style:none;cursor:pointer;font-size:13px;font-weight:800;color:#314968}
+.foldPanel>summary span{float:right;font-size:10px;font-weight:500;color:#899bb2}
+.foldInner{padding-top:12px}
+.foldPanel:not([open]){padding:13px}
+@media(max-width:1100px){.app{grid-template-columns:minmax(0,1fr)}.sidebar{display:flex;flex-direction:row;align-items:flex-start;flex-wrap:wrap}.sidebar>.panel{flex:1 1 280px}}
+@media(max-width:650px){.toolbarDivider{display:none}.presetGroup{width:100%}.presetGroup select{flex:1;width:auto;max-width:none}.compactBar{gap:8px}.menuBody{right:0;max-width:90vw}.sidebar{display:flex;flex-direction:column}.sidebar>.panel{width:100%}}
+</style></head><body>
+<header><div class="logo">♫</div><div><h1>Build-a-Melody Studio</h1><div class="sub">Compose · Discover harmonies · Explore music</div></div><div class="right"><span class="version">v1.5.0</span><span class="sub">Student composer</span></div></header>
+<main class="app"><section class="surface"><div class="toolbar"><button id="play" class="primary">▶ Play melody</button><button id="stop">■ Stop</button><div class="group"><label for="tempo">Tempo</label><input id="tempo" class="tempo" type="range" min="50" max="180" step="1" value="100"><span class="tempoVal" id="tempoVal">100 BPM</span></div><div class="spacer"></div><div class="group"><label for="instrument">Instrument</label><select id="instrument"><option value="piano">Grand piano</option><option value="violin">Violin</option><option value="cello">Cello</option><option value="guitar">Classical guitar</option></select></div></div>
+<div class="scaleToolbar" aria-label="Key and scale settings"><div class="scaleSelect"><label for="rootNote">ROOT NOTE</label><select id="rootNote"><option value="0">C</option><option value="1">C# / Db</option><option value="2">D</option><option value="3">D# / Eb</option><option value="4">E</option><option value="5">F</option><option value="6">F# / Gb</option><option value="7">G</option><option value="8">G# / Ab</option><option value="9">A</option><option value="10">A# / Bb</option><option value="11">B</option></select></div><div class="scaleSelect"><label for="scaleType">SCALE TYPE</label><select id="scaleType"><option value="major">Major</option><option value="minor">Minor</option><option value="majorPent">Major Pentatonic</option><option value="minorPent">Minor Pentatonic</option><option value="chromatic">All Notes (Chromatic)</option></select></div><div id="scaleNotes" class="scaleNotes" aria-live="polite"></div><button id="snapKey" title="Move out-of-key notes to the nearest permitted pitch">↧ Snap Notes to Key</button><span id="clashStatus" role="status"></span></div><div id="scaleHint" class="scaleHint" role="status" aria-live="polite"></div><div class="soundStatus" id="soundStatus" role="status">🎻 Sampled instruments load when first selected or played (internet required); a basic sound is used if unavailable.</div><details class="helpStrip"><summary>ⓘ How to compose</summary><div class="instructions"><span><strong>Click</strong> empty grid to add a note</span><span><strong>Drag</strong> a note to change pitch or time</span><span><strong>Drag right edge</strong> to resize</span><span><strong>Double-click</strong> a note for chords</span><span><strong>Delete</strong> removes selection</span><span><strong>Ctrl+Z / Ctrl+Y</strong> undo / redo</span></div></details>
+<div class="under compactBar">
+  <div class="presetGroup"><label for="presetSelect">Melody library</label><select id="presetSelect" aria-label="Choose a sample melody">
+  <option value="">Choose a melody…</option><option value="original">The Last Light · Original demo</option>
+  <option value="twinkle">Twinkle, Twinkle, Little Star</option><option value="ode">Ode to Joy · Beethoven</option>
+  <option value="frere">Frère Jacques</option><option value="jingle">Jingle Bells</option>
+  <option value="mary">Mary Had a Little Lamb</option></select><button id="example" class="smallPrimary">Load melody</button></div>
+  <div class="toolbarDivider"></div><div class="editGroup"><button id="undo" title="Undo (Ctrl+Z)">↶ Undo</button><button id="redo" disabled title="Redo (Ctrl+Y or Ctrl+Shift+Z)">↷ Redo</button></div>
+  <div class="spacer"></div>
+  <details class="toolsMenu" id="fileMenu"><summary>⇩ Projects &amp; export</summary><div class="menuBody">
+    <button id="save">↓ Export project (.melody.json)</button><button id="load">↑ Import project</button><input id="loadInput" type="file" accept=".json,.melody.json,application/json" hidden>
+    <button id="midi">♪ Export MIDI</button><div class="menuNote">Project files preserve studio settings. MIDI is for other music software.</div>
+  </div></details><button class="danger" id="clear">Clear</button>
+</div>
+<div id="presetInfo" class="presetInfo" aria-live="polite">Choose a melody from the library, or add notes to create your own.</div><div class="timeline" id="timeline" aria-label="Scrollable note editor"><div class="timelineInner"><div id="barHead" class="barHead"></div><div class="roll"><div class="keys" id="keys"></div><div class="gridWrap"><div class="noteGrid" id="noteGrid"><div id="playhead" class="playhead"></div></div></div></div></div></div><div id="editorResize" class="editorResize" role="separator" aria-label="Drag to resize piano roll height" aria-orientation="horizontal" tabindex="0" title="Drag up or down to resize the editor; arrow keys also work">↕ Drag to resize piano roll</div>
+</section>
+<aside class="sidebar"><section class="surface panel"><details class="composeFold"><summary>⚙ Composition settings</summary><div class="composeSettings"><div class="field"><label for="bars">Length</label><select id="bars"><option value="4">4 bars</option><option value="8" selected>8 bars</option><option value="12">12 bars</option><option value="16">16 bars</option></select></div><div class="field"><label for="duration">New note length</label><select id="duration"><option value="1">Quarter note (1 beat)</option><option value="0.5" selected>Eighth note (½ beat)</option><option value="0.25">Sixteenth (¼ beat)</option><option value="2">Half note (2 beats)</option><option value="4">Whole note (4 beats)</option></select></div><div class="field"><label for="snap">Note snap</label><select id="snap"><option value="1">1 beat</option><option value="0.5" selected>½ beat</option><option value="0.25">¼ beat</option></select></div><div class="field"><label for="volume">Volume</label><input id="volume" type="range" min="0" max="100" value="55"></div></div></details><div class="sectionline" style="margin:11px 0"></div><h2>Selected note</h2><div id="selectionEmpty" class="sub">Click a note to edit it.</div><div id="selection" hidden><div class="field"><label for="selPitch">Pitch</label><select id="selPitch"></select></div><div class="field"><label for="selStart">Start beat</label><input id="selStart" type="number" min="0" step="0.25"></div><div class="field"><label for="selDuration">Duration (beats)</label><input id="selDuration" type="number" min="0.25" max="32" step="0.25"></div><div class="chordComposer"><div class="chordHeading">♬ Stack notes into a chord</div><p>Choose another pitch to play at the <strong>same beat</strong> as this note. Each note remains separately editable.</p><label for="stackPitch">Harmony pitch</label><select id="stackPitch" aria-label="Pitch of note to stack"></select><button id="stackNote" class="primary" type="button">＋ Stack Note</button><div id="stackInfo" class="stackInfo" aria-live="polite"></div></div><button id="deleteNote" class="danger">Delete selected</button></div></section>
+<details class="surface panel foldPanel"><summary>Melody explorer <span>patterns &amp; contour</span></summary><div class="foldInner"><div class="statRow"><div class="stat"><div class="num" id="noteCount">0</div><div class="tag">Notes</div></div><div class="stat"><div class="num" id="pitchCount">0</div><div class="tag">Different pitches</div></div><div class="stat"><div class="num" id="rangeCount">—</div><div class="tag">Pitch range</div></div><div class="stat"><div class="num" id="rhythmCount">0</div><div class="tag">Rhythm values</div></div></div><div class="insight" id="chordSummary">Compose a melody or stack pitches vertically to build chords.</div><div class="sectionline"></div><h2>Melodic contour</h2><svg id="contour" class="miniCurve" viewBox="0 0 278 108" aria-label="Pitch contour graph"></svg><div class="legend">Left → right: time · Bottom → top: highest pitch at each onset when notes overlap</div><div id="insights"><div class="insight">Add notes to explore your melody’s shape.</div></div></div></details>
+<details class="surface panel foldPanel"><summary>Composition challenges <span>practice tasks</span></summary><div class="foldInner"><div class="exercise"><strong id="challengeTitle">Create a repeated phrase</strong><p id="challengeText">Build two matching four-note patterns.</p><select id="challenge"><option value="repeat">Repeated phrase</option><option value="step">Stepwise melody</option><option value="leap">Musical leaps</option><option value="rhythm">Rhythmic variety</option><option value="ending">Return home</option></select><div class="status" id="challengeStatus">Add notes to begin.</div></div><p class="resource">These checks are simple musical heuristics, not formal grading. Listen and decide whether your composition communicates what you intended.</p></div></details></aside></main>
+<div id="chordDialog" class="chordBackdrop" hidden>
+ <div class="chordDialog" role="dialog" aria-modal="true" aria-labelledby="chordDialogTitle">
+  <div class="chordDialogHead"><div><div class="chordEyebrow">HARMONY BUILDER</div><h2 id="chordDialogTitle">Turn a note into a chord</h2><p id="chordBaseInfo" class="sub"></p></div><button id="closeChord" aria-label="Close chord builder">✕</button></div>
+  <div class="chordDialogBody"><div class="chordTypes" id="chordTypes" role="radiogroup" aria-label="Choose chord type"></div><div class="chordPreview"><div class="chordEyebrow">CHORD PREVIEW</div><h3 id="chordName">Major</h3><div id="chordPreviewPitches" class="chordPitches"></div><p id="chordWarning" class="chordWarning"></p><div class="previewExplanation">The selected note stays in place as the root. Additional chord tones begin at the same beat and use the same duration.</div></div></div>
+  <div class="chordDialogFoot"><button id="previewChord">♫ Hear chord</button><div class="spacer"></div><button id="cancelChord">Cancel</button><button id="applyChord" class="primary">＋ Add chord tones</button></div>
+ </div>
+</div><div class="footer">Public-domain excerpts and an original sample · Projects export to .melody.json · MIDI export available · No accounts required.</div><div id="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/soundfont-player@0.12.0/dist/soundfont-player.min.js"></script>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id), C=36, STEP=38, KEY=80, LOW=48, HIGH=83, ROWS=HIGH-LOW+1;
+let notes=[],bars=8,selected=null,snap=.5,newDur=.5,history=[],future=[],idCounter=0,playing=false,raf=0,startAt=0,pauseOffset=0,audio=null,master=null,timers=[],voices=[],sampleVoices=[],playToken=0; const soundBanks=new Map(); const bankPending=new Map(); const BANK_NAMES={piano:"acoustic_grand_piano",violin:"violin",cello:"cello",guitar:"acoustic_guitar_nylon"};
+const height=ROWS*C, pitchLabel=m=>['C','C♯','D','D♯','E','F','F♯','G','G♯','A','A♯','B'][m%12]+(Math.floor(m/12)-1);
+const sharp=new Set([1,3,6,8,10]);
+const SCALE_INTERVALS={major:[0,2,4,5,7,9,11],minor:[0,2,3,5,7,8,10],majorPent:[0,2,4,7,9],minorPent:[0,3,5,7,10],chromatic:[0,1,2,3,4,5,6,7,8,9,10,11]};
+const SCALE_NAMES={major:'Major',minor:'Minor',majorPent:'Major Pentatonic',minorPent:'Minor Pentatonic',chromatic:'All Notes (Chromatic)'};
+const NOTE_NAMES=['C','C♯','D','D♯','E','F','F♯','G','G♯','A','A♯','B'];
+const FLAT_NOTES=['C','D♭','D','E♭','E','F','G♭','G','A♭','A','B♭','B'];
+let rootPC=0,scaleMode='major';
+function positiveMod(a,b){return ((a%b)+b)%b}
+function validPitch(m){return SCALE_INTERVALS[scaleMode].includes(positiveMod(m-rootPC,12))}
+function preferredLabels(){const preferFlats=[1,3,5,8,10].includes(rootPC)||([2,7].includes(rootPC)&&['minor','minorPent'].includes(scaleMode));const labels=preferFlats?FLAT_NOTES:NOTE_NAMES;return labels}
+function scaleTitle(){return NOTE_NAMES[rootPC].replace('♯','#')+' '+SCALE_NAMES[scaleMode]}
+function nearestValid(m){let best=null,dist=Infinity;for(let n=LOW;n<=HIGH;n++){if(!validPitch(n))continue;const d=Math.abs(n-m);if(d<dist||(d===dist&&n<m)){best=n;dist=d}}return best??m}
+function scaleWarning(pitch){const msg='Note disabled — '+(pitch!==undefined?pitchLabel(pitch)+' is ':'')+'not in '+scaleTitle();$('scaleHint').textContent=msg;notify(msg)}
+function updateScaleUI(){
+ const labels=preferredLabels(),names=SCALE_INTERVALS[scaleMode].map(step=>labels[(rootPC+step)%12]);
+ $('scaleNotes').innerHTML='<strong>Active notes in '+scaleTitle()+':</strong> '+names.map((name,i)=>'<span class="pitchChip'+(i===0?' root':'')+'">'+name+'</span>').join('');
+ const clashes=notes.filter(n=>!validPitch(n.pitch)).length;
+ $('clashStatus').textContent=clashes?clashes+' out-of-key note'+(clashes===1?'':'s')+' highlighted':'';
+ $('snapKey').disabled=clashes===0;
+ $('scaleHint').textContent=clashes?'Existing notes outlined in amber will still play. Snap them to the key when you are ready.':'Grey notes are visible but cannot be added. Green rows are the home note.';
+ const pitchSel=$('selPitch');for(const opt of pitchSel.options){const inKey=validPitch(Number(opt.value));opt.disabled=!inKey;opt.textContent=pitchLabel(Number(opt.value))+(inKey?'':' (out of key)')}
+}
+
+function clamp(v,a,b){return Math.min(b,Math.max(a,v))}function quant(v){return Math.round(v/snap)*snap}function maxBeat(){return bars*4}function ordered(){return [...notes].sort((a,b)=>a.start-b.start||a.pitch-b.pitch)}
+function notify(s){const e=$('toast');e.textContent=s;e.classList.add('show');clearTimeout(notify.t);notify.t=setTimeout(()=>e.classList.remove('show'),2100)}
+function capture(){return JSON.stringify({notes,bars,selected})}
+function updateUndoRedo(){ $('undo').disabled=history.length===0;$('redo').disabled=future.length===0 }
+function snapshot(){history.push(capture());if(history.length>70)history.shift();future=[];updateUndoRedo()}
+function restore(state){const data=JSON.parse(state);notes=data.notes;bars=data.bars;selected=data.selected;idCounter=Math.max(idCounter,...notes.map(n=>n.id),0);$('bars').value=bars;createGrid();paint();updateUndoRedo()}
+function undo(){if(!history.length){notify('Nothing to undo.');return}stop();future.push(capture());restore(history.pop());notify('Undo complete.')}
+function redo(){if(!future.length){notify('Nothing to redo.');return}stop();history.push(capture());restore(future.pop());notify('Redo complete.')}
+function createGrid(){const w=bars*4*STEP;$('barHead').innerHTML=Array.from({length:bars},(_,i)=>`<div class="bar">BAR ${i+1}</div>`).join('');$('noteGrid').style.width=w+'px';$('noteGrid').style.height=height+'px';$('keys').innerHTML='';let shades='';for(let m=HIGH;m>=LOW;m--){const d=document.createElement('div');d.className='key'+(sharp.has(m%12)?' black':'')+(m%12===0?' c':'')+(validPitch(m)?' valid':' disabled')+(m%12===rootPC?' root':'');d.textContent=pitchLabel(m);d.dataset.pitch=m;d.title=validPitch(m)?(m%12===rootPC?'Root note — ':'In key — ')+pitchLabel(m):'Disabled: not in '+scaleTitle();$('keys').appendChild(d);if(!validPitch(m)){shades+=`<div class="rowDisabled" style="top:${(HIGH-m)*C}px"></div>`}else if(m%12===rootPC){shades+=`<div class="rowRoot" style="top:${(HIGH-m)*C}px"></div>`}else if(sharp.has(m%12))shades+=`<div class="rowShade" style="top:${(HIGH-m)*C}px"></div>`} $('noteGrid').querySelectorAll('.rowShade,.rowDisabled,.rowRoot').forEach(x=>x.remove());$('noteGrid').insertAdjacentHTML('afterbegin',shades);$('playhead').style.height=height+'px';$('noteGrid').style.backgroundSize=`${STEP}px ${C}px`;updateScaleUI()}
+function paint(){document.querySelectorAll('.note').forEach(x=>x.remove());const frag=document.createDocumentFragment();for(const n of notes){const e=document.createElement('div');e.className='note'+(n.id===selected?' selected':'')+(!validPitch(n.pitch)?' clash':'')+(notes.some(other=>other.id!==n.id&&Math.abs(other.start-n.start)<.001)?' chordTone':'');e.style.left=n.start*STEP+2+'px';e.style.top=(HIGH-n.pitch)*C+3+'px';e.style.width=Math.max(12,n.dur*STEP-4)+'px';e.dataset.id=n.id;e.tabIndex=0;e.setAttribute("role","button");e.setAttribute("aria-label",`${pitchLabel(n.pitch)}, beat ${n.start}, duration ${n.dur} beats; press Delete to remove`);e.innerHTML=`<span>${pitchLabel(n.pitch)}</span><span class="grab" title="Drag to resize">⋮</span>`;frag.appendChild(e)}$('noteGrid').appendChild(frag);selectionUI();analyze();updateScaleUI()}
+function selectionUI(){const n=notes.find(x=>x.id===selected);$('selection').hidden=!n;$('selectionEmpty').hidden=!!n;if(n){$('selPitch').value=n.pitch;$('selStart').value=n.start;$('selDuration').value=n.dur;refreshStackPitches(n)}}
+function addNote(start,pitch,dur=newDur){if(!validPitch(pitch)){scaleWarning(pitch);return}snapshot();const n={id:++idCounter,start:clamp(quant(start),0,maxBeat()-.25),pitch:clamp(pitch,LOW,HIGH),dur:dur};n.dur=clamp(n.dur,.25,maxBeat()-n.start);notes.push(n);selected=n.id;paint();preview(n.pitch)}
+
+function refreshStackPitches(n){
+ const select=$('stackPitch'),old=Number(select.value);
+ select.innerHTML='';
+ for(let pitch=HIGH;pitch>=LOW;pitch--){
+  if(!validPitch(pitch))continue;
+  const opt=document.createElement('option');opt.value=pitch;opt.textContent=pitchLabel(pitch)+(pitch===n.pitch?' (same pitch)':'');select.appendChild(opt);
+ }
+ const suggest=nearestValid(Math.min(HIGH,n.pitch+4));
+ select.value=Array.from(select.options).some(o=>Number(o.value)===old)?String(old):String(suggest);
+ const chord=notes.filter(v=>Math.abs(v.start-n.start)<.001);
+ $('stackInfo').textContent=chord.length>1?`${chord.length} notes start together at beat ${n.start}: ${chord.slice().sort((a,b)=>a.pitch-b.pitch).map(x=>pitchLabel(x.pitch)).join(' · ')}`:`Selected beat ${n.start}. Stack a second pitch to make a chord.`;
+}
+function stackSelectedNote(){
+ const base=notes.find(n=>n.id===selected);
+ if(!base){notify('Select a note first.');return}
+ const pitch=Number($('stackPitch').value);
+ if(!Number.isInteger(pitch)||!validPitch(pitch)){scaleWarning(pitch);return}
+ if(notes.some(n=>Math.abs(n.start-base.start)<.001&&n.pitch===pitch)){
+  notify(`${pitchLabel(pitch)} already begins at this beat. Choose a different pitch.`);return;
+ }
+ // Keep the selected note's start and duration so the two notes play simultaneously.
+ const start=base.start,dur=base.dur;
+ addNote(start,pitch,dur);
+ notify(`${pitchLabel(pitch)} stacked at beat ${start}. Both notes will play together.`);
+}
+$('stackNote').addEventListener('click',stackSelectedNote);
+// Chord builder: select a root note, choose a common chord quality, and add its tones.
+const CHORD_TYPES=[
+ {id:'major',name:'Major triad',symbol:'',ints:[0,4,7],detail:'Bright, stable three-note chord'},
+ {id:'minor',name:'Minor triad',symbol:'m',ints:[0,3,7],detail:'Darker three-note chord'},
+ {id:'power',name:'Power chord',symbol:'5',ints:[0,7],detail:'Root and perfect fifth'},
+ {id:'sus2',name:'Suspended 2nd',symbol:'sus2',ints:[0,2,7],detail:'Open, unresolved sound'},
+ {id:'sus4',name:'Suspended 4th',symbol:'sus4',ints:[0,5,7],detail:'Suspended fourth'},
+ {id:'dim',name:'Diminished',symbol:'dim',ints:[0,3,6],detail:'Tense diminished triad'},
+ {id:'aug',name:'Augmented',symbol:'aug',ints:[0,4,8],detail:'Unsettled augmented triad'},
+ {id:'dom7',name:'Dominant 7th',symbol:'7',ints:[0,4,7,10],detail:'Strong pull toward resolution'},
+ {id:'maj7',name:'Major 7th',symbol:'maj7',ints:[0,4,7,11],detail:'Lush, dreamy major seventh'},
+ {id:'min7',name:'Minor 7th',symbol:'m7',ints:[0,3,7,10],detail:'Warm, mellow minor seventh'},
+ {id:'minmaj7',name:'Minor-major 7th',symbol:'m(maj7)',ints:[0,3,7,11],detail:'Dramatic minor-major seventh'},
+ {id:'dim7',name:'Diminished 7th',symbol:'dim7',ints:[0,3,6,9],detail:'Symmetrical, highly tense chord'},
+ {id:'add9',name:'Major add9',symbol:'add9',ints:[0,4,7,14],detail:'Major triad with a ninth'},
+ {id:'madd9',name:'Minor add9',symbol:'m(add9)',ints:[0,3,7,14],detail:'Minor triad with a ninth'}
+];
+let chordBaseId=null,chordTypeId='major',chordPreviousFocus=null;
+function activeChord(){return CHORD_TYPES.find(c=>c.id===chordTypeId)||CHORD_TYPES[0]}
+function chordPitches(){const base=notes.find(n=>n.id===chordBaseId);return base?activeChord().ints.map(interval=>base.pitch+interval):[]}
+function renderChordBuilder(){
+ const base=notes.find(n=>n.id===chordBaseId);if(!base)return;
+ const type=activeChord();$('chordName').textContent=pitchLabel(base.pitch)+' '+type.name;
+ $('chordBaseInfo').textContent=`Selected ${pitchLabel(base.pitch)} at beat ${base.start} · ${base.dur} beat duration`;
+ $('chordTypes').innerHTML='';
+ for(const c of CHORD_TYPES){const b=document.createElement('button');b.type='button';b.className='chordType'+(c.id===chordTypeId?' active':'');b.setAttribute('role','radio');b.setAttribute('aria-checked',String(c.id===chordTypeId));b.innerHTML=`<span>${c.name}</span><small>${c.symbol||'maj'}</small>`;b.onclick=()=>{chordTypeId=c.id;renderChordBuilder()};$('chordTypes').appendChild(b)}
+ const pitches=chordPitches(),outside=pitches.filter(p=>p<LOW||p>HIGH),outkey=pitches.filter(p=>p>=LOW&&p<=HIGH&&!validPitch(p));
+ $('chordPreviewPitches').innerHTML=pitches.map((p,i)=>`<span class="${i===0?'rootTone':(p<LOW||p>HIGH||!validPitch(p)?'outTone':'')}">${pitchLabel(p)}${i===0?' • root':''}</span>`).join('');
+ let issues=[];if(outside.length)issues.push('Some tones are outside the visible note range ('+pitchLabel(LOW)+'–'+pitchLabel(HIGH)+').');if(outkey.length)issues.push(outkey.map(pitchLabel).join(', ')+' '+(outkey.length===1?'is':'are')+' outside '+scaleTitle()+'. Change to Chromatic or another key to use this chord.');
+ $('chordWarning').textContent=issues.length?issues.join(' '):'All chord tones fit the current scale and note range.';
+ $('chordWarning').style.color=issues.length?'#a46c2a':'#238e78';$('applyChord').disabled=!!issues.length;
+}
+function openChordBuilder(){const base=notes.find(n=>n.id===selected);if(!base)return;chordBaseId=base.id;chordTypeId='major';chordPreviousFocus=document.activeElement;$('chordDialog').hidden=false;renderChordBuilder();$('closeChord').focus()}
+function closeChordBuilder(){ $('chordDialog').hidden=true;chordBaseId=null;(chordPreviousFocus?.isConnected?chordPreviousFocus:$('noteGrid')).focus?.() }
+function applyChord(){const base=notes.find(n=>n.id===chordBaseId);if(!base)return closeChordBuilder();const pitches=chordPitches();if(pitches.some(p=>p<LOW||p>HIGH||!validPitch(p))){renderChordBuilder();return}
+ const missing=pitches.filter(p=>!notes.some(n=>n.pitch===p&&Math.abs(n.start-base.start)<.001));
+ if(!missing.length){notify('All these chord tones already exist at this beat.');return}
+ snapshot();for(const pitch of missing)notes.push({id:++idCounter,start:base.start,pitch,dur:base.dur});selected=base.id;paint();closeChordBuilder();notify(`${pitchLabel(base.pitch)} ${activeChord().name}: added ${missing.length} chord tone${missing.length>1?'s':''}.`)
+}
+$('closeChord').onclick=closeChordBuilder;$('cancelChord').onclick=closeChordBuilder;$('applyChord').onclick=applyChord;
+$('chordDialog').addEventListener('pointerdown',e=>{if(e.target===$('chordDialog'))closeChordBuilder()});
+$('previewChord').onclick=async()=>{const pitches=chordPitches().filter(p=>p>=LOW&&p<=HIGH);if(!pitches.length)return;ensureAudio();const inst=$('instrument').value;const bank=await getBank(inst);if($('chordDialog').hidden)return;const start=audio.currentTime+.03;for(const pitch of pitches)sampleNote(bank,pitch,start,.7)};
+
+function deleteSelected(){const i=notes.findIndex(n=>n.id===selected);if(i<0)return;snapshot();notes.splice(i,1);selected=null;paint()}
+function gridPos(e){const r=$('noteGrid').getBoundingClientRect();return {x:(e.clientX-r.left)/STEP,y:HIGH-Math.floor((e.clientY-r.top)/C)}}
+const grid=$('noteGrid');let drag=null;
+grid.addEventListener('pointerdown',e=>{if(e.button!==0)return;const noteEl=e.target.closest('.note');if(noteEl&&e.detail>=2){e.preventDefault();selected=Number(noteEl.dataset.id);drag=null;paint();openChordBuilder();return}if(noteEl){const n=notes.find(x=>x.id===Number(noteEl.dataset.id));if(!n)return;selected=n.id;const edge=e.target.closest('.grab')||e.clientX>noteEl.getBoundingClientRect().right-13;drag={type:edge?'resize':'move',id:n.id,x:e.clientX,y:e.clientY,start:n.start,pitch:n.pitch,dur:n.dur,moved:false};snapshot();noteEl.classList.add('dragging');grid.setPointerCapture(e.pointerId);paint();return}const p=gridPos(e);if(p.y<LOW||p.y>HIGH||p.x<0||p.x>=maxBeat())return;if(!validPitch(p.y)){scaleWarning(p.y);return}addNote(p.x,p.y)});
+grid.addEventListener('pointermove',e=>{if(!drag)return;const n=notes.find(x=>x.id===drag.id);if(!n)return;const dx=(e.clientX-drag.x)/STEP,dy=-(e.clientY-drag.y)/C;if(Math.abs(e.clientX-drag.x)+Math.abs(e.clientY-drag.y)>3)drag.moved=true;if(drag.type==='resize'){n.dur=clamp(quant(drag.dur+dx),snap,maxBeat()-n.start)}else{n.start=clamp(quant(drag.start+dx),0,maxBeat()-n.dur);n.pitch=nearestValid(clamp(Math.round(drag.pitch+dy),LOW,HIGH))}paint()});
+grid.addEventListener('pointerup',()=>{if(drag){if(!drag.moved){history.pop();updateUndoRedo()}drag=null;paint()}});grid.addEventListener('pointercancel',()=>{drag=null;paint()});grid.addEventListener('dblclick',e=>{const el=e.target.closest('.note');if(el){e.preventDefault();selected=Number(el.dataset.id);paint();openChordBuilder()}});
+
+document.addEventListener('keydown',e=>{
+ if(!$('chordDialog').hidden){if(e.key==='Escape'){e.preventDefault();closeChordBuilder()}return}
+ const target=e.target,typing=target&&target.closest('input,textarea,select,[contenteditable="true"]');
+ if(typing)return;
+ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();if(e.shiftKey)redo();else undo();return}
+ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'){e.preventDefault();redo();return}
+ if((e.key==='Delete'||e.key==='Backspace')&&selected!==null&&notes.some(n=>n.id===selected)){e.preventDefault();deleteSelected();notify('Selected note deleted.')}
+});
+function analyze(){const a=ordered(),len=a.length;const chordStarts=new Map();for(const n of a){const k=n.start.toFixed(3);chordStarts.set(k,(chordStarts.get(k)||0)+1)}const chords=[...chordStarts.values()].filter(n=>n>1);$('chordSummary').textContent=chords.length?`${chords.length} chord onset${chords.length===1?'':'s'} · up to ${Math.max(...chords)} simultaneous notes. These play together.`:'Compose a melody or stack pitches vertically to build chords.';$('noteCount').textContent=len;$('pitchCount').textContent=new Set(a.map(n=>n.pitch)).size;$('rhythmCount').textContent=new Set(a.map(n=>n.dur)).size;$('rangeCount').textContent=len?Math.max(...a.map(n=>n.pitch))-Math.min(...a.map(n=>n.pitch))+' st':'—';const svg=$('contour');if(!len){svg.innerHTML='<text x="139" y="59" text-anchor="middle" font-size="12" fill="#9aabc2">Your melody contour will appear here</text>'; $('insights').innerHTML='<div class="insight">Add notes to explore your melody’s shape.</div>';checkChallenge(a);return}const contourNotes=[...new Map(a.map(n=>[n.start,n])).values()];const min=Math.min(...a.map(n=>n.pitch))-2,max=Math.max(...a.map(n=>n.pitch))+2;const x=n=>14+n.start/maxBeat()*250,y=n=>94-(n.pitch-min)/(max-min)*75;let path=contourNotes.map((n,i)=>(i?'L':'M')+x(n).toFixed(1)+','+y(n).toFixed(1)).join(' ');svg.innerHTML=`<line x1="0" y1="94" x2="278" y2="94" stroke="#dee6f2"/><path d="${path}" stroke="#587de0" stroke-width="3" fill="none" stroke-linejoin="round"/>`+contourNotes.map(n=>`<circle cx="${x(n)}" cy="${y(n)}" r="4.2" fill="#866dd0" stroke="white" stroke-width="1.5"/>`).join('');let steps=0,leaps=0,repeats=0;for(let i=1;i<contourNotes.length;i++){const d=Math.abs(contourNotes[i].pitch-contourNotes[i-1].pitch);if(d<=2&&d>0)steps++;if(d>=5)leaps++;if(d===0)repeats++}const insights=[];if(steps)insights.push(`<strong>${steps} stepwise move${steps>1?'s':''}</strong>: nearby notes help your melody flow smoothly.`);if(leaps)insights.push(`<strong>${leaps} leap${leaps>1?'s':''}</strong>: larger jumps can create surprise or emphasis.`);if(repeats)insights.push(`<strong>${repeats} repeated pitch${repeats>1?'es':''}</strong>: repetition can create unity.`);if(!insights.length)insights.push('Try adding contrasting high and low notes to shape the contour.');if(new Set(a.map(n=>n.dur)).size===1&&len>2)insights.push('All notes currently have the same duration. Try mixing short and long notes.');$('insights').innerHTML=insights.map(v=>`<div class="insight">${v}</div>`).join('');checkChallenge(a)}
+function checkChallenge(a){const mode=$('challenge').value;const msgs={repeat:['Create a repeated phrase','Build two matching four-note pitch patterns.'],step:['Write a stepwise melody','Use at least four notes in a row with jumps of one or two semitones.'],leap:['Introduce musical leaps','Include at least two melodic jumps of five semitones or more.'],rhythm:['Create rhythmic variety','Include at least three different note lengths.'],ending:['Find your way home','Compose at least five notes and return to your opening pitch at the end.']};$('challengeTitle').textContent=msgs[mode][0];$('challengeText').textContent=msgs[mode][1];let ok=false;if(mode==='repeat'&&a.length>=8){outer:for(let i=0;i<a.length-7;i++)for(let j=i+4;j<=a.length-4;j++){if(a.slice(i,i+4).every((n,k)=>n.pitch===a[j+k].pitch)){ok=true;break outer}}}if(mode==='step'){for(let i=0;i<=a.length-4;i++)if(a.slice(i+1,i+4).every((n,k)=>Math.abs(n.pitch-a[i+k].pitch)>=1&&Math.abs(n.pitch-a[i+k].pitch)<=2))ok=true}if(mode==='leap'){let v=0;for(let i=1;i<a.length;i++)v+=Math.abs(a[i].pitch-a[i-1].pitch)>=5?1:0;ok=v>=2}if(mode==='rhythm')ok=new Set(a.map(n=>n.dur)).size>=3;if(mode==='ending')ok=a.length>=5&&a[0].pitch===a[a.length-1].pitch;$('challengeStatus').textContent=ok?'✓ Challenge achieved! Listen to how it sounds.':'○ '+(a.length?'Keep experimenting.':'Add notes to begin.');$('challengeStatus').style.color=ok?'#238f78':'#697d98'}
+function ensureAudio(){if(!audio){audio=new(window.AudioContext||window.webkitAudioContext)();master=audio.createGain();master.gain.value=.55;master.connect(audio.destination)}audio.resume();master.gain.setTargetAtTime(Number($('volume').value)/100,audio.currentTime,.02)}
+
+function soundMsg(message, state=''){const el=$('soundStatus');el.textContent=message;el.className='soundStatus '+state;}
+async function getBank(inst){
+  if(soundBanks.has(inst))return soundBanks.get(inst);
+  if(bankPending.has(inst))return bankPending.get(inst);
+  if(!window.Soundfont){soundMsg('Sample library unavailable. Using basic offline fallback sounds.','bad');return null;}
+  ensureAudio();soundMsg('Loading high-quality '+({piano:'piano',violin:'violin',cello:'cello',guitar:'guitar'}[inst]||inst)+' samples…');
+  const pending=window.Soundfont.instrument(audio,BANK_NAMES[inst],{soundfont:'FluidR3_GM',format:'mp3',destination:master})
+     .then(bank=>{soundBanks.set(inst,bank);soundMsg('✓ '+inst[0].toUpperCase()+inst.slice(1)+' samples ready.','good');return bank})
+     .catch(err=>{soundMsg('Samples could not load. Playing basic fallback sounds instead.','bad');return null})
+     .finally(()=>bankPending.delete(inst));
+  bankPending.set(inst,pending);return pending;
+}
+function sampleNote(bank,midi,time,duration){
+  if(!bank){synth(midi,time,duration,$('instrument').value);return}
+  const node=bank.play(midi,time,{duration:Math.max(.08,duration),gain:0.9});
+  if(node)sampleVoices.push(node);
+}
+function synth(midi,time,duration,instrument){if(!audio)return;const f=440*Math.pow(2,(midi-69)/12),o=audio.createOscillator(),g=audio.createGain(),t=audio.currentTime;let wave='sine',attack=.015,release=.18,peak=.25,filter=null;if(instrument==='piano'){wave='triangle';attack=.009;release=.22;peak=.29}else if(instrument==='bell'){wave='sine';attack=.004;release=.75;peak=.25}else if(instrument==='flute'){wave='sine';attack=.085;release=.20;peak=.23}else if(instrument==='pluck'){wave='sawtooth';attack=.005;release=.14;peak=.18}else if(instrument==='synth'){wave='triangle';attack=.09;release=.28;peak=.19}o.type=wave;o.frequency.setValueAtTime(f,time);if(instrument==='pluck'){filter=audio.createBiquadFilter();filter.type='lowpass';filter.frequency.setValueAtTime(1450,time);o.connect(filter);filter.connect(g)}else{o.connect(g)}g.connect(master);g.gain.setValueAtTime(0,time);g.gain.linearRampToValueAtTime(peak,time+attack);if(instrument==='bell')g.gain.exponentialRampToValueAtTime(.001,time+Math.max(.25,duration)+release);else{g.gain.setValueAtTime(peak,time+Math.max(attack+.005,duration));g.gain.exponentialRampToValueAtTime(.001,time+Math.max(attack+.01,duration)+release)}o.start(time);o.stop(time+Math.max(.28,duration)+release+.02);voices.push(o);o.onended=()=>{const i=voices.indexOf(o);if(i>=0)voices.splice(i,1)}}
+async function preview(midi){ensureAudio();const inst=$('instrument').value;const bank=await getBank(inst);if(inst!==$('instrument').value)return;sampleNote(bank,midi,audio.currentTime+.015,.24)}
+function stop(){playToken++;playing=false;cancelAnimationFrame(raf);timers.forEach(clearTimeout);timers=[];for(const o of voices){try{o.stop()}catch(e){}}voices=[];for(const v of sampleVoices){try{v.stop()}catch(e){}}sampleVoices=[];$('play').textContent='▶ Play melody';$('playhead').style.display='none';pauseOffset=0}
+async function play(){
+  if(playing){stop();return}
+  if(!notes.length){notify('Add a few notes first.');return}
+  ensureAudio();const token=++playToken;const inst=$('instrument').value;
+  $('play').textContent='◌ Loading instrument…';
+  const bank=await getBank(inst);
+  if(token!==playToken)return;
+  playing=true;$('play').textContent='❚❚ Pause';
+  const bps=Number($('tempo').value)/60,start=audio.currentTime+.10;
+  startAt=performance.now()+100;
+  for(const n of ordered())sampleNote(bank,n.pitch,start+n.start/bps,n.dur/bps);
+  const length=(Math.max(...notes.map(n=>n.start+n.dur))+.4)/bps*1000;
+  function frame(){if(!playing||token!==playToken)return;
+    const beat=Math.max(0,(performance.now()-startAt)/1000*bps);
+    $('playhead').style.display='block';$('playhead').style.left=(beat*STEP)+'px';
+    if(beat>=maxBeat()||performance.now()-startAt>=length){stop();return}
+    raf=requestAnimationFrame(frame)
+  }raf=requestAnimationFrame(frame);
+}
+$('play').onclick=play;$('stop').onclick=stop;$('tempo').oninput=()=>{$('tempoVal').textContent=$('tempo').value+' BPM';if(playing)stop()};$('volume').oninput=()=>{if(audio)master.gain.setTargetAtTime(Number($('volume').value)/100,audio.currentTime,.02)};$('instrument').onchange=()=>{stop();getBank($('instrument').value)};$('duration').onchange=()=>newDur=Number($('duration').value);$('snap').onchange=()=>snap=Number($('snap').value);$('bars').onchange=()=>{stop();snapshot();bars=Number($('bars').value);notes=notes.filter(n=>n.start<maxBeat()).map(n=>({...n,dur:Math.min(n.dur,maxBeat()-n.start)}));createGrid();paint()};$('challenge').onchange=analyze;
+$('selPitch').onchange=()=>{const n=notes.find(n=>n.id===selected);if(n){const v=Number($('selPitch').value);if(!validPitch(v)){scaleWarning(v);$('selPitch').value=n.pitch;return}snapshot();n.pitch=v;paint();preview(n.pitch)}};$('selStart').onchange=()=>{const n=notes.find(n=>n.id===selected);if(n){snapshot();n.start=clamp(quant(Number($('selStart').value)||0),0,maxBeat()-n.dur);paint()}};$('selDuration').onchange=()=>{const n=notes.find(n=>n.id===selected);if(n){snapshot();n.dur=clamp(Number($('selDuration').value)||.25,.25,maxBeat()-n.start);paint()}};$('deleteNote').onclick=deleteSelected;$('undo').onclick=undo;$('redo').onclick=redo;$('clear').onclick=()=>{if(notes.length){snapshot();stop();notes=[];selected=null;paint();notify('Canvas cleared.')}};
+
+// Short public-domain excerpts, simplified to a single voice for classroom study.
+// Every entry is [pitch name (MIDI), beat duration], arranged sequentially.
+const PRESETS={
+ original:{title:'The Last Light · Original demo',tempo:100,root:0,scale:'major',instrument:'piano',bars:8,description:'Original classroom sample · rising and falling phrases.',notes:[[60,1],[62,1],[64,1],[67,1],[67,.5],[65,.5],[64,1],[62,2],[60,1],[62,1],[64,.5],[65,.5],[67,1],[69,1],[67,1],[64,1],[60,1]]},
+ twinkle:{title:'Twinkle, Twinkle, Little Star',tempo:100,root:0,scale:'major',instrument:'piano',bars:4,source:'https://www.loc.gov/item/2023834988/',description:'Traditional melody · short opening excerpt.',notes:[[60,1],[60,1],[67,1],[67,1],[69,1],[69,1],[67,2],[65,1],[65,1],[64,1],[64,1],[62,1],[62,1],[60,2]]},
+ ode:{title:'Ode to Joy · Beethoven',tempo:112,root:2,scale:'major',instrument:'violin',bars:4,source:'https://imslp.org/wiki/Symphony_No.9%2C_Op.125_(Beethoven%2C_Ludwig_van)',description:'Beethoven, Symphony No. 9 · simplified opening theme transposed to D major.',notes:[[66,1],[66,1],[67,1],[69,1],[69,1],[67,1],[66,1],[64,1],[62,1],[62,1],[64,1],[66,1.5],[66,.5],[64,2]]},
+ frere:{title:'Frère Jacques',tempo:108,root:0,scale:'major',instrument:'guitar',bars:4,description:'Traditional French round · melody excerpt.',notes:[[60,1],[62,1],[64,1],[60,1],[60,1],[62,1],[64,1],[60,1],[64,1],[65,1],[67,2],[64,1],[65,1],[67,2]]},
+ jingle:{title:'Jingle Bells',tempo:120,root:7,scale:'major',instrument:'piano',bars:4,source:'https://cantorion.org/music/4731/Jingle-Bells-First-edition',description:'James Lord Pierpont (1857) · familiar chorus excerpt.',notes:[[64,1],[64,1],[64,2],[64,1],[64,1],[64,2],[64,1],[67,1],[60,1],[62,1],[64,4]]},
+ mary:{title:'Mary Had a Little Lamb',tempo:110,root:0,scale:'major',instrument:'cello',bars:4,description:'Traditional children’s song · opening excerpt.',notes:[[64,1],[62,1],[60,1],[62,1],[64,1],[64,1],[64,2],[62,1],[62,1],[62,2],[64,1],[67,1],[67,2]]}
+};
+function focusEditorOnNotes(){
+ // Keep the middle of the active pitch range visible without moving the overall page.
+ const visible=$('timeline').clientHeight-38;
+ const highest=notes.length?Math.max(...notes.map(n=>n.pitch)):72;
+ const lowest=notes.length?Math.min(...notes.map(n=>n.pitch)):60;
+ const top=(HIGH-highest)*C, bottom=(HIGH-lowest+1)*C;
+ const target=Math.max(0,(top+bottom-visible)/2);
+ $('timeline').scrollTop=target;
+ $('timeline').scrollLeft=0;
+}
+function loadPreset(id){
+ const item=PRESETS[id];if(!item)return;
+ stop();snapshot();bars=item.bars;rootPC=item.root;scaleMode=item.scale;
+ $('bars').value=String(bars);$('rootNote').value=String(rootPC);$('scaleType').value=scaleMode;
+ $('tempo').value=String(item.tempo);$('tempoVal').textContent=item.tempo+' BPM';$('instrument').value=item.instrument;
+ let t=0;notes=item.notes.map(([pitch,dur])=>{const n={id:++idCounter,start:t,pitch,dur};t+=dur;return n});
+ selected=null;createGrid();paint();focusEditorOnNotes();showPresetInfo(id);notify('Loaded '+item.title+'. Press Play to listen.');
+}
+function showPresetInfo(id){
+ const item=PRESETS[id];const el=$('presetInfo');if(!item){el.textContent='Choose a melody from the library, or add notes to create your own.';return}
+ el.textContent=item.title+' · '+item.description+' ';
+ if(item.source){const a=document.createElement('a');a.href=item.source;a.target='_blank';a.rel='noopener noreferrer';a.textContent='View source ↗';el.appendChild(a)}
+}
+$('example').onclick=()=>{const id=$('presetSelect').value;if(!id){notify('Choose a melody from the library first.');return}loadPreset(id)};
+$('presetSelect').onchange=()=>{const item=PRESETS[$('presetSelect').value];$('presetInfo').textContent=item?'Ready to load: '+item.title+'. Loading will replace the current composition.':'Choose a melody from the library, or add notes to create your own.'};
+function download(name,blob){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
+
+const PROJECT_FORMAT='build-a-melody-project',PROJECT_VERSION=2;
+function projectData(){return {format:PROJECT_FORMAT,version:PROJECT_VERSION,title:'My Melody',createdWith:'Build-a-Melody Studio v1.5.0',settings:{tempo:Number($('tempo').value),instrument:$('instrument').value,bars,rootPC,scaleMode,noteDuration:newDur,snap,volume:Number($('volume').value),editorHeight},notes:notes.map(({start,pitch,dur})=>({start,pitch,dur}))}}
+$('save').onclick=()=>{download('my-melody.melody.json',new Blob([JSON.stringify(projectData(),null,2)],{type:'application/json'}));$('fileMenu').open=false;notify('Full project exported. You can import it later.')};
+$('load').onclick=()=>$('loadInput').click();
+$('loadInput').onchange=async e=>{
+ const file=e.target.files?.[0];if(!file)return;
+ try{
+  if(file.size>2_000_000)throw Error('File is too large');
+  const data=JSON.parse(await file.text());
+  // Backward-compatible with v1.0–v1.4 studio JSON files.
+  if(data.format!==PROJECT_FORMAT && data.format!=='build-a-melody-v1')throw Error('Not a Melody Studio project');
+  const cfg=data.format===PROJECT_FORMAT?data.settings:data;
+  if(!cfg||!Array.isArray(data.notes)||data.notes.length>1000)throw Error('Invalid project structure');
+  const nextBars=Number(cfg.bars);
+  if(![4,8,12,16].includes(nextBars))throw Error('Invalid number of bars');
+  const nextNotes=data.notes.map(n=>{
+   if(!n||!Number.isFinite(n.start)||!Number.isFinite(n.pitch)||!Number.isFinite(n.dur))throw Error('Invalid note');
+   if(n.start<0||n.start>=nextBars*4||n.pitch<LOW||n.pitch>HIGH||!Number.isInteger(n.pitch)||n.dur<=0||n.start+n.dur>nextBars*4+0.000001)throw Error('Note outside valid range');
+   return {start:n.start,pitch:n.pitch,dur:n.dur};
+  });
+  const tempo=Number(cfg.tempo);if(!Number.isFinite(tempo)||tempo<50||tempo>180)throw Error('Invalid tempo');
+  if(!['piano','violin','cello','guitar'].includes(cfg.instrument))throw Error('Invalid instrument');
+  const r=Number(cfg.rootPC);if(!Number.isInteger(r)||r<0||r>11||!SCALE_INTERVALS[cfg.scaleMode])throw Error('Invalid key or scale');
+  const dur=cfg.noteDuration===undefined?.5:Number(cfg.noteDuration);
+  const gridSnap=cfg.snap===undefined?.5:Number(cfg.snap);
+  const vol=cfg.volume===undefined?55:Number(cfg.volume);
+  if(![.25,.5,1,2,4].includes(dur)||![.25,.5,1].includes(gridSnap)||!Number.isFinite(vol)||vol<0||vol>100)throw Error('Invalid editor settings');
+  stop();snapshot();bars=nextBars;rootPC=r;scaleMode=cfg.scaleMode;newDur=dur;snap=gridSnap;
+  notes=nextNotes.map(n=>({id:++idCounter,...n}));selected=null;
+  $('bars').value=String(bars);$('rootNote').value=String(rootPC);$('scaleType').value=scaleMode;
+  $('tempo').value=String(tempo);$('tempoVal').textContent=tempo+' BPM';$('instrument').value=cfg.instrument;
+  $('duration').value=String(newDur);$('snap').value=String(snap);$('volume').value=String(vol);
+  if(audio)master.gain.setTargetAtTime(vol/100,audio.currentTime,.02);
+  if(Number.isFinite(cfg.editorHeight))setEditorHeight(cfg.editorHeight);
+  $('presetSelect').value='';showPresetInfo('');$('fileMenu').open=false;
+  createGrid();paint();focusEditorOnNotes();notify('Project imported with notes and all saved settings.');
+ }catch(err){notify('Could not import: '+err.message)}
+ e.target.value='';
+};
+// Basic Standard MIDI File type 0, one track, 480 ticks per quarter note.
+function varLen(n){n=Math.max(0,Math.floor(n));let b=n&127;const a=[];while(n>>=7){b<<=8;b|=(n&127)|128}for(;;){a.push(b&255);if(b&128)b>>=8;else break}return a}
+function midiBytes(){const ppq=480,events=[];const bpm=Number($('tempo').value),mpq=Math.round(60000000/bpm);events.push({t:0,pri:0,bytes:[255,81,3,(mpq>>16)&255,(mpq>>8)&255,mpq&255]});const programs={piano:0,violin:40,cello:42,guitar:24};events.push({t:0,pri:0,bytes:[192,programs[$('instrument').value]??0]});for(const n of notes){const start=Math.round(n.start*ppq),end=Math.round((n.start+n.dur)*ppq);events.push({t:start,pri:2,bytes:[144,n.pitch,88]},{t:end,pri:1,bytes:[128,n.pitch,0]})}events.sort((a,b)=>a.t-b.t||a.pri-b.pri);let body=[],at=0;for(const e of events){body.push(...varLen(e.t-at),...e.bytes);at=e.t}body.push(0,255,47,0);const len=body.length;return new Uint8Array([77,84,104,100,0,0,0,6,0,0,0,1,1,224,77,84,114,107,(len>>>24)&255,(len>>>16)&255,(len>>>8)&255,len&255,...body])}
+$('midi').onclick=()=>{if(!notes.length){notify('Add notes before exporting MIDI.');return}download('my-melody.mid',new Blob([midiBytes()],{type:'audio/midi'}));notify('MIDI exported.')};
+$('rootNote').onchange=()=>{rootPC=Number($('rootNote').value);createGrid();paint()};
+$('scaleType').onchange=()=>{scaleMode=$('scaleType').value;createGrid();paint()};
+$('snapKey').onclick=()=>{const clashes=notes.filter(n=>!validPitch(n.pitch));if(!clashes.length){notify('All notes already fit the selected scale.');return}snapshot();for(const n of clashes)n.pitch=nearestValid(n.pitch);paint();notify('Moved '+clashes.length+' note'+(clashes.length===1?'':'s')+' to the nearest in-key pitch. Undo is available.')};
+$('keys').addEventListener('click',e=>{const k=e.target.closest('.key');if(!k)return;const m=Number(k.dataset.pitch);if(validPitch(m))preview(m);else scaleWarning(m)});
+// Resize handle: pointer drag and keyboard controls, with persistent height per browser.
+const editor=$('timeline'),handle=$('editorResize');
+let editorHeight=440;
+try{const saved=Number(localStorage.getItem('melody-editor-height'));if(saved>=220&&saved<=1200)editorHeight=saved}catch(e){}
+function setEditorHeight(h){editorHeight=clamp(Math.round(h),220,Math.max(220,Math.floor(window.innerHeight*.75)));editor.style.setProperty('--editor-height',editorHeight+'px');try{localStorage.setItem('melody-editor-height',String(editorHeight))}catch(e){}}
+setEditorHeight(editorHeight);
+let resizeStart=null;
+handle.addEventListener('pointerdown',e=>{if(e.button!==0)return;resizeStart={y:e.clientY,h:editor.getBoundingClientRect().height};handle.setPointerCapture(e.pointerId);e.preventDefault()});
+handle.addEventListener('pointermove',e=>{if(!resizeStart)return;setEditorHeight(resizeStart.h+e.clientY-resizeStart.y)});
+handle.addEventListener('pointerup',()=>{resizeStart=null});handle.addEventListener('pointercancel',()=>{resizeStart=null});
+handle.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();setEditorHeight(editorHeight+(e.key==='ArrowDown'?30:-30))}});
+window.addEventListener('resize',()=>setEditorHeight(editorHeight));
+updateUndoRedo();for(let m=LOW;m<=HIGH;m++){const o=document.createElement('option');o.value=m;o.textContent=pitchLabel(m);$('selPitch').appendChild(o)}createGrid();paint();focusEditorOnNotes();
+})();
+</script></body></html>

@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Geometry Studio v1.3.1 | Build • Check • Learn</title>
+<style>
+:root{--bg:#f4f7fb;--panel:#fff;--text:#15263e;--muted:#5c7087;--line:#dbe5ef;--blue:#4c7cf3;--blue2:#eaf0ff;--mint:#0d947d;--mintbg:#e5f8f2;--amber:#b27012;--amberbg:#fff6e2;--red:#c24e52;--redbg:#fff0f0;--shadow:0 12px 40px rgba(29,55,91,.055);--radius:19px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.46}button,select{font:inherit}button{cursor:pointer}.app{max-width:1600px;margin:auto;padding:20px 26px 28px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(140deg,#6494ff,#6e73db);color:white;font-size:22px;font-weight:800}.brand h1{font-size:21px;letter-spacing:-.7px;margin:0}.brand p{margin:0;font-size:12px;color:var(--muted)}.top-right{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.chip{border:1px solid var(--line);background:white;padding:7px 11px;border-radius:30px;font-size:12px;color:var(--muted)}.ghost{border:1px solid var(--line);background:white;color:var(--text);padding:10px 14px;border-radius:11px;font-weight:650}.ghost:hover{background:#f5f8fd}.grid{display:grid;grid-template-columns:minmax(280px,320px) minmax(460px,1fr) minmax(285px,325px);gap:15px;align-items:stretch}.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.sidebar{padding:20px;display:flex;flex-direction:column;gap:15px}.kicker{font-size:11px;font-weight:800;letter-spacing:1.5px;color:#6e81a1;text-transform:uppercase}.section-title{font-size:17px;font-weight:800;margin:3px 0 6px;letter-spacing:-.3px}.challenge-title{font-size:25px;letter-spacing:-.9px;line-height:1.2;margin:4px 0 12px}.description{font-size:14px;color:#546985;margin:0}.blue-box{background:#f1f5ff;border:1px solid #dfe8ff;padding:14px;border-radius:14px}.blue-box strong{font-size:13px}.blue-box p{margin:4px 0 0;color:#4b6281;font-size:13px}.progress{display:flex;gap:5px}.tick{height:7px;flex:1;background:#e8eef6;border-radius:20px}.tick.done{background:#58bea9}.tick.current{background:#668cf0}.small{font-size:12px;color:var(--muted)}.category-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.category{padding:9px 3px;border-radius:10px;border:1px solid #e0e8f3;background:#fff;color:#687d96;font-size:11px;font-weight:750}.category.active{background:var(--blue2);border-color:#b7caff;color:#3568d4}.challenge-list{max-height:285px;overflow:auto;display:flex;flex-direction:column;gap:7px;padding-right:4px}.challenge-row{display:flex;align-items:center;gap:9px;padding:9px;border:1px solid #e5edf4;background:#fff;border-radius:11px;text-align:left;font-size:12px;color:#48617d}.challenge-row.current{background:#edf3ff;border-color:#b2c7ff;color:#244fc7}.challenge-row.completed{border-color:#bfe9da;background:#f3fdf9}.num{width:22px;height:22px;border-radius:7px;display:grid;place-items:center;background:#eaf0f8;color:#536984;font-size:11px;font-weight:800;flex-shrink:0}.challenge-row.completed .num{background:#d1f4e5;color:#087e5e}.challenge-row.current .num{background:#4e7cf3;color:#fff}.challenge-row[disabled]{opacity:.7;cursor:default}.grow{flex:1}.action{display:flex;justify-content:center;align-items:center;gap:9px;border:0;background:#4e7df4;color:white;padding:12px 14px;border-radius:11px;font-weight:750}.action:hover{background:#3469ed}.action:disabled{background:#aebbd1;cursor:not-allowed}.action.secondary{background:#eaf0ff;color:#3568d4}.action.secondary:hover{background:#dce7ff}.canvas-panel{display:flex;flex-direction:column;min-height:650px}.canvas-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px 18px;border-bottom:1px solid var(--line)}.canvas-head h2{font-size:16px;margin:0;letter-spacing:-.25px}.tools{display:flex;gap:7px;flex-wrap:wrap}.tool{padding:8px 11px;border:1px solid #e0e8f2;border-radius:9px;background:#fff;color:#516985;font-weight:650;font-size:12px}.tool.active{background:#ecf2ff;border-color:#a9c0ff;color:#3465ce}.stage-wrap{position:relative;flex:1;min-height:510px;overflow:hidden;background:#fbfdff;touch-action:none}.stage{position:absolute;inset:0;touch-action:none;cursor:grab}.stage.dragging{cursor:grabbing}.canvas-footer{display:flex;justify-content:space-between;gap:8px;padding:13px 18px;border-top:1px solid var(--line);flex-wrap:wrap}.legend{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}.dot{width:10px;height:10px;border-radius:50%;background:#527ff0}.dot.orange{background:#f0a24a}.rightbar{display:flex;flex-direction:column;gap:15px}.right-panel{padding:19px}.right-panel h3{font-size:15px;margin:0 0 12px}.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.metric{background:#f6f9fc;border:1px solid #eaf0f7;border-radius:12px;padding:10px}.metric span{display:block;font-size:11px;color:#71849a}.metric strong{font-size:16px;letter-spacing:-.35px}.metric.wide{grid-column:1/-1}.feedback{font-size:13px;border-radius:13px;padding:13px;margin-top:12px;border:1px solid #e3eaf2;background:#f7f9fc;color:#5b7188}.feedback.success{background:var(--mintbg);border-color:#bbe9db;color:#126c5b}.feedback.warn{background:var(--amberbg);border-color:#ffe3a9;color:#8d5d18}.feedback.error{background:var(--redbg);border-color:#fad2d3;color:#a13a3e}.feedback strong{display:block;margin-bottom:5px}.feedback ul{padding-left:17px;margin:7px 0 0}.feedback li{margin:3px 0}.stack{display:flex;flex-direction:column;gap:8px}.tiny-heading{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#7990a6;font-weight:800;margin:0 0 5px}.slider-row{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);margin-top:10px}.slider-row input{flex:1;accent-color:#4e7df4}.toggle{display:flex;gap:9px;align-items:center;font-size:12px;color:#4e617d}.toggle input{accent-color:#4e7df4}.hint{font-size:12px;color:#5a708d;margin:0}.fineprint{font-size:11px;color:#8395ab;margin:0}.report-screen{display:none;max-width:1080px;margin:22px auto;background:white;border-radius:22px;border:1px solid var(--line);box-shadow:var(--shadow);padding:28px}.report-screen.show{display:block}.app.finished .grid{display:none}.report-intro{text-align:center}.report-intro h2{font-size:30px;letter-spacing:-1px;margin:10px 0 5px}.report-badge{display:inline-flex;border-radius:50px;background:#e8f8f2;color:#0a8667;padding:8px 15px;font-weight:750}.report-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:23px 0}.report-card{background:#f5f8fc;border:1px solid #e4ebf4;padding:17px;border-radius:15px}.report-card span{font-size:12px;color:#6d8197}.report-card strong{font-size:28px;display:block}.report-row{border-bottom:1px solid #eaf0f6;padding:12px 4px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.report-row:last-child{border-bottom:0}.report-row strong{font-size:13px}.report-row p{margin:2px 0;font-size:12px;color:#6f8198}.pill{font-size:11px;border-radius:20px;padding:5px 8px;background:#e4f6ed;color:#0d765e;white-space:nowrap}.pill.needs{background:#fff0de;color:#a86b17}.report-actions{display:flex;gap:9px;margin-top:20px;flex-wrap:wrap}.report-actions button{flex:1}.instructions{margin-top:auto}.challenge-meta{display:flex;align-items:center;justify-content:space-between;gap:7px}.divider{height:1px;background:#e7edf5;margin:2px 0}.hidden{display:none!important}.loading{display:grid;place-items:center;height:100%;text-align:center;padding:30px;color:#667c95}.loading strong{color:#293d59}@media(max-width:1230px){.grid{grid-template-columns:minmax(245px,280px) 1fr}.rightbar{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.stage-wrap{min-height:470px}}@media(max-width:760px){.app{padding:12px}.grid{grid-template-columns:1fr}.rightbar{grid-template-columns:1fr}.top{align-items:flex-start}.top-right{justify-content:flex-end}.canvas-panel{min-height:540px}.stage-wrap{min-height:400px}.report-cards{grid-template-columns:1fr}.report-screen{padding:18px}.sidebar{padding:16px}}
+
+/* Editable measurements: controls float above the Three.js drawing canvas. */
+.geom-label.editable{pointer-events:auto!important;cursor:text;border:1px solid #cbd9f2;box-shadow:0 2px 9px rgba(52,94,155,.10);transition:background .15s,border-color .15s}
+.geom-label.editable:hover{background:#eaf2ff!important;border-color:#759bf0}
+.geom-label.editable:focus{outline:2px solid #5687f2;outline-offset:1px;background:#fff!important;min-width:42px;text-align:center;cursor:text}
+.geom-label.invalid-entry{border-color:#d15b62!important;background:#fff0f0!important}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+<header class="top"><div class="brand"><div class="logo">△</div><div><h1>Geometry Studio</h1><p>Build · Check · Learn · v1.3.1</p></div></div><div class="top-right"><span class="chip">Grades 5–10 · Interactive lab</span><button class="ghost" id="restartTop">↻ Restart activity</button></div></header>
+<div class="grid" id="workarea">
+<aside class="panel sidebar">
+<div><div class="challenge-meta"><span class="kicker">Geometry mission</span><span class="small" id="counter">1 / 20</span></div><div class="progress" id="progress"></div></div>
+<div><div class="kicker" id="categoryLabel">Quadrilaterals</div><h2 class="challenge-title" id="challengeTitle">Build a rectangle</h2><p class="description" id="description">Drag vertices to build your answer.</p></div>
+<div class="blue-box"><strong>🎯 Your mission</strong><p id="goal">Construct the shape described.</p></div>
+<div><p class="tiny-heading">Practice areas</p><div class="category-tabs"><button class="category active" data-cat="quad">4-sided</button><button class="category" data-cat="triangle">Triangles</button><button class="category" data-cat="lines">Lines & angles</button></div></div>
+<div><p class="tiny-heading">Mission checklist</p><div class="challenge-list" id="challengeList"></div></div>
+<div class="instructions"><p class="fineprint">Drag vertices in fine 0.1-unit steps, or click any angle or side length to edit it. Every challenge is checked from the actual vertex positions—not from the picture it resembles.</p></div>
+</aside>
+<main class="panel canvas-panel"><div class="canvas-head"><h2>Construction canvas</h2><div class="tools"><button class="tool active" id="dragTool">✥ Drag vertices</button><button class="tool" id="resetShape">↺ Reset shape</button><button class="tool" id="gridToggle">▦ Snap: On</button></div></div><div class="stage-wrap"><div id="stage" class="stage"><div class="loading" id="loading"><div><strong>Preparing the geometry canvas…</strong><div>Loading the Three.js renderer</div></div></div></div></div><div class="canvas-footer"><div class="legend"><span class="dot"></span> Move a vertex <span class="dot orange"></span> Selected vertex</div><span class="small" id="canvasStatus">Drag in 0.1-unit steps · click a dimension to type an exact value</span></div></main>
+<div class="rightbar">
+<section class="panel right-panel"><h3>Live geometry inspector</h3><div class="info-grid" id="metrics"></div><div class="slider-row" id="angleController" style="display:none"><label for="angleSlider">Line angle</label><input type="range" id="angleSlider" min="0" max="170" value="70" step="1"/><strong id="angleValue">70°</strong></div><div class="slider-row" id="offsetController" style="display:none"><label for="offsetSlider">Line offset</label><input type="range" id="offsetSlider" min="-3" max="3" value="1.4" step="0.1"/><strong id="offsetValue">1.4</strong></div><div style="margin-top:12px"><label class="toggle"><input type="checkbox" id="showMeasurements" checked/> Show angle and side measurements</label></div></section>
+<section class="panel right-panel"><h3>Check your construction</h3><div class="stack"><button class="action" id="checkBtn">✓ Check my answer</button><button class="action secondary" id="hintBtn">💡 Give me a hint</button><button class="ghost hidden" id="nextBtn">Next challenge →</button></div><div class="feedback" id="feedback"><strong>Ready when you are.</strong>Build the figure on the canvas, then select “Check my answer.”</div></section>
+<section class="panel right-panel"><h3>Learning notes</h3><p class="hint" id="learningNotes">A quadrilateral has four sides. Its angles add up to 360°.</p><div class="divider" style="margin:12px 0"></div><p class="fineprint">Hints are rule-based and report the actual geometric properties of the construction. Numerical tolerances allow for normal dragging precision.</p></section>
+</div></div>
+<section class="report-screen" id="reportScreen"><div class="report-intro"><span class="report-badge">✦ Practice complete</span><h2>Your geometry learning report</h2><p class="description">Here's what you built well, and what to work on next.</p></div><div class="report-cards"><div class="report-card"><span>Missions completed</span><strong id="reportCompleted">20 / 20</strong></div><div class="report-card"><span>Correct on first check</span><strong id="reportFirst">0</strong></div><div class="report-card"><span>Hints requested</span><strong id="reportHints">0</strong></div></div><h3>Skills and study recommendations</h3><div id="reportSkills"></div><h3>Mission-by-mission detail</h3><div id="reportDetails"></div><div class="report-actions"><button class="action" id="retryBtn">↻ Practice all again</button><button class="action secondary" id="practiceWeakBtn">↗ Practice areas to improve</button><button class="ghost" id="printBtn">⎙ Print / Save report</button></div><p class="fineprint" style="margin-top:15px">This report is created locally in your browser. No names, accounts, or student data are transmitted or stored.</p></section>
+</div>
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js';
+const $ = s=>document.querySelector(s);
+const EPS=1e-9, DEG=180/Math.PI;
+const V=(x,y)=>({x,y});
+const sub=(a,b)=>V(a.x-b.x,a.y-b.y), dot=(a,b)=>a.x*b.x+a.y*b.y, cross=(a,b)=>a.x*b.y-a.y*b.x;
+const mag=a=>Math.hypot(a.x,a.y), dist=(a,b)=>mag(sub(a,b));
+const near=(a,b,t)=>Math.abs(a-b)<=t;
+const ang=(a,b)=>Math.acos(Math.max(-1,Math.min(1,dot(a,b)/(mag(a)*mag(b)||EPS))))*DEG;
+const insideAng=(a,b,c)=>ang(sub(a,b),sub(c,b));
+const format=n=>Number.isFinite(n)?n.toFixed(1):'—';
+const cset={quad:'Quadrilaterals',triangle:'Triangles',lines:'Lines & angles'};
+const tasks=[
+{id:'rectangle',cat:'quad',title:'A rectangle',description:'Build a four-sided figure with four right angles.',goal:'Four 90° corners. Opposite sides must be parallel, and the width should be different from the height.',notes:'A rectangle has four right angles. Its opposite sides are equal and parallel.',skill:'Right angles & parallel sides',points:[V(-2.5,-1.4),V(1.5,-1.4),V(2.1,1.5),V(-2.0,2)]},
+{id:'square',cat:'quad',title:'A square',description:'Make a quadrilateral with four equal sides and four right angles.',goal:'All four sides equal AND every corner is 90°.',notes:'Squares are rectangles and rhombuses: their sides are equal and their corners are right angles.',skill:'Side congruence & right angles',points:[V(-2.2,-1.7),V(1.6,-1.1),V(2.3,1.9),V(-1.9,2.1)]},
+{id:'parallelogram',cat:'quad',title:'A parallelogram',description:'Build a slanted quadrilateral with both pairs of opposite sides parallel.',goal:'Two pairs of parallel sides. Make it visibly slanted (not a rectangle).',notes:'In a parallelogram both pairs of opposite sides are parallel and equal.',skill:'Parallel pairs',points:[V(-2.8,-1.4),V(1.8,-1.6),V(2.3,1.4),V(-1.5,2)]},
+{id:'trapezoid',cat:'quad',title:'A trapezoid',description:'Build a quadrilateral with exactly one pair of opposite sides parallel.',goal:'Make only the top and bottom parallel—or only the left and right.',notes:'This activity uses the exclusive definition: a trapezoid has exactly one pair of parallel sides. Some textbooks use “at least one pair.”',skill:'Parallel pairs',points:[V(-2.5,-1.4),V(1.7,-1.8),V(2.0,1.5),V(-1.9,2.0)]},
+{id:'rhombus',cat:'quad',title:'A rhombus',description:'Build a diamond-like quadrilateral with four equal sides.',goal:'All four sides equal. Give it slanted corners so it is not a square.',notes:'A rhombus has four equal sides and two pairs of opposite parallel sides.',skill:'Side congruence & parallel pairs',points:[V(-2.5,-1.4),V(1.6,-1.5),V(2.5,1.4),V(-1.5,2.0)]},
+{id:'equilateral',cat:'triangle',title:'An equilateral triangle',description:'Build a triangle with all three sides the same length.',goal:'Three congruent sides; each interior angle should be 60°.',notes:'Every equilateral triangle has three 60° angles.',skill:'Triangle congruence',points:[V(-2.5,-1.5),V(1.9,-1.7),V(.6,2)]},
+{id:'isosceles',cat:'triangle',title:'An isosceles triangle',description:'Build a triangle with exactly two equal sides.',goal:'Exactly two equal-length sides and equal base angles.',notes:'In an isosceles triangle, equal sides face equal angles. This activity excludes equilateral triangles.',skill:'Triangle congruence',points:[V(-2.6,-1.7),V(2.1,-1.5),V(.7,1.7)]},
+{id:'right-triangle',cat:'triangle',title:'A right triangle',description:'Build a triangle containing one 90° angle.',goal:'One right angle. The two sides meeting there are perpendicular.',notes:'A right triangle has one 90° angle; the side opposite it is the hypotenuse.',skill:'Right angles',points:[V(-2.4,-1.5),V(1.7,-1.4),V(.2,2.0)]},
+{id:'obtuse',cat:'triangle',title:'An obtuse triangle',description:'Make a triangle with an interior angle larger than 90°.',goal:'Exactly one angle should be between 90° and 180°.',notes:'In every triangle, the angles sum to 180°. Only one angle can be obtuse.',skill:'Angle classification',points:[V(-2.1,-1.9),V(2,-1.3),V(.6,2)]},
+{id:'scalene',cat:'triangle',title:'A scalene triangle',description:'Build a triangle with three different side lengths.',goal:'All three sides must have different lengths. No two sides may match.',notes:'Scalene triangles have no congruent sides. Their interior angles are also all different.',skill:'Side-length classification',points:[V(-2.4,-1.7),V(1.8,-1.3),V(.1,2.0)]},
+{id:'acute-triangle',cat:'triangle',title:'An acute triangle',description:'Construct a triangle with three acute angles.',goal:'Every interior angle must be less than 90°.',notes:'All three angles in an acute triangle measure less than 90°. Their sum is 180°.',skill:'Angle classification',points:[V(-2.7,-1.4),V(2.3,-1.2),V(2.7,1.6)]},
+{id:'isosceles-right',cat:'triangle',title:'An isosceles right triangle',description:'Create a right triangle whose legs have equal lengths.',goal:'Build angles of 45°, 45°, and 90°. The two legs meeting at the right angle must match.',notes:'A 45°–45°–90° triangle is both right and isosceles. The hypotenuse is longer than either leg.',skill:'Special right triangles',points:[V(-2.3,-1.8),V(2,-1.4),V(.4,1.8)]},
+{id:'thirty-sixty-ninety',cat:'triangle',title:'A 30°–60°–90° triangle',description:'Construct a special right triangle with three different angles.',goal:'Make one angle 30°, another 60°, and the third 90°.',notes:'In a 30°–60°–90° triangle, side lengths are in the ratio 1 : √3 : 2.',skill:'Special right triangles',points:[V(-2.5,-1.5),V(2,-1.2),V(.6,2.0)]},
+{id:'parallel',cat:'lines',title:'Parallel lines',description:'Position two distinct straight lines so they will never meet.',goal:'Make the line angles match, and keep the lines separated.',notes:'Distinct parallel lines have equal direction (slope). Coincident lines are not distinct.',skill:'Line relationships',angle:65,offset:1.8},
+{id:'perpendicular',cat:'lines',title:'Perpendicular lines',description:'Create two intersecting lines that form four right angles.',goal:'Make the smaller angle at the intersection exactly 90°.',notes:'Perpendicular lines meet at 90° and form four right angles.',skill:'Right angles & line relationships',angle:63,offset:0},
+{id:'intersecting',cat:'lines',title:'Intersecting at 45°',description:'Make two lines intersect at an acute angle of 45°.',goal:'Adjust the angle to 45° and ensure the lines cross on the canvas.',notes:'When two lines intersect, vertical opposite angles match and adjacent angles sum to 180°.',skill:'Angle measurement & line relationships',angle:75,offset:0},
+{id:'coincident',cat:'lines',title:'Coincident lines',description:'Place line B directly on top of line A.',goal:'Give both lines the same direction and make their separation zero.',notes:'Coincident lines occupy the same infinite line; unlike distinct parallel lines, they share every point.',skill:'Coincident vs. parallel lines',angle:48,offset:1.2},
+{id:'intersect-30',cat:'lines',title:'Intersecting at 30°',description:'Make two lines form a narrow acute angle.',goal:'Create a 30° smaller intersection angle and position the crossing on the canvas.',notes:'A 30° acute angle has a supplementary angle of 150°. The opposite angles match.',skill:'Acute & supplementary angles',angle:68,offset:.7},
+{id:'intersect-60',cat:'lines',title:'Intersecting at 60°',description:'Adjust the lines to make a 60° acute angle.',goal:'Create a 60° smaller intersection angle and a visible crossing.',notes:'When one angle is 60°, the adjacent angle is 120° and the vertical angle is also 60°.',skill:'Vertical & supplementary angles',angle:105,offset:.6},
+{id:'intersect-120',cat:'lines',title:'Construct a 120° angle',description:'Show an obtuse 120° angle where the lines intersect.',goal:'Set the oriented angle from line A toward line B to 120°; its smaller partner will be 60°.',notes:'Two intersecting lines create pairs of 60° and 120° angles. Adjacent angles add to 180°.',skill:'Obtuse & supplementary angles',angle:70,offset:.9}
+
+];
+const GRID_STEP=0.5; // visual grid spacing remains unchanged
+const SNAP_STEP=0.1; // finer dragging snap: five positions per 0.5-unit grid interval
+let session=tasks.map(t=>({...t,checks:0,hints:0,complete:false,firstTry:false,errors:[],started:false}));
+let sequence=session.map((_,i)=>i),step=0,selectedCategory="quad",points=[],lineAngle=70,lineOffset=0,selected=-1,dragging=false,gridOn=true,showMeasure=true,completed=false;
+const catCounts={quad:0,triangle:0,lines:0};
+const stage=$('#stage'),loading=$('#loading');
+const scene=new THREE.Scene();scene.background=new THREE.Color('#fbfdff');
+const camera=new THREE.OrthographicCamera(-5,5,4,-4,.1,100);camera.position.set(0,0,10);camera.lookAt(0,0,0);
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));renderer.domElement.style.width='100%';renderer.domElement.style.height='100%';renderer.domElement.style.display='block';renderer.domElement.style.touchAction='none';stage.append(renderer.domElement);loading.remove();
+const gridGroup=new THREE.Group(),drawGroup=new THREE.Group();scene.add(gridGroup,drawGroup);
+const lineMaterial=(color,width=2)=>new THREE.LineBasicMaterial({color,linewidth:width});
+const col={blue:0x5582f3,mint:0x1fa58e,pale:0xb6caff,amber:0xf2a44a,text:0x405d83};
+function addLine(arr,color=col.blue,group=drawGroup){const geometry=new THREE.BufferGeometry().setFromPoints(arr.map(p=>new THREE.Vector3(p.x,p.y,.1)));const obj=new THREE.Line(geometry,lineMaterial(color));group.add(obj);return obj}
+function circle(x,y,r,color,group=drawGroup,filled=true){const geom=new THREE.CircleGeometry(r,32);const mesh=new THREE.Mesh(geom,new THREE.MeshBasicMaterial({color,transparent:true,opacity:filled?1:.24,depthTest:false}));mesh.position.set(x,y,.4);group.add(mesh);return mesh}
+function label(text,x,y,cls='measure',edit=null){
+const div=document.createElement('div');div.className='geom-label '+cls+(edit?' editable':'');div.textContent=text;
+div.style.cssText='position:absolute;pointer-events:'+(edit?'auto':'none')+';transform:translate(-50%,-50%);white-space:nowrap;font:600 12px system-ui;color:#526d9a;background:rgba(255,255,255,.93);padding:2px 5px;border-radius:5px;';
+stage.append(div);div.dataset.x=x;div.dataset.y=y;
+if(edit&&!current().complete){
+ div.contentEditable='true';div.setAttribute('role','textbox');div.setAttribute('tabindex','0');
+ div.setAttribute('aria-label',edit.type==='length'?`Edit length of side ${String.fromCharCode(65+edit.index)}${String.fromCharCode(65+(edit.index+1)%points.length)}`:`Edit angle at vertex ${String.fromCharCode(65+edit.index)}`);
+ div.title=edit.type==='length'?'Click to set exact side length':'Click to set exact interior angle';
+ div.addEventListener('pointerdown',e=>e.stopPropagation());div.addEventListener('click',e=>e.stopPropagation());
+ div.addEventListener('focus',()=>{div.dataset.original=div.textContent;const range=document.createRange();range.selectNodeContents(div);const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range)});
+ div.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();div.blur()}else if(e.key==='Escape'){e.preventDefault();div.dataset.cancel='yes';div.blur()}});
+ div.addEventListener('blur',()=>{
+  if(div.dataset.cancel==='yes'){render();return}
+  const raw=div.textContent.trim().replace('°','');const value=Number(raw);
+  if(!raw||!Number.isFinite(value)||!applyDimension(edit.type,edit.index,value)){
+   $('#canvasStatus').textContent=edit.type==='length'?'Enter a positive side length (0.2–15).':'Enter an angle from 0° to 170° for lines, or 10°–170° for triangles.';
+   render();return;
+  }
+  metrics();render();
+ });
+}
+return div;
+}
+function clearLabels(){stage.querySelectorAll('.geom-label').forEach(n=>n.remove())}
+function repaintGrid(){
+ gridGroup.clear();
+ // The snap switch controls both snapping and the visible node grid.
+ // Visual lines and dots remain at 0.5-unit spacing; intermediate 0.1 snap positions stay unobtrusive.
+ if(!gridOn)return;
+ for(let n=-24;n<=24;n++){
+  const v=n*GRID_STEP, major=n%2===0;
+  addLine([V(v,-10),V(v,10)],major?0xe2eaf6:0xf0f4fb,gridGroup);
+  addLine([V(-15,v),V(15,v)],major?0xe2eaf6:0xf0f4fb,gridGroup);
+ }
+ // Visible small intersections make the snapping destinations unambiguous.
+ for(let x=-12;x<=12;x++)for(let y=-10;y<=10;y++){
+  circle(x*GRID_STEP,y*GRID_STEP,.023,0xb9cce8,gridGroup);
+ }
+}
+function snap(p){return gridOn?V(Math.round(p.x/SNAP_STEP)*SNAP_STEP,Math.round(p.y/SNAP_STEP)*SNAP_STEP):p}
+// Direct edits are precision commands and intentionally are not rounded to the drag grid.
+// Editing a side moves its end vertex along the current side's ray.
+// Editing an interior angle rotates the next vertex around the angle vertex,
+// retaining the length of the outgoing side while other vertices stay in place.
+function applyDimension(type,index,value){
+ if(current().cat==='lines'){
+  if(type!=='line-angle'||value<0||value>170)return false;
+  lineAngle=value;$('#angleSlider').value=String(value);$('#angleValue').textContent=format(value)+'°';return true;
+ }
+ const n=points.length,p=points[index],q=points[(index+1)%n];
+ if(type==='length'){
+  if(value<.2||value>15)return false;
+  const d=sub(q,p),old=mag(d);if(old<1e-8)return false;
+  points[(index+1)%n]=V(p.x+d.x*value/old,p.y+d.y*value/old);
+  $('#canvasStatus').textContent=`Set side ${String.fromCharCode(65+index)}${String.fromCharCode(65+(index+1)%n)} to ${format(value)} units. Adjacent measurements may change.`;
+  return true;
+ }
+ if(type==='angle'){
+  if(value<=10||value>=170)return false;
+  const prev=points[(index-1+n)%n],u=sub(prev,p),v=sub(q,p),r=mag(v);
+  if(mag(u)<1e-8||r<1e-8)return false;
+  const orient=cross(u,v)>=0?1:-1;
+  const a=Math.atan2(u.y,u.x)+orient*value/DEG;
+  points[(index+1)%n]=V(p.x+r*Math.cos(a),p.y+r*Math.sin(a));
+  $('#canvasStatus').textContent=`Set angle at ${String.fromCharCode(65+index)} to ${format(value)}°. The next vertex moved; other angles may change.`;
+  return true;
+ }
+ return false;
+}
+function resize(){const r=stage.getBoundingClientRect();const width=Math.max(1,r.width),height=Math.max(1,r.height);renderer.setSize(width,height,false);const aspect=width/height;let halfHeight=3.65,halfWidth=halfHeight*aspect;if(halfWidth<4.25){halfWidth=4.25;halfHeight=halfWidth/aspect}camera.left=-halfWidth;camera.right=halfWidth;camera.top=halfHeight;camera.bottom=-halfHeight;camera.updateProjectionMatrix();repaintGrid();render()}
+function screen(p){const x=(p.x-camera.left)/(camera.right-camera.left)*stage.clientWidth;const y=(camera.top-p.y)/(camera.top-camera.bottom)*stage.clientHeight;return{x,y}}
+function world(x,y){const r=stage.getBoundingClientRect();return V(camera.left+(x-r.left)/r.width*(camera.right-camera.left),camera.top-(y-r.top)/r.height*(camera.top-camera.bottom))}
+function displayGeometry(){drawGroup.clear();clearLabels();const t=current();if(t.cat==='lines'){let d=V(Math.cos(lineAngle/DEG),Math.sin(lineAngle/DEG));const a=V(-4.4,0),b=V(4.4,0);addLine([a,b],col.blue);const center=V(0,lineOffset);addLine([V(center.x-5*d.x,center.y-5*d.y),V(center.x+5*d.x,center.y+5*d.y)],col.mint);circle(center.x,center.y,.16,col.mint);circle(center.x+2.35*d.x,center.y+2.35*d.y,.18,col.amber);label('Line A',-3.7,.3);label('Line B',2.4,2.4*d.y+lineOffset,'measure');if(showMeasure){const theta=Math.min(lineAngle,180-lineAngle);label(`${format(lineAngle)}°`,.9,.62,'measure',{type:'line-angle',index:0})}return}
+let poly=points.map(p=>V(p.x,p.y));if(poly.length<3)return;
+const geom=new THREE.BufferGeometry().setFromPoints([...poly,poly[0]].map(p=>new THREE.Vector3(p.x,p.y,.06)));
+const fillgeom=new THREE.Shape();fillgeom.moveTo(poly[0].x,poly[0].y);poly.slice(1).forEach(p=>fillgeom.lineTo(p.x,p.y));fillgeom.closePath();const fill=new THREE.Mesh(new THREE.ShapeGeometry(fillgeom),new THREE.MeshBasicMaterial({color:col.blue,transparent:true,opacity:.085,side:THREE.DoubleSide,depthTest:false}));drawGroup.add(fill);drawGroup.add(new THREE.Line(geom,lineMaterial(col.blue)));
+poly.forEach((p,i)=>{circle(p.x,p.y,.18,i===selected?col.amber:col.blue);circle(p.x,p.y,.075,0xffffff);const center=poly.reduce((a,q)=>V(a.x+q.x/poly.length,a.y+q.y/poly.length),V(0,0));const normal=sub(p,center);const v=mag(normal)||1;label(String.fromCharCode(65+i),p.x+normal.x/v*.34,p.y+normal.y/v*.34,'vertex')});
+if(showMeasure){poly.forEach((p,i)=>{const q=poly[(i+1)%poly.length];let m=V((p.x+q.x)/2,(p.y+q.y)/2);label(format(dist(p,q)),m.x,m.y,'measure',{type:'length',index:i})});poly.forEach((p,i)=>{const prev=poly[(i-1+poly.length)%poly.length],next=poly[(i+1)%poly.length];const a=insideAng(prev,p,next);const c=poly.reduce((acc,q)=>V(acc.x+q.x/poly.length,acc.y+q.y/poly.length),V(0,0));const n=sub(c,p),l=mag(n)||1;label(format(a)+'°',p.x+n.x/l*.59,p.y+n.y/l*.59,'measure',{type:'angle',index:i})})}
+}
+function positionLabels(){stage.querySelectorAll('.geom-label').forEach(n=>{const p=screen(V(+n.dataset.x,+n.dataset.y));n.style.left=p.x+'px';n.style.top=p.y+'px'})}
+function render(){displayGeometry();positionLabels();renderer.render(scene,camera)}
+function polygonStats(p){const n=p.length,edges=p.map((v,i)=>sub(p[(i+1)%n],v)),lengths=edges.map(mag),angles=p.map((v,i)=>insideAng(p[(i-1+n)%n],v,p[(i+1)%n]));const area2=p.reduce((s,v,i)=>s+cross(v,p[(i+1)%n]),0);let selfCross=false;if(n===4)selfCross=segmentsIntersect(p[0],p[1],p[2],p[3])||segmentsIntersect(p[1],p[2],p[3],p[0]);const parallel=n===4?[Math.abs(cross(edges[0],edges[2]))/(mag(edges[0])*mag(edges[2])||EPS)<.055,Math.abs(cross(edges[1],edges[3]))/(mag(edges[1])*mag(edges[3])||EPS)<.055]:[];const equal=(a,b)=>Math.abs(a-b)<=.075*Math.max(a,b);const equalAll=lengths.every(l=>equal(l,lengths[0]));const right=angles.map(a=>Math.abs(a-90)<5);const convex=edges.every((e,i)=>cross(e,edges[(i+1)%n])*(area2>=0?1:-1)>0.06);return {n,edges,lengths,angles,parallel,equal,equalAll,right,area:Math.abs(area2)/2,selfCross,convex,valid:Math.abs(area2)>.4 && lengths.every(x=>x>.55)&&angles.every(x=>x>10&&x<170)&&!selfCross&&convex}}
+function segmentsIntersect(a,b,c,d){const ab=sub(b,a),cd=sub(d,c);const s1=cross(ab,sub(c,a)),s2=cross(ab,sub(d,a)),s3=cross(cd,sub(a,c)),s4=cross(cd,sub(b,c));return s1*s2<0&&s3*s4<0}
+function evaluate(){const t=current(),fail=[];let stat=null;if(t.cat!=='lines'){stat=polygonStats(points);if(!stat.valid){fail.push('Your shape is folded, too narrow, crossed, or nearly flat. Separate the points and make a clear, non-overlapping figure.');return{pass:false,fail,stat}}
+const l=stat.lengths,a=stat.angles,par=stat.parallel,right=stat.right,eq=stat.equal;
+const allRight=right.every(Boolean),rectLike=allRight,allSides=stat.equalAll;
+if(t.id==='rectangle'){if(!allRight)fail.push('Not all four angles are 90°. Straighten the corners so neighboring sides meet at right angles.');if(allSides)fail.push('That is a square! Keep four right angles, but make one pair of sides longer than the other.')}
+if(t.id==='square'){if(!allRight)fail.push('Square corners must all measure 90°. Try lining up opposite sides.');if(!allSides)fail.push('A square needs four equal sides. Compare the four side lengths in the inspector.')}
+if(t.id==='parallelogram'){if(par.filter(Boolean).length<2)fail.push('Both opposite side pairs must be parallel. Align AB with CD, and BC with DA.');if(allRight)fail.push('You made a rectangle. Slant the top edge while keeping opposite edges parallel.')}
+if(t.id==='trapezoid'){const count=par.filter(Boolean).length;if(count===0)fail.push('No opposite sides are parallel. Make one pair run in the same direction.');if(count===2)fail.push('Both opposite pairs are parallel. For this challenge make exactly one parallel pair.')}
+if(t.id==='rhombus'){if(!allSides)fail.push('All four sides must have equal lengths. Adjust a vertex to make the shorter sides longer or the longer sides shorter.');if(allRight)fail.push('A square is a special rhombus, but this challenge asks for a slanted rhombus. Shift the top vertices sideways.')}
+if(t.id==='equilateral'){if(!allSides)fail.push('The three sides must be equal. Use the measurements to move the apex until all match.')}
+if(t.id==='isosceles'){let matches=0;for(let i=0;i<3;i++)for(let j=i+1;j<3;j++)if(eq(l[i],l[j]))matches++;if(matches===0)fail.push('No two sides are equal yet. Adjust the top point so two lengths match.');if(matches===3)fail.push('All three sides match: that is equilateral. Change one vertex so only two sides are equal.')}
+if(t.id==='right-triangle'&&!right.some(Boolean))fail.push('No 90° angle yet. Make one side horizontal and its neighboring side vertical.');
+if(t.id==='obtuse'&&!a.some(x=>x>95))fail.push('All your angles are 90° or less. Move a vertex to open one angle beyond 90°.');
+if(t.id==='scalene'){for(let i=0;i<3;i++)for(let j=i+1;j<3;j++)if(eq(l[i],l[j])){fail.push('At least two sides are equal. For a scalene triangle all three side lengths must differ.');i=3;break}}
+if(t.id==='acute-triangle'&&!a.every(x=>x<88))fail.push('At least one angle is not acute. Make all three angles smaller than 90°.');
+if(t.id==='isosceles-right'){if(!right.some(Boolean))fail.push('This special triangle needs one 90° angle.');if(![45,45,90].every(target=>a.some(x=>near(x,target,4))))fail.push('Aim for two 45° angles and one 90° angle.');}
+if(t.id==='thirty-sixty-ninety'){for(const target of [30,60,90])if(!a.some(x=>near(x,target,4)))fail.push(`You need an angle near ${target}°. Current angles: ${a.map(format).join('°, ')}°.`)}
+
+}else{const th=Math.min(Math.abs(lineAngle),180-Math.abs(lineAngle));if(t.id==='parallel'){if(Math.abs(th)>3)fail.push('The lines tilt at different angles. Make their direction angles match.');if(Math.abs(lineOffset)<.35)fail.push('The lines lie on top of each other. Separate them while keeping the same direction.')}
+if(t.id==='perpendicular'){if(!near(th,90,3))fail.push(`Your smaller angle is ${format(th)}°. Adjust it toward 90°.`);if(Math.abs(lineOffset)>2)fail.push('Bring the lines close enough that their intersection is visible on the canvas.')}
+if(t.id==='intersecting'){if(!near(th,45,3))fail.push(`Your smaller angle is ${format(th)}°. Adjust it toward 45°.`);if(Math.abs(lineOffset)>2)fail.push('Bring the lines close enough that they visibly intersect on the canvas.')}
+if(t.id==='coincident'){if(Math.abs(th)>3)fail.push('Both lines need the same direction. Move the angle toward 0°.');if(Math.abs(lineOffset)>.15)fail.push('Move line B onto line A: set the offset to zero.');}
+if(t.id==='intersect-30'||t.id==='intersect-60'){const target=t.id==='intersect-30'?30:60;if(!near(th,target,3))fail.push(`The smaller angle is ${format(th)}°. Adjust it toward ${target}°.`);if(Math.abs(lineOffset)>2)fail.push('Shift the lines so their intersection stays visible.');}
+if(t.id==='intersect-120'){if(!near(lineAngle,120,3))fail.push(`The oriented line angle is ${format(lineAngle)}°. Change it toward 120°. The smaller angle will be 60°.`);if(Math.abs(lineOffset)>2)fail.push('Shift the lines so their intersection stays visible.');}
+
+}
+return{pass:fail.length===0,fail,stat}}
+function metrics(){const t=current(),el=$('#metrics');if(t.cat==='lines'){const theta=Math.min(Math.abs(lineAngle),180-Math.abs(lineAngle));el.innerHTML=`<div class="metric"><span>Acute / smaller angle</span><strong>${format(theta)}°</strong></div><div class="metric"><span>Obtuse / larger angle</span><strong>${format(180-theta)}°</strong></div><div class="metric"><span>Oriented angle</span><strong>${format(lineAngle)}°</strong></div><div class="metric"><span>Line offset</span><strong>${format(Math.abs(lineOffset))}</strong></div><div class="metric wide"><span>Relationship</span><strong>${Math.abs(theta)<3?(Math.abs(lineOffset)<.15?'Coincident':'Parallel'):Math.abs(theta-90)<3?'Perpendicular':'Intersecting'}</strong></div>`;return}
+const st=polygonStats(points),a=st.angles,l=st.lengths,pars=st.n===4?st.parallel.filter(Boolean).length:0;
+el.innerHTML=`<div class="metric"><span>Side lengths</span><strong>${l.map(format).join(' · ')}</strong></div><div class="metric"><span>Angles</span><strong>${a.map(x=>Math.round(x)+'°').join(' · ')}</strong></div><div class="metric"><span>Parallel pairs</span><strong>${st.n===4?pars:'—'}</strong></div><div class="metric"><span>Area (units²)</span><strong>${format(st.area)}</strong></div>`}
+function current(){return session[sequence[step]]}
+function update(){const t=current();points=(t.points||[]).map(p=>({...p}));lineAngle=t.angle??70;lineOffset=t.offset??0;selected=-1;completed=t.complete;
+$('#counter').textContent=session.filter(t=>t.complete).length+' / '+sequence.length+' completed';$('#categoryLabel').textContent=cset[t.cat];$('#challengeTitle').textContent=t.title;$('#description').textContent=t.description;$('#goal').textContent=t.goal;$('#learningNotes').textContent=t.notes;$('#checkBtn').disabled=t.complete;$('#hintBtn').disabled=t.complete;$('#nextBtn').classList.toggle('hidden',!t.complete);$('#nextBtn').textContent=sequence.every(id=>session[id].complete)?'View learning report →':'Next challenge →';
+$('#angleController').style.display=t.cat==='lines'?'flex':'none';$('#offsetController').style.display=t.cat==='lines'?'flex':'none';$('#angleSlider').value=String(lineAngle);$('#offsetSlider').value=String(lineOffset);$('#angleValue').textContent=lineAngle+'°';$('#offsetValue').textContent=format(lineOffset);
+$('#feedback').className='feedback';$('#feedback').innerHTML=t.complete?'<strong>✓ This mission is complete.</strong> Continue to the next challenge.':'<strong>Your turn.</strong> Drag the vertices, or use the angle controls, then check your construction.';
+renderProgress();metrics();render();}
+function renderProgress(){
+  $('#progress').innerHTML=sequence.map((id,i)=>`<div class="tick ${session[id].complete?'done':i===step?'current':''}"></div>`).join('');
+  const visible=sequence.map((id,i)=>({id,i})).filter(({id})=>session[id].cat===selectedCategory);
+  $('#challengeList').innerHTML=visible.map(({id,i},j)=>{const t=session[id];return `<button class="challenge-row ${i===step?'current':''} ${t.complete?'completed':''}" data-index="${i}" aria-current="${i===step?'true':'false'}"><span class="num">${t.complete?'✓':j+1}</span><span>${t.title}</span></button>`}).join('');
+  document.querySelectorAll('.challenge-row').forEach(b=>b.addEventListener('click',()=>{step=Number(b.dataset.index);update()}));
+  document.querySelectorAll('.category').forEach(b=>{const active=b.dataset.cat===selectedCategory;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
+}
+function feedback(pass,lines){const el=$('#feedback');el.className='feedback '+(pass?'success':'warn');if(pass){el.innerHTML='<strong>✓ Correct construction!</strong>Great work. The geometry meets the mission rules. Continue when you’re ready.';return}el.innerHTML='<strong>Almost — here is what to fix:</strong><ul>'+lines.map(s=>`<li>${s}</li>`).join('')+'</ul>'}
+function check(){const t=current();if(t.complete)return;t.checks++;const result=evaluate();if(result.pass){t.complete=true;t.firstTry=t.checks===1&&!t.hints;completed=true;feedback(true);$('#checkBtn').disabled=true;$('#hintBtn').disabled=true;$('#nextBtn').classList.remove('hidden');$('#nextBtn').textContent=sequence.every(id=>session[id].complete)?'View learning report →':'Next challenge →'}else{t.errors.push(...result.fail);feedback(false,result.fail)}renderProgress()}
+function hint(){const t=current();if(t.complete)return;t.hints++;const res=evaluate();if(res.pass){$('#feedback').className='feedback success';$('#feedback').innerHTML='<strong>It looks right!</strong> Click “Check my answer” to confirm.';return}feedback(false,[res.fail[0],'Tip: Change one vertex or slider at a time, and watch the measurements.'])}
+function next(){
+ if(sequence.every(id=>session[id].complete)){report();return}
+ const candidates=sequence.map((id,i)=>({id,i})).filter(({id})=>!session[id].complete);
+ const sameCat=candidates.find(({id,i})=>session[id].cat===selectedCategory&&i>step)
+            ||candidates.find(({id})=>session[id].cat===selectedCategory);
+ const choice=sameCat||candidates.find(({i})=>i>step)||candidates[0];
+ step=choice.i;selectedCategory=session[choice.id].cat;update();
+}
+function report(){const attempted=sequence.map(i=>session[i]),first=attempted.filter(t=>t.firstTry).length,hints=attempted.reduce((s,t)=>s+t.hints,0),complete=attempted.filter(t=>t.complete).length;
+$('#reportCompleted').textContent=complete+' / '+attempted.length;$('#reportFirst').textContent=String(first);$('#reportHints').textContent=String(hints);
+const groups=[['quad','Quadrilaterals','Opposite sides, parallel pairs, and four-corner shapes'],['triangle','Triangles','Side lengths, angle types, and special right triangles'],['lines','Lines & angles','Parallel, coincident, acute, obtuse, and supplementary angles']];
+$('#reportSkills').innerHTML=groups.map(([cat,title,sub])=>{const a=attempted.filter(t=>t.cat===cat);if(!a.length)return'';const checks=a.reduce((s,t)=>s+t.checks,0),h=a.reduce((s,t)=>s+t.hints,0),fl=a.filter(t=>t.firstTry).length;const watch=(checks>a.length||h>0);return `<div class="report-row"><div><strong>${title}</strong><p>${sub}</p><p>${fl}/${a.length} first checks correct · ${Math.max(0,checks-a.length)} corrections · ${h} hints</p></div><span class="pill ${watch?'needs':''}">${watch?'Practice recommended':'Strong progress'}</span></div>`}).join('');
+$('#reportDetails').innerHTML=attempted.map(t=>`<div class="report-row"><div><strong>${t.title}</strong><p>${t.skill} · ${t.checks} check${t.checks===1?'':'s'} · ${t.hints} hint${t.hints===1?'':'s'}</p></div><span class="pill ${t.firstTry?'':'needs'}">${t.firstTry?'First try':'Improved with practice'}</span></div>`).join('');$('#app').classList.add('finished');$('#reportScreen').classList.add('show');window.scrollTo(0,0)}
+function restart(weak=false){let items=session.map((t,i)=>i);if(weak){items=items.filter(i=>!session[i].firstTry);if(!items.length)items=session.map((t,i)=>i)}session=tasks.map(t=>({...t,checks:0,hints:0,complete:false,firstTry:false,errors:[],started:false}));sequence=items;step=0;selectedCategory=session[sequence[0]].cat;$('#app').classList.remove('finished');$('#reportScreen').classList.remove('show');update()}
+function pointerDown(e){if(current().complete)return;const q=world(e.clientX,e.clientY);if(current().cat==='lines'){const d=V(Math.cos(lineAngle/DEG),Math.sin(lineAngle/DEG)),center=V(0,lineOffset),handle=V(center.x+2.35*d.x,center.y+2.35*d.y);if(dist(q,handle)<.55)selected=-2;else if(dist(q,center)<.6)selected=-3;else return;dragging=true;stage.classList.add('dragging');e.currentTarget.setPointerCapture(e.pointerId);pointerMove(e);return}let best=-1,md=Infinity;points.forEach((p,i)=>{const d=dist(q,p);if(d<md){md=d;best=i}});if(md<.55){selected=best;dragging=true;stage.classList.add('dragging');e.currentTarget.setPointerCapture(e.pointerId);pointerMove(e)}}
+function pointerMove(e){if(!dragging)return;const q=world(e.clientX,e.clientY);if(selected===-2){lineAngle=Math.max(0,Math.min(170,Math.round(Math.atan2(q.y-lineOffset,q.x)*DEG+ (q.x<0?180:0))));$('#angleSlider').value=lineAngle;$('#angleValue').textContent=lineAngle+'°';metrics();render();return}if(selected===-3){lineOffset=Math.max(-3,Math.min(3,Math.round(q.y*10)/10));$('#offsetSlider').value=lineOffset;$('#offsetValue').textContent=format(lineOffset);metrics();render();return}if(selected<0)return;points[selected]=snap(V(Math.max(camera.left+.3,Math.min(camera.right-.3,q.x)),Math.max(camera.bottom+.3,Math.min(camera.top-.3,q.y))));metrics();render();$('#canvasStatus').textContent=`Moving vertex ${String.fromCharCode(65+selected)} · x ${format(points[selected].x)}, y ${format(points[selected].y)}`}
+function pointerUp(){dragging=false;selected=-1;stage.classList.remove('dragging');render()}
+renderer.domElement.addEventListener('pointerdown',pointerDown);renderer.domElement.addEventListener('pointermove',pointerMove);renderer.domElement.addEventListener('pointerup',pointerUp);renderer.domElement.addEventListener('pointercancel',pointerUp);
+$('#checkBtn').addEventListener('click',check);$('#hintBtn').addEventListener('click',hint);$('#nextBtn').addEventListener('click',next);$('#restartTop').addEventListener('click',()=>{if(confirm('Restart all geometry practice? Your current progress will be cleared.'))restart()});$('#retryBtn').addEventListener('click',()=>restart());$('#practiceWeakBtn').addEventListener('click',()=>restart(true));$('#printBtn').addEventListener('click',()=>window.print());
+$('#resetShape').addEventListener('click',()=>{if(current().complete)return;points=(current().points||[]).map(p=>({...p}));lineAngle=current().angle??70;lineOffset=current().offset??0;$('#angleSlider').value=lineAngle;$('#offsetSlider').value=lineOffset;$('#angleValue').textContent=lineAngle+'°';$('#offsetValue').textContent=format(lineOffset);metrics();render()});$('#gridToggle').addEventListener('click',()=>{gridOn=!gridOn;$('#gridToggle').textContent='▦ Snap: '+(gridOn?'On':'Off');repaintGrid();renderer.render(scene,camera)});$('#showMeasurements').addEventListener('change',e=>{showMeasure=e.target.checked;render()});
+$('#angleSlider').addEventListener('input',e=>{if(current().complete)return;lineAngle=+e.target.value;$('#angleValue').textContent=lineAngle+'°';metrics();render()});$('#offsetSlider').addEventListener('input',e=>{if(current().complete)return;lineOffset=+e.target.value;$('#offsetValue').textContent=format(lineOffset);metrics();render()});
+// Practice areas are independent: select any category and any mission in that category.
+document.querySelectorAll('.category').forEach(btn=>btn.addEventListener('click',()=>{
+ selectedCategory=btn.dataset.cat;
+ const inCategory=sequence.map((id,i)=>({id,i})).filter(({id})=>session[id].cat===selectedCategory);
+ if(!inCategory.length){renderProgress();return}
+ const choice=inCategory.find(({id})=>!session[id].complete)||inCategory[0];
+ step=choice.i;update();
+}));
+window.addEventListener('resize',resize);new ResizeObserver(resize).observe(stage);resize();update();
+</script>
+<style media="print">@media print{body{background:white}.top,.grid,.report-actions{display:none!important}.report-screen{display:block!important;border:0;box-shadow:none;margin:0;padding:0}.app{padding:0}.report-row{break-inside:avoid}}</style>
+</body></html>

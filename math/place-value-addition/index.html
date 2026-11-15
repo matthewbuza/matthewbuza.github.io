@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Place Value Addition</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f1f5f3;color:#17312e;font:17px/1.45 system-ui,sans-serif}header{background:#164740;color:white;padding:16px max(18px,calc((100% - 1120px)/2));display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}header strong{font-size:1.18rem}main{max-width:1160px;margin:auto;padding:24px 18px}h1{font-size:clamp(1.65rem,4vw,2.45rem);margin:0}p{margin:.4em 0 1em}.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(270px,335px);gap:20px;align-items:start}.mat,.paper{border:1px solid #c6d8cd;background:white;border-radius:16px;padding:12px;margin-bottom:12px}.mat h2,.paper h2{font-size:1rem;margin:0 0 8px}.columns{display:grid;grid-template-columns:1fr 1fr;gap:8px}.zone{min-width:0;background:#e7f3ec;border-radius:10px;padding:8px}.zone.ones{background:#fff1d9}.zone h3{font-size:.78rem;margin:0 0 6px}.sum .zone{border:2px dashed #759b8f;min-height:104px}.zone.over,.zone.ready:hover{outline:3px solid #276e60;cursor:pointer}.pieces,.bundle{display:flex;flex-wrap:wrap;align-items:center;gap:3px}.pieces{min-height:55px}.bundle{padding:5px;border:2px dashed #96581c;border-radius:8px;margin:3px 0}.block{appearance:none;border:0;background:transparent;padding:2px;min-width:28px;min-height:31px;display:inline-grid;place-items:center;cursor:grab;touch-action:manipulation}.block .cube{width:18px;height:18px;background:#be6927;border:1px solid #783b12;border-radius:2px}.block .rod{width:14px;height:54px;border:1px solid #17584f;border-radius:2px;background:repeating-linear-gradient(to bottom,#278574 0 4.2px,#a4dacb 4.2px 5.2px)}.block[aria-pressed=true]{outline:2px solid #17312e;border-radius:4px;background:#fff}.block.placed{cursor:default}.block.fresh{background:#ddf4fe;border:2px solid #246183;border-radius:5px}.paper{padding:20px}.math{width:min(245px,100%);margin:12px auto 18px;display:grid;grid-template-columns:32px 1fr 1fr;text-align:center;align-items:center;font-variant-numeric:tabular-nums}.math .head{font-size:.8rem;color:#4a6761}.digit,.plus{font-size:2.9rem;font-weight:750;line-height:1.23}.rule{grid-column:1/-1;border-top:3px solid #24453e;margin:8px 0}.math input{width:68px;max-width:92%;justify-self:center;text-align:center;font:inherit;font-size:2rem;color:#17312e;border:2px solid #849f93;border-radius:8px}.action{font:inherit;font-weight:700;color:#174b42;background:white;border:1px solid #87a79b;border-radius:9px;padding:7px 12px;min-height:43px;cursor:pointer}.primary{color:#fff;background:#176452}.action:disabled{opacity:.5;cursor:default}.actions{display:flex;gap:8px;flex-wrap:wrap}.hint{padding:10px 12px;border-radius:9px;background:#fff1d9;margin:12px 0 0}.feedback{margin:12px 0 0;font-weight:700}.instruction{min-height:28px;margin:.35em 0 .85em}.progress{margin:0;font-size:.93rem}summary{cursor:pointer;font-weight:700}details{background:white;border:1px solid #c6d8cd;border-radius:12px;padding:12px;margin-top:7px}details p{margin:8px 0}button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #9e4e13;outline-offset:3px}[hidden]{display:none!important}@media(max-width:740px){.layout{grid-template-columns:1fr}.paper{padding:15px}}@media(pointer:coarse){.block{min-width:36px;min-height:42px}}
+.group{font-size:.85rem;margin-top:5px;cursor:grab}.zone.selected{outline:2px solid #276e60}.group[aria-pressed=true]{background:#176452;color:white}</style>
+</head>
+<body>
+<header><strong>Place Value Addition</strong><p class="progress" id="progress"></p></header>
+<main>
+<h1>Build the sum</h1>
+<p class="instruction" id="instruction" role="status"></p>
+<div class="layout">
+<div id="mats"></div>
+<section class="paper" aria-labelledby="problem">
+<h2 id="problem">Addition problem</h2>
+<div class="math">
+<span></span><span class="head">Tens</span><span class="head">Ones</span>
+<span></span><span class="digit" id="at"></span><span class="digit" id="ao"></span>
+<span class="plus">+</span><span class="digit" id="bt"></span><span class="digit" id="bo"></span>
+<div class="rule"></div><span></span>
+<input id="tens" aria-label="Tens digit in the answer" inputmode="numeric" maxlength="1" autocomplete="off">
+<input id="ones" aria-label="Ones digit in the answer" inputmode="numeric" maxlength="1" autocomplete="off">
+</div>
+<div class="actions"><button class="action primary" id="check">Check</button><button class="action" id="next" disabled>Next problem</button></div>
+<p class="feedback" id="feedback" role="status" hidden></p>
+<p class="hint" id="hint" hidden></p>
+</section>
+</div>
+<details><summary>Progress controls</summary><p id="attempts"></p><p id="storage-note" hidden>Progress will last until this page closes.</p><button class="action" id="clear">Clear progress and restart</button></details>
+</main>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const problems = [[45,39],[24,35],[27,48],[32,46],[38,24],[16,61],[56,37],[42,25],[29,54],[51,28],[18,73],[34,43]];
+const key = 'place-value-addition-progress-v1';
+const emptyProgress = () => ({index:0, solved:0, first:0, checks:0});
+let stats = emptyProgress();
+try {
+  const saved = JSON.parse(localStorage.getItem(key));
+  if (saved && Object.keys(stats).every(k => Number.isSafeInteger(saved[k]) && saved[k] >= 0)) stats = saved;
+} catch { $('storage-note').hidden = false; }
+let a,b, blocks, selected, traded, solved, tries;
+function updateProgress(save = true) {
+  $('progress').textContent = stats.solved+' solved · '+stats.first+' on the first check';
+  $('attempts').textContent = 'Answers checked: '+stats.checks+'.';
+  if (save) {
+    try { localStorage.setItem(key, JSON.stringify(stats)); }
+    catch { $('storage-note').hidden = false; }
+  }
+}
+function start() {
+  [a,b] = problems[stats.index % problems.length];
+  blocks = [];
+  for (const [row,n] of [['a',a],['b',b]]) {
+    for (const [kind,count] of [['tens',Math.floor(n/10)],['ones',n%10]]) {
+      for (let i=0;i<count;i++) blocks.push({id:String(blocks.length),row,kind});
+    }
+  }
+  selected=null;traded=false;solved=false;tries=0;
+  for (const [prefix,n] of [['a',a],['b',b]]) {
+    $(prefix+'t').textContent=Math.floor(n/10);
+    $(prefix+'o').textContent=n%10;
+  }
+  for (const id of ['tens','ones']) { $(id).value=''; $(id).readOnly=false; }
+  $('check').disabled=false;
+  $('next').disabled=true;
+  message();
+  render();
+}
+function waiting(kind) { return blocks.filter(p => p.row!=='sum' && p.kind===kind && !p.fresh).length; }
+function inSum(kind) { return blocks.filter(p => p.row==='sum' && p.kind===kind); }
+function canTrade() { return waiting('ones')===0 && inSum('ones').length>=10 && !traded; }
+function newRod() { return blocks.find(p => p.fresh && p.row==='sum' && p.kind==='ones'); }
+function pieceHTML(p) {
+  const moveable=p.row!=='sum'||p.fresh && p.kind==='ones';
+  const icon=p.kind==='tens'||p.fresh?'rod':'cube';
+  const label=p.fresh?'New ten from the trade':p.kind==='tens'?'Ten rod':'One cube';
+  return moveable
+    ? '<button type="button" class="block'+(p.fresh?' fresh':'')+'" data-piece="'+p.id+'" draggable="true" aria-label="'+label+'" aria-pressed="'+(selected===p.id)+'"><span class="'+icon+'" aria-hidden="true"></span></button>'
+    : '<span class="block placed" role="img" aria-label="'+label+'"><span class="'+icon+'" aria-hidden="true"></span></span>';
+}
+function piecesFor(id) {
+  if (!id) return [];
+  if (!id.startsWith('group-')) return blocks.filter(p => p.id===id);
+  const [,row,kind]=id.split('-');
+  if (row!=='a' && row!=='b') return [];
+  return blocks.filter(p => p.row===row && p.kind===kind);
+}
+function render(focusId) {
+  const selection=piecesFor(selected);
+  const current=selection[0];
+  const target = current?.fresh?'tens':current?.kind;
+  $('instruction').textContent=solved?'You built the sum. Try the next problem.':
+    current?'Drop or place '+(selection.length>1?'the selected group':'the selected block')+' in '+(target==='tens'?'Tens.':'Ones.'):
+    newRod()?'Move the new ten rod to the Tens column.':
+    canTrade()?'Trade the outlined 10 ones for a ten rod.':
+    waiting('ones')||waiting('tens')?'Drag a block or a Select all button to the Sum mat. You can also tap to select, then use Place.':
+    'Count the rods and cubes in the Sum mat. Enter the two digits and select Check.';
+  $('mats').innerHTML=[['a','First number · '+a],['b','Second number · '+b],['sum','Sum mat']].map(([row,title])=>{
+    const columns=['tens','ones'].map(kind=>{
+      const contents=blocks.filter(p=>p.row===row&&p.kind===kind);
+      const grouping=row==='sum'&&kind==='ones'&&canTrade();
+      const ready=row==='sum'&&target===kind;
+      const groupId='group-'+row+'-'+kind;
+      const groupSelected=selected===groupId;
+      const groupButton=row!=='sum'&&contents.length>1
+        ? '<button class="action group" id="'+groupId+'" data-piece="'+groupId+'" draggable="true" aria-pressed="'+groupSelected+'">Select all '+contents.length+' '+kind+'</button>'
+        : '';
+      const bundle=grouping?'<div class="bundle" aria-label="Group of ten ones">'+contents.slice(0,10).map(pieceHTML).join('')+'</div>':'';
+      return '<div id="'+row+'-'+kind+'" class="zone '+kind+(ready?' ready':'')+(groupSelected?' selected':'')+'" data-kind="'+kind+'" data-row="'+row+'"><h3>'+
+        (kind==='tens'?'Tens':'Ones')+'</h3><div class="pieces">'+bundle+
+        contents.slice(grouping?10:0).map(pieceHTML).join('')+'</div>'+groupButton+
+        (grouping?'<button class="action primary" id="trade">Trade 10 ones for 1 ten</button>':'')+
+        (ready?'<button class="action" id="place">Place in '+(kind==='tens'?'Tens':'Ones')+'</button>':'')+'</div>';
+    }).join('');
+    return '<section class="mat '+row+'"><h2>'+title+'</h2><div class="columns">'+columns+'</div></section>';
+  }).join('');
+  if (focusId) $(focusId)?.focus();
+}
+function message(feedback='',hint='') {
+  for (const [id,value] of [['feedback',feedback],['hint',hint]]) {
+    $(id).hidden=!value;$(id).textContent=value;
+  }
+}
+function move(id,kind,keyboard=false) {
+  const pieces=piecesFor(id);
+  const p=pieces[0];
+  if (!p || solved || (p.row==='sum' && !(p.fresh && p.kind==='ones'))) return;
+  const correct=p.fresh?'tens':p.kind;
+  if(kind!==correct) {
+    message('Try the other column.',correct==='tens'?'A ten rod belongs in Tens.':'A single cube belongs in Ones.');
+    return;
+  }
+  for (const piece of pieces) { piece.row='sum';piece.kind=correct; }
+  selected=null;
+  message();
+  render();
+  if(keyboard) {
+    const next = canTrade()? $('trade') : $('mats').querySelector('.group') || $('mats').querySelector('[data-piece]');
+    (next || $('tens')).focus();
+  }
+}
+$('mats').addEventListener('click',event=>{
+  const target=event.target.closest('button,.zone');
+  if(!target)return;
+  if(target.id==='trade'&&canTrade()){
+    const group=new Set(inSum('ones').slice(0,10));
+    blocks=blocks.filter(p=>!group.has(p));
+    blocks.push({id:'trade-rod',row:'sum',kind:'ones',fresh:true});
+    traded=true;selected=null;message();render();
+    $('mats').querySelector('[data-piece="trade-rod"]').focus();
+  } else if(target.dataset.piece){
+    selected=selected===target.dataset.piece?null:target.dataset.piece;
+    const id=target.dataset.piece;
+    render();
+    ($('place') || $('mats').querySelector('[data-piece="'+id+'"]'))?.focus();
+  } else {
+    const zone=target.closest('[data-row="sum"]');
+    if(zone&&selected)move(selected,zone.dataset.kind,event.detail===0);
+  }
+});
+$('mats').addEventListener('dragstart',event=>{
+  const piece=event.target.closest('[data-piece]');
+  if(!piece)return;
+  event.dataTransfer.setData('text/plain',piece.dataset.piece);
+  event.dataTransfer.effectAllowed='move';
+});
+$('mats').addEventListener('dragover',event=>{
+  const zone=event.target.closest('[data-row="sum"]');
+  if(!zone)return;
+  event.preventDefault();
+  zone.classList.add('over');
+});
+$('mats').addEventListener('dragleave',event=>{
+  const zone=event.target.closest('[data-row="sum"]');
+  if(zone&&!zone.contains(event.relatedTarget))zone.classList.remove('over');
+});
+$('mats').addEventListener('dragend',()=>document.querySelectorAll('.over').forEach(zone=>zone.classList.remove('over')));
+$('mats').addEventListener('drop',event=>{
+  const zone=event.target.closest('[data-row="sum"]');
+  if(!zone)return;
+  event.preventDefault();
+  zone.classList.remove('over');
+  move(event.dataTransfer.getData('text/plain'),zone.dataset.kind);
+});
+function check(){
+  if(solved)return;
+  if(waiting('ones')||waiting('tens'))return message('Keep building the sum.','Move all the rods and cubes from both numbers to the Sum mat.');
+  if(canTrade())return message('There’s a group of 10 ones.','Use the Trade button to make one new ten rod.');
+  if(newRod())return message('The new ten rod is ready.','Move the new rod from Ones to Tens.');
+  const t=$('tens').value,o=$('ones').value;
+  if(!/^\d$/.test(t)||!/^\d$/.test(o))return message('Enter both digits.','Use one digit in each box. Enter 0 in Ones if there are no cubes left.');
+  stats.checks++;tries++;
+  const correctT=Math.floor((a+b)/10),correctO=(a+b)%10;
+  if(Number(t)!==correctT||Number(o)!==correctO){
+    updateProgress();
+    const hint=Number(t)!==correctT&&Number(o)!==correctO?'Count the rods in Tens and the cubes in Ones.':
+      Number(t)!==correctT?'Count each rod in Tens once, including any rod made by trading.':
+      'Count only the loose cubes left in Ones after any trade.';
+    return message('Try again.',hint);
+  }
+  solved=true;stats.solved++;stats.first+=Number(tries===1);stats.index++;updateProgress();
+  $('tens').readOnly=true;$('ones').readOnly=true;$('check').disabled=true;$('next').disabled=false;
+  message('Correct! '+a+' + '+b+' = '+(a+b)+'.');
+  render();
+  $('next').focus();
+}
+$('check').onclick=check;
+$('next').onclick=()=>{start();$('mats').querySelector('[data-piece]').focus();};
+for(const id of ['tens','ones']){
+  $(id).addEventListener('input',event=>{event.target.value=event.target.value.replace(/[^0-9]/g,'').slice(0,1);});
+  $(id).addEventListener('keydown',event=>{if(event.key==='Enter')check();});
+}
+$('clear').onclick=()=>{
+  if(!window.confirm('Clear the saved counts and return to the first problem?'))return;
+  stats=emptyProgress();updateProgress();start();
+};
+updateProgress(false);
+start();
+</script>
+</body>
+</html>
