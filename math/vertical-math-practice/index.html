@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vertical Math Practice</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#edf2ef;color:#172d28;font:16px system-ui,sans-serif}
+main{max-width:850px;margin:auto;padding:30px 18px}
+h1{margin:0 0 18px;font-size:clamp(1.7rem,5vw,2.5rem)}
+.settings,.card{background:white;border:1px solid #cad8d1;border-radius:16px;padding:20px}
+.settings,.actions{display:flex;flex-wrap:wrap;gap:12px;align-items:end}
+.settings label{display:grid;gap:5px;font-weight:650}
+button,select,input{font:inherit;color:inherit}
+button,select{padding:9px 11px;border:1px solid #809b90;border-radius:8px;background:white}
+button{cursor:pointer;font-weight:650}
+button:hover{background:#def3eb}
+.primary{background:#11654e;color:white}
+.primary:hover{background:#0b4f3d}
+:focus-visible{outline:3px solid #6377cc;outline-offset:2px}
+.card{margin-top:14px}
+.stats{display:flex;flex-wrap:wrap;gap:8px 24px;font-weight:650}
+.board{overflow-x:auto;margin:18px 0}
+table{margin:auto;border-spacing:3px;font:700 25px ui-monospace,monospace;text-align:center}
+td,th{padding:0;min-width:clamp(30px,8vw,50px);height:34px}
+td:first-child,th:first-child{min-width:18px}
+th{height:auto;font:650 11px system-ui,sans-serif}
+.line td{border-top:2px solid}
+.digit,.note{width:100%;max-width:50px;text-align:center;border:1px solid #819e93;border-radius:5px;background:#fff;height:35px}
+.note{height:25px;background:#fff6d5;font-size:14px}
+.note[aria-invalid="true"]{border:2px solid #a32621;background:#ffe3df}
+.borrow-digit{min-width:30px;padding:1px 5px;border-color:#a3b9af;border-style:dashed;border-radius:5px;font:inherit;line-height:1}
+.borrow-digit[aria-pressed="true"]{text-decoration:line-through;text-decoration-thickness:2px;background:#edf2ef;color:#52655c}
+.scratch td{height:28px}
+.answer{font-weight:700}
+#feedback{min-height:1.5em;font-weight:700}
+.wrong{color:#a32621}.right{color:#11654e}
+#hintText{background:#ecf4ff;border-radius:8px;padding:12px}
+#printSheet{display:none}
+@page{size:portrait;margin:0.5in}
+@media print{
+ body{background:white;color:black;font-size:11pt}
+ main{display:none}
+ #printSheet{display:block}
+ #printSheet h1{font-size:18pt;line-height:1.2;margin:0 0 6pt}
+ #printSheet p{margin:0 0 7pt;line-height:1.25}
+ #problems{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6pt 18pt}
+ .problem{break-inside:avoid;display:flex;align-items:flex-start;border-top:1px solid #aaa;padding-top:4pt}
+ .problem table{font-size:14pt;line-height:1;border-spacing:2pt 1pt}
+ .problem td,.problem th{min-width:25pt;height:15pt}
+ .problem td:first-child,.problem th:first-child{min-width:12pt}
+ .problem th{font-size:8pt;height:11pt;white-space:nowrap}
+ .problem .carry-work td:not(:first-child){border:1px dashed #888}
+ .problem .line td{height:23pt}
+}
+</style>
+<main>
+<h1>Vertical Math Practice</h1>
+<div class="settings">
+<label>Operation<select id="operation"><option value="+">Addition</option><option value="−">Subtraction</option><option value="mixed">Mixed</option></select></label>
+<label>Place value<select id="digits"><option value="1">1 digit</option><option value="2" selected>2 digits</option><option value="3">3 digits</option><option value="4">4 digits</option></select></label>
+<label>Regrouping<select id="regroup"><option value="any">Allow regrouping</option><option value="yes">Require regrouping</option><option value="no">No regrouping</option></select></label>
+<button id="print" type="button">Print 10 problems</button>
+</div>
+<section class="card" aria-label="Practice">
+<div class="stats"><span id="count"></span><span id="firstTry"></span></div>
+<p id="instructions"></p>
+<form id="practice" novalidate>
+<div class="board" id="board"></div>
+<div class="actions">
+<button class="primary" id="check">Check answer</button>
+<button type="button" id="hint">Hint</button>
+<button type="button" id="next">Skip problem</button>
+<button type="button" id="reset">Reset score</button>
+</div>
+<p id="feedback" role="status"></p>
+<div id="hintText" aria-live="polite" hidden></div>
+</form>
+</section>
+</main>
+<section id="printSheet" aria-label="Printable worksheet">
+<h1>Vertical Math Practice</h1>
+<p>Name ____________________________ &nbsp; Date ______________</p>
+<p>Show your regrouping in the top boxes. Write your answer below the line.</p>
+<div id="problems"></div>
+</section>
+<script>
+'use strict';
+const el = id => document.getElementById(id);
+const names = ['ones','tens','hundreds','thousands','ten-thousands'];
+const shortNames = ['Ones','Tens','Hund.','Thous.','10 Thous.'];
+let current, encountered = 0, correct = 0, first = 0, mistakes = 0, solved = false, hintStep = 0;
+const digitAt = (value, place) => Math.floor(value / 10 ** place) % 10;
+const random = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
+
+function analyze(a, b, op, width) {
+  let incoming = 0;
+  return Array.from({length: width}, (_, i) => {
+    const top = digitAt(a, i);
+    const bottom = digitAt(b, i);
+    const raw = op === '+' ? top + bottom + incoming : top - incoming - bottom;
+    const outgoing = op === '+' ? Number(raw >= 10) : Number(raw < 0);
+    const step = {top, bottom, incoming, raw, outgoing};
+    incoming = outgoing;
+    return step;
+  });
+}
+
+function updateSettings() {
+  const impossible = el('digits').value === '1' && el('operation').value === '−';
+  el('regroup').options[1].disabled = impossible;
+  if (impossible && el('regroup').value === 'yes') el('regroup').value = 'any';
+}
+
+function generate() {
+  const width = Number(el('digits').value);
+  const mode = el('regroup').value;
+  const operation = el('operation').value;
+  const op = operation === 'mixed'
+    ? (width === 1 && mode === 'yes' ? '+' : (random(0, 1) ? '+' : '−'))
+    : operation;
+  const min = width === 1 ? 0 : 10 ** (width - 1);
+  const max = 10 ** width - 1;
+  let a, b, steps;
+  do {
+    a = random(min, max);
+    b = random(min, max);
+    if (op === '−' && b > a) [a, b] = [b, a];
+    steps = analyze(a, b, op, width);
+  } while (mode !== 'any' && steps.some(step => step.outgoing) !== (mode === 'yes'));
+  return {a, b, op, steps, width, answer: op === '+' ? a + b : a - b};
+}
+
+function markup(problem, printable = false) {
+  const {a, b, op, width} = problem;
+  const places = Array.from({length: width + Number(op === '+')}, (_, i) => width + Number(op === "+") - 1 - i);
+  const row = (symbol, content, className = '') =>
+    '<tr class="' + className + '"><td>' + symbol + '</td>' +
+    places.map(place => '<td>' + content(place) + '</td>').join('') + '</tr>';
+  const operand = value => place => String(value).at(-1 - place) ?? '';
+  const input = (kind, place, max, hide = false) => '<input type="text" inputmode="numeric" autocomplete="off" maxlength="' + max +
+    '" class="' + kind + '"' + (hide ? ' hidden' : '') + ' aria-label="' + (kind === 'note' ? 'Regrouping work, ' : 'Answer digit, ') + names[place] + '">';
+  const subtraction = op === '−';
+  const topDigit = place => {
+    const digit = operand(a)(place);
+    if (!subtraction || printable) return digit;
+    return '<button type="button" class="borrow-digit" data-place="' + place +
+      '" aria-pressed="false" aria-label="Cross out ' + digit + ' in the ' + names[place] +
+      ' column">' + digit + '</button>';
+  };
+  return '<table aria-label="' + a + (op === '+' ? ' plus ' : ' minus ') + b + '"><thead><tr><th></th>' +
+    places.map(place => '<th scope="col">' + shortNames[place] + '</th>').join('') + '</tr></thead><tbody>' +
+    row('', place => printable ? '' : input('note', place, 2, subtraction),
+      subtraction ? 'scratch' : 'scratch carry-work') +
+    row('', topDigit) + row(op, operand(b)) +
+    row('', place => printable ? '' : input('digit', place, 1), 'line') + '</tbody></table>';
+}
+
+function stats() {
+  el('count').textContent = 'Solved ' + correct + ' of ' + encountered;
+  el('firstTry').textContent = 'First-try correct: ' + first;
+}
+
+function showProblem() {
+  current = generate();
+  mistakes = 0;
+  hintStep = 0;
+  solved = false;
+  el('board').innerHTML = markup(current);
+  el('instructions').textContent = current.op === '+'
+    ? 'Start in the ones column. Use the top boxes to record carries.'
+    : 'Start in the ones column. Click a top digit to cross it out and write its new value above it. Click it again to undo.';
+  el('hintText').hidden = true;
+  el('hintText').textContent = '';
+  el('feedback').textContent = '';
+  el('feedback').className = '';
+  el('next').textContent = 'Skip problem';
+  el('check').disabled = false;
+  el('hint').disabled = false;
+  stats();
+}
+
+el('board').addEventListener('click', event => {
+  const digit = event.target.closest('.borrow-digit');
+  if (!digit || solved) return;
+  const place = Number(digit.dataset.place);
+  const box = el('board').querySelectorAll('.note')[current.width - 1 - place];
+  const crossedOut = digit.getAttribute('aria-pressed') === 'true';
+  digit.setAttribute('aria-pressed', String(!crossedOut));
+  box.hidden = crossedOut;
+  if (crossedOut) {
+    box.value = '';
+  } else {
+    box.focus();
+  }
+});
+
+el('board').addEventListener('input', event => {
+  const field = event.target;
+  field.value = field.value.replace(/[^0-9]/g, '');
+  if (field.classList.contains('note') && field.value === '1') field.removeAttribute('aria-invalid');
+  if (field.classList.contains('digit') && field.value) {
+    field.closest('td').previousElementSibling?.querySelector('.digit')?.focus();
+  }
+});
+
+el('practice').addEventListener('submit', event => {
+  event.preventDefault();
+  if (solved) return;
+  const fields = [...el('board').querySelectorAll('.digit')];
+  const values = fields.map(field => field.value);
+  const start = values.findIndex(Boolean);
+  const feedback = el('feedback');
+  feedback.className = 'wrong';
+  if (start < 0 || values.slice(start).includes('')) {
+    feedback.textContent = 'Fill in every column from where your answer starts through the ones column.';
+    return;
+  }
+  const notes = [...el('board').querySelectorAll('.note')].reverse();
+  if (current.op === '+') {
+    const missing = [];
+    current.steps.forEach((step, place) => {
+      const box = notes[place + 1];
+      const needsCarry = step.outgoing && box.value !== '1';
+      if (needsCarry) {
+        box.setAttribute('aria-invalid', 'true');
+        missing.push(place + 1);
+      }
+    });
+    if (missing.length) {
+      mistakes++;
+      const prefix = Number(values.join('')) === current.answer ? 'Your sum is correct. ' : '';
+      const columns = missing.map(place => names[place]).join(', ');
+      feedback.textContent = prefix + 'Write a carry of 1 in each highlighted box (' + columns + '), then check again.';
+      notes[missing[0]].focus();
+      return;
+    }
+  }
+  if (Number(values.join('')) !== current.answer) {
+    mistakes++;
+    feedback.textContent = 'Try again. Check your digits from right to left, or tap Hint.';
+    return;
+  }
+  solved = true;
+  correct++;
+  encountered++;
+  if (!mistakes) first++;
+  stats();
+  feedback.className = 'right';
+  feedback.textContent = 'Correct! The answer is ' + current.answer + '.';
+  [...fields, ...notes].forEach(field => field.readOnly = true);
+  el('board').querySelectorAll('.borrow-digit').forEach(digit => digit.disabled = true);
+  el('check').disabled = true;
+  el('hint').disabled = true;
+  el('next').textContent = 'Next problem';
+  el('next').focus();
+});
+
+el('hint').addEventListener('click', () => {
+  const index = Math.min(hintStep++, current.width - 1);
+  const step = current.steps[index];
+  const nextPlace = names[index + 1];
+  let message;
+  if (current.op === '+') {
+    message = 'Add ' + step.top + ' + ' + step.bottom + (step.incoming ? ' + the carried 1' : '') + '.';
+    if (step.outgoing) message += ' Write the ones digit of that sum here and carry 1 to the ' + nextPlace + '.';
+  } else {
+    const top = step.top - step.incoming;
+    message = step.incoming ? 'This column gave 1 to the column on its right, so begin with ' + top + '. ' : '';
+    if (step.outgoing) {
+      const donor = current.steps.findIndex((column, place) => place > index && column.top > 0);
+      const borrow = donor > index + 1
+        ? 'Borrow from the ' + names[donor] + ', passing through each zero. Each column you pass through ends up with 9. '
+        : 'Borrow 1 from the ' + nextPlace + ' to add 10 here. ';
+      if (top < 0) message = "";
+      message += borrow + 'Subtract ' + step.bottom + ' from ' + (top + 10) + '.';
+    } else {
+      message += 'Subtract ' + step.bottom + ' from ' + top + '.';
+    }
+  }
+  el('hintText').hidden = false;
+  el('hintText').textContent = names[index][0].toUpperCase() + names[index].slice(1) + ' column. ' + message;
+});
+
+el('next').onclick = () => {
+  if (!solved) encountered++;
+  showProblem();
+};
+el('reset').onclick = () => {
+  encountered = correct = first = 0;
+  showProblem();
+};
+for (const id of ['digits', 'operation', 'regroup']) {
+  el(id).onchange = () => { updateSettings(); showProblem(); };
+}
+el('print').onclick = () => {
+  el('problems').innerHTML = Array.from({length: 10}, (_, i) =>
+    '<div class="problem"><strong>' + (i + 1) + '.</strong>' + markup(generate(), true) + '</div>'
+  ).join('');
+  window.print();
+};
+showProblem();
+</script>
+</html>
+
