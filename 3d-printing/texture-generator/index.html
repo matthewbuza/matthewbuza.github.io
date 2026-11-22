@@ -1,0 +1,1185 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Texture Texture Generator • v2.8</title>
+<style>
+:root{color-scheme:dark;--bg:#101317;--surface:#1b2128;--surface2:#242b33;--line:#39434c;--ink:#e9edf0;--sub:#a1abb6;--accent:#d4b487;--green:#8bd3ad}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px system-ui,-apple-system,Segoe UI,sans-serif}header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 23px;border-bottom:1px solid var(--line);background:#171c22}h1{font-size:19px;font-weight:750;margin:0;letter-spacing:.15px}header small{color:var(--sub)}button,select,input{font:inherit}button{cursor:pointer;background:#323b44;color:#f4f5f6;border:1px solid #56616d;border-radius:9px;padding:9px 13px;font-weight:600}button:hover{background:#414d58}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent)}.primary{background:var(--accent);color:#171717;border-color:var(--accent)}.primary:hover{background:#e5cda7}.exportTop{background:#2a9b73;color:white;border:1px solid #65d5ad;padding:11px 17px;font-weight:800;box-shadow:0 0 0 2px #21544355;white-space:nowrap}.exportTop:hover{background:#237f60}.exportReason{font-size:11px;color:#b9d3c6;max-width:230px;line-height:1.35}.exportReason.error{color:#f0b5a2}.exportTop:disabled{opacity:.45;cursor:not-allowed;background:#455d53}.toprow{position:sticky;top:0;z-index:5;background:#171c22;border:1px solid #39434c;border-radius:11px;padding:10px}.toprow .pillbar{min-width:230px}.layout{display:grid;grid-template-columns:350px minmax(0,1fr);min-height:calc(100vh - 67px)}aside{padding:18px;overflow:auto;border-right:1px solid var(--line);max-height:calc(100vh - 67px)}main{min-width:0;display:flex;flex-direction:column;padding:18px;gap:12px}.panel{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:15px;margin-bottom:14px}.panel h2{font-size:12px;text-transform:uppercase;letter-spacing:1.15px;color:#d6dce1;margin:0 0 14px}.field{display:flex;flex-direction:column;gap:6px;margin-bottom:13px}.field:last-child{margin-bottom:0}.field label,.sliderLabel{display:flex;justify-content:space-between;align-items:center;gap:8px;color:#dce2e6;font-size:13px}.field small,.hint{color:var(--sub);font-size:12px;line-height:1.4}input[type=number],select{width:100%;background:#10161c;color:#f2f5f7;border:1px solid #48545f;border-radius:8px;padding:8px 10px}input[type=range]{width:100%;accent-color:var(--accent)}.duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pillbar{display:flex;gap:8px;flex-wrap:wrap}.mode{flex:1;min-width:115px;text-align:center}.mode.active{border-color:var(--accent);background:#524638;color:#fff0d9}.toprow{display:flex;gap:8px;justify-content:space-between;align-items:center;flex-wrap:wrap}.toprow .pillbar{flex:1}.viewer{border:1px solid var(--line);background:radial-gradient(ellipse at 55% 40%,#3d4348 0%,#222831 55%,#151a20 100%);border-radius:13px;position:relative;overflow:hidden;flex:1;min-height:440px}canvas{display:block;width:100%;height:100%;touch-action:none}.tag{position:absolute;left:13px;top:13px;background:#151a20cd;border:1px solid #4c5963;border-radius:8px;color:#d6dce1;padding:8px 10px;font-size:12px;pointer-events:none}.axis{position:absolute;right:12px;bottom:12px;color:#b4bdc6;font-size:12px;pointer-events:none;text-align:right}.viewerFooter{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}.stat{color:#c3cbd1;font-size:12px}.export{width:100%;font-size:16px;padding:13px}.status{color:var(--sub);font-size:12px;min-height:18px;margin-top:9px;line-height:1.4}.note{font-size:12px;color:#b8c1c9;line-height:1.5;background:#222a32;border:1px solid #394550;padding:12px;border-radius:10px}.square{display:inline-block;width:9px;height:9px;background:var(--green);border-radius:50%;margin-right:5px}.toggle{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--sub)}.toggle input{accent-color:var(--accent)}@media(max-width:850px){.layout{display:flex;flex-direction:column}aside{max-height:none;order:2;border-right:0;border-top:1px solid var(--line)}main{order:1;min-height:570px}.viewer{min-height:430px}header{padding:12px 15px}}
+.cameraTools{position:absolute;top:12px;right:12px;display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;max-width:75%}.cameraTools button{font-size:12px;padding:7px 9px;background:#1b252de8;backdrop-filter:blur(4px)}.cameraTools button.active{border-color:#cfb080;background:#67513a;color:white}#canvas{cursor:grab}#canvas:active{cursor:grabbing}@media(max-width:580px){.cameraTools{top:54px;left:10px;right:10px;max-width:unset;justify-content:flex-start}.cameraTools button{padding:5px 7px}}
+.edgeToggle{display:flex;gap:8px;align-items:center;cursor:pointer}.edgeToggle input{accent-color:var(--accent);width:17px;height:17px}.edgeRow{display:flex;gap:7px;align-items:stretch}.edgeRow input[type=number]{min-width:0;flex:1}.edgeRow button{white-space:nowrap}#edgeOptions[hidden],#tilePreviewWrap[hidden]{display:none}#tilePreview{height:auto;max-width:100%;border-radius:8px;margin-top:12px;border:1px solid var(--line);background:#1d242a}#edgeCompatibility{margin:10px 0}#edgeCompatibility.warning{border-color:#be8560;color:#f0c39f}#edgeCompatibility.ok{border-color:#5b977a;color:#c7ead6}
+
+/* 3D shape & dimensions extension */
+.surface-mode{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.surface-mode button{min-width:0;padding:11px 5px}
+#spherePanel[hidden],#flatShapePanel[hidden],#edgePanel[hidden],#flatModeButtons[hidden]{display:none!important}
+.sphere-callout{font-size:12px;line-height:1.5;background:#182a2b;border:1px solid #3a706b;color:#d9f0e8;border-radius:9px;padding:11px}
+/* Click-to-select smooth faces */
+#facePanel[hidden],#facePickTool[hidden]{display:none!important}
+.face-action-row{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
+.face-action-row button{flex:1;padding:8px 9px;font-size:12px}
+.face-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:10px}
+.face-choice{font-size:12px;text-align:left;padding:10px 8px;min-width:0;background:#242e35;border-color:#52616a}
+.face-choice[aria-pressed="true"]{background:#664d32;border-color:#e5b878;color:#ffe6be}
+.face-choice[aria-pressed="true"]::before{content:"✓ ";color:#ffe6be}
+.face-choice[aria-pressed="false"]::before{content:"○ ";color:#a0adb7}
+#facePickTool.active{background:#665038;border-color:#e5b878;color:#ffe3bb}
+#canvas.face-picking{cursor:crosshair!important}
+.face-summary{color:#b4c2c8;font-size:12px;margin-top:10px;line-height:1.45}
+/* Compact shape settings: outline + polygon sides, then width + height + base. */
+.shape-top-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:9px}
+.shape-dim-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.shape-top-grid .field,.shape-dim-grid .field{min-width:0;margin-bottom:10px}
+.shape-top-grid .field label,.shape-dim-grid .field label{white-space:nowrap;font-size:12px}
+.shape-top-grid select,.shape-top-grid input,.shape-dim-grid input{min-width:0}
+#importPanel[hidden]{display:none!important} #importStl{color:var(--ink)} .shape-top-grid input:disabled{opacity:.48;cursor:not-allowed}.shape-dim-grid .field[hidden]{display:none!important}
+.shape-help{display:block;color:var(--sub);font-size:11px;line-height:1.4}
+@media(max-width:380px){.shape-top-grid{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.shape-top-grid .field label,.shape-dim-grid .field label{font-size:11px}.shape-top-grid,.shape-dim-grid{gap:6px}}
+.previewAppearance{position:absolute;left:12px;bottom:12px;display:flex;gap:8px;align-items:center;background:#192129e8;border:1px solid #52606c;border-radius:9px;padding:7px 10px;z-index:2;color:#d8e0e6;font-size:12px;max-width:calc(100% - 24px)}.previewAppearance select{background:#111820;color:#f5f7fa;border:1px solid #4b5b66;border-radius:6px;padding:5px;width:118px}.previewAppearance input[type=color]{width:31px;height:29px;padding:2px;border:1px solid #687984;background:transparent;border-radius:6px;cursor:pointer}.previewAppearance label{white-space:nowrap}.viewer .axis{bottom:58px}@media(max-width:580px){.previewAppearance{flex-wrap:wrap;max-width:240px}.viewer .axis{bottom:90px}}
+
+/* v3.2: compact three-way mode switch and draggable settings splitter */
+.surface-mode{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+.surface-mode button{min-width:0;padding:8px 2px;font-size:11px;font-weight:650;line-height:1.18;white-space:normal;overflow-wrap:normal}
+.layout{grid-template-columns:var(--sidebar-width,350px) 9px minmax(0,1fr)}
+aside{min-width:0;border-right:none}
+.sidebar-resizer{display:flex;align-items:center;justify-content:center;cursor:col-resize;background:#252d35;border-left:1px solid #39434c;border-right:1px solid #39434c;touch-action:none;user-select:none}
+.sidebar-resizer:hover,.sidebar-resizer.dragging,.sidebar-resizer:focus-visible{background:#475565;outline:none}
+.resizer-grip{width:3px;height:48px;border-radius:4px;background:repeating-linear-gradient(to bottom,#b4c3cf 0 3px,transparent 3px 8px);opacity:.85}
+#landscapePanel[hidden],#texturePanel[hidden]{display:none!important}
+@media(max-width:850px){.layout{display:flex;flex-direction:column}.sidebar-resizer{display:none}aside{border-top:1px solid var(--line)}.surface-mode button{font-size:12px;padding:9px 4px}}
+</style></head><body>
+<header><div><h1>▧ Texture Texture Generator</h1><small>Texture studio · v3.3 · millimeter-accurate STL</small></div><small>Local file · no login needed</small></header>
+<div class="layout"><aside>
+<section class="panel"><h2>Surface mode</h2>
+<div class="surface-mode"><button id="flatSurface" class="mode active" aria-pressed="true" type="button">▦ Flat Surface</button><button id="wrapSurface" class="mode" aria-pressed="false" type="button">◉ Textured 3D Shape</button><button id="landscapeSurface" class="mode" aria-pressed="false" type="button">⛰ Landscape</button></div>
+<small class="hint" id="surfaceModeHint">Generate a standalone textured slab for use in 3D modeling and fabrication.</small></section>
+<section class="panel" id="spherePanel" hidden><h2>3D shape & dimensions</h2>
+<div class="field"><label for="objectShape">Object shape</label><select id="objectShape"><option value="sphere">Sphere</option><option value="planet">Planet</option><option value="cube">Cube</option><option value="box">Box / rectangular prism</option><option value="cylinder">Cylinder</option><option value="cone">Cone</option><option value="tri_prism">Triangular prism</option><option value="pyramid">Square pyramid</option><option value="imported">Import an STL file…</option></select><small id="objectHelp">Create a solid sphere with texture directly on its outside.</small></div>
+<div class="shape-dim-grid" id="wrapDimsGrid">
+  <div class="field" id="objectAField"><label id="objectALabel" for="objectA">Diameter (mm)</label><input type="number" id="objectA" min="5" max="300" step="1" value="60"></div>
+  <div class="field" id="objectBField" hidden><label id="objectBLabel" for="objectB">Height (mm)</label><input type="number" id="objectB" min="5" max="300" step="1" value="60"></div>
+  <div class="field" id="objectCField" hidden><label id="objectCLabel" for="objectC">Depth (mm)</label><input type="number" id="objectC" min="5" max="300" step="1" value="60"></div>
+</div>
+
+<div id="importPanel" hidden>
+  <div class="field"><label for="importStl">Your STL model</label><input id="importStl" type="file" accept=".stl,model/stl,application/sla" style="width:100%;font-size:12px"/><small>Binary or ASCII STL · processed locally · coordinates assumed to be millimeters.</small></div>
+  <div class="field"><label for="splitAngle">Surface separation angle <output id="splitAngleValue">50°</output></label><input id="splitAngle" type="range" min="25" max="85" step="5" value="50"><small>Sharper boundaries become separate selectable surfaces. Gentle curves remain continuous.</small></div>
+  <label class="toggle" style="margin-bottom:10px"><input type="checkbox" id="cleanupImported" checked> Refine imported geometry before texturing</label>
+  <div class="field" id="cleanupBlendField"><label for="cleanupBlend">Protect sharp edges <output id="cleanupBlendValue">2.0 mm</output></label><input type="range" id="cleanupBlend" min="0.5" max="5" step="0.5" value="2"><small>Gradually fade surface texture near sharp rims, edges, and transitions to smooth faces. Mesh triangles are relaxed before displacement.</small></div>
+  <label class="toggle" style="margin-bottom:12px"><input type="checkbox" id="keepImportPosition" checked> Preserve original STL coordinates on export</label>
+  <div class="note" id="importInfo" aria-live="polite">Select a closed STL to identify its continuous surfaces.</div>
+</div>
+<div class="sphere-callout" id="wrapCallout"><strong>Ready-made 3D object:</strong> The selected texture is built directly into the outside of the solid. Export one complete STL—no separate parts or assembly steps.</div></section>
+<section class="panel" id="facePanel" hidden><h2>Face selection · Smooth surfaces</h2>
+<p class="hint">Choose one or more faces to leave completely smooth. Select faces in the list, or activate the picker and click the object in the 3D preview. Your STL includes these smooth surfaces.</p>
+<div class="face-action-row"><button type="button" id="clearSmoothFaces">Texture all faces</button><button type="button" id="smoothAllFaces">Smooth all faces</button></div>
+<div id="faceList" class="face-list" role="group" aria-label="Choose faces to leave smooth"></div>
+<div class="face-summary" id="faceSummary" aria-live="polite">All faces textured.</div>
+<small class="hint" id="sphereFaceHint" hidden>Sphere selections are directional regions rather than flat polygon faces. Transitions are gently blended.</small>
+</section>
+<section class="panel" id="landscapePanel" hidden><h2>Landscape selector</h2><div class="field"><label for="landscapeType">Landscape style</label><select id="landscapeType"><option value="rolling">Rolling hills</option><option value="mountains">Mountains</option><option value="moonscape">Moonscape</option><option value="canyons">Canyons</option><option value="dunes">Wind dunes</option></select><small id="landscapeHelp">Broad smooth terrain with soft rolling elevation.</small></div></section>
+<section class="panel" id="texturePanel"><h2>Texture selector</h2><div class="field"><label for="textureType">Surface material</label><select id="textureType"><option value="stone" selected>Stone</option><option value="brick">Brick</option><option value="wood">Wood grain</option><option value="bark">Tree bark</option><option value="concrete">Concrete</option><option value="math">Mathematical patterns</option></select><small>Each material has its own controls. Mathematical patterns include waves, tessellations, and fractals. All export as printable STL geometry.</small></div></section>
+<section class="panel" id="flatShapePanel"><h2>Shape &amp; dimensions</h2>
+<div class="shape-top-grid">
+  <div class="field"><label for="shape">Outline</label><select id="shape"><option value="square">Square / rectangle</option><option value="triangle">Triangle</option><option value="pentagon">Pentagon</option><option value="hexagon">Hexagon</option><option value="octagon">Octagon</option><option value="circle">Circle</option><option value="custom">Custom regular polygon</option></select></div>
+  <div class="field" id="sidesRow"><label for="sides">Polygon sides</label><input type="number" id="sides" min="3" max="24" step="1" value="7" disabled title="Select Custom regular polygon to change the number of sides"></div>
+</div>
+<div class="shape-dim-grid">
+  <div class="field"><label for="width">Width (mm)</label><input id="width" type="number" value="60" min="5" max="300" step="1"></div>
+  <div class="field"><label for="height">Height (mm)</label><input id="height" type="number" value="60" min="5" max="300" step="1"></div>
+  <div class="field"><label for="base" title="Base thickness in millimeters">Base (mm)</label><input id="base" type="number" value="5.0" min="0.8" max="20" step="0.2"></div>
+</div>
+<small class="shape-help">Flat-back mode leaves the underside smooth.</small>
+</section>
+<section class="panel"><h2 id="materialHeading">Stone surface</h2><div id="materialControls"></div></section>
+<section class="panel"><h2>Manufacturing</h2><div class="field"><label for="detail">Surface grid spacing</label><select id="detail"><option value="0.2" selected>0.2 mm · FDM detail (default)</option><option value="0.3">0.3 mm · Balanced</option><option value="0.4">0.4 mm · Faster</option><option value="0.6">0.6 mm · Draft</option></select><small>The 0.2 mm setting is retained for printable detail. Flat-back exports now use a simplified underside to reduce file size without changing the top surface. Grid triangles are sampled at the selected millimeter spacing. For very large shapes, an automatic mesh-size limit may increase spacing. A 0.2 mm grid does not guarantee every 0.2 mm feature will print; nozzle diameter and layer height also matter.</small></div><div class="note" id="importCheck" style="margin-bottom:12px" aria-live="polite">Checking mesh size and export limits…</div><div class="field"><label for="seed">Pattern seed</label><input id="seed" type="number" min="1" max="99999999" value="18427"><small>Reuse this number to reproduce a texture.</small></div></section>
+<section class="panel" id="edgePanel"><h2>Advanced · Universal Edge Matching</h2>
+<label class="edgeToggle"><input id="edgeEnabled" type="checkbox"> <strong>Enable universal matching edges</strong></label>
+<p class="hint" style="margin:8px 0 12px">One shared boundary profile on every side, independent of texture type and texture seed. Randomize the center without changing the edges.</p>
+<div id="edgeOptions" hidden>
+  <div class="field"><label for="edgeSeed">Shared edge seed</label><div class="edgeRow"><input id="edgeSeed" type="number" min="1" max="99999999" step="1" value="47281"><button id="newEdge" type="button">⤨ New edge</button></div><small>Keep this seed and the profile settings the same on every tile.</small></div>
+  <div class="field"><label for="edgeBlend">Texture transition distance <output id="edgeBlendValue">5.0 mm</output></label><input id="edgeBlend" type="range" min="1" max="20" step="0.5" value="5"><small>Softly blends the freeform interior into the common edge.</small></div>
+  <div class="field"><label for="edgeVariation">Edge profile variation <output id="edgeVariationValue">40%</output></label><input id="edgeVariation" type="range" min="0" max="100" step="1" value="40"><small>Controls the height differences along the shared edge. All four corners meet at the same height.</small></div>
+  <div class="note" id="edgeCompatibility" aria-live="polite"></div>
+  <div class="edgeRow"><button id="saveEdge" type="button">↓ Save profile</button><button id="loadEdge" type="button">↑ Load profile</button><input type="file" id="edgeFile" accept=".json,application/json" hidden></div>
+  <button id="previewTiles" type="button" style="width:100%;margin-top:9px">▦ Show 3 × 3 tile assembly</button>
+  <div id="tilePreviewWrap" hidden><canvas id="tilePreview" width="540" height="540" aria-label="Nine simulated neighboring tiles with matching edge heights"></canvas><p class="hint">Top-down relief illustration with nine independently seeded tiles. Fine features are simplified; the STL uses the full manufacturing grid. Green lines indicate shared boundaries.</p></div>
+</div></section>
+<div class="note" id="flatWorkflow"><strong>Flat-surface export:</strong> Generate a closed STL relief panel. Use it as a standalone model or as surface geometry in your preferred 3D workflow.</div>
+</aside><div id="sidebarResizer" class="sidebar-resizer" role="separator" aria-label="Resize settings panel" aria-orientation="vertical" aria-valuemin="260" aria-valuemax="650" aria-valuenow="350" tabindex="0" title="Drag to resize settings · Double-click to reset"><span class="resizer-grip" aria-hidden="true"></span></div><main>
+<div class="toprow"><div class="pillbar" id="flatModeButtons"><button class="mode active" id="flatMode" aria-pressed="true">▰ Flat back</button><button class="mode" id="allMode" aria-pressed="false">⬡ Texture all around</button></div><button id="randomize">⤨ Randomize texture</button><button class="exportTop" id="export" title="Download binary STL mesh">⬇ EXPORT STL</button><span class="exportReason" id="exportReason" role="status" aria-live="polite">Preparing STL…</span></div>
+<div class="viewer" id="viewer"><canvas id="canvas"></canvas><div class="cameraTools" style="left:12px;right:auto;top:52px;max-width:65%"><button id="facePickTool" type="button" hidden aria-pressed="false" title="Click a surface region to toggle its texture">◫ Select faces: Off</button></div><div class="tag" id="rendererTag">Stone preview</div><div class="cameraTools" aria-label="3D preview camera tools"><button id="orbitTool" class="camTool active" aria-pressed="true" title="Primary drag mode: rotate (left-drag also rotates)">⟳ Rotate</button><button id="panTool" class="camTool" aria-pressed="false" title="Primary drag mode: pan (right-drag, middle-drag, or Shift-drag also pan)">✥ Pan</button><button id="zoomTool" class="camTool" aria-pressed="false" title="Primary drag mode: zoom (mouse wheel or Ctrl/Cmd-drag also zoom)">⌕ Zoom</button><button id="zoomIn" title="Zoom in one step" aria-label="Zoom in">＋</button><button id="zoomOut" title="Zoom out one step" aria-label="Zoom out">−</button><button id="lightingToggle" type="button" aria-pressed="true" class="active" title="Switch between even illumination and directional lighting">☀ Even light</button></div><div class="previewAppearance"><label for="previewPreset">Preview color</label><select id="previewPreset" aria-label="Preview material color"><option value="#8096a4" selected>Slate</option><option value="#7d858c">Graphite</option><option value="#988675">Warm stone</option><option value="#987367">Terracotta</option><option value="#668c86">Sage</option><option value="#b9bec2">Light gray</option><option value="custom">Custom</option></select><input type="color" id="previewColor" value="#8096a4" aria-label="Choose a custom preview color" title="Preview color only — STL geometry is unchanged"></div><div class="axis">Left-drag rotates · Right-drag or middle-drag pans<br>Mouse wheel zooms · Shift-drag pans · Ctrl/Cmd-drag zooms · Double-click resets</div></div>
+<div class="viewerFooter"><span class="stat" id="stats">Generating shape…</span><button id="resetView">Reset camera</button></div>
+<div class="status" id="status" role="status"></div>
+</main></div>
+<script>
+'use strict';
+// Extensible generator registry. Additional materials can supply a surface(x,y,settings,seed) function.
+const $=id=>document.getElementById(id);
+// Each material owns its parameters, defaults, UI labels and procedural generator.
+const MATERIALS={
+ stone:{name:'Stone',heading:'Stone surface',fields:[
+ ['intensity','Surface roughness',0,100,53,'%','Amount of natural rock relief and grain'],['scale','Feature size',5,100,50,'%','Small grains to broad rocky formations'],['depth','Relief depth',1,50,15,'mm10','Vertical depth of the relief'],['cracks','Crack density',0,100,45,'%','Number and prominence of cracks'],['crackWidth','Crack width',2,30,10,'mm10','Width of the cracks'],['pits','Divot density',0,100,42,'%','Amount of small surface depressions'],['weather','Weathering / erosion',0,100,37,'%','Adds worn and broken edges']]},
+ brick:{name:'Brick',heading:'Brick and mortar',fields:[
+ ['brickW','Brick length',8,100,34,'mm','Length of each brick'],['brickH','Course height',4,50,15,'mm','Height of each row of bricks'],['mortar','Mortar joint width',2,35,12,'mm10','Gap between bricks'],['recess','Mortar recess depth',1,40,12,'mm10','How far the joints sink below the face'],['stagger','Row stagger',0,100,50,'%','50% makes classic running bond'],['rough','Brick surface roughness',0,100,38,'%','Worn fired-clay texture'],['chips','Edge chipping',0,100,25,'%','Irregular worn brick edges']]},
+ wood:{name:'Wood',heading:'Wood grain',fields:[
+ ['grainFreq','Grain spacing',2,80,23,'mm10','Distance between growth lines'],['grainDepth','Grain relief',1,35,9,'mm10','Depth of the grain grooves'],['grainWav','Grain waviness',0,100,42,'%','Natural sweep and warping'],['knots','Knot density',0,100,42,'%','Add knots and swirling grain'],['knotSize','Knot size',3,60,26,'mm','Diameter of knots'],['woodRough','Surface texture',0,100,26,'%','Fine weathering of the wood'],['orientation','Grain angle',0,180,0,'deg','0° follows the long vertical direction']]},
+ bark:{name:'Bark',heading:'Tree bark',fields:[
+ ['ridgeGap','Ridge spacing',2,45,12,'mm','Typical distance between bark ridges'],['ridgeDepth','Fissure depth',1,50,23,'mm10','Depth of the long bark fissures'],['ridgeWander','Ridge irregularity',0,100,55,'%','Winding, broken ridges'],['barkBreak','Cross cracks',0,100,48,'%','Small transverse splits'],['barkRough','Surface roughness',0,100,54,'%','Flaky, weathered bark'],['barkScale','Feature scale',5,100,53,'%','Scale of bark fragments'],['orientation','Ridge angle',0,180,0,'deg','0° runs ridges vertically']]},
+ concrete:{name:'Concrete',heading:'Concrete surface',fields:[
+ ['aggregate','Aggregate visibility',0,100,43,'%','Embedded stone and pebble texture'],['aggSize','Aggregate size',2,30,8,'mm','Size of larger particles'],['pores','Air hole density',0,100,45,'%','Pitting and small voids'],['poreSize','Air hole size',2,30,9,'mm10','Approximate pore diameter'],['finish','Finish roughness',0,100,38,'%','Smooth cast to rough cast concrete'],['depth','Relief depth',1,40,12,'mm10','Overall depth of surface texture'],['wear','Weathering',0,100,20,'%','Surface abrasion and variation']]}
+};
+// Mathematical textures each have distinct physical controls and a short formula explanation.
+const MATH_PATTERNS={
+ waves:{name:'Sine waves',description:'Smooth parallel waves. z = A sin(2πu / wavelength + phase).',fields:[
+ ['wavelength','Wavelength',2,40,8,'mm','Distance from one crest to the next'],['angle','Wave direction',0,180,25,'deg','Angle of the wave bands'],['harmonic','Second harmonic',0,100,20,'%','Adds finer crests without changing the main wavelength'],['phase','Phase offset',0,360,0,'deg','Moves the crests through the surface']]},
+ interference:{name:'Wave interference',description:'Two overlapping wave fields produce constructive and destructive interference.',fields:[
+ ['wavelength','Wavelength',3,40,10,'mm','Spacing of wave crests'],['separation','Source separation',4,80,30,'mm','Distance between the two wave centers'],['balance','Second source strength',0,100,100,'%','0% uses only one source; 100% combines both equally'],['phase','Phase shift',0,360,0,'deg','Relative phase of the second source']]},
+ radial:{name:'Radial rosette',description:'Rotational symmetry, spokes and concentric rings in one parametric surface.',fields:[
+ ['spokes','Rotational symmetry',3,24,10,'int','Number of repeated radial petals'],['rings','Ring spacing',2,30,9,'mm','Distance between radial rings'],['petals','Petal strength',0,100,75,'%','Relative prominence of the angular petals'],['twist','Spiral twist',0,100,18,'%','Twists the petal orientation with radius']]},
+ lattice:{name:'Grid / crosshatch',description:'Two sets of regularly spaced ridges with configurable angle and sharpness.',fields:[
+ ['spacing','Grid spacing',2,35,8,'mm','Distance between parallel ridges'],['angle','Grid rotation',0,180,0,'deg','Rotation of the whole grid'],['sharpness','Ridge sharpness',0,100,65,'%','Rounded waves to narrow raised lines'],['cross','Crossing strength',0,100,100,'%','0% = stripes, 100% = grid']]},
+ hex:{name:'Hexagon cells',description:'A repeating mathematical hexagonal tessellation with recessed or raised cell borders.',fields:[
+ ['cellSize','Hexagon radius',3,35,8,'mm','Approximate center-to-corner cell radius'],['borderWidth','Border width',2,30,10,'mm10','Thickness of the cell wall'],['edgeStyle','Border profile',0,100,65,'%','Soft rounded borders to crisp edges'],['invert','Recessed borders',0,1,0,'bool','0 = raised outlines, 1 = recessed outlines']]},
+ gyroid:{name:'Gyroid section',description:'A periodic triply periodic minimal-surface-inspired field sampled into a printable height relief.',fields:[
+ ['period','Cell period',5,45,14,'mm','Period of the repeating gyroid-like pattern'],['phase','Section position',0,360,70,'deg','Moves the sampled slice through the field'],['angle','Pattern rotation',0,180,0,'deg','Rotates the periodic pattern'],['contrast','Contour emphasis',0,100,40,'%','Emphasizes ridges around the zero contour']]},
+ fractal:{name:'Fractal noise terrain',description:'Multi-octave fractal Brownian motion combines detail at several physical scales.',fields:[
+ ['feature','Largest feature size',5,70,30,'mm','Size of broad hills and valleys'],['octaves','Fractal octaves',1,7,5,'int','Number of scales combined'],['persistence','Detail persistence',15,85,55,'%','How strongly fine scales contribute'],['ridge','Ridged terrain',0,100,30,'%','0% = rolling terrain, 100% = sharp fractal ridges']]},
+ mandelbrot:{name:'Mandelbrot contours',description:'Escape-time fractal: smooth iteration bands across a selected mathematical region.',fields:[
+ ['zoom','Fractal magnification',1,20,4,'int','Magnification into the fractal boundary'],['iterations','Max iterations',20,120,65,'int','Controls contour complexity'],['bands','Contour density',2,30,12,'int','Number of visible height contour bands'],['offset','Explore location',0,100,45,'%','Pans the sample across the interesting boundary']]},
+ voronoi:{name:'Voronoi cells',description:'Cells partition the plane by distance to seeded points; edges form a geometric network.',fields:[
+ ['cellSize','Average cell diameter',4,40,12,'mm','Approximate size of the polygonal cells'],['borderWidth','Boundary width',2,30,10,'mm10','Width of the cell boundaries'],['regularity','Cell regularity',0,100,70,'%','100% = orderly arrangement, 0% = heavily displaced seed points'],['invert','Recessed boundaries',0,1,0,'bool','0 = raised edges, 1 = recessed edges']]}
+};
+const MATH_COMMON=[['amplitude','Relief amplitude',2,45,16,'mm10','Height variation in millimeters; designed for physical printing']];
+const LANDSCAPES={
+ rolling:{name:'Rolling hills',description:'Broad smooth hill terrain with gentle elevation changes.',fields:[['relief','Landscape relief',2,60,24,'mm10','Overall terrain height'],['feature','Hill spacing',8,100,42,'mm','Distance between broad hill crests'],['roughness','Secondary roughness',0,100,12,'%','Adds smaller bumps and variation'],['flow','Flow direction',0,180,18,'deg','Preferred sweep direction of the hills']]},
+ mountains:{name:'Mountains',description:'Sharper ridges and taller peaks.',fields:[['relief','Peak height',4,90,48,'mm10','Overall mountain height'],['feature','Ridge spacing',8,100,34,'mm','Distance between major mountain groups'],['roughness','Fractal detail',0,100,28,'%','Amount of broken alpine detail'],['erosion','Erosion',0,100,24,'%','Softens peaks and widens ridges']]},
+ moonscape:{name:'Moonscape',description:'Cratered terrain with rims and scattered impact marks.',fields:[['relief','Terrain relief',2,60,18,'mm10','Overall rise and fall of the terrain'],['craterDensity','Crater density',0,100,55,'%','How many impact craters appear'],['craterSize','Average crater size',4,40,14,'mm','Typical crater diameter'],['rim','Crater rim strength',0,100,52,'%','Prominence of crater rims']]},
+ canyons:{name:'Canyons',description:'Deep cut channels and mesas.',fields:[['relief','Canyon depth',2,70,26,'mm10','Depth of canyon cuts'],['feature','Canyon spacing',8,80,24,'mm','Distance between major channels'],['roughness','Wall roughness',0,100,45,'%','Broken sidewalls and ledges'],['meander','Meander',0,100,42,'%','How much the channels curve and wander']]},
+ dunes:{name:'Wind dunes',description:'Wind-shaped dune fields with repeating crests.',fields:[['relief','Dune height',2,50,16,'mm10','Height of dune crests'],['feature','Dune spacing',5,50,14,'mm','Spacing between ridges'],['roughness','Ripple detail',0,100,48,'%','Smaller ripples on the dune faces'],['flow','Wind direction',0,180,22,'deg','Direction of the dune field']]}
+};
+const PLANET_STYLES={
+ gas:{name:'Gas giant bands',description:'Broad atmospheric bands with soft turbulence.',fields:[['planetRelief','Band relief',1,30,10,'mm10','Depth of the atmospheric bands'],['bandScale','Band spacing',4,40,12,'mm','Spacing between major bands'],['turbulence','Band turbulence',0,100,42,'%','Wispy distortion within the bands'],['storms','Storm activity',0,100,35,'%','Adds circular storm systems']]},
+ saturn:{name:'Saturn-like wisps',description:'Fine horizontal banding with subtle waviness.',fields:[['planetRelief','Band relief',1,24,7,'mm10','Depth of the wispy bands'],['bandScale','Band spacing',3,26,9,'mm','Spacing of the fine bands'],['turbulence','Band waviness',0,100,28,'%','Soft meandering of the bands'],['storms','Polar storms',0,100,18,'%','Adds gentle circular storm structures']]},
+ jupiter:{name:'Jupiter-like storms',description:'Heavy banding with stronger storms and belts.',fields:[['planetRelief','Belt relief',1,34,12,'mm10','Depth of the cloud belts'],['bandScale','Belt spacing',4,40,14,'mm','Spacing between belts'],['turbulence','Swirl intensity',0,100,58,'%','Amount of swirls within the bands'],['storms','Storm strength',0,100,62,'%','Adds large storm systems and vortices']]},
+ rocky:{name:'Rocky planetoid',description:'Rugged planetoid with craters and ridges.',fields:[['planetRelief','Surface relief',2,60,18,'mm10','Overall height variation'],['bandScale','Feature size',5,45,15,'mm','Scale of craters and ridges'],['turbulence','Surface roughness',0,100,55,'%','Broken rocky variation'],['storms','Crater density',0,100,48,'%','Density of crater-like impacts']]}
+};
+let currentLandscape='rolling';
+let currentPlanetStyle='gas';
+
+let currentMathPattern='waves';
+const mathSavedValues={};
+function activeFields(){
+ if(surfaceMode==='landscape') return LANDSCAPES[currentLandscape].fields;
+ if(surfaceMode==='sphere' && $('objectShape') && $('objectShape').value==='planet') return PLANET_STYLES[currentPlanetStyle].fields;
+ return $('textureType').value==='math'?[...MATH_COMMON,...MATH_PATTERNS[currentMathPattern].fields]:materialConfig().fields;
+}
+function saveMathFields(){const vals={};for(const [id] of activeFields()){const el=$('mat_'+id);if(el)vals[id]=Number(el.value)}mathSavedValues[currentMathPattern]=vals}
+let smoothFaces=new Set(),facePickActive=false,importedModel=null,importError='',importedGeneration=null;
+let mode='flat',surfaceMode='flat',lastMesh=null,lastPreviewMesh=null,updateTimer,backend=null;
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+function materialConfig(){return MATERIALS[$('textureType')?.value]||MATERIALS.stone}
+function renderMaterialControls(){
+ const el=$('materialControls');el.replaceChildren();
+ const isLandscape=surfaceMode==='landscape';
+ const isPlanet=surfaceMode==='sphere' && $('objectShape') && $('objectShape').value==='planet';
+ const isMath=!isLandscape && !isPlanet && $('textureType').value==='math';
+ if(isLandscape){
+   $('materialHeading').textContent='Landscape · '+LANDSCAPES[currentLandscape].name;
+   $('landscapePanel').hidden=false; $('texturePanel').hidden=true;
+   $('landscapeType').value=currentLandscape; $('landscapeHelp').textContent=LANDSCAPES[currentLandscape].description;
+   for(let [id,label,min,max,value,unit,hint] of LANDSCAPES[currentLandscape].fields){let wrap=document.createElement('div');wrap.className='field';let row=document.createElement('div');row.className='sliderLabel';let lab=document.createElement('label');lab.htmlFor='mat_'+id;lab.textContent=label;let out=document.createElement('output');out.id='out_'+id;row.append(lab,out);let input=document.createElement('input');input.id='mat_'+id;input.type='range';input.min=min;input.max=max;input.step=1;input.value=value;input.addEventListener('input',schedule);wrap.append(row,input);if(hint){let help=document.createElement('small');help.textContent=hint;wrap.append(help)}el.append(wrap)}
+   showSliderLabels(); return;
+ }
+ $('landscapePanel').hidden=true; $('texturePanel').hidden=isPlanet;
+ if(isPlanet){
+   $('materialHeading').textContent='Planet surface · '+PLANET_STYLES[currentPlanetStyle].name;
+   let wrap=document.createElement('div');wrap.className='field';let lab=document.createElement('label');lab.htmlFor='planetStyle';lab.textContent='Planet style';let sel=document.createElement('select');sel.id='planetStyle';for(let [id,style] of Object.entries(PLANET_STYLES)){let o=document.createElement('option');o.value=id;o.textContent=style.name;sel.append(o)}sel.value=currentPlanetStyle;sel.addEventListener('change',()=>{currentPlanetStyle=sel.value;renderMaterialControls();$('rendererTag').textContent=PLANET_STYLES[currentPlanetStyle].name+' preview';schedule()});wrap.append(lab,sel);let help=document.createElement('small');help.textContent=PLANET_STYLES[currentPlanetStyle].description;wrap.append(help);el.append(wrap);
+   for(let [id,label,min,max,value,unit,hint] of PLANET_STYLES[currentPlanetStyle].fields){let wrap2=document.createElement('div');wrap2.className='field';let row=document.createElement('div');row.className='sliderLabel';let lab2=document.createElement('label');lab2.htmlFor='mat_'+id;lab2.textContent=label;let out2=document.createElement('output');out2.id='out_'+id;row.append(lab2,out2);let input2=document.createElement('input');input2.id='mat_'+id;input2.type='range';input2.min=min;input2.max=max;input2.step=1;input2.value=value;input2.addEventListener('input',schedule);wrap2.append(row,input2);if(hint){let help2=document.createElement('small');help2.textContent=hint;wrap2.append(help2)}el.append(wrap2)}
+   let note=document.createElement('div');note.className='note';note.textContent='Planet mode creates relief suitable for STL export: gas-giant bands, storms, or rocky planetoid features are expressed as physical surface geometry.';el.append(note); showSliderLabels(); return;
+ }
+ let m=materialConfig();$('materialHeading').textContent=isMath?'Mathematical surface · '+MATH_PATTERNS[currentMathPattern].name:m.heading;
+ if(isMath){let wrap=document.createElement('div');wrap.className='field';let lab=document.createElement('label');lab.htmlFor='mathPattern';lab.textContent='Pattern family';let sel=document.createElement('select');sel.id='mathPattern';for(let [id,pattern] of Object.entries(MATH_PATTERNS)){let o=document.createElement('option');o.value=id;o.textContent=pattern.name;sel.append(o)}sel.value=currentMathPattern;sel.addEventListener('change',()=>{saveMathFields();currentMathPattern=sel.value;renderMaterialControls();$('rendererTag').textContent=MATH_PATTERNS[currentMathPattern].name+' preview';schedule()});wrap.append(lab,sel);let help=document.createElement('small');help.textContent=MATH_PATTERNS[currentMathPattern].description;wrap.append(help);el.append(wrap)}
+ for(let [id,label,min,max,value,unit,hint] of activeFields()){let wrap=document.createElement('div');wrap.className='field';let row=document.createElement('div');row.className='sliderLabel';let lab=document.createElement('label');lab.htmlFor='mat_'+id;lab.textContent=label;let out=document.createElement('output');out.id='out_'+id;row.append(lab,out);let input=document.createElement('input');input.id='mat_'+id;input.type='range';input.min=min;input.max=max;input.step=1;input.value=isMath?(mathSavedValues[currentMathPattern]?.[id]??value):value;input.addEventListener('input',()=>{if(isMath)saveMathFields();schedule()});wrap.append(row,input);if(hint){let help=document.createElement('small');help.textContent=hint;wrap.append(help)}el.append(wrap)}
+ if(isMath){let note=document.createElement('div');note.className='note';note.textContent='Math textures use actual height geometry, not a visual normal map. For clear 0.4 mm nozzle prints, use features wider than roughly 0.8 mm and enough relief to survive slicing.';el.append(note)}showSliderLabels()}
+
+function settings(){let s={};
+ s.surfaceMode=surfaceMode;
+ s.material=(surfaceMode==='landscape')?'landscape':((surfaceMode==='sphere'&&$('objectShape').value==='planet')?'planet':$('textureType').value);
+ for(let [id] of activeFields()){const el=$('mat_'+id); if(el) s[id]=Number(el.value)}
+ if(s.material==='math')s.pattern=currentMathPattern;
+ if(s.material==='landscape')s.landscapeType=currentLandscape;
+ if(s.material==='planet')s.planetStyle=currentPlanetStyle;
+ s.width=clamp(Number($('width').value)||60,5,300);s.height=clamp(Number($('height').value)||60,5,300);s.base=clamp(Number($('base').value)||5,0.8,20);s.seed=clamp(Math.floor(Number($('seed').value)||1),1,99999999);s.detail=Number($('detail').value);s.shape=$('shape').value;s.sides=clamp(Number($('sides').value)||7,3,24);s.mode=mode;s.edgeEnabled=$('edgeEnabled').checked;s.edgeSeed=clamp(Math.floor(Number($('edgeSeed').value)||1),1,99999999);s.edgeBlend=Number($('edgeBlend').value);s.edgeVariation=Number($('edgeVariation').value);s.objectShape=$('objectShape').value;s.keepImportPosition=$('keepImportPosition').checked;s.cleanupImported=$('cleanupImported').checked;s.cleanupBlend=Number($('cleanupBlend').value);s.smoothFaces=[...smoothFaces];s.objectA=clamp(Number($('objectA').value)||60,5,300);s.objectB=clamp(Number($('objectB').value)||60,5,300);s.objectC=clamp(Number($('objectC').value)||60,5,300);
+ if(surfaceMode==='sphere'){s.edgeEnabled=false;s.mode='sphere';const d=deriveWrapDims(s);s.wrapSummary=d.summary;s.wrapMax=d.max;s.width=d.uvWidth;s.height=d.uvHeight;s.shape=s.objectShape}
+ return s}
+
+const WRAP_SHAPE_META={
+ sphere:{name:'Sphere',help:'Create a solid sphere with texture directly on its outside.'},
+ planet:{name:'Planet',help:'Create a sphere-like planet with banded, stormy, or rocky planetoid relief.'},
+ cube:{name:'Cube',help:'Create a solid cube with all six faces textured.'},
+ box:{name:'Box / rectangular prism',help:'Texture all six faces of a solid rectangular prism.'},
+ cylinder:{name:'Cylinder',help:'Create a solid cylinder with textured side and end caps.'},
+ cone:{name:'Cone',help:'Texture the conical surface and base of a solid cone.'},
+ tri_prism:{name:'Triangular prism',help:'Create a textured solid triangular prism.'},
+ pyramid:{name:'Square pyramid',help:'Create a textured solid square pyramid.'},
+ imported:{name:'Imported STL',help:'Load your own closed STL. Smoothly connected surfaces are detected automatically.'}
+};
+function wrapShapeName(v){return WRAP_SHAPE_META[v]?.name||v}
+const FACE_OPTIONS={
+ sphere:[['xp','Right (+X)'],['xn','Left (−X)'],['yp','Back (+Y)'],['yn','Front (−Y)'],['zp','Top (+Z)'],['zn','Bottom (−Z)']],
+ planet:[['xp','Right (+X)'],['xn','Left (−X)'],['yp','Back (+Y)'],['yn','Front (−Y)'],['zp','Top (+Z)'],['zn','Bottom (−Z)']],
+ cube:[['xp','Right'],['xn','Left'],['yp','Back'],['yn','Front'],['zp','Top'],['zn','Bottom']],
+ box:[['xp','Right'],['xn','Left'],['yp','Back'],['yn','Front'],['zp','Top'],['zn','Bottom']],
+ cylinder:[['side','Curved side'],['zp','Top cap'],['zn','Bottom cap']],
+ cone:[['side','Conical side'],['zn','Bottom base']],
+ tri_prism:[['side0','Bottom rectangular side'],['side1','Right sloped side'],['side2','Left sloped side'],['zp','Front triangular end (+Z)'],['zn','Back triangular end (−Z)']],
+ pyramid:[['side0','Right sloped face'],['side1','Left sloped face'],['side2','Back sloped face'],['side3','Front sloped face'],['zn','Bottom base']]
+};
+function validFaceIds(shape){if(shape==='imported')return importedModel?.regionNames?.map((_,i)=>'region'+i)||[];return FACE_OPTIONS[shape]?.map(v=>v[0])||[]}
+function refreshFacePanel(){
+ const shape=$('objectShape').value,opts=shape==='imported'?(importedModel?.regionNames||[]).map((name,i)=>['region'+i,name]):(FACE_OPTIONS[shape]||[]);
+ const list=$('faceList');list.replaceChildren();
+ for(const [id,label] of opts){
+  const b=document.createElement('button');b.type='button';b.className='face-choice';b.textContent=label;
+  b.setAttribute('aria-pressed',String(smoothFaces.has(id)));
+  b.title=smoothFaces.has(id)?'Click to apply texture':'Click to remove texture';
+  b.addEventListener('click',()=>toggleSmoothFace(id));list.append(b);
+ }
+ const chosen=opts.filter(([id])=>smoothFaces.has(id));
+ $('faceSummary').textContent=chosen.length?`${chosen.length} smooth ${shape==='sphere'?'regions':'faces'}: ${chosen.map(v=>v[1]).join(', ')}.`:'All surfaces will be textured.';
+ $('sphereFaceHint').hidden=shape!=='sphere';
+ const selectable=shape!=='imported'||(importedModel&&importedModel.regionNames.length>1);
+ $('facePanel').hidden=surfaceMode!=='sphere'||!selectable; $('facePickTool').hidden=surfaceMode!=='sphere'||!selectable; if(!selectable&&facePickActive)setFacePicker(false);
+ if(shape==='imported'&&importedModel&&importedModel.regionNames.length===1)$('faceSummary').textContent='One continuous surface: texture applies to the entire model.';
+}
+function toggleSmoothFace(id){if(!validFaceIds($('objectShape').value).includes(id))return;
+ if(smoothFaces.has(id))smoothFaces.delete(id);else smoothFaces.add(id);
+ refreshFacePanel();schedule();
+}
+function setFacePicker(active){facePickActive=active;const btn=$('facePickTool');btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',String(active));btn.textContent=active?'◫ Select faces: On':'◫ Select faces: Off';$('canvas').classList.toggle('face-picking',active);}
+// Find first face hit by a ray projected through the preview; mesh triangles are
+// the same triangles used for STL export, so picking matches the visible surface.
+function pickVisibleFace(clientX,clientY){
+ if(surfaceMode!=='sphere'||!lastMesh)return null;
+ const canvas=$('canvas'),rect=canvas.getBoundingClientRect(),u=((clientX-rect.left)/rect.width)*2-1,v=1-((clientY-rect.top)/rect.height)*2;
+ const fov=Math.PI/4,aspect=rect.width/rect.height;
+ const forward=norm([-Math.cos(cam.yaw)*Math.cos(cam.pitch),-Math.sin(cam.yaw)*Math.cos(cam.pitch),-Math.sin(cam.pitch)]);
+ const right=norm(cross(forward,[0,0,1])),up=norm(cross(right,forward));
+ const ray=norm([forward[0]+u*aspect*Math.tan(fov/2)*right[0]+v*Math.tan(fov/2)*up[0],forward[1]+u*aspect*Math.tan(fov/2)*right[1]+v*Math.tan(fov/2)*up[1],forward[2]+u*aspect*Math.tan(fov/2)*right[2]+v*Math.tan(fov/2)*up[2]]);
+ const eye=[cam.target[0]-forward[0]*cam.distance,cam.target[1]-forward[1]*cam.distance,cam.target[2]-forward[2]*cam.distance];
+ const p=lastMesh.positions,ix=lastMesh.indices;let best=Infinity,hit=null,bestTriangle=-1;
+ for(let j=0;j<ix.length;j+=3){
+  const a=ix[j]*3,b=ix[j+1]*3,c=ix[j+2]*3;
+  const e1x=p[b]-p[a],e1y=p[b+1]-p[a+1],e1z=p[b+2]-p[a+2],e2x=p[c]-p[a],e2y=p[c+1]-p[a+1],e2z=p[c+2]-p[a+2];
+  const hx=ray[1]*e2z-ray[2]*e2y,hy=ray[2]*e2x-ray[0]*e2z,hz=ray[0]*e2y-ray[1]*e2x;
+  const det=e1x*hx+e1y*hy+e1z*hz;if(Math.abs(det)<1e-9)continue;const inv=1/det;
+  const sx=eye[0]-p[a],sy=eye[1]-p[a+1],sz=eye[2]-p[a+2];const uu=(sx*hx+sy*hy+sz*hz)*inv;
+  if(uu<0||uu>1)continue;
+  const qx=sy*e1z-sz*e1y,qy=sz*e1x-sx*e1z,qz=sx*e1y-sy*e1x;
+  const vv=(ray[0]*qx+ray[1]*qy+ray[2]*qz)*inv;if(vv<0||uu+vv>1)continue;
+  const t=(e2x*qx+e2y*qy+e2z*qz)*inv;
+  if(t>1e-5&&t<best){best=t;bestTriangle=j/3;hit=[eye[0]+ray[0]*t,eye[1]+ray[1]*t,eye[2]+ray[2]*t]}
+ }
+ if(!hit)return null;
+ if(settings().objectShape==='imported')return importedGeneration?.triangleRegions?.[bestTriangle]===undefined?null:'region'+importedGeneration.triangleRegions[bestTriangle];
+ const d=norm(hit),faces=faceCandidates(d[0],d[1],d[2],settings());
+ return faces[0]?.[0]||null;
+}
+
+function deriveWrapDims(s){switch(s.objectShape){
+ case 'sphere': return {summary:`Sphere Ø${s.objectA} mm`,max:s.objectA,uvWidth:Math.PI*s.objectA,uvHeight:Math.PI*s.objectA/2};
+ case 'planet': return {summary:`Planet Ø${s.objectA} mm`,max:s.objectA,uvWidth:Math.PI*s.objectA,uvHeight:Math.PI*s.objectA/2};
+ case 'cube': return {summary:`Cube ${s.objectA} mm`,max:s.objectA,uvWidth:4*s.objectA,uvHeight:3*s.objectA};
+ case 'box': return {summary:`Box ${s.objectA} × ${s.objectB} × ${s.objectC} mm`,max:Math.max(s.objectA,s.objectB,s.objectC),uvWidth:2*(s.objectA+s.objectB),uvHeight:2*(Math.max(s.objectA,s.objectB)+s.objectC)};
+ case 'cylinder': return {summary:`Cylinder Ø${s.objectA} × ${s.objectB} mm`,max:Math.max(s.objectA,s.objectB),uvWidth:Math.PI*s.objectA,uvHeight:s.objectB};
+ case 'cone': return {summary:`Cone Ø${s.objectA} × ${s.objectB} mm`,max:Math.max(s.objectA,s.objectB),uvWidth:Math.PI*s.objectA,uvHeight:s.objectB};
+ case 'tri_prism': return {summary:`Triangular prism ${s.objectA} × ${s.objectB} × ${s.objectC} mm`,max:Math.max(s.objectA,s.objectB,s.objectC),uvWidth:2*(s.objectA+s.objectC),uvHeight:s.objectB};
+ case 'pyramid': return {summary:`Pyramid ${s.objectA} × ${s.objectB} mm`,max:Math.max(s.objectA,s.objectB),uvWidth:2*s.objectA,uvHeight:2*s.objectB};
+ case 'imported': {const d=importedModel?.size||[60,60,60];return {summary:importedModel?`Imported ${importedModel.name} · ${d.map(v=>v.toFixed(1)).join(' × ')} mm`:'Imported STL · select a file',max:Math.max(...d),uvWidth:Math.max(...d)*4,uvHeight:Math.max(...d)*3}}
+ default:return {summary:'Wrapped object',max:60,uvWidth:120,uvHeight:120};
+}}
+function objectMaxSize(s){return s.surfaceMode==='sphere'?(s.wrapMax||deriveWrapDims(s).max):Math.max(s.width,s.height)}
+function updateObjectShapeUI(){const shape=$('objectShape').value;
+ const cfg={
+  sphere:{A:['Diameter (mm)',60],B:null,C:null,callout:'<strong>Finished sphere:</strong> Texture is applied directly to the outside. Export the complete solid as STL.'},
+  planet:{A:['Diameter (mm)',70],B:null,C:null,callout:'<strong>Finished planet:</strong> Choose gas-giant, Saturn-like, Jupiter-like, or rocky surface relief. Export the complete solid as STL.'},
+  cube:{A:['Edge length (mm)',60],B:null,C:null,callout:'<strong>Finished cube:</strong> All six faces have the selected texture. Export as one solid STL.'},
+  box:{A:['Width (mm)',60],B:['Depth (mm)',60],C:['Height (mm)',60],callout:'<strong>Finished rectangular prism:</strong> All six faces are textured in the exported STL.'},
+  cylinder:{A:['Diameter (mm)',60],B:['Height (mm)',60],C:null,callout:'<strong>Finished cylinder:</strong> The side and both end caps are textured on the same solid.'},
+  cone:{A:['Base diameter (mm)',60],B:['Height (mm)',80],C:null,callout:'<strong>Finished cone:</strong> The conical side and base are textured on the same solid.'},
+  tri_prism:{A:['Base width (mm)',60],B:['Prism length (mm)',60],C:['Triangle height (mm)',52],callout:'<strong>Finished triangular prism:</strong> The triangular ends and three sides are textured on the same solid.'},
+  pyramid:{A:['Base width (mm)',60],B:['Height (mm)',70],C:null,callout:'<strong>Finished pyramid:</strong> All sides and the base are textured on the same solid.'},
+  imported:{A:null,B:null,C:null,callout:'<strong>Imported model:</strong> Imported solids are refined to reduce spikes and surface seams before applying texture. Smooth regions stay continuous; distinct faces remain selectable.'}
+ }[shape];
+ $('objectHelp').textContent=WRAP_SHAPE_META[shape].help;
+ $('objectAField').hidden=!cfg.A; if(cfg.A){$('objectALabel').textContent=cfg.A[0];$('objectA').value=$('objectA').value||cfg.A[1]}
+ $('importPanel').hidden=shape!=='imported';
+ $('objectBField').hidden=!cfg.B;$('objectCField').hidden=!cfg.C;
+ if(cfg.B){$('objectBLabel').textContent=cfg.B[0]; if(!$('objectB').dataset.touched)$('objectB').value=cfg.B[1]}
+ if(cfg.C){$('objectCLabel').textContent=cfg.C[0]; if(!$('objectC').dataset.touched)$('objectC').value=cfg.C[1]}
+ $('wrapCallout').innerHTML=cfg.callout; if(shape==='imported')updateImportedInfo();
+ if(surfaceMode==='sphere'){$('rendererTag').textContent=wrapShapeName(shape)+' · '+'textured solid'}
+}
+function rayConvexPolygonIntersection2D(dx,dy,verts){const eps=1e-9;let best=Infinity;for(let i=0;i<verts.length;i++){const a=verts[i],b=verts[(i+1)%verts.length],ex=b[0]-a[0],ey=b[1]-a[1],det=dx*ey-dy*ex;if(Math.abs(det)<eps)continue;const t=(a[0]*ey-a[1]*ex)/det;const u=(a[0]*dy-a[1]*dx)/det;if(t>eps&&u>-eps&&u<1+eps&&t<best)best=t}return best}
+function pointInConvexPolygon2D(x,y,verts){let sign=0;for(let i=0;i<verts.length;i++){const a=verts[i],b=verts[(i+1)%verts.length],cross=(b[0]-a[0])*(y-a[1])-(b[1]-a[1])*(x-a[0]);if(Math.abs(cross)<1e-8)continue;const s=Math.sign(cross);if(!sign)sign=s;else if(sign!==s)return false}return true}
+// Sorted ray/nominal-shape surface intersections. At each surface edge, the
+// two nearest intersection distances meet. This lets an untextured face blend
+// to its neighboring textured faces without creating a height step.
+function faceCandidates(dx,dy,dz,s){
+ const EPS=1e-10,arr=[];const add=(id,t)=>{if(Number.isFinite(t)&&t>0)arr.push([id,t])};
+ switch(s.objectShape){
+ case 'sphere':{
+  // A sphere has no inherent flat faces; divide it into six directional regions.
+  const p=[['xp',dx],['xn',-dx],['yp',dy],['yn',-dy],['zp',dz],['zn',-dz]];
+  for(const [id,w] of p)if(w>0)add(id,(s.objectA/2)/w);
+  break;
+ }
+ case 'cube':case 'box':{
+  const hx=s.objectA/2,hy=s.objectShape==='cube'?hx:s.objectB/2,hz=s.objectShape==='cube'?hx:s.objectC/2;
+  if(dx>EPS)add('xp',hx/dx);if(dx<-EPS)add('xn',-hx/dx);
+  if(dy>EPS)add('yp',hy/dy);if(dy<-EPS)add('yn',-hy/dy);
+  if(dz>EPS)add('zp',hz/dz);if(dz<-EPS)add('zn',-hz/dz);
+  break;
+ }
+ case 'cylinder':{
+  const rad=Math.hypot(dx,dy);if(rad>EPS)add('side',s.objectA/2/rad);
+  if(dz>EPS)add('zp',s.objectB/(2*dz));if(dz<-EPS)add('zn',-s.objectB/(2*dz));break;
+ }
+ case 'cone':{
+  const rad=Math.hypot(dx,dy),h=s.objectB,r=s.objectA/2,den=rad+r*dz/h;
+  if(den>EPS)add('side',(r/2)/den);
+  if(dz<-EPS)add('zn',-h/(2*dz));break;
+ }
+ case 'tri_prism':{
+  const w=s.objectA,H=s.objectC,L=s.objectB,pts=[[-w/2,-H/3],[w/2,-H/3],[0,2*H/3]];
+  for(let i=0;i<3;i++){
+   const a=pts[i],b=pts[(i+1)%3],nx=b[1]-a[1],ny=-(b[0]-a[0]),den=nx*dx+ny*dy;
+   if(den>EPS)add('side'+i,(nx*a[0]+ny*a[1])/den);
+  }
+  if(dz>EPS)add('zp',L/(2*dz));if(dz<-EPS)add('zn',-L/(2*dz));break;
+ }
+ case 'pyramid':{
+  const b=s.objectA,h=s.objectB,k=b/(2*h),c=b/4;
+  for(const [id,den] of [['side0',dx+k*dz],['side1',-dx+k*dz],['side2',dy+k*dz],['side3',-dy+k*dz]])if(den>EPS)add(id,c/den);
+  if(dz<-EPS)add('zn',-h/(2*dz));break;
+ }
+ }
+ arr.sort((a,b)=>a[1]-b[1]);return arr;
+}
+function faceTextureFactor(dx,dy,dz,s,t){
+ const smooth=s.smoothFaces;if(!smooth?.length)return 1;
+ const faces=faceCandidates(dx,dy,dz,s);if(!faces.length)return 1;
+ if(smooth.includes(faces[0][0]))return 0;
+ const near=faces.find(([id])=>smooth.includes(id));if(!near)return 1;
+ // Surface-distance proxy: at the shared edge the two ray intersections tie.
+ // Make the fade short so most of the textured face keeps its original relief.
+ const gap=Math.max(0,near[1]-faces[0][1]);
+ return smoothstep(0,Math.max(1.2,Math.min(3.0,t*.09)),gap);
+}
+function baseDistanceForShape(dx,dy,dz,s){const eps=1e-9;switch(s.objectShape){
+ case 'sphere': return s.objectA/2;
+ case 'planet': return s.objectA/2;
+ case 'cube': {const h=s.objectA/2; return Math.min(h/Math.max(Math.abs(dx),eps),h/Math.max(Math.abs(dy),eps),h/Math.max(Math.abs(dz),eps));}
+ case 'box': {const hx=s.objectA/2,hy=s.objectB/2,hz=s.objectC/2; return Math.min(hx/Math.max(Math.abs(dx),eps),hy/Math.max(Math.abs(dy),eps),hz/Math.max(Math.abs(dz),eps));}
+ case 'cylinder': {const r=s.objectA/2,h=s.objectB/2,rad=Math.hypot(dx,dy); let best=Infinity; if(rad>eps){const t=r/rad; if(Math.abs(t*dz)<=h+1e-6)best=Math.min(best,t)} if(Math.abs(dz)>eps){const t=h/Math.abs(dz); if(rad*t<=r+1e-6)best=Math.min(best,t)} return best;}
+ case 'cone': {const r=s.objectA/2,h=s.objectB,half=h/2,rad=Math.hypot(dx,dy); let best=Infinity; const den=rad + (r*dz/h); if(den>eps){const t=(r/2)/den; const z=t*dz; if(z>=-half-1e-6&&z<=half+1e-6)best=Math.min(best,t)} if(dz<-eps){const t=(-half)/dz; if(rad*t<=r+1e-6)best=Math.min(best,t)} return best;}
+ case 'tri_prism': {const w=s.objectA,L=s.objectB,H=s.objectC; const verts=[[-w/2,-H/3],[w/2,-H/3],[0,2*H/3]]; const tSide=rayConvexPolygonIntersection2D(dx,dy,verts); let best=Infinity; if(Number.isFinite(tSide)&&Math.abs(tSide*dz)<=L/2+1e-6)best=Math.min(best,tSide); if(Math.abs(dz)>eps){const t=(L/2)/Math.abs(dz); if(pointInConvexPolygon2D(t*dx,t*dy,verts))best=Math.min(best,t)} return best;}
+ case 'pyramid': {const b=s.objectA,h=s.objectB,half=h/2,m=Math.max(Math.abs(dx),Math.abs(dy)); let best=Infinity; const den=m + (b*dz/(2*h)); if(den>eps){const t=(b/4)/den; const z=t*dz; if(z>=-half-1e-6&&z<=half+1e-6)best=Math.min(best,t)} if(dz<-eps){const t=(-half)/dz; if(Math.max(Math.abs(t*dx),Math.abs(t*dy))<=b/2+1e-6)best=Math.min(best,t)} return best;}
+ default:return 1;
+}}
+
+function showSliderLabels(){for(let [id,,,,,unit] of activeFields()){let value=Number($('mat_'+id).value);$('out_'+id).textContent=unit==='mm10'?(value/10).toFixed(1)+' mm':unit==='mm'?value+' mm':unit==='deg'?value+'°':unit==='int'?String(value):unit==='bool'?(value?'On':'Off'):value+'%'}}
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return ((t^t>>>14)>>>0)/4294967296}}
+function hsh(i,j,seed){let x=Math.imul(i,374761393)+Math.imul(j,668265263)+Math.imul(seed,1442695041);x=Math.imul(x^(x>>>13),1274126177);return ((x^(x>>>16))>>>0)/4294967295}
+function noise(x,y,seed){let i=Math.floor(x),j=Math.floor(y),u=x-i,v=y-j;u=u*u*(3-2*u);v=v*v*(3-2*v);let a=hsh(i,j,seed),b=hsh(i+1,j,seed),c=hsh(i,j+1,seed),d=hsh(i+1,j+1,seed);return ((a+(b-a)*u)*(1-v)+(c+(d-c)*u)*v)*2-1}
+function fbm(x,y,seed){let sum=0,amp=.56,f=1;for(let i=0;i<5;i++){sum+=amp*noise(x*f,y*f,seed+i*71);amp*=.54;f*=2.08}return sum}
+function distSegment(px,py,ax,ay,bx,by){let vx=bx-ax,vy=by-ay,t=clamp(((px-ax)*vx+(py-ay)*vy)/(vx*vx+vy*vy+1e-9),0,1);return Math.hypot(px-ax-t*vx,py-ay-t*vy)}
+function buildStone(s){let random=rng(s.seed),R=Math.min(s.width,s.height);let segments=[],pits=[];let count=Math.round((s.width*s.height/3600)*(4+s.cracks*.23));count=Math.min(count,260);
+for(let i=0;i<count;i++){let x=(random()-.5)*s.width*1.2,y=(random()-.5)*s.height*1.2,angle=random()*6.28,length=(2+random()*random()*R*.37)*(0.55+s.scale/80),steps=3+Math.floor(random()*4),prev=[x,y];for(let j=1;j<=steps;j++){let along=length/steps,ang=angle+(random()-.5)*.9;let next=[prev[0]+Math.cos(ang)*along,prev[1]+Math.sin(ang)*along];segments.push([prev[0],prev[1],next[0],next[1],.45+random()*.8]);prev=next}}
+let nPits=Math.min(550,Math.round((s.width*s.height/3600)*(6+s.pits*.56)));for(let i=0;i<nPits;i++){pits.push([(random()-.5)*s.width*1.3,(random()-.5)*s.height*1.3,(0.5+random()*random()*R*.07)*(0.35+s.scale/80),.35+random()*.65])}
+function height(x,y,back=false){let seed=s.seed+(back?7919:0);let freq=2.6/R*(1.8-s.scale/95),val=fbm(x*freq,y*freq,seed)*.8+fbm(x*freq*3.7,y*freq*3.7,seed+331)*.2;let relief=s.depth/10,rough=s.intensity/100,erosion=s.weather/100;
+let z=relief*rough*(val*(.65+erosion*.32));let crack=0;if(s.cracks>0){let closest=1e9,strength=1;let w=s.crackWidth/10*.5+.1,cutoff=3*w;for(let seg of segments){if(x<Math.min(seg[0],seg[2])-cutoff||x>Math.max(seg[0],seg[2])+cutoff||y<Math.min(seg[1],seg[3])-cutoff||y>Math.max(seg[1],seg[3])+cutoff)continue;let d=distSegment(x,y,seg[0],seg[1],seg[2],seg[3]);if(d<closest){closest=d;strength=seg[4]}}crack=Math.exp(-Math.pow(closest/(w+.01),2))*strength*(s.cracks/100);z-=relief*.64*crack}
+let divot=0;if(s.pits>0){for(let pit of pits){let dx=x-pit[0],dy=y-pit[1],d2=dx*dx+dy*dy,rr=pit[2]*pit[2];if(d2<rr*5)divot+=Math.exp(-d2/(rr*.65))*pit[3]}z-=relief*.42*divot*(s.pits/100)}
+let crag=fbm(x*freq*5.3,y*freq*5.3,seed+995);z+=relief*erosion*rough*.16*Math.abs(crag);return clamp(z,-relief*.85,relief*.85)}
+return {height,crackCount:count,pitCount:nPits}}
+function fract(v){return v-Math.floor(v)}
+function smoothstep(a,b,x){let t=clamp((x-a)/Math.max(1e-8,b-a),0,1);return t*t*(3-2*t)}
+function rotatePt(x,y,deg){let t=deg*Math.PI/180;return [x*Math.cos(t)-y*Math.sin(t),x*Math.sin(t)+y*Math.cos(t)]}
+function buildBrick(s){let bw=s.brickW,bh=s.brickH,joint=s.mortar/10,recess=s.recess/10,rough=s.rough/100,chips=s.chips/100;
+ function height(x,y,back=false){let seed=s.seed+(back?7919:0),row=Math.floor(y/bh),cy=(row+.5)*bh;let offset=(Math.abs(row)%2)*(s.stagger/100)*bw, col=Math.floor((x-offset)/bw),cx=(col+.5)*bw+offset;
+ let edgeX=bw/2-Math.abs(x-cx),edgeY=bh/2-Math.abs(y-cy),edge=Math.min(edgeX,edgeY);
+ let wobble=chips*.65*fbm(x*.55,y*.55,seed+29),gap=joint*.5+wobble;
+ let mortarMask=1-smoothstep(gap-.12,gap+.36,edge);
+ let brickNoise=rough*(.42*fbm(x*.22,y*.25,seed+67)+.19*fbm(x*1.3,y*1.2,seed+81));
+ let brickID=hsh(col,row,seed+93);let bevel=chips*.4*(1-smoothstep(gap+.15,gap+1.1,edge));
+ return clamp(brickNoise+brickID*.22*rough-recess*mortarMask-bevel,-Math.max(.2,recess+1),1.7)}return {height}}
+function buildWood(s){let random=rng(s.seed),knots=[],count=Math.min(45,Math.round(s.width*s.height/2600*s.knots/35));for(let i=0;i<count;i++)knots.push([(random()-.5)*s.width*1.4,(random()-.5)*s.height*1.4,s.knotSize*(.45+random()*.6)]);
+ function height(x,y,back=false){let [u,v]=rotatePt(x,y,s.orientation),seed=s.seed+(back?7919:0),wav=s.grainWav/100;
+ let bend=wav*(2.4*fbm(u*.034,v*.035,seed+17)+.8*fbm(u*.12,v*.07,seed+29));let shift=0,knotLift=0;
+ for(let [kx,ky,r] of knots){let [ku,kv]=rotatePt(kx,ky,s.orientation),dx=u-ku,dy=v-kv,rr=Math.max(1,r);
+ if(Math.abs(dx)>rr*2.5||Math.abs(dy)>rr*3)continue;let q=(dx*dx/(rr*rr)+dy*dy/(rr*rr*2.5));let influence=Math.exp(-q*1.2);shift+=Math.sign(dx||1)*influence*rr*.75;let rings=Math.sin(Math.hypot(dx,dy*.6)*Math.PI*2/Math.max(.8,s.grainFreq/10));knotLift+=influence*(.22+.32*rings)}
+ let grain=(u+bend+shift)/Math.max(.35,s.grainFreq/10),lines=Math.pow(Math.abs(Math.sin(Math.PI*grain)),9);let rough=s.woodRough/100;
+ return clamp((.18-.75*lines)*s.grainDepth/10+.15*s.grainDepth/10*knotLift+rough*.16*fbm(u*.8,v*.22,seed+103),-s.grainDepth/10,1.7)}return {height}}
+function buildBark(s){function height(x,y,back=false){let [u,v]=rotatePt(x,y,s.orientation),seed=s.seed+(back?7919:0),gap=Math.max(1,s.ridgeGap),wander=s.ridgeWander/100;
+ let warp=wander*gap*(.34*fbm(u*.055,v*.045,seed+14)+.16*fbm(u*.15,v*.09,seed+18));let phase=(u+warp)/gap;let fissure=Math.pow(Math.max(0,Math.cos(2*Math.PI*phase)),12);let bands=Math.sin(2*Math.PI*phase+.5*fbm(u*.2,v*.1,seed+90));
+ let cross=s.barkBreak/100*Math.pow(Math.max(0,Math.cos(v*(.28+s.barkScale/250)+fbm(u*.17,v*.17,seed+12)*3)),20)*(.5+.5*noise(u*.2,v*.1,seed+67));
+ let rough=s.barkRough/100*(.3*fbm(u*.4,v*.25,seed+111)+.2*fbm(u*1.2,v*.75,seed+91));
+ return clamp(s.ridgeDepth/10*(.17*bands-.86*fissure-.48*cross)+rough,-s.ridgeDepth/10*1.45,1.9)}return {height}}
+function buildConcrete(s){let random=rng(s.seed),holes=[],gravel=[],count=Math.min(420,Math.round(s.width*s.height/3600*s.pores*.75)),gCount=Math.min(240,Math.round(s.width*s.height/3600*s.aggregate*.25));
+ for(let i=0;i<count;i++)holes.push([(random()-.5)*s.width*1.25,(random()-.5)*s.height*1.25,s.poreSize/20*(.5+random()*1.7)]);
+ for(let i=0;i<gCount;i++)gravel.push([(random()-.5)*s.width*1.25,(random()-.5)*s.height*1.25,s.aggSize*(.3+random()*.7)]);
+ function height(x,y,back=false){let seed=s.seed+(back?7919:0),relief=s.depth/10,finish=s.finish/100;
+ let z=relief*finish*(.37*fbm(x*.22,y*.22,seed+11)+.19*fbm(x*1.2,y*1.2,seed+33));
+ for(let [px,py,r] of holes){let dx=x-px,dy=y-py,rr=r*r;if(dx*dx+dy*dy<rr*5)z-=relief*.62*Math.exp(-(dx*dx+dy*dy)/(rr*.8))*(s.pores/100)}
+ for(let [px,py,r] of gravel){let dx=x-px,dy=y-py,rr=r*r;if(dx*dx+dy*dy<rr*4)z+=relief*.35*Math.exp(-(dx*dx+dy*dy)/(rr*.9))*(s.aggregate/100)}
+ z+=relief*(s.wear/100)*.13*fbm(x*.6,y*.6,seed+71);return clamp(z,-relief*1.2,relief*.8)}return {height}}
+// Each mathematical family computes a deterministic height in physical millimeters.
+// back gets a different slice/phase while preserving the same formula.
+function buildMath(s){
+ const TAU=Math.PI*2, A=s.amplitude/10, p=s.pattern, seed=s.seed;
+ function height(x,y,back=false){
+ let z=0,dx=x,dy=y,offset=(seed%997)/997, phase=offset*TAU+(back?Math.PI*.73:0);
+ if(p==='waves'){
+   [dx,dy]=rotatePt(x,y,s.angle);let t=TAU*dx/s.wavelength+s.phase*Math.PI/180+phase;
+   z=(Math.sin(t)+s.harmonic/100*.4*Math.sin(t*2+.4))*A*.57;
+ }else if(p==='interference'){
+   let d1=Math.hypot(x+s.separation/2,y),d2=Math.hypot(x-s.separation/2,y),t=TAU/s.wavelength;
+   z=A*.5*(Math.cos(t*d1+phase)+s.balance/100*Math.cos(t*d2+phase+s.phase*Math.PI/180));
+ }else if(p==='radial'){
+   let r=Math.hypot(x,y),theta=Math.atan2(y,x),a=theta*s.spokes+r*(s.twist/100)*.23+phase;
+   z=A*.55*(s.petals/100*Math.cos(a)*(.35+.65*Math.sin(TAU*r/s.rings)**2)+.45*Math.cos(TAU*r/s.rings));
+ }else if(p==='lattice'){
+   [dx,dy]=rotatePt(x,y,s.angle);let k=TAU/s.spacing,sharp=1+Math.round(s.sharpness/100*9);
+   const ridge=v=>Math.pow(.5+.5*Math.cos(k*v+phase),sharp);
+   z=A*(ridge(dx)+s.cross/100*ridge(dy)-.75)*.65;
+ }else if(p==='hex'){
+   // Exact nearest-center search in a staggered triangular lattice.
+   const r=s.cellSize, wx=Math.sqrt(3)*r, wy=1.5*r;
+   let j0=Math.round(y/wy), dmin=Infinity;
+   for(let j=j0-2;j<=j0+2;j++){
+     let i0=Math.round((x-(j&1)*wx/2)/wx);
+     for(let i=i0-2;i<=i0+2;i++){
+       let cx=(i+(j&1)*.5)*wx,cy=j*wy, vx=x-cx,vy=y-cy;
+       let edge=Math.max(Math.abs(vx)*.57735026919+Math.abs(vy),Math.abs(vx)*1.15470053838);
+       dmin=Math.min(dmin,Math.abs(edge-r));
+     }
+   }
+   const b=Math.max(.15,s.borderWidth/10),profile=.2+(1-s.edgeStyle/100)*1.6;
+   let ridge=1-smoothstep(b*.5,b*.5+profile,dmin);
+   z=A*.75*(s.invert? -ridge:ridge);
+ }else if(p==='gyroid'){
+   [dx,dy]=rotatePt(x,y,s.angle);let u=TAU*dx/s.period,v=TAU*dy/s.period,w=s.phase*Math.PI/180+phase;
+   let g=Math.sin(u)*Math.cos(v)+Math.sin(v)*Math.cos(w)+Math.sin(w)*Math.cos(u);
+   z=A*.38*((1-s.contrast/100)*g+(s.contrast/100)*Math.tanh(g*3.2));
+ }else if(p==='fractal'){
+   const scale=Math.max(3,s.feature),persist=s.persistence/100;let f=1/scale,amp=1,sum=0,total=0;
+   for(let i=0;i<s.octaves;i++){
+      let n=noise(x*f+offset*31,y*f+offset*17,seed+i*79+(back?7919:0));
+      let v=(1-s.ridge/100)*n+(s.ridge/100)*(1-2*Math.abs(n));
+      sum+=v*amp;total+=amp;amp*=persist;f*=2.03;
+   }
+   z=A*.75*sum/Math.max(.001,total);
+ }else if(p==='mandelbrot'){
+   // A zoomable slice near the central cardioid / antenna junction.
+   const span=3/s.zoom, u=(x/Math.max(1,s.width))*span, v=(y/Math.max(1,s.height))*span;
+   const cx=-.7+(s.offset-50)/100*.75+u,cy=.015+v+(back?.06:0);
+   let zx=0,zy=0,n=0;for(;n<s.iterations;n++){const xx=zx*zx-zy*zy+cx,yy=2*zx*zy+cy;zx=xx;zy=yy;if(zx*zx+zy*zy>256)break}
+   const mag=Math.hypot(zx,zy);
+   let smooth=n>=s.iterations?s.iterations:n+1-Math.log2(Math.max(.001,Math.log2(Math.max(2,mag))));
+   let c=n>=s.iterations?-1:Math.cos(TAU*s.bands*smooth/s.iterations+phase);
+   z=A*.56*c;
+ }else if(p==='voronoi'){
+   const size=s.cellSize,xi=Math.floor(x/size),yi=Math.floor(y/size),regular=s.regularity/100;
+   let first=Infinity,second=Infinity;
+   for(let j=yi-2;j<=yi+2;j++)for(let i=xi-2;i<=xi+2;i++){
+      let ox=(hsh(i,j,seed)*2-1)*(1-regular)*.48,oy=(hsh(i,j,seed+19)*2-1)*(1-regular)*.48;
+      let px=(i+.5+ox)*size,py=(j+.5+oy)*size;
+      let d=Math.hypot(px-x,py-y);if(d<first){second=first;first=d}else if(d<second)second=d;
+   }
+   const border=1-smoothstep(.05,s.borderWidth/10*2+.05,second-first);
+   z=A*.76*(s.invert?-border:border);
+ }
+ return clamp(z,-A*1.4,A*1.4);
+ }
+ return {height};
+}
+function buildLandscape(s){
+ const A=(s.relief||18)/10, seed=s.seed, type=s.landscapeType||'rolling';
+ const feat=Math.max(6,s.feature||24), rough=(s.roughness||0)/100;
+ const ridgeNoise=(x,y,sd)=>{const n=fbm(x,y,sd); return 1-Math.abs(n)};
+ function height(x,y,back=false){let z=0,[dx,dy]=rotatePt(x,y,s.flow||0),off=(back?7919:0);
+ if(type==='rolling'){
+   const broad1=fbm(dx/(feat*1.8),dy/(feat*1.8),seed+11+off);
+   const broad2=fbm((dx+120)/(feat*2.8),(dy-80)/(feat*2.8),seed+29+off);
+   const sweep=0.42*Math.sin((dx/(feat*1.55))*Math.PI)+0.18*Math.sin((dx/(feat*0.9))*Math.PI+0.7*Math.sin(dy/(feat*2.6)));
+   const hills=0.55*broad1+0.3*broad2+0.35*sweep;
+   const soft=Math.tanh(hills*1.15);
+   const detail=(0.08+rough*0.18)*fbm(dx/(feat*0.7),dy/(feat*0.7),seed+43+off);
+   z=A*(soft+detail);
+ }
+ else if(type==='mountains'){
+   const continent=0.55*fbm(x/(feat*2.4),y/(feat*2.4),seed+7+off)+0.45*fbm((x+90)/(feat*3.6),(y-130)/(feat*3.6),seed+19+off);
+   const mass=smoothstep(-0.28,0.55,continent);
+   const ridges1=ridgeNoise(x/(feat*0.75),y/(feat*0.75),seed+67+off);
+   const ridges2=ridgeNoise((x+35)/(feat*0.42),(y-22)/(feat*0.42),seed+101+off);
+   let ridge=Math.pow(clamp(0.78*ridges1+0.22*ridges2,0,1),2.2);
+   ridge*=1+0.35*fbm(x/(feat*1.2),y/(feat*1.2),seed+133+off);
+   const alpine=(0.04+rough*0.22)*ridgeNoise(x/(feat*0.2),y/(feat*0.2),seed+151+off);
+   const erosion=clamp((s.erosion||0)/100,0,1);
+   const sharpness=1-erosion*0.45;
+   z=A*(mass*(0.35 + ridge*1.95*sharpness) + alpine);
+   z*=0.92+0.25*mass;
+ }
+ else if(type==='moonscape'){ z=A*0.18*fbm(x*0.3,y*0.3,seed+13+off); const count=Math.max(6,Math.floor((s.craterDensity||50)*0.25)); for(let i=0;i<count;i++){let px=(hsh(i,1,seed)-.5)*s.width,py=(hsh(i,9,seed)-.5)*s.height,r=(s.craterSize||14)*(0.4+hsh(i,17,seed)); let d=Math.hypot(x-px,y-py)/Math.max(0.1,r); if(d<2.4){z-=A*0.65*Math.exp(-d*d*1.6); z+=A*(s.rim/100)*0.22*Math.exp(-Math.pow(d-1.05,2)*18)}} }
+ else if(type==='canyons'){ let river=Math.sin((dy/Math.max(5,feat))*1.2 + (s.meander/100)*Math.sin(dx*0.12)); z=A*(0.25*fbm(x*0.22,y*0.22,seed+31+off)); z-=A*1.2*Math.pow(Math.max(0,1-Math.abs(river)),2.4); z+=(rough)*A*0.35*fbm(x*0.95,y*0.95,seed+77+off); }
+ else if(type==='dunes'){ z=A*(0.75*Math.sin((dx/Math.max(3,feat))*Math.PI*2)+0.2*Math.sin((dx/Math.max(3,feat))*Math.PI*4)); z+=(rough)*A*0.2*Math.sin((dy/Math.max(2,feat*0.45))*Math.PI*4); }
+ return clamp(z,-A*1.8,A*2.8);
+ }
+ return {height};
+}
+function buildPlanet(s){
+ const A=(s.planetRelief||10)/10, seed=s.seed, style=s.planetStyle||'gas';
+ function swirl(x,y,scale){return fbm(x/scale,y/scale,seed+91)+0.5*fbm((x+37)/Math.max(2,scale*0.45),(y-11)/Math.max(2,scale*0.45),seed+123)}
+ function height(x,y,back=false){let z=0; const lat=(y/Math.max(1,s.height))*Math.PI, band=Math.sin((y/Math.max(4,s.bandScale))*Math.PI*2 + 0.35*Math.sin(x*0.08)), wisps=swirl(x,y,Math.max(3,s.bandScale))*0.5; if(style==='rocky'){ z=A*(0.35*fbm(x/Math.max(3,s.bandScale),y/Math.max(3,s.bandScale),seed+(back?7919:0)) + (s.turbulence/100)*0.55*fbm(x*0.6,y*0.6,seed+55+(back?7919:0))); let count=Math.max(4,Math.floor((s.storms||40)*0.18)); for(let i=0;i<count;i++){let px=(hsh(i,3,seed)-.5)*s.width,py=(hsh(i,7,seed)-.5)*s.height,r=Math.max(2,s.bandScale)*(0.35+hsh(i,19,seed)); let d=Math.hypot(x-px,y-py)/r; if(d<2.1){z-=A*0.4*Math.exp(-d*d*1.8); z+=A*0.18*Math.exp(-Math.pow(d-1.0,2)*14)}} }
+ else { const strength= style==='saturn'?0.55:(style==='jupiter'?0.95:0.75); z=A*(strength*band + (s.turbulence/100)*0.55*wisps); let stormCount=Math.max(2,Math.floor((s.storms||20)*0.08)); for(let i=0;i<stormCount;i++){let px=(hsh(i,23,seed)-.5)*s.width,py=(hsh(i,31,seed)-.35)*s.height*0.8,r=Math.max(2,s.bandScale)*(0.4+hsh(i,41,seed)*1.3); let d=Math.hypot((x-px)/(r*1.5),(y-py)/r); if(d<2.4) z+=A*(style==='jupiter'?0.6:0.35)*Math.exp(-d*d*1.5); } z*=Math.cos(lat*0.15); }
+ return clamp(z,-A*1.4,A*1.6);
+ }
+ return {height};
+}
+const GENERATORS={stone:{name:'Stone',generate:buildStone},brick:{name:'Brick',generate:buildBrick},wood:{name:'Wood',generate:buildWood},bark:{name:'Bark',generate:buildBark},concrete:{name:'Concrete',generate:buildConcrete},math:{name:'Mathematical',generate:buildMath},landscape:{name:'Landscape',generate:buildLandscape},planet:{name:'Planet',generate:buildPlanet}};
+function generatorFor(s){return GENERATORS[s.material]||GENERATORS.stone}
+function materialRelief(s){if(s.material==='math')return s.amplitude/10*.8; if(s.material==='landscape')return (s.relief||18)/10; if(s.material==='planet')return (s.planetRelief||10)/10; return s.material==='brick'?Math.max(.15,s.recess/10):s.material==='wood'?Math.max(.15,s.grainDepth/10):s.material==='bark'?Math.max(.15,s.ridgeDepth/10*1.5):s.depth/10}
+
+function outline(s){let a=[];let sides=s.shape==='triangle'?3:s.shape==='pentagon'?5:s.shape==='hexagon'?6:s.shape==='octagon'?8:s.shape==='custom'?s.sides:s.shape==='circle'?128:4;
+if(s.shape==='square'){a=[[-s.width/2,-s.height/2],[s.width/2,-s.height/2],[s.width/2,s.height/2],[-s.width/2,s.height/2]];return a}
+for(let i=0;i<sides;i++){let ang=2*Math.PI*i/sides+(sides===4?Math.PI/4:Math.PI/2);a.push([Math.cos(ang)*s.width*.5,Math.sin(ang)*s.height*.5])}return a}
+// A Cartesian heightfield clipped to a convex polygon. There is NO shared center
+// vertex and hence no radial singularity / polar fan shading artifact.
+function clipPolygon(poly,boundary){
+  let out=poly;
+  for(let e=0;e<boundary.length;e++){
+    let a=boundary[e],b=boundary[(e+1)%boundary.length];
+    let inside=p=>(b[0]-a[0])*(p[1]-a[1])-(b[1]-a[1])*(p[0]-a[0]);
+    let source=out;out=[];if(!source.length)break;
+    for(let j=0;j<source.length;j++){
+      let p=source[j],q=source[(j+1)%source.length],dp=inside(p),dq=inside(q);
+      if(dp>=-1e-8)out.push(p);
+      if((dp>1e-8&&dq< -1e-8)||(dp< -1e-8&&dq>1e-8)){
+        let t=dp/(dp-dq);out.push([p[0]+t*(q[0]-p[0]),p[1]+t*(q[1]-p[1])]);
+      }
+    }
+  }
+  return out;
+}
+// Universal matching-edge profile. Four sides use the same reversal-symmetric
+// 1D function; profile(0)===profile(1)===0 ensures consistent corners.
+// The fixed edge baseline is independent of material and interior pattern seed.
+function edgeProfile(t,s){
+  t=clamp(t,0,1);
+  const envelope=Math.sin(Math.PI*t)**2,seed=s.edgeSeed;
+  const a=2+(seed%4),b=5+(Math.floor(seed/7)%5);
+  const phase1=(seed%997)*2*Math.PI/997,phase2=(Math.floor(seed/997)%991)*2*Math.PI/991;
+  return (s.edgeVariation/100)*0.65*envelope*(0.68*Math.cos(phase1)*Math.cos(2*Math.PI*a*t)+0.32*Math.cos(phase2)*Math.cos(2*Math.PI*b*t));
+}
+function surfaceHeight(x,y,s,material){
+  const natural=s.base+Math.max(.07,materialRelief(s)*.92+material.height(x,y,false));
+  if(!s.edgeEnabled)return natural;
+  const half=s.width/2, dx=Math.max(0,half-Math.abs(x)),dy=Math.max(0,half-Math.abs(y));
+  const bx=1-smoothstep(0,s.edgeBlend,dx),by=1-smoothstep(0,s.edgeBlend,dy);
+  const tx=clamp((x+half)/s.width,0,1),ty=clamp((y+half)/s.width,0,1);
+  const sideX=edgeProfile(ty,s),sideY=edgeProfile(tx,s);
+  // Coons-like boundary blend: at x-boundaries the y-side term disappears,
+  // at y-boundaries the x-side term disappears; at corners both are zero.
+  const edgeZ=s.base+1+bx*sideX+by*sideY;
+  const interiorWeight=(1-bx)*(1-by);
+  return edgeZ+(natural-(s.base+1))*interiorWeight;
+}
+function edgeCompatibility(s){
+  if(!s.edgeEnabled)return '';
+  if(s.shape!=='square'||Math.abs(s.width-s.height)>1e-6)return 'Universal edge matching requires a square outline with equal width and height. Export is disabled until corrected.';
+  if(s.mode!=='flat')return 'Universal edge matching requires Flat Back mode.';
+  return 'Compatible square tile: '+s.width+' mm sides, '+s.base+' mm base, '+s.detail+' mm requested grid. All tiles must use the same dimensions, base, effective spacing, and saved edge profile.';
+}
+function generateMesh(s){
+  let material=generatorFor(s).generate(s),boundary=outline(s);
+  let desired=s.detail, maxTopCells=s.mode==='flat'?118000:60000;
+  // Flat back uses ~2 triangles per grid cell; all-around uses ~4.
+  // Keep mesh complexity within a conservative 300,000 triangle export budget.
+  let spacing=Math.max(desired,Math.sqrt(s.width*s.height/maxTopCells),s._overrideSpacing||0);
+  let nx=Math.ceil(s.width/spacing),ny=Math.ceil(s.height/spacing);
+  // Recompute exact x/y spacing, keeping subdivisions approximately square.
+  let dx=s.width/nx,dy=s.height/ny;
+  let coords=[],triangles=[],map=new Map();
+  const index=(x,y)=>{
+    let key=Math.round(x*1e6)+','+Math.round(y*1e6);
+    if(map.has(key))return map.get(key);
+    let i=coords.length/2;coords.push(x,y);map.set(key,i);return i;
+  };
+  const orientation=(a,b,c)=>{
+    let ax=coords[a*2],ay=coords[a*2+1],bx=coords[b*2],by=coords[b*2+1],cx=coords[c*2],cy=coords[c*2+1];
+    return (bx-ax)*(cy-ay)-(by-ay)*(cx-ax);
+  };
+  for(let j=0;j<ny;j++){
+    let y0=-s.height/2+j*dy,y1=y0+dy;
+    for(let i=0;i<nx;i++){
+      let x0=-s.width/2+i*dx,x1=x0+dx;
+      let cell=[[x0,y0],[x1,y0],[x1,y1],[x0,y1]];
+      // Fast-path for fully interior square cells.
+      let isInside=cell.every(p=>boundary.every((a,k)=>{
+        let b=boundary[(k+1)%boundary.length];return (b[0]-a[0])*(p[1]-a[1])-(b[1]-a[1])*(p[0]-a[0])>=-1e-8;
+      }));
+      let polygon=isInside?cell:clipPolygon(cell,boundary);
+      if(polygon.length<3)continue;
+      let ids=polygon.map(p=>index(p[0],p[1]));
+      for(let k=1;k<ids.length-1;k++)if(orientation(ids[0],ids[k],ids[k+1])>1e-10)triangles.push(ids[0],ids[k],ids[k+1]);
+    }
+  }
+  if(!triangles.length)throw Error('No triangles generated for this polygon');
+  // Flat-back optimization: top remains a finely sampled height field, but
+  // the zero-height underside needs only a perimeter fan, not a duplicated grid.
+  // Keep one extra central underside vertex for the fan in Flat Back mode.
+  let n=coords.length/2,positions=new Float32Array(n*6+(s.mode==='flat'?3:0)),surfaceOffset=materialRelief(s)*.92;
+  for(let i=0;i<n;i++){
+    let x=coords[i*2],y=coords[i*2+1];
+    positions[3*i]=x;positions[3*i+1]=y;
+    positions[3*i+2]=surfaceHeight(x,y,s,material);
+    let offset=(i+n)*3;
+    positions[offset]=x;positions[offset+1]=y;
+    positions[offset+2]=s.mode==='flat'?0:-Math.max(0,materialRelief(s)*.65+material.height(x,y,true));
+  }
+  let indices=[];
+  // All-around uses a second detailed face; Flat Back keeps only the textured top.
+  let boundaryEdges=new Map();
+  for(let k=0;k<triangles.length;k+=3){
+    let a=triangles[k],b=triangles[k+1],c=triangles[k+2];
+    indices.push(a,b,c);
+    if(s.mode!=='flat')indices.push(a+n,c+n,b+n);
+    for(let [u,v] of [[a,b],[b,c],[c,a]]){
+      let key=Math.min(u,v)+','+Math.max(u,v);
+      if(boundaryEdges.has(key))boundaryEdges.delete(key);else boundaryEdges.set(key,[u,v]);
+    }
+  }
+  if(s.mode==='flat'){
+    // Convex shapes permit a watertight triangle fan anchored at an interior
+    // point. Every top boundary edge has exactly one matching underside edge.
+    let bx=0,by=0,perimeter=new Set();
+    for(let [a,b] of boundaryEdges.values()){perimeter.add(a);perimeter.add(b)}
+    for(let v of perimeter){bx+=coords[2*v];by+=coords[2*v+1]}
+    bx/=perimeter.size;by/=perimeter.size;
+    positions[6*n]=bx;positions[6*n+1]=by;positions[6*n+2]=0;
+    for(let [a,b] of boundaryEdges.values())indices.push(2*n,b+n,a+n);
+  }
+  // Directed exterior edges have the mesh interior to their left.
+  for(let [a,b] of boundaryEdges.values())indices.push(a,a+n,b,b,a+n,b+n);
+  let normals=new Float32Array(positions.length),idx=new Uint32Array(indices);
+  let minZ=Infinity,maxZ=-Infinity;
+  for(let i=2;i<positions.length;i+=3){minZ=Math.min(minZ,positions[i]);maxZ=Math.max(maxZ,positions[i])}
+  for(let t=0;t<idx.length;t+=3){
+    let a=idx[t]*3,b=idx[t+1]*3,c=idx[t+2]*3;
+    let ux=positions[b]-positions[a],uy=positions[b+1]-positions[a+1],uz=positions[b+2]-positions[a+2];
+    let vx=positions[c]-positions[a],vy=positions[c+1]-positions[a+1],vz=positions[c+2]-positions[a+2];
+    let nx=uy*vz-uz*vy,ny=uz*vx-ux*vz,nz=ux*vy-uy*vx;
+    for(let v of [a,b,c]){normals[v]+=nx;normals[v+1]+=ny;normals[v+2]+=nz}
+  }
+  for(let j=0;j<normals.length;j+=3){let len=Math.hypot(normals[j],normals[j+1],normals[j+2])||1;normals[j]/=len;normals[j+1]/=len;normals[j+2]/=len}
+  // Real triangle count, not grid cell count, drives the export budget. Repeat at a
+  // slightly coarser spacing for complex clipped outlines if necessary.
+  const count=idx.length/3;
+  if(count>270000){
+    const nextSpacing=spacing*Math.max(1.035,Math.sqrt(count/258000)*1.015);
+    if(nextSpacing>Math.max(s.width,s.height))throw Error('Unable to produce a mesh within the export complexity budget');
+    return generateMesh({...s,_overrideSpacing:nextSpacing});
+  }
+  return {positions,indices:idx,normals,vertices:positions.length/3,triangles:count,minZ,maxZ,settings:s,effectiveSpacing:Math.max(dx,dy),limited:spacing>desired+1e-6,stlBytes:84+50*count};
+}
+
+// Unified textured-solid generator for all supported convex 3D shapes.
+// Builds one closed exterior surface using cube-sphere sampling without pole singularities.
+function sphereMeshNormals(positions,indices){
+  const normals=new Float32Array(positions.length);
+  for(let q=0;q<indices.length;q+=3){
+    const a=indices[q]*3,b=indices[q+1]*3,c=indices[q+2]*3;
+    const ux=positions[b]-positions[a],uy=positions[b+1]-positions[a+1],uz=positions[b+2]-positions[a+2];
+    const vx=positions[c]-positions[a],vy=positions[c+1]-positions[a+1],vz=positions[c+2]-positions[a+2];
+    const nx=uy*vz-uz*vy,ny=uz*vx-ux*vz,nz=ux*vy-uy*vx;
+    for(const i of [a,b,c]){normals[i]+=nx;normals[i+1]+=ny;normals[i+2]+=nz}
+  }
+  const groups=new Map();
+  for(let j=0;j<positions.length;j+=3){
+    const key=[positions[j],positions[j+1],positions[j+2]].map(v=>Math.round(v*100000)).join(',');
+    let g=groups.get(key); if(!g){g=[0,0,0,[]];groups.set(key,g)}
+    g[0]+=normals[j];g[1]+=normals[j+1];g[2]+=normals[j+2];g[3].push(j);
+  }
+  for(const g of groups.values()){let d=Math.hypot(g[0],g[1],g[2])||1,nx=g[0]/d,ny=g[1]/d,nz=g[2]/d;for(const j of g[3]){normals[j]=nx;normals[j+1]=ny;normals[j+2]=nz}}
+  return normals;
+}
+function generateWrappedSolid(s){
+  const material=generatorFor(s).generate(s),dims=deriveWrapDims(s),halfW=Math.max(12,dims.uvWidth/2),period=Math.max(24,dims.uvWidth),seamWidth=Math.max(2,materialRelief(s)*2);
+  const raw=(x,y)=>material.height(x,y,false);
+  function seamSample(x,y){const h=raw(x,y),dist=halfW-Math.abs(x); if(dist>=seamWidth)return h; const opposite=raw(x+(x>0?-period:period),y); const blend=.5*(1-smoothstep(0,seamWidth,dist)); return h*(1-blend)+opposite*blend;}
+  function displacementFromDir(dx,dy,dz){const theta=Math.acos(clamp(dz,-1,1)),phi=Math.atan2(dy,dx),x=(phi/Math.PI)*halfW,y=(.5-theta/Math.PI)*dims.uvHeight*2,h=seamSample(x,y),baseR=baseDistanceForShape(dx,dy,dz,s); return clamp(h,-Math.min(3,baseR*.18),Math.min(3,baseR*.18));}
+  function faceDir(face,u,v){switch(face){case 0:return [1,-v,-u];case 1:return [-1,-v,u];case 2:return [u,1,v];case 3:return [u,-1,-v];case 4:return [u,-v,1];default:return [-u,-v,-1];}}
+  function triOutward(a,b,c,arr){a*=3;b*=3;c*=3; const ux=arr[b]-arr[a],uy=arr[b+1]-arr[a+1],uz=arr[b+2]-arr[a+2],vx=arr[c]-arr[a],vy=arr[c+1]-arr[a+1],vz=arr[c+2]-arr[a+2],nx=uy*vz-uz*vy,ny=uz*vx-ux*vz,nz=ux*vy-uy*vx,cx=(arr[a]+arr[b]+arr[c])/3,cy=(arr[a+1]+arr[b+1]+arr[c+1])/3,cz=(arr[a+2]+arr[b+2]+arr[c+2])/3; return nx*cx+ny*cy+nz*cz>0;}
+  const desired=Math.max(16,Math.ceil(dims.max/s.detail)),maxSub=Math.max(12,Math.floor(Math.sqrt(280000/24))),sub=Math.min(maxSub,desired),vertsPerFace=(sub+1)*(sub+1),verts=6*vertsPerFace;
+  const coords=new Float32Array(verts*3); let vi=0;
+  for(let face=0;face<6;face++)for(let iy=0;iy<=sub;iy++){const v=-1+2*iy/sub; for(let ix=0;ix<=sub;ix++){const u=-1+2*ix/sub; let [dx,dy,dz]=faceDir(face,u,v),mag=Math.hypot(dx,dy,dz)||1; dx/=mag;dy/=mag;dz/=mag; const t=baseDistanceForShape(dx,dy,dz,s),relief=displacementFromDir(dx,dy,dz)*faceTextureFactor(dx,dy,dz,s,t),radius=Math.max(.3,t+relief); coords[3*vi]=radius*dx;coords[3*vi+1]=radius*dy;coords[3*vi+2]=radius*dz; vi++;}}
+  let faces=[];
+  for(let face=0;face<6;face++){const base=face*vertsPerFace; for(let iy=0;iy<sub;iy++)for(let ix=0;ix<sub;ix++){const a=base+iy*(sub+1)+ix,b=a+1,c=a+(sub+1),d=c+1; let t1=[a,c,b],t2=[b,c,d]; if(!triOutward(t1[0],t1[1],t1[2],coords))t1=[a,b,c]; if(!triOutward(t2[0],t2[1],t2[2],coords))t2=[b,d,c]; faces.push(t1[0],t1[1],t1[2],t2[0],t2[1],t2[2]);}}
+  // Export exactly one closed, textured exterior surface.
+  const indices=new Uint32Array(faces),positions=coords;
+  const shape={positions,indices,normals:sphereMeshNormals(positions,indices),vertices:verts,
+    triangles:indices.length/3,minZ:-dims.max/2-3,maxZ:dims.max/2+3,settings:s,
+    effectiveSpacing:dims.max/sub,limited:sub<desired,stlBytes:84+50*indices.length/3};
+  return shape;
+}
+
+// Imported STL pipeline: STL decoding, topology checks, surface segmentation,
+// shared-edge subdivision, continuous 3D texturing, and single-solid export.
+function parseImportedSTL(buffer,name){
+ const dv=new DataView(buffer),bytes=new Uint8Array(buffer);let raw=[];
+ const binary=buffer.byteLength>=84 && 84+dv.getUint32(80,true)*50===buffer.byteLength;
+ if(binary){
+   const count=dv.getUint32(80,true);if(count>500000)throw Error('This STL has too many triangles for interactive editing (500,000 maximum).');
+   raw=new Float32Array(count*9);
+   for(let t=0;t<count;t++)for(let k=0;k<9;k++)raw[t*9+k]=dv.getFloat32(84+t*50+12+k*4,true);
+ }else{
+   const src=new TextDecoder('utf-8').decode(bytes);
+   if(!/^\s*solid\b/i.test(src))throw Error('Not a recognized binary or ASCII STL file.');
+   const vals=[];const re=/\bvertex\s+([-+\d.eE]+)\s+([-+\d.eE]+)\s+([-+\d.eE]+)/g;let m;
+   while((m=re.exec(src))){vals.push(Number(m[1]),Number(m[2]),Number(m[3]));if(vals.length>4500000)throw Error('ASCII STL exceeds import safety limit.')}
+   if(vals.length<9||vals.length%9)throw Error('ASCII STL contains incomplete triangle vertices.');
+   raw=new Float32Array(vals);
+ }
+ if(raw.length<9)throw Error('The STL contains no triangles.');
+ let mi=[Infinity,Infinity,Infinity],ma=[-Infinity,-Infinity,-Infinity];
+ for(let i=0;i<raw.length;i+=3)for(let k=0;k<3;k++){const v=raw[i+k];if(!Number.isFinite(v))throw Error('STL contains invalid vertex coordinates.');mi[k]=Math.min(mi[k],v);ma[k]=Math.max(ma[k],v)}
+ const center=mi.map((v,k)=>(v+ma[k])/2),size=mi.map((v,k)=>ma[k]-v),diag=Math.hypot(...size);
+ if(diag<1e-6)throw Error('STL has no measurable 3D extent.');
+ // Match duplicate STL facet vertices without altering the actual stored coordinates.
+ const tol=Math.max(1e-6,diag*1e-7),lookup=new Map(),points=[],faces=[];
+ function weld(x,y,z){const key=[x,y,z].map(v=>Math.round(v/tol)).join(':');let j=lookup.get(key);
+   if(j===undefined){j=points.length/3;lookup.set(key,j);points.push(x,y,z)}return j}
+ let skipped=0;
+ for(let t=0;t<raw.length/9;t++){
+   const k=t*9,ids=[];for(let q=0;q<3;q++)ids.push(weld(raw[k+q*3]-center[0],raw[k+q*3+1]-center[1],raw[k+q*3+2]-center[2]));
+   if(new Set(ids).size!==3){skipped++;continue}faces.push(...ids);
+ }
+ if(faces.length<12)throw Error('The STL does not contain a closed 3D solid.');
+ // Consistent orientation from facet neighborhood; this also repairs mixed winding.
+ const edgeMap=new Map();for(let t=0;t<faces.length/3;t++)for(let k=0;k<3;k++){
+   const a=faces[3*t+k],b=faces[3*t+(k+1)%3],key=a<b?a+','+b:b+','+a;
+   let entries=edgeMap.get(key);if(!entries){entries=[];edgeMap.set(key,entries)}entries.push([t,a,b]);
+ }
+ let badEdges=0;for(const e of edgeMap.values())if(e.length!==2)badEdges++;
+ const adj=Array.from({length:faces.length/3},()=>[]);
+ for(const e of edgeMap.values())if(e.length===2){const a=e[0],b=e[1];adj[a[0]].push([b[0],a[1]===b[1]?1:0]);adj[b[0]].push([a[0],a[1]===b[1]?1:0])}
+ const flips=new Int8Array(adj.length).fill(-1);let componentCount=0;
+ for(let i=0;i<adj.length;i++){if(flips[i]!==-1)continue;flips[i]=0;componentCount++;const queue=[i];for(let q=0;q<queue.length;q++){const t=queue[q];for(const [v,d] of adj[t])if(flips[v]===-1){flips[v]=flips[t]^d;queue.push(v)}}}
+ for(let t=0;t<flips.length;t++)if(flips[t]){const at=3*t+1;[faces[at],faces[at+1]]=[faces[at+1],faces[at]]}
+ // Signed volume of the centered mesh; outward triangle winding is important for STL.
+ let volume=0;for(let t=0;t<faces.length;t+=3){const a=faces[t]*3,b=faces[t+1]*3,c=faces[t+2]*3;
+   const bx=points[b],by=points[b+1],bz=points[b+2],cx=points[c],cy=points[c+1],cz=points[c+2];
+   volume+=(points[a]*(by*cz-bz*cy)+points[a+1]*(bz*cx-bx*cz)+points[a+2]*(bx*cy-by*cx))/6}
+ if(volume<0)for(let t=0;t<faces.length;t+=3)[faces[t+1],faces[t+2]]=[faces[t+2],faces[t+1]];
+ const model={name:name.replace(/\.stl$/i,''),points:new Float32Array(points),faces:new Uint32Array(faces),size,center,edgeErrors:badEdges,skipped,componentCount,area:0,adjacency:adj,triangleRegions:null,regionNames:[],bounds:{min:mi,max:ma}};
+ analyzeImportedRegions(model,Number($('splitAngle')?.value||50));return model;
+}
+function importedFaceData(model){
+ const p=model.points,ix=model.faces,tri=ix.length/3,normal=new Float32Array(tri*3),areas=new Float32Array(tri);
+ for(let t=0;t<tri;t++){const a=ix[t*3]*3,b=ix[t*3+1]*3,c=ix[t*3+2]*3;
+   const ux=p[b]-p[a],uy=p[b+1]-p[a+1],uz=p[b+2]-p[a+2],vx=p[c]-p[a],vy=p[c+1]-p[a+1],vz=p[c+2]-p[a+2];
+   const nx=uy*vz-uz*vy,ny=uz*vx-ux*vz,nz=ux*vy-uy*vx,len=Math.hypot(nx,ny,nz)||1;
+   normal[3*t]=nx/len;normal[3*t+1]=ny/len;normal[3*t+2]=nz/len;areas[t]=len/2;
+ }return {normal,areas};
+}
+function analyzeImportedRegions(model,threshold=50){
+ const {normal,areas}=importedFaceData(model),n=model.faces.length/3,group=new Int32Array(n).fill(-1),cos=Math.cos(threshold*Math.PI/180),regions=[];
+ for(let i=0;i<n;i++){if(group[i]>=0)continue;const id=regions.length,queue=[i];group[i]=id;
+  let acc=[0,0,0],area=0,ref=[normal[i*3],normal[i*3+1],normal[i*3+2]],minDot=1;
+  for(let q=0;q<queue.length;q++){
+   const t=queue[q],a=areas[t];area+=a;for(let k=0;k<3;k++)acc[k]+=a*normal[t*3+k];
+   minDot=Math.min(minDot,normal[t*3]*ref[0]+normal[t*3+1]*ref[1]+normal[t*3+2]*ref[2]);
+   for(const [v] of model.adjacency[t])if(group[v]===-1){let dot=0;for(let k=0;k<3;k++)dot+=normal[t*3+k]*normal[v*3+k];if(dot>=cos){group[v]=id;queue.push(v)}}
+  }
+  const len=Math.hypot(...acc)||1,mean=acc.map(v=>v/len);
+  regions.push({area,mean,flat:minDot>.972,triangles:queue.length});
+ }
+ // Guard against tiny tessellation islands being falsely shown as individual faces.
+ // If a fully smooth model produces many fragmented patches, group them by connectivity.
+ const sorted=regions.map((r,i)=>({r,i})).sort((a,b)=>b.r.area-a.r.area),names=Array(regions.length);
+ for(let rank=0;rank<sorted.length;rank++){
+   const {r,i}=sorted[rank],m=r.mean,axis=Math.max(...m.map(Math.abs)),label=axis===Math.abs(m[2])?(m[2]>0?'Top':'Bottom'):axis===Math.abs(m[0])?(m[0]>0?'Right':'Left'):(m[1]>0?'Back':'Front');
+   names[i]=regions.length===1?'Continuous surface':r.flat?`${label} flat face`:`Curved surface ${rank+1}`;
+ }
+ model.triangleRegions=group;model.regionNames=names;model.regions=regions;model.area=areas.reduce((a,b)=>a+b,0);
+}
+function updateImportedInfo(){const el=$('importInfo');if(!el)return;if(importError){el.textContent='⚠ '+importError;return}
+ if(!importedModel){el.textContent='Choose a binary or ASCII STL. Dimensions are assumed to be millimeters.';return}
+ const m=importedModel,sz=m.size.map(v=>v.toFixed(1)).join(' × ');
+ el.textContent=`${m.name} · ${sz} mm · ${m.faces.length/3} source triangles · ${m.regionNames.length} continuous surface${m.regionNames.length===1?'':'s'}. ${m.regionNames.length===1?'Texture covers the entire surface; face selection is not needed.':'Select a detected surface below or click it in the preview.'}${m.edgeErrors?' ⚠ '+m.edgeErrors+' non-manifold/boundary edges: export unavailable.':''}${m.skipped?' '+m.skipped+' collapsed triangles omitted.':''}`;
+}
+async function loadImportedSTL(file){
+ importError='';setExportState(false,'Reading STL…');$('status').textContent='Loading '+file.name+'…';
+ try{if(file.size>65*1024*1024)throw Error('Import exceeds the 65 MB memory safety limit.');const bytes=await file.arrayBuffer();importedModel=parseImportedSTL(bytes,file.name);smoothFaces.clear();importedGeneration=null;refreshFacePanel();updateImportedInfo();resetCamera();regenerate();}
+ catch(e){importedModel=null;importedGeneration=null;importError=e.message;updateImportedInfo();regenerate()}
+}
+function subdivideImported(model,s){
+ let positions=Array.from(model.points),indices=Array.from(model.faces),regions=Array.from(model.triangleRegions);
+ const maxTri=75000,limit=7,desired=s.detail;
+ let rounds=0,maxEdge=Infinity;
+ function edgeDist(a,b){const x=3*a,y=3*b;return Math.hypot(positions[x]-positions[y],positions[x+1]-positions[y+1],positions[x+2]-positions[y+2])}
+ for(;rounds<limit;rounds++){
+   maxEdge=0;for(let i=0;i<indices.length;i+=3){const a=indices[i],b=indices[i+1],c=indices[i+2];maxEdge=Math.max(maxEdge,edgeDist(a,b),edgeDist(b,c),edgeDist(c,a))}
+   if(maxEdge<=desired*1.5 || indices.length/3*4>maxTri)break;
+   const mids=new Map(),newIx=[],newRegions=[];
+   function midpoint(a,b){const key=a<b?a+','+b:b+','+a;let m=mids.get(key);if(m!==undefined)return m;
+     const ai=a*3,bi=b*3;m=positions.length/3;for(let k=0;k<3;k++)positions.push((positions[ai+k]+positions[bi+k])/2);mids.set(key,m);return m}
+   for(let i=0;i<indices.length;i+=3){const a=indices[i],b=indices[i+1],c=indices[i+2],ab=midpoint(a,b),bc=midpoint(b,c),ca=midpoint(c,a),r=regions[i/3];
+     newIx.push(a,ab,ca,ab,b,bc,ca,bc,c,ab,bc,ca);newRegions.push(r,r,r,r)}
+   indices=newIx;regions=newRegions;
+ }
+ if(maxEdge===Infinity)maxEdge=desired;
+ return {positions:new Float32Array(positions),indices:new Uint32Array(indices),regions:new Int32Array(regions),maxEdge,limited:maxEdge>desired*1.5};
+}
+// Recondition the imported triangle mesh before displacing it.  Preserve the
+// existing surface topology (including through-holes) and only move vertices
+// tangentially on smoothly connected regions.  Never relax a hard crease.
+function refineImportedSurface(sampled,s){
+ const p=new Float32Array(sampled.positions),ix=sampled.indices,regions=sampled.regions,n=p.length/3,nt=ix.length/3;
+ const {normal}=importedFaceData({points:p,faces:ix});
+ const edges=new Map(),neighbors=Array.from({length:n},()=>[]),crease=new Uint8Array(n),areaNormal=new Float32Array(p.length);
+ for(let ti=0;ti<nt;ti++){
+  const a=ix[ti*3],b=ix[ti*3+1],c=ix[ti*3+2];
+  const j=a*3,k=b*3,l=c*3,ux=p[k]-p[j],uy=p[k+1]-p[j+1],uz=p[k+2]-p[j+2],vx=p[l]-p[j],vy=p[l+1]-p[j+1],vz=p[l+2]-p[j+2];
+  const nx=uy*vz-uz*vy,ny=uz*vx-ux*vz,nz=ux*vy-uy*vx;
+  for(const v of [a,b,c]){const o=v*3;areaNormal[o]+=nx;areaNormal[o+1]+=ny;areaNormal[o+2]+=nz}
+  for(const [v,w] of [[a,b],[b,c],[c,a]]){
+   const key=v<w?v+','+w:w+','+v;let info=edges.get(key);
+   if(info===undefined)edges.set(key,[v,w,ti,-1]);else info[3]=ti;
+  }
+ }
+ const threshold=Math.cos(Math.PI/180*48);
+ const selected=new Set(s.smoothFaces||[]);
+ for(const [a,b,t1,t2] of edges.values()){
+  const ai=a*3,bi=b*3,dx=p[ai]-p[bi],dy=p[ai+1]-p[bi+1],dz=p[ai+2]-p[bi+2],len=Math.hypot(dx,dy,dz);
+  if(len<1e-9)continue;
+  neighbors[a].push([b,len]);neighbors[b].push([a,len]);
+  const differentRegions=t2>=0&&regions[t1]!==regions[t2],differentSmooth=t2>=0&&selected.has('region'+regions[t1])!==selected.has('region'+regions[t2]);
+  const dot=t2<0?-1:normal[3*t1]*normal[3*t2]+normal[3*t1+1]*normal[3*t2+1]+normal[3*t1+2]*normal[3*t2+2];
+  if(t2<0||dot<threshold||differentSmooth||(differentRegions&&dot<Math.cos(Math.PI/180*24)))crease[a]=crease[b]=1;
+ }
+ // Small tangential Laplacian relaxation removes long skinny spikes without
+ // rounding protected rims.  The displacement is tangent to the source face.
+ const working=new Float32Array(p),iterations=2;
+ for(let iter=0;iter<iterations;iter++){
+  const next=new Float32Array(working);
+  for(let v=0;v<n;v++){
+   if(crease[v]||neighbors[v].length<3)continue;
+   const a=v*3,mag=Math.hypot(areaNormal[a],areaNormal[a+1],areaNormal[a+2]);if(mag<1e-8)continue;
+   const nx=areaNormal[a]/mag,ny=areaNormal[a+1]/mag,nz=areaNormal[a+2]/mag;
+   let sx=0,sy=0,sz=0,sw=0;
+   for(const [w,len] of neighbors[v]){const inv=1/Math.max(len,.03);sx+=working[w*3]*inv;sy+=working[w*3+1]*inv;sz+=working[w*3+2]*inv;sw+=inv}
+   if(sw===0)continue;
+   let dx=sx/sw-working[a],dy=sy/sw-working[a+1],dz=sz/sw-working[a+2];
+   const normalMotion=dx*nx+dy*ny+dz*nz;dx-=normalMotion*nx;dy-=normalMotion*ny;dz-=normalMotion*nz;
+   const alpha=.23;next[a]+=alpha*dx;next[a+1]+=alpha*dy;next[a+2]+=alpha*dz;
+  }
+  working.set(next);
+ }
+ return {positions:working,indices:ix,regions,neighbors,crease,limited:sampled.limited,maxEdge:sampled.maxEdge};
+}
+function generateImportedSolid(s){
+ const model=importedModel;if(!model)throw Error('No STL file loaded.');
+ if(model.faces.length/3>300000)throw Error('Imported file already exceeds 300,000 triangles; simplify the original STL before texturing.');
+ const allSmooth=model.regionNames.length>1&&model.regionNames.every((_,i)=>smoothFaces.has('region'+i));
+ const sampled=allSmooth?{positions:model.points,indices:model.faces,regions:model.triangleRegions,maxEdge:s.detail,limited:false}:subdivideImported(model,s);
+ // Original geometry remains available unchanged if refinement is disabled.
+ const clean=s.cleanupImported&&!allSmooth;
+ const geom=clean?refineImportedSurface(sampled,s):sampled;
+ const base=geom.positions,ix=geom.indices,regions=geom.regions,n=base.length/3,nt=ix.length/3;
+ const mat=generatorFor(s).generate(s),scale=Math.min(2.5,Math.max(0.2,materialRelief(s)*1.4));
+ const selected=new Set(s.smoothFaces||[]);
+ const rawHeight=new Float32Array(n),weightNormals=new Float32Array(base.length),vertexRegions=Array.from({length:n},()=>new Set());
+ let neighbors=geom.neighbors,crease=geom.crease;
+ if(!neighbors){neighbors=Array.from({length:n},()=>[]);crease=new Uint8Array(n)}
+ const known=new Set();
+ for(let t=0;t<nt;t++){
+  const a=ix[t*3],b=ix[t*3+1],c=ix[t*3+2],j=a*3,k=b*3,l=c*3;
+  const ux=base[k]-base[j],uy=base[k+1]-base[j+1],uz=base[k+2]-base[j+2],vx=base[l]-base[j],vy=base[l+1]-base[j+1],vz=base[l+2]-base[j+2];
+  const nx=uy*vz-uz*vy,ny=uz*vx-ux*vz,nz=ux*vy-uy*vx;
+  for(const v of [a,b,c]){vertexRegions[v].add(regions[t]);weightNormals[v*3]+=nx;weightNormals[v*3+1]+=ny;weightNormals[v*3+2]+=nz}
+  if(!clean)for(const [v,w] of [[a,b],[b,c],[c,a]]){const key=v<w?v+','+w:w+','+v;if(known.has(key))continue;known.add(key);const o=v*3,q=w*3,len=Math.hypot(base[o]-base[q],base[o+1]-base[q+1],base[o+2]-base[q+2]);neighbors[v].push([w,len]);neighbors[w].push([v,len])}
+ }
+ const isFixed=new Uint8Array(n);
+ for(let v=0;v<n;v++){
+  if(allSmooth||[...vertexRegions[v]].some(k=>selected.has('region'+k))){isFixed[v]=1;continue}
+  if(clean&&crease[v]){isFixed[v]=1;continue}
+  const a=v*3,x=base[a],y=base[a+1],z=base[a+2],mag=Math.hypot(weightNormals[a],weightNormals[a+1],weightNormals[a+2]);if(mag<1e-9)continue;
+  const nx=weightNormals[a]/mag,ny=weightNormals[a+1]/mag,nz=weightNormals[a+2]/mag;
+  let wx=Math.pow(Math.abs(nx),3),wy=Math.pow(Math.abs(ny),3),wz=Math.pow(Math.abs(nz),3),sum=wx+wy+wz||1;
+  const h=(wx*mat.height(y,z,false)+wy*mat.height(x,z,false)+wz*mat.height(x,y,false))/sum;
+  rawHeight[v]=clamp(h,-scale,scale);
+ }
+ if(clean){
+  // Geodesic-style relaxation away from sharp rims: spread zero displacement
+  // outward along mesh edges, then fade gradually into unrestricted relief.
+  let distance=new Float32Array(n).fill(Infinity),front=[];
+  for(let v=0;v<n;v++)if(isFixed[v]){distance[v]=0;front.push(v)}
+  // Bounded relaxation is sufficient because the influence is only a few mm.
+  const range=Math.max(.5,s.cleanupBlend||2);
+  for(let step=0;step<20&&front.length;step++){
+   const next=[];for(const v of front)for(const [w,len] of neighbors[v])if(distance[v]+len<distance[w]-1e-6&&distance[v]+len<=range){distance[w]=distance[v]+len;next.push(w)}
+   front=next;
+  }
+  for(let v=0;v<n;v++){
+   const u=Math.min(1,distance[v]/range),fade=u*u*(3-2*u);rawHeight[v]*=fade;
+  }
+  // Low-pass the sampled relief *before* applying it to the vertices.  This
+  // mitigates high-frequency aliases on uneven or high-aspect-ratio triangles.
+  for(let pass=0;pass<2;pass++){
+   const next=new Float32Array(rawHeight);
+   for(let v=0;v<n;v++){
+    if(isFixed[v]||!neighbors[v].length)continue;
+    let weighted=0,total=0;
+    for(const [w,len] of neighbors[v]){const inv=1/Math.max(.08,len);weighted+=rawHeight[w]*inv;total+=inv}
+    if(total)next[v]=rawHeight[v]*.77+(weighted/total)*.23;
+   }
+   rawHeight.set(next);
+  }
+  // Enforce a physically sensible per-edge relief slope.  The old pipeline
+  // could move neighboring vertices several millimeters in opposite directions,
+  // producing vertical walls and inverted needle-like triangles.
+  for(let pass=0;pass<5;pass++){
+   const next=new Float32Array(rawHeight);
+   for(let v=0;v<n;v++){
+    if(isFixed[v])continue;
+    let lo=-scale,hi=scale;
+    for(const [w,len] of neighbors[v]){const delta=Math.max(.025,len*.78);lo=Math.max(lo,rawHeight[w]-delta);hi=Math.min(hi,rawHeight[w]+delta)}
+    if(lo<=hi)next[v]=clamp(rawHeight[v],lo,hi);
+    else next[v]=(lo+hi)/2;
+   }
+   rawHeight.set(next);
+  }
+ }
+ const p=new Float32Array(base);
+ for(let v=0;v<n;v++){
+  const a=v*3,mag=Math.hypot(weightNormals[a],weightNormals[a+1],weightNormals[a+2]);if(mag<1e-9)continue;
+  const delta=rawHeight[v]/mag;p[a]+=weightNormals[a]*delta;p[a+1]+=weightNormals[a+1]*delta;p[a+2]+=weightNormals[a+2]*delta;
+ }
+ // Detect degenerate or flipped triangles before exporting.  A damaged STL
+ // should never be declared ready solely on the basis of triangle counts.
+ let bad=0,flipped=0;
+ for(let t=0;t<nt;t++){
+  const a=3*ix[t*3],b=3*ix[t*3+1],c=3*ix[t*3+2];
+  const ux=p[b]-p[a],uy=p[b+1]-p[a+1],uz=p[b+2]-p[a+2],vx=p[c]-p[a],vy=p[c+1]-p[a+1],vz=p[c+2]-p[a+2];
+  const nx=uy*vz-uz*vy,ny=uz*vx-ux*vz,nz=ux*vy-uy*vx;
+  const ox=base[b]-base[a],oy=base[b+1]-base[a+1],oz=base[b+2]-base[a+2],px=base[c]-base[a],py=base[c+1]-base[a+1],pz=base[c+2]-base[a+2];
+  const mx=oy*pz-oz*py,my=oz*px-ox*pz,mz=ox*py-oy*px,original=Math.hypot(mx,my,mz),now=Math.hypot(nx,ny,nz);
+  if(!Number.isFinite(now)||now<1e-11)bad++;else if(original>1e-11&&(nx*mx+ny*my+nz*mz)<-.01*original*now)flipped++;
+ }
+ const tri=nt;let meshError=model.edgeErrors?`Imported STL has ${model.edgeErrors} open or non-manifold edges. Repair the source file before exporting.`:null;
+ if(model.componentCount>1)meshError=meshError||'Imported STL has disconnected shells. Export is disabled until the model is a single connected solid.';
+ if(bad||flipped)meshError=meshError||`Mesh cleanup detected ${bad} collapsed and ${flipped} inverted triangles. Try a coarser grid, lower texture depth, or disable refinement.`;
+ const mesh={positions:p,indices:ix,normals:sphereMeshNormals(p,ix),vertices:n,triangles:tri,minZ:-s.wrapMax/2,maxZ:s.wrapMax/2,settings:s,effectiveSpacing:sampled.maxEdge,limited:sampled.limited,stlBytes:84+50*tri,meshError};
+ importedGeneration={triangleRegions:regions};return mesh;
+}
+
+// Small standalone math helpers shared by WebGPU + WebGL2 implementations.
+function perspective(fov,aspect,near,far){let f=1/Math.tan(fov/2),o=new Float32Array(16);o[0]=f/aspect;o[5]=f;o[10]=(far+near)/(near-far);o[11]=-1;o[14]=2*far*near/(near-far);return o}
+function lookAt(eye,target,up){let z=norm(sub(eye,target)),x=norm(cross(up,z)),y=cross(z,x),o=new Float32Array(16);o[0]=x[0];o[1]=y[0];o[2]=z[0];o[4]=x[1];o[5]=y[1];o[6]=z[1];o[8]=x[2];o[9]=y[2];o[10]=z[2];o[12]=-dot(x,eye);o[13]=-dot(y,eye);o[14]=-dot(z,eye);o[15]=1;return o}
+function mul(a,b){let o=new Float32Array(16);for(let c=0;c<4;c++)for(let r=0;r<4;r++)for(let k=0;k<4;k++)o[c*4+r]+=a[k*4+r]*b[c*4+k];return o}
+function sub(a,b){return a.map((v,i)=>v-b[i])}function dot(a,b){return a.reduce((v,x,i)=>v+x*b[i],0)}function cross(a,b){return [a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]]}function norm(a){let d=Math.hypot(...a)||1;return a.map(v=>v/d)}
+let evenLighting=true;
+let previewRGB=[128/255,150/255,164/255];
+function setPreviewColor(hex){
+ if(!/^#[0-9a-fA-F]{6}$/.test(hex))return;
+ previewRGB=[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)/255);
+ $('previewColor').value=hex;
+ backend?.draw();
+}
+function setupPreviewColors(){
+ $('previewPreset').addEventListener('change',e=>{if(e.target.value!=='custom')setPreviewColor(e.target.value)});
+ $('previewColor').addEventListener('input',e=>{const color=e.target.value;setPreviewColor(color);$('previewPreset').value=[...$('previewPreset').options].some(x=>x.value===color)?color:'custom'});
+}
+function setLightingMode(even){evenLighting=even;const el=$('lightingToggle');el.textContent=even?'☀ Even light':'◐ Directional light';el.classList.toggle('active',even);el.setAttribute('aria-pressed',String(even));backend?.draw()}
+let cam={yaw:.63,pitch:.79,distance:160,target:[0,0,1]};function cameraMatrix(){let w=Math.max(1,$('canvas').clientWidth),h=Math.max(1,$('canvas').clientHeight),d=cam.distance,eye=[Math.cos(cam.yaw)*Math.cos(cam.pitch)*d+cam.target[0],Math.sin(cam.yaw)*Math.cos(cam.pitch)*d+cam.target[1],Math.sin(cam.pitch)*d+cam.target[2]];return mul(perspective(Math.PI/4,w/h,.1,3000),lookAt(eye,cam.target,[0,0,1]))}
+let cameraTool='orbit';
+function setCameraTool(tool){cameraTool=tool;for(const [id,value] of [['orbitTool','orbit'],['panTool','pan'],['zoomTool','zoom']]){$(id).classList.toggle('active',tool===value);$(id).setAttribute('aria-pressed',String(tool===value))}}
+function zoomCamera(factor){const s=settings(),size=objectMaxSize(s),min=size*.18;cam.distance=clamp(cam.distance*factor,min,Math.max(2500,size*20));backend?.draw()}
+function setupCamera(){const can=$('canvas');let drag=false,x=0,y=0,button=0,startX=0,startY=0,moved=false;
+can.addEventListener('contextmenu',e=>e.preventDefault());
+can.addEventListener('pointerdown',e=>{if(e.button!==0&&e.button!==1&&e.button!==2)return;drag=true;x=e.clientX;y=e.clientY;startX=x;startY=y;moved=false;button=e.button;can.setPointerCapture(e.pointerId)});
+can.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-x,dy=e.clientY-y;x=e.clientX;y=e.clientY;if(Math.hypot(x-startX,y-startY)>5)moved=true;if(facePickActive&&!moved&&button===0)return;let tool=cameraTool;
+if(button===2||button===1||e.shiftKey)tool='pan';
+else if((e.ctrlKey||e.metaKey)&&button===0)tool='zoom';
+else if(button===0)tool='orbit';
+if(tool==='orbit'){cam.yaw-=dx*.009;cam.pitch=clamp(cam.pitch+dy*.009,-1.4,1.47)}
+else if(tool==='zoom'){zoomCamera(Math.exp(dy*.012));return}
+else {const scale=2*cam.distance*Math.tan(Math.PI/8)/Math.max(1,can.clientHeight);const right=[-Math.sin(cam.yaw),Math.cos(cam.yaw),0];const up=[-Math.cos(cam.yaw)*Math.sin(cam.pitch),-Math.sin(cam.yaw)*Math.sin(cam.pitch),Math.cos(cam.pitch)];for(let i=0;i<3;i++)cam.target[i]+=(-dx*right[i]+dy*up[i])*scale}
+backend?.draw()});
+const stop=e=>{if(drag&&facePickActive&&surfaceMode==='sphere'&&button===0&&!moved&&e?.type==='pointerup'){const id=pickVisibleFace(e.clientX,e.clientY);if(id)toggleSmoothFace(id)}drag=false;try{if(e&&e.pointerId!=null)can.releasePointerCapture(e.pointerId)}catch(_){}};can.addEventListener('pointerup',stop);can.addEventListener('pointercancel',stop);can.addEventListener('lostpointercapture',()=>{drag=false});
+can.addEventListener('wheel',e=>{e.preventDefault();zoomCamera(Math.exp(e.deltaY*.0015))},{passive:false});can.addEventListener('dblclick',resetCamera);
+$('orbitTool').addEventListener('click',()=>setCameraTool('orbit'));$('panTool').addEventListener('click',()=>setCameraTool('pan'));$('zoomTool').addEventListener('click',()=>setCameraTool('zoom'));
+$('zoomIn').addEventListener('click',()=>zoomCamera(.8));$('zoomOut').addEventListener('click',()=>zoomCamera(1.25));$('lightingToggle').addEventListener('click',()=>setLightingMode(!evenLighting));$('resetView').addEventListener('click',resetCamera)}
+function resetCamera(){const s=settings(),size=objectMaxSize(s);cam={yaw:.63,pitch:.79,distance:size*2.55,target:[0,0,s.surfaceMode==='sphere'?0:1]};backend?.draw()}
+function setSize(){let canvas=$('canvas'),dpr=Math.min(window.devicePixelRatio||1,2),w=Math.max(2,Math.round(canvas.clientWidth*dpr)),h=Math.max(2,Math.round(canvas.clientHeight*dpr));if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;backend?.resize()}backend?.draw()}
+// WebGPU renderer, with a WebGL2 fallback for browsers without WebGPU.
+async function initWebGPU(canvas){if(!navigator.gpu)throw Error('WebGPU unavailable');let adapter=await navigator.gpu.requestAdapter();if(!adapter)throw Error('No WebGPU adapter');let device=await adapter.requestDevice(),context=canvas.getContext('webgpu');if(!context)throw Error('No WebGPU context');let format=navigator.gpu.getPreferredCanvasFormat();context.configure({device,format,alphaMode:'opaque'});
+const shader=device.createShaderModule({code:`struct Uniforms { mvp: mat4x4<f32>, lighting: vec4<f32>, materialColor: vec4<f32> }; @group(0) @binding(0) var<uniform> uniforms: Uniforms;
+struct Out { @builtin(position) p: vec4<f32>, @location(0) n: vec3<f32>, @location(1) v: vec3<f32> };
+@vertex fn vs(@location(0) pos:vec3<f32>,@location(1) normal:vec3<f32>)->Out {var o:Out;o.p=uniforms.mvp*vec4<f32>(pos,1.0);o.n=normal;o.v=pos;return o;}
+@fragment fn fs(o:Out)->@location(0) vec4<f32>{let n=normalize(o.n);let l=normalize(vec3<f32>(-.42,.34,.84));let directional=(.44+.56*max(dot(n,l),0.0))*.88+max(dot(n,normalize(vec3<f32>(.5,-.1,.9))),0.0)*.10;let even=.86+.14*abs(dot(n,l));let shade=select(directional,even,uniforms.lighting.x>0.5);return vec4<f32>(uniforms.materialColor.xyz*shade,1.0);}`});
+let pipeline=device.createRenderPipeline({layout:'auto',vertex:{module:shader,entryPoint:'vs',buffers:[{arrayStride:24,attributes:[{shaderLocation:0,offset:0,format:'float32x3'},{shaderLocation:1,offset:12,format:'float32x3'}]}]},fragment:{module:shader,entryPoint:'fs',targets:[{format}]},primitive:{topology:'triangle-list',cullMode:'none'},depthStencil:{format:'depth24plus',depthWriteEnabled:true,depthCompare:'less'}});
+let uniform=device.createBuffer({size:96,usage:GPUBufferUsage.UNIFORM|GPUBufferUsage.COPY_DST}),bind=device.createBindGroup({layout:pipeline.getBindGroupLayout(0),entries:[{binding:0,resource:{buffer:uniform}}]});let vertices=null,triangles=null,count=0,depth=null;
+return {name:'WebGPU',upload(mesh){let data=new Float32Array(mesh.vertices*6);for(let i=0;i<mesh.vertices;i++){for(let j=0;j<3;j++){data[i*6+j]=mesh.positions[i*3+j];data[i*6+3+j]=mesh.normals[i*3+j]}}vertices?.destroy();triangles?.destroy();vertices=device.createBuffer({size:data.byteLength,usage:GPUBufferUsage.VERTEX|GPUBufferUsage.COPY_DST});device.queue.writeBuffer(vertices,0,data);triangles=device.createBuffer({size:mesh.indices.byteLength,usage:GPUBufferUsage.INDEX|GPUBufferUsage.COPY_DST});device.queue.writeBuffer(triangles,0,mesh.indices);count=mesh.indices.length;this.draw()},resize(){depth?.destroy();depth=device.createTexture({size:[canvas.width,canvas.height],format:'depth24plus',usage:GPUTextureUsage.RENDER_ATTACHMENT})},draw(){if(!count)return;if(!depth||depth.width!==canvas.width||depth.height!==canvas.height)this.resize();device.queue.writeBuffer(uniform,0,cameraMatrix());device.queue.writeBuffer(uniform,64,new Float32Array([evenLighting?1:0,0,0,0]));device.queue.writeBuffer(uniform,80,new Float32Array([...previewRGB,1]));let cmd=device.createCommandEncoder(),pass=cmd.beginRenderPass({colorAttachments:[{view:context.getCurrentTexture().createView(),clearValue:{r:.102,g:.125,b:.145,a:1},loadOp:'clear',storeOp:'store'}],depthStencilAttachment:{view:depth.createView(),depthClearValue:1,depthLoadOp:'clear',depthStoreOp:'store'}});pass.setPipeline(pipeline);pass.setBindGroup(0,bind);pass.setVertexBuffer(0,vertices);pass.setIndexBuffer(triangles,'uint32');pass.drawIndexed(count);pass.end();device.queue.submit([cmd.finish()])}}}
+function initWebGL(canvas){let gl=canvas.getContext('webgl2',{antialias:true});if(!gl)throw Error('WebGL2 unavailable');function shader(t,src){let sh=gl.createShader(t);gl.shaderSource(sh,src);gl.compileShader(sh);if(!gl.getShaderParameter(sh,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(sh));return sh}
+let prog=gl.createProgram();gl.attachShader(prog,shader(gl.VERTEX_SHADER,`#version 300 es\nprecision highp float;in vec3 pos;in vec3 normal;uniform mat4 mvp;out vec3 n;void main(){n=normal;gl_Position=mvp*vec4(pos,1.);}`));gl.attachShader(prog,shader(gl.FRAGMENT_SHADER,`#version 300 es\nprecision highp float;in vec3 n;uniform float evenLight;uniform vec3 materialColor;out vec4 color;void main(){vec3 v=normalize(n);vec3 l=normalize(vec3(-.42,.34,.84));float directional=.44+.56*max(dot(v,l),0.);float even=.86+.14*abs(dot(v,l));float shade=mix(directional,even,evenLight);color=vec4(materialColor*shade,1.);}`));gl.bindAttribLocation(prog,0,'pos');gl.bindAttribLocation(prog,1,'normal');gl.linkProgram(prog);if(!gl.getProgramParameter(prog,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(prog));let vao=gl.createVertexArray(),buffer=gl.createBuffer(),indexBuffer=gl.createBuffer(),count=0;gl.enable(gl.DEPTH_TEST);return {name:'WebGL2 fallback',upload(mesh){let dat=new Float32Array(mesh.vertices*6);for(let i=0;i<mesh.vertices;i++)for(let j=0;j<3;j++){dat[i*6+j]=mesh.positions[i*3+j];dat[i*6+3+j]=mesh.normals[i*3+j]}gl.bindVertexArray(vao);gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,dat,gl.STATIC_DRAW);gl.vertexAttribPointer(0,3,gl.FLOAT,false,24,0);gl.enableVertexAttribArray(0);gl.vertexAttribPointer(1,3,gl.FLOAT,false,24,12);gl.enableVertexAttribArray(1);gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,indexBuffer);gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,mesh.indices,gl.STATIC_DRAW);count=mesh.indices.length;this.draw()},resize(){gl.viewport(0,0,canvas.width,canvas.height)},draw(){gl.viewport(0,0,canvas.width,canvas.height);gl.clearColor(.102,.125,.145,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);if(!count)return;gl.useProgram(prog);gl.uniformMatrix4fv(gl.getUniformLocation(prog,'mvp'),false,cameraMatrix());gl.uniform1f(gl.getUniformLocation(prog,'evenLight'),evenLighting?1:0);gl.uniform3fv(gl.getUniformLocation(prog,'materialColor'),new Float32Array(previewRGB));gl.bindVertexArray(vao);gl.drawElements(gl.TRIANGLES,count,gl.UNSIGNED_INT,0)}}}
+// STL availability is based on the generated geometry, never on preview/GPU success.
+function setExportState(ok,message){
+ $('export').disabled=!ok;
+ $('export').title=message;
+ $('exportReason').textContent=message;
+ $('exportReason').classList.toggle('error',!ok);
+}
+function regenerate(){
+ const start=performance.now(),s=settings();
+ if(s.surfaceMode==='sphere'&&s.objectShape==='imported'&&!importedModel){lastMesh=null; importedGeneration=null;setExportState(false,importError||'Choose an STL file to begin'); $('stats').textContent='No imported mesh loaded';$('importCheck').textContent=importError||'Choose a closed STL model to texture';$('status').textContent=importError||'Select an STL file using the 3D Shape panel.';return}
+ let mesh;
+ try{mesh=s.surfaceMode==='sphere'?(s.objectShape==='imported'?generateImportedSolid(s):generateWrappedSolid(s)):generateMesh(s)}catch(e){
+  lastMesh=null;setExportState(false,'Mesh generation failed — see details below');
+  $('importCheck').textContent='⚠ Mesh generation failed: '+e.message;
+  $('importCheck').style.borderColor='#bd7361';
+  $('status').textContent='Generation error: '+e.message;
+  console.error(e);return;
+ }
+ lastMesh=mesh;lastPreviewMesh=mesh;
+ const fileMB=mesh.stlBytes/1000000;
+ const badEdge=s.surfaceMode==='sphere'?false:edgeCompatibilityError(s);
+ const overTriangles=mesh.triangles>=300000;
+ const overBytes=mesh.stlBytes>=25000000;
+ const valid=!badEdge&&!overTriangles&&!overBytes&&!mesh.meshError;
+ const reason=mesh.meshError|| (badEdge?edgeCompatibility(s):overTriangles?'Triangle count exceeds the 300,000 export budget':overBytes?'STL exceeds the 25 MB export budget':'Ready to export STL');
+ setExportState(valid,reason);
+ $('stats').textContent=`${s.surfaceMode==='sphere'?s.wrapSummary:s.width+' × '+s.height+' mm'} · ${mesh.effectiveSpacing.toFixed(3)} mm grid${mesh.limited?' (auto-adjusted)':''} · ${mesh.triangles.toLocaleString()} triangles · ${(performance.now()-start).toFixed(0)} ms`;
+ $('importCheck').textContent=`${valid?'✓ STL-ready':'⚠ '+reason} · ${mesh.triangles.toLocaleString()} / 300,000 triangles · ${fileMB.toFixed(2)} / 25 MB (binary STL) · effective detail ${mesh.effectiveSpacing.toFixed(3)} mm`;
+ $('importCheck').style.borderColor=valid?'#527d69':'#bd7361';
+ try{if(s.surfaceMode!=='sphere')updateEdgeInterface(s)}catch(e){console.error('Edge panel update failed:',e)}
+ try{backend?.upload(lastPreviewMesh)}catch(e){
+  console.error('3D preview update failed; STL is still available:',e);
+  $('status').textContent='3D preview update failed, but the STL mesh was generated successfully. Export is still available. '+e.message;
+  return;
+ }
+ if(s.edgeEnabled&&!$('tilePreviewWrap').hidden&&!badEdge){try{drawTileAssembly()}catch(e){console.warn('Tile preview failed:',e)}}
+ $('status').textContent=s.surfaceMode==='sphere'?`Finished textured ${wrapShapeName(s.objectShape).toLowerCase()} ready (seed ${s.seed}; ${s.smoothFaces.length} smooth ${(s.objectShape==='sphere'||s.objectShape==='planet')?'regions':'faces'}). Export downloads the complete solid STL. ${mesh.limited?'Mesh resolution was automatically adjusted to export limits.':''}`:(s.surfaceMode==='landscape'?`New ${LANDSCAPES[s.landscapeType].name.toLowerCase()} terrain generated (seed ${s.seed}). ${s.mode==='flat'?'Underside is flat.':'Both faces are textured.'} ${mesh.limited?'Grid spacing adjusted to fit the triangle budget.':''}`:`New ${s.material==='math'?MATH_PATTERNS[s.pattern].name:MATERIALS[s.material].name} pattern generated (seed ${s.seed}). ${s.mode==='flat'?'Underside is flat.':'Both faces are textured.'} ${mesh.limited?'Grid spacing adjusted to fit the triangle budget.':''}`);
+}
+function schedule(){showSliderLabels();clearTimeout(updateTimer);updateTimer=setTimeout(regenerate,180)}
+function stlExport(mesh){let {positions:p,indices:ix}=mesh,n=ix.length/3,buffer=new ArrayBuffer(84+n*50),dv=new DataView(buffer);let title='Texture Texture Generator - '+mesh.settings.material+' - mm';for(let i=0;i<title.length;i++)dv.setUint8(i,title.charCodeAt(i));dv.setUint32(80,n,true);let offset=84;for(let j=0;j<ix.length;j+=3){let a=ix[j]*3,b=ix[j+1]*3,c=ix[j+2]*3;let u=[p[b]-p[a],p[b+1]-p[a+1],p[b+2]-p[a+2]],v=[p[c]-p[a],p[c+1]-p[a+1],p[c+2]-p[a+2]],normal=norm(cross(u,v));const shift=(mesh.settings?.surfaceMode==='sphere'&&mesh.settings?.objectShape==='imported'&&mesh.settings?.keepImportPosition&&importedModel)?importedModel.center:[0,0,0];let values=[...normal,p[a]+shift[0],p[a+1]+shift[1],p[a+2]+shift[2],p[b]+shift[0],p[b+1]+shift[1],p[b+2]+shift[2],p[c]+shift[0],p[c+1]+shift[1],p[c+2]+shift[2]];for(let k=0;k<12;k++)dv.setFloat32(offset+k*4,values[k],true);offset+=50}return new Blob([buffer],{type:'model/stl'})}
+function download(){if(!lastMesh){$('status').textContent='No valid STL mesh is currently available.';return}if(lastMesh.settings.surfaceMode!=='sphere'&&edgeCompatibilityError(lastMesh.settings)){$('status').textContent=edgeCompatibility(lastMesh.settings);return}if(lastMesh.meshError){$('status').textContent='Export blocked: '+lastMesh.meshError;return}if(lastMesh.triangles>=300000||lastMesh.stlBytes>=25000000){$('status').textContent='Export blocked: mesh exceeds the current triangle or file-size budget. Regenerate at a coarser grid spacing.';return}let blob=stlExport(lastMesh),url=URL.createObjectURL(blob),a=document.createElement('a'),s=lastMesh.settings;a.href=url;a.download=s.surfaceMode==='sphere'?`TTG_${s.objectShape==='imported'?((importedModel?.name||'IMPORTED').replace(/[^a-zA-Z0-9_-]/g,'_')):s.objectShape.toUpperCase()}_${s.material}${s.material==='math'?'_'+s.pattern:''}${s.material==='landscape'?'_'+s.landscapeType:''}${s.material==='planet'?'_'+s.planetStyle:''}_seed${s.seed}${s.smoothFaces.length?'_smooth-'+s.smoothFaces.join('-'):''}.stl`:`TTG_${s.material}${s.material==='math'?'_'+s.pattern:''}${s.material==='landscape'?'_'+s.landscapeType:''}_${s.shape}_${s.width}x${s.height}mm_${s.mode}_seed${s.seed}${s.edgeEnabled?'_edge'+s.edgeSeed:''}.stl`;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);$('status').textContent=s.surfaceMode==='sphere'?`Exported complete textured ${wrapShapeName(s.objectShape).toLowerCase()} (${(blob.size/1048576).toFixed(1)} MiB). This STL contains one solid object: ${s.wrapSummary.toLowerCase()}.`:(s.surfaceMode==='landscape'?`Exported closed ${LANDSCAPES[s.landscapeType].name.toLowerCase()} terrain solid (${(blob.size/1048576).toFixed(1)} MiB). STL coordinates are expressed in millimeters.`:`Exported closed ${MATERIALS[s.material].name.toLowerCase()}-texture solid (${(blob.size/1048576).toFixed(1)} MiB). STL coordinates are expressed in millimeters.`)}
+function chooseMode(m){if(m==='all'&&$('edgeEnabled').checked){$('status').textContent='Universal edge matching currently supports Flat Back only.';return}mode=m;for(let [id,val] of [['flatMode','flat'],['allMode','all']]){$(id).classList.toggle('active',m===val);$(id).setAttribute('aria-pressed',String(m===val))}schedule()}
+function edgeCompatibilityError(s){return !!s.edgeEnabled&&(s.shape!=='square'||Math.abs(s.width-s.height)>1e-6||s.mode!=='flat')}
+function updateEdgeInterface(s){
+  $('edgeOptions').hidden=!s.edgeEnabled;
+  $('edgeBlendValue').textContent=s.edgeBlend.toFixed(1)+' mm';
+  $('edgeVariationValue').textContent=s.edgeVariation+'%';
+  $('allMode').disabled=s.edgeEnabled;
+  const check=$('edgeCompatibility');check.textContent=s.edgeEnabled?edgeCompatibility(s):'';
+  check.className='note '+(edgeCompatibilityError(s)?'warning':'ok');
+  $('previewTiles').disabled=edgeCompatibilityError(s);
+}
+function downloadObject(data,filename,type){
+  const blob=new Blob([data],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2500);
+}
+function edgeProfileDocument(s){return {format:'TTG-universal-edge-profile',version:1,edgeSeed:s.edgeSeed,edgeBlend:s.edgeBlend,edgeVariation:s.edgeVariation,width:s.width,height:s.height,base:s.base,detail:s.detail,mode:'flat',shape:'square',effectiveSpacing:lastMesh?.effectiveSpacing??null}}
+function saveEdgeProfile(){let s=settings();if(edgeCompatibilityError(s)){$('status').textContent=edgeCompatibility(s);return}downloadObject(JSON.stringify(edgeProfileDocument(s),null,2),'TTG_edge_'+s.edgeSeed+'_'+s.width+'mm.json','application/json');$('status').textContent='Saved matching-edge settings for later reuse.'}
+async function loadEdgeProfile(file){try{
+  const data=JSON.parse(await file.text());
+  if(data.format!=='TTG-universal-edge-profile'||data.version!==1)throw Error('Not a supported TTG profile');
+  for(const k of ['edgeSeed','edgeBlend','edgeVariation','width','height','base','detail'])if(!Number.isFinite(Number(data[k])))throw Error('Missing or invalid '+k);
+  if(data.width!==data.height||data.shape!=='square'||data.mode!=='flat')throw Error('Profile is not a compatible square flat-back tile');
+  const seed=clamp(Math.floor(data.edgeSeed),1,99999999),blend=clamp(data.edgeBlend,1,20),variation=clamp(data.edgeVariation,0,100);
+  $('edgeSeed').value=seed;$('edgeBlend').value=blend;$('edgeVariation').value=variation;
+  $('shape').value='square';$('width').value=data.width;$('height').value=data.height;$('base').value=data.base;
+  const details=[...$('detail').options].map(x=>Number(x.value));
+  if(!details.includes(Number(data.detail)))throw Error('Unsupported detail grid spacing');
+  $('detail').value=String(data.detail);$('edgeEnabled').checked=true;chooseMode('flat');regenerate();
+  $('status').textContent='Loaded matching-edge profile. Change material or texture seed freely; the edge profile stays fixed.';
+}catch(err){$('status').textContent='Could not load edge profile: '+err.message}}
+function drawTileAssembly(){
+ const s=settings();if(edgeCompatibilityError(s)){$('status').textContent=edgeCompatibility(s);return}
+ const canvas=$('tilePreview'),ctx=canvas.getContext('2d'),side=180,dim=3,step=3;
+ const samples=new Float32Array((540/step)*(540/step));let min=Infinity,max=-Infinity;
+ for(let ty=0;ty<dim;ty++)for(let tx=0;tx<dim;tx++){
+   const ps={...s,seed:((s.seed+Math.imul(ty*3+tx+1,7919))%99999998)+1};
+   const mat=GENERATORS[s.material].generate(ps);
+   for(let iy=0;iy<side;iy+=step)for(let ix=0;ix<side;ix+=step){
+     const x=((ix+step*.5)/side-.5)*s.width,y=((iy+step*.5)/side-.5)*s.height;
+     const z=surfaceHeight(x,y,ps,mat);
+     const pos=(ty*side/step+iy/step)*(540/step)+(tx*side/step+ix/step);
+     samples[pos]=z;min=Math.min(min,z);max=Math.max(max,z);
+   }
+ }
+ const img=ctx.createImageData(540,540);
+ for(let iy=0;iy<540;iy++)for(let ix=0;ix<540;ix++){
+    const v=samples[Math.floor(iy/step)*(540/step)+Math.floor(ix/step)];
+    const shade=Math.round(65+155*(v-min)/(max-min+1e-8)),dst=(iy*540+ix)*4;
+    img.data[dst]=shade;img.data[dst+1]=Math.min(255,shade+7);img.data[dst+2]=Math.min(255,shade+13);img.data[dst+3]=255;
+ }
+ ctx.putImageData(img,0,0);ctx.strokeStyle='#75ebbe';ctx.lineWidth=2;
+ for(let i=1;i<3;i++){ctx.beginPath();ctx.moveTo(i*side,0);ctx.lineTo(i*side,540);ctx.moveTo(0,i*side);ctx.lineTo(540,i*side);ctx.stroke()}
+}
+
+function setupEdges(){
+ $('edgeEnabled').addEventListener('change',()=>{if($('edgeEnabled').checked&&mode!=='flat')chooseMode('flat');schedule()});
+ for(const id of ['edgeSeed','edgeBlend','edgeVariation'])$(id).addEventListener('input',schedule);
+ $('newEdge').addEventListener('click',()=>{$('edgeSeed').value=1+Math.floor(Math.random()*99999998);regenerate()});
+ $('saveEdge').addEventListener('click',saveEdgeProfile);
+ $('loadEdge').addEventListener('click',()=>$('edgeFile').click());
+ $('edgeFile').addEventListener('change',async e=>{const f=e.target.files?.[0];if(f)await loadEdgeProfile(f);e.target.value=''});
+ $('previewTiles').addEventListener('click',()=>{const wrap=$('tilePreviewWrap');wrap.hidden=!wrap.hidden;$('previewTiles').textContent=wrap.hidden?'▦ Show 3 × 3 tile assembly':'▦ Hide 3 × 3 tile assembly';if(!wrap.hidden)drawTileAssembly()});
+}
+function setSurfaceMode(next){
+ surfaceMode=next;
+ const isFlat=next==='flat',is3D=next==='sphere',isLandscape=next==='landscape';
+ $('flatShapePanel').hidden=is3D;
+ $('spherePanel').hidden=!is3D;
+ $('facePanel').hidden=!is3D;
+ $('facePickTool').hidden=!is3D;
+ if(!is3D)setFacePicker(false);
+ $('edgePanel').hidden=!isFlat;
+ $('flatModeButtons').hidden=is3D;
+ $('flatWorkflow').hidden=is3D;
+ if(isLandscape)$('flatWorkflow').innerHTML='<strong>Landscape export:</strong> Create a closed, solid terrain relief with adjustable dimensions and base thickness. Export it directly as STL.';
+ else $('flatWorkflow').innerHTML='<strong>Flat-surface export:</strong> Generate a closed STL relief panel. Use it as a standalone model or as surface geometry in your preferred 3D workflow.';
+ for(const [id,value] of [['flatSurface','flat'],['wrapSurface','sphere'],['landscapeSurface','landscape']]){
+  $(id).classList.toggle('active',next===value);
+  $(id).setAttribute('aria-pressed',String(next===value));
+ }
+ $('surfaceModeHint').textContent=is3D?'Create a complete 3D solid with texture on its exterior; export the finished shape as STL.':isLandscape?'Create a solid terrain tile with rolling hills, mountains, craters, canyons, or dunes.':'Generate a standalone textured slab for use in 3D modeling and fabrication.';
+ renderMaterialControls();
+ $('rendererTag').textContent=is3D?wrapShapeName($('objectShape').value)+' · textured solid':isLandscape?LANDSCAPES[currentLandscape].name+' preview':($('textureType').value==='math'?MATH_PATTERNS[currentMathPattern].name:MATERIALS[$('textureType').value].name)+' preview';
+ refreshFacePanel();resetCamera();regenerate();
+}
+function setupSidebarResize(){
+ const splitter=$('sidebarResizer'),layout=document.querySelector('.layout');
+ let active=false,startX=0,startWidth=350;
+ function bounds(){return {min:260,max:Math.max(260,Math.min(650,window.innerWidth-340))}}
+ function setWidth(value){const {min,max}=bounds();const width=Math.round(clamp(value,min,max));layout.style.setProperty('--sidebar-width',width+'px');splitter.setAttribute('aria-valuenow',String(width));setSize()}
+ splitter.addEventListener('pointerdown',e=>{if(e.button!==0)return;active=true;startX=e.clientX;startWidth=parseFloat(getComputedStyle(layout).getPropertyValue('--sidebar-width'))||350;splitter.classList.add('dragging');splitter.setPointerCapture(e.pointerId);e.preventDefault()});
+ splitter.addEventListener('pointermove',e=>{if(active)setWidth(startWidth+e.clientX-startX)});
+ const stop=()=>{active=false;splitter.classList.remove('dragging')};
+ splitter.addEventListener('pointerup',stop);splitter.addEventListener('pointercancel',stop);splitter.addEventListener('lostpointercapture',stop);
+ splitter.addEventListener('dblclick',()=>setWidth(350));
+ splitter.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();setWidth((Number(splitter.getAttribute('aria-valuenow'))||350)+(e.key==='ArrowRight'?20:-20))}else if(e.key==='Home'){e.preventDefault();setWidth(bounds().min)}else if(e.key==='End'){e.preventDefault();setWidth(bounds().max)}});
+ window.addEventListener('resize',()=>{if(window.innerWidth>850)setWidth(Number(splitter.getAttribute('aria-valuenow'))||350)});
+}
+
+async function start(){setupSidebarResize();setupPreviewColors();renderMaterialControls();setupEdges();updateObjectShapeUI();refreshFacePanel();
+ $('flatSurface').addEventListener('click',()=>setSurfaceMode('flat'));
+ $('wrapSurface').addEventListener('click',()=>setSurfaceMode('sphere'));
+ $('landscapeSurface').addEventListener('click',()=>setSurfaceMode('landscape'));$('facePickTool').addEventListener('click',()=>setFacePicker(!facePickActive));$('clearSmoothFaces').addEventListener('click',()=>{smoothFaces.clear();refreshFacePanel();schedule()});$('smoothAllFaces').addEventListener('click',()=>{smoothFaces=new Set(validFaceIds($('objectShape').value));refreshFacePanel();schedule()});
+ $('objectShape').addEventListener('change',()=>{smoothFaces.clear();updateObjectShapeUI();renderMaterialControls();refreshFacePanel();resetCamera();schedule()});
+ $('landscapeType').addEventListener('change',()=>{currentLandscape=$('landscapeType').value;renderMaterialControls();$('rendererTag').textContent=LANDSCAPES[currentLandscape].name+' preview';schedule()});
+ $('importStl').addEventListener('change',async e=>{if(e.target.files?.[0])await loadImportedSTL(e.target.files[0]);});
+ $('keepImportPosition').addEventListener('change',schedule);
+ $('cleanupImported').addEventListener('change',()=>{ $('cleanupBlendField').hidden=!$('cleanupImported').checked;schedule() }); $('cleanupBlend').addEventListener('input',()=>{$('cleanupBlendValue').textContent=Number($('cleanupBlend').value).toFixed(1)+' mm';schedule()});
+ $('splitAngle').addEventListener('input',()=>{$('splitAngleValue').textContent=$('splitAngle').value+'°';if(importedModel){analyzeImportedRegions(importedModel,Number($('splitAngle').value));smoothFaces.clear();refreshFacePanel();updateImportedInfo();schedule()}}); for(const id of ['objectA','objectB','objectC']){$(id).addEventListener('input',e=>{e.target.dataset.touched='1';schedule()})}
+$('textureType').addEventListener('change',()=>{renderMaterialControls();$('rendererTag').textContent=surfaceMode==='sphere'?wrapShapeName($('objectShape').value)+' · textured solid':(surfaceMode==='landscape'?LANDSCAPES[currentLandscape].name+' preview':($('textureType').value==='math'?MATH_PATTERNS[currentMathPattern].name:MATERIALS[$('textureType').value].name)+' preview');schedule()});for(let id of ['shape','sides','width','height','base','detail','seed'])$(id).addEventListener('input',schedule);$('shape').addEventListener('change',()=>{$('sides').disabled=$('shape').value!=='custom';schedule()});$('randomize').addEventListener('click',()=>{$('seed').value=1+Math.floor(Math.random()*99999998);regenerate()});$('flatMode').addEventListener('click',()=>chooseMode('flat'));$('allMode').addEventListener('click',()=>chooseMode('all'));$('export').addEventListener('click',download);setupCamera();let canvas=$('canvas');try{backend=await initWebGPU(canvas)}catch(error){try{backend=initWebGL(canvas)}catch(err){$('rendererTag').textContent=MATERIALS[$('textureType').value].name+' preview';$('status').textContent='STL generation and export still work: '+err.message}}$('rendererTag').textContent=backend?($('textureType').value==='math'?MATH_PATTERNS[currentMathPattern].name:MATERIALS[$('textureType').value].name)+' preview':'Preview unavailable';resetCamera();regenerate();window.addEventListener('resize',setSize);new ResizeObserver(setSize).observe($('viewer'));setSize()}
+start();
+</script></body></html>
